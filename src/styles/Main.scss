@@ -1,0 +1,57 @@
+$background_color: rgb(175,212,119);
+$color: #222225;
+
+
+@mixin data_entry_form($width, $height, $color, $fontSize, $padding, $border, $borderRadius){
+    width: $width;
+    height: $height;
+    color: $color;
+    font-size: $fontSize;
+    padding: $padding;
+    border: 1px solid $border;
+    border-radius: $borderRadius;
+    text-transform: uppercase;
+}
+
+// 1 Вариант
+// rgb(175,212,119)
+// #afd477
+
+// rgb(255,226,122)
+// #ffe27a
+
+// rgb(255,255,255)
+// #ffffff
+
+
+
+
+// 2 вариант
+// rgb(137,199,98)
+// #89c762
+
+// rgb(255,203,91)
+// #ffcb5b
+
+// rgb(213,227,238)
+// #d5e3ee
+
+
+
+
+// 3 вариант
+// rgb(59,180,74)
+// #3bb44a
+
+// rgb(174,196,220)
+// #f6b446
+
+// rgb(213,227,238)
+// #aec4dc
+
+
+
+
+// rgb(12,58,91)
+
+// #0c3a5b

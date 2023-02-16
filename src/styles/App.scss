@@ -1,0 +1,18 @@
+.App{
+    height: 100%;
+}
+
+.content{
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    padding: 30px;
+    background-color: rgb(230, 240, 240);
+
+    &__block{
+        padding: 33px 0;
+        display: flex;
+        justify-content: space-around;
+    }
+}
+

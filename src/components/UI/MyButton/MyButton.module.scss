@@ -1,0 +1,8 @@
+@import '../../../styles/Main.scss';
+
+.myButton{
+    padding: 5px;
+    border: 1px solid $background_color;
+    border-radius: 3px;
+    text-transform: uppercase;
+}

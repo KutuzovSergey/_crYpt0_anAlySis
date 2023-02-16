@@ -1,0 +1,16 @@
+.search{
+    width: 80%;
+    height: 90px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__input{
+        display: flex;
+    }
+
+    &__sorting{
+        width: 30%;
+    }
+}
