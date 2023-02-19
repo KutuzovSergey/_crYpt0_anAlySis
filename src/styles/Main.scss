@@ -1,5 +1,14 @@
-$background_color: rgb(175,212,119);
+$background_color: rgb(59,180,74);
+$background_color_second: rgb(255,226,122);
+$background_color_third: rgb(12,58,91);
+$background_color_fourth: rgb(213,227,238);
+$background_color_fifth: rgb(255,203,91);
 $color: #222225;
+$color_text: #6a6d78;
+$color_button: #454855;
+$color_button_hover: #6d707a;
+$font_size_text: 0.6rem;
+$font_size_elements: 0.8rem;
 
 
 @mixin data_entry_form($width, $height, $color, $fontSize, $padding, $border, $borderRadius){
@@ -55,3 +64,5 @@ $color: #222225;
 // rgb(12,58,91)
 
 // #0c3a5b
+
+// кодворс

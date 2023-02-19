@@ -3,13 +3,12 @@ import Card from './Card';
 
 const CurrencesList = ({currences, remove}) => {
     return (
-        <div className='content__block'>
-          {Object.keys(currences).length !== 0
-            ? Object.keys(currences).map( currency =>
+        <div className='card__block'>
+          {currences.length !== 0
+            ? currences.map( currency =>
               <Card 
-                key={currency} 
-                currency={currency} 
-                currences={currences[currency]}
+                key={currency.USD.FROMSYMBOL} 
+                props={currency}
                 remove={remove}/>)
             : <span>Монеты не найдены</span>
           }

@@ -23,7 +23,11 @@ const FormSearch = (props) =>{
                 </MyButton>
             </div>
             <div className="search__sorting">
-                <MySelect options={options} defaultVulue={'сортировка'}/>
+                <MySelect 
+                    value={props.sortValue}
+                    options={options}
+                    defaultVulue={'сортировка'}
+                    onChange={props.sort}/>
             </div>
         </form>
     )

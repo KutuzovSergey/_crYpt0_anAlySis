@@ -1,3 +1,5 @@
+@import './Main.scss';
+
 .App{
     height: 100%;
 }
@@ -7,12 +9,16 @@
     height: 100%;
     margin: auto;
     padding: 30px;
-    background-color: rgb(230, 240, 240);
+    background-color: $background_color_fourth;
 
-    &__block{
-        padding: 33px 0;
-        display: flex;
-        justify-content: space-around;
+    &__line{
+        width: 70%;
+        height: 5px;
+        margin: auto;
+        background-color: $background_color_second;
+        border-radius: 50%;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }
 
