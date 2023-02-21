@@ -1,5 +1,6 @@
 import React from 'react';
-import logo from '../images/logo.png'
+import { Link } from 'react-router-dom';
+import logo from '../images/logo.png';
 import '../styles/Header.scss';
 
 const Header = () =>{
@@ -10,8 +11,8 @@ const Header = () =>{
             </div>
             <nav className="menu">
                 <ul className="menu__block">
-                    <li className="menu__item">Главная</li>
-                    <li className="menu__item">О проекте</li>
+                    <li className="menu__item"><Link to="/">Главная</Link></li>
+                    <li className="menu__item"><Link to="/currences">Монеты</Link></li>
                 </ul>
             </nav>
         </header>
