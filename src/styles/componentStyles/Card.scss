@@ -1,5 +1,5 @@
-@import './Main.scss';
-@import '../fonts/RubikMonoOne-Regular.ttf';
+@import '../Main.scss';
+@import '../../fonts/RubikMonoOne-Regular.ttf';
 
 .card{
     width: 30%;
@@ -42,6 +42,18 @@
     &__img{
         width: 100%;
         height: auto;
+    }
+
+    &__mark{
+        display: flex;
+    }
+
+    &__symbol{
+        display: block;
+        font-size: 0.6rem;
+        color: #131722;
+        margin-bottom: 20px;
+        font-family: 'Rubik Mono One', sans-serif;
     }
 
     &__name{

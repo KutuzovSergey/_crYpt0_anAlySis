@@ -6,7 +6,12 @@ import AppRouter from './components/AppRouter';
 
 
 function App() {
-
+  class Component {
+    constructor(selector){
+      this.$el = document.querySelector(selector)
+    }
+  }
+  
   return (
     <div className="App">
         <BrowserRouter>

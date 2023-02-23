@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MyButton from './UI/MyButton/MyButton';
 import MyInput from './UI/MyInput/MyInput';
 import search from '../images/icon/search.svg'; 
-import '../styles/FormSearch.scss';
+import '../styles/componentStyles/FormSearch.scss';
 import MySelect from "./UI/Select/MySelect";
 
 const FormSearch = (props) =>{

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import FormSearch from '../components/FormSearch';
 import CurrencesList from '../components/CurrencesList';
 import Loader from '../components/UI/Loader/Loader';
+import CurrencesService from '../AP/CurrencyService';
+import { dataProcessing } from '../utils/fileCheck';
 
 const Currences = () => {
 
@@ -14,12 +16,9 @@ const Currences = () => {
     }
 
     const removeCurrences = (currency) =>{
-        const nawCurrences = {}
-        for(let key in currences){
-        if (key !== currency) {
-            nawCurrences[key] = currences[key];
-        }
-        }
+        const nawCurrences = currency.filter((item) => {
+            item.USD.NAME !== currency.USD.NAME
+        });
         setCurrency(nawCurrences);
     }
 
@@ -27,52 +26,46 @@ const Currences = () => {
     setSelectedSort(sort);
     }
 
-    const getList = () => {
-    const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
-    const url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,AAC,ADB,AIDOC,0XBTC&tsyms=USD,EUR';
+    async function sendList() {
+        const currences = CurrencesService.getList();
+        const result = dataProcessing(currences);
+        setCurrency(result);
+    } 
 
-    const dataProcessing = (obj) => {
-        const array = [];
-        Object.keys(obj.DISPLAY).forEach((key) => {
-        console.log(obj.DISPLAY[key]);
-        array.push(obj.DISPLAY[key]);
-        });
-        setCurrency(array);
-    }
+    // const getList = () => {
+    // const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
+    // const url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,AAC,ADB,AIDOC,0XBTC&tsyms=USD,EUR';
 
-    const sendList = (method, url, param) =>{
-        return new Promise((resolve, reject) => {
+    // const sendList = (method, url, param) =>{
+    //     return new Promise((resolve, reject) => {
 
-        const xhr = new XMLHttpRequest();
+    //     const xhr = new XMLHttpRequest();
     
-        xhr.open(method, url+param);
+    //     xhr.open(method, url+param);
     
-        xhr.responseType = 'json';
+    //     xhr.responseType = 'json';
     
-        xhr.onload = () => {
-            if(xhr.status >= 400){
-            reject(xhr.response);
-            } else {
-            // array.push(xhr.response.Data);
-            resolve(xhr.response);
-            // setCurrency(array);
-            }
-        }
+    //     xhr.onload = () => {
+    //         if(xhr.status >= 400){
+    //         reject(xhr.response);
+    //         } else {
+    //         resolve(xhr.response);
+    //         }
+    //     }
     
-        xhr.onerror = () => {
-            reject(xhr.response);
-        }
-        xhr.send();
-        })
-    }
+    //     xhr.onerror = () => {
+    //         reject(xhr.response);
+    //     }
+    //     xhr.send();
+    //     })
+    // }
 
-    sendList('GET', url, api_key)
-        .then(data => dataProcessing(data))
-        .catch(err => console.log(err))
-    }
+    // sendList('GET', url, api_key)
+    //     .then(data => dataProcessing(data))
+    //     .catch(err => console.log(err))
+    // }
 
-    useEffect(() => {getList()}, []);
-    useEffect(() => {console.log(currences), [currences]})
+    useEffect(() => {sendList()}, []);
     return (
         <div className='content'>
             <FormSearch 

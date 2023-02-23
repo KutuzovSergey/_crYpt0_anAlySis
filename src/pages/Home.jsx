@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/Home.scss';
-import baner from "../images/home/baner_1.jpeg";
+import baner from "../images/home/baner_4.jpg";
 
 const Home = () => {
     return (

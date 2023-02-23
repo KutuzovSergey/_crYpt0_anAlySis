@@ -1,10 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import '../styles/Card.scss';
+import '../styles/componentStyles/Card.scss';
 import ChartCard from "./CardComponent/ChartCard";
 import MyButton from "./UI/MyButton/MyButton";
 
 const Card = ({props, remove}) => {
+  console.log(props.NAME);
   const navigate = useNavigate();
     return(
         <div id={props.USD.FROMSYMBOL} className='card'>
@@ -13,11 +14,12 @@ const Card = ({props, remove}) => {
               <div className='card__image'>
                 <img src={`https://www.cryptocompare.com/${props.USD.IMAGEURL}`} alt={props.USD.FROMSYMBOL} className='card__img' />
               </div>
-              <div>
-                <span className='card__name'>{props.USD.FROMSYMBOL}</span>
+              <div className="card__mark">
+                <span className='card__symbol'>{props.USD.FROMSYMBOL}</span>
+                <span className='card__name'>{props.USD.NAME}</span>
               </div>
             </div>
-            <MyButton onClick={() => remove(currency)}>&#10006;</MyButton>
+            <MyButton onClick={() => remove(props.USD.NAME)}>&#10006;</MyButton>
           </div>
             
           <div className='card__info'>
