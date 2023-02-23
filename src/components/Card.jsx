@@ -5,7 +5,6 @@ import ChartCard from "./CardComponent/ChartCard";
 import MyButton from "./UI/MyButton/MyButton";
 
 const Card = ({props, remove}) => {
-  console.log(props.NAME);
   const navigate = useNavigate();
     return(
         <div id={props.USD.FROMSYMBOL} className='card'>
@@ -19,7 +18,7 @@ const Card = ({props, remove}) => {
                 <span className='card__name'>{props.USD.NAME}</span>
               </div>
             </div>
-            <MyButton onClick={() => remove(props.USD.NAME)}>&#10006;</MyButton>
+            <MyButton onClick={() => remove(props.USD)}>&#10006;</MyButton>
           </div>
             
           <div className='card__info'>

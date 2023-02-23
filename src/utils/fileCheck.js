@@ -1,6 +1,9 @@
 export const dataProcessing = (obj) => {
+    // if (Array.isArray(obj)) {
+    //     return obj
+    // }
+    // console.log(Array.isArray(obj));
     const array = [];
-    console.log(obj);
     const array_name = Object.keys(obj.DISPLAY);
     let count = 0;
 
