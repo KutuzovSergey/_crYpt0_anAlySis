@@ -4,8 +4,8 @@ import loader from '../../../images/icon/loader.gif';
 
 const Loader = () => {
     return (
-        <div className="loader">
-            <img src={loader} alt="loader" />
+        <div className={cl.loader}>
+            <img src={loader} alt="loader" className={cl.loader__image} />
         </div>
     )
 }

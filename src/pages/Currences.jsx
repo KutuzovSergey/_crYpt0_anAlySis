@@ -10,7 +10,7 @@ const Currences = () => {
     const [currences, setCurrency] = useState([]);
     const [saerch, setSaerch] = useState('');
     const [selectedSort, setSelectedSort] = useState('');
-
+    const [listLoading, setListLoading] = useState(false);
     const getSaerchValue = (value) =>{
         setSaerch(value);
     }
@@ -27,9 +27,12 @@ const Currences = () => {
     }
 
     async function sendList() {
-        const currences = CurrencesService.getList();
+        setListLoading(true);
+        const currences = await CurrencesService.getList();
+        console.log(await CurrencesService.getList());
         const result = dataProcessing(currences);
         setCurrency(result);
+        setListLoading(false);
     } 
 
     // const getList = () => {
@@ -74,10 +77,14 @@ const Currences = () => {
                 sortValue={selectedSort}
                 getSaerchValue={getSaerchValue} />
             <hr className='content__line' />
-            <CurrencesList 
+            {listLoading 
+                ?
+                <Loader/>
+                :
+                <CurrencesList 
                 currences={currences}
                 remove={removeCurrences}/>
-            <Loader/>
+            }
         </div>
     )
 }

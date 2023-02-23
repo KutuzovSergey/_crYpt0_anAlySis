@@ -1,8 +1,7 @@
 export default class CurrencesService {
-    getList(){
+    static async getList(){
         const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
         const url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,AAC,ADB,AIDOC,0XBTC&tsyms=USD,EUR';
-        let response_data = null;
 
         const serviceList = (method, url, param) =>{
             return new Promise((resolve, reject) => {
@@ -27,11 +26,11 @@ export default class CurrencesService {
             xhr.send();
             })
         }
-        serviceList('GET', url, api_key)
-            .then(data => response_data = data)
-            .catch(err => response_data = err)
+        return serviceList('GET', url, api_key)
+            .then(data => data)
+            .catch(err => err)
 
-        return response_data
+        
     }
 
 }
