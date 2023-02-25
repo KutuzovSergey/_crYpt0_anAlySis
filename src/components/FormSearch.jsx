@@ -7,8 +7,9 @@ import MySelect from "./UI/Select/MySelect";
 
 const FormSearch = (props) =>{
     const [options, setOptions] = useState([
-        {name:'По алфавиту', vulue:'alphabet'},
-        {name:'По стоимости', vulue:'price'},
+        {name:'По алфавиту', vulue:'NAME'},
+        {name:'По стоимости', vulue:'PRICE'},
+        {name:'По капитализации', vulue:'CIRCULATINGSUPPLYMKTCAP'},
     ]);
     return(
         <form className="search">
