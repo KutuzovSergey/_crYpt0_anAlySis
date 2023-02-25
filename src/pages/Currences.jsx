@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FormSearch from '../components/FormSearch';
 import CurrencesList from '../components/CurrencesList';
 import Loader from '../components/UI/Loader/Loader';
-import CurrencesService from '../AP/CurrencyService';
-import { dataProcessing } from '../utils/fileCheck';
+import { getAllList, getListOnPage } from '../AP/getCoins';
 
 const Currences = () => {
 
@@ -46,25 +45,15 @@ const Currences = () => {
 
         setSelectedSort(sort);
         
-        if (sort === 'NAME') {
-            
+        if (sort === 'NAME') {           
             copyCurrences.sort((a, b) =>  a[sort].localeCompare(b[sort]));
-
-            // setCurrences([...currences].sort((a, b) => {
-            //     a[sort].localeCompare(b[sort]);
-            // }));
         } else {
-
             copyCurrences.sort((a, b) =>  sortingNumbers(a[sort], b[sort]));
-
-            // setCurrences([...currences].sort((a, b) => {
-            //     sortingNumbers(a[sort], b[sort]);
-            // }));
         }
         setCurrences(copyCurrences);
     }
 
-    const getDisplayedCoins = (coins, index) =>{
+    const getDisplayedCoins = async (coins, index) =>{
         const result = []
         coins.forEach( item => {
             if (coins.indexOf(item) <= index) {
@@ -75,69 +64,19 @@ const Currences = () => {
         setDisplayedCoins(result);
     }
 
-    async function  getListOnPage(coins) {
-        if(!coins.length){
-            coins = ['RMESH', 'ADA', 'SAL', 'ATMI', 'BAAS'];
-        }
-
-        const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
-        const parameters = `?fsyms=${coins}&tsyms=USD`;
-        const url = 'https://min-api.cryptocompare.com/data/pricemultifull';
-        const get = 'GET';
-         
+    const getListCoinsOnPage = async (coinList) =>{
         setListLoading(true);
-        const result = await CurrencesService.getData(get, url, parameters, api_key);
-
-        setCurrences(dataProcessing(result));
+        setCurrences( await getListOnPage(coinList));
         setListLoading(false);
-    } 
-
-    async function getAllList(col){
-        const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
-        const url = 'https://min-api.cryptocompare.com/data/blockchain/list';
-        const get = 'GET';
-
-        const result = await CurrencesService.getData(get, url, api_key);
-
-        setAllList(Object.keys(result.Data));
-
-        getDisplayedCoins(allList, 9);
     }
 
-    // const getList = () => {
-    // const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
-    // const url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,AAC,ADB,AIDOC,0XBTC&tsyms=USD,EUR';
-
-    // const sendList = (method, url, param) =>{
-    //     return new Promise((resolve, reject) => {
-
-    //     const xhr = new XMLHttpRequest();
-    
-    //     xhr.open(method, url+param);
-    
-    //     xhr.responseType = 'json';
-    
-    //     xhr.onload = () => {
-    //         if(xhr.status >= 400){
-    //         reject(xhr.response);
-    //         } else {
-    //         resolve(xhr.response);
-    //         }
-    //     }
-    
-    //     xhr.onerror = () => {
-    //         reject(xhr.response);
-    //     }
-    //     xhr.send();
-    //     })
-    // }
-
-    // sendList('GET', url, api_key)
-    //     .then(data => dataProcessing(data))
-    //     .catch(err => console.log(err))
-    // }
-    useEffect(() => {getAllList()}, []);
-    useEffect(() => {getListOnPage(displayedCoins)}, [displayedCoins]);
+    const getListCoins = async () => {
+        setAllList( await getAllList());
+        getDisplayedCoins(allList, 9);
+    }
+   
+    useEffect(() => {getListCoins()}, []);
+    useEffect(() => {getListCoinsOnPage(displayedCoins)}, [displayedCoins]);
 
     return (
         <div className='content'>
