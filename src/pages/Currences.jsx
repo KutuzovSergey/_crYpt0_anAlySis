@@ -4,16 +4,19 @@ import FormSearch from '../components/FormSearch';
 import CurrencesList from '../components/CurrencesList';
 import Loader from '../components/UI/Loader/Loader';
 import { getAllList, getListOnPage } from '../AP/getCoins';
+import { sortArray } from '../utils/sorting';
 
 const Currences = () => {
 
     const [currences, setCurrences] = useState([]);
+
     const [saerch, setSaerch] = useState('');
+    const [infoSearchSowe, setInfoSearchSowe] = useState(false);
+
     const [selectedSort, setSelectedSort] = useState('');
     const [listLoading, setListLoading] = useState(false);
     const [allList, setAllList] = useState([]);
     const [displayedCoins, setDisplayedCoins] = useState([]);
-    const [infoSearchSowe, setInfoSearchSowe] = useState(false);
     const [infoSearch, setInfoSearch] = useState([
         {text:'Введите короткон имя искомой криптовалюты или несколько через запятую', id: 1}
     ]);
@@ -37,8 +40,6 @@ const Currences = () => {
         setSaerch(value);
         
         const searchCoins = allList.filter(item => item.toLowerCase().includes(saerch.toLowerCase()));
-
-        console.log(searchCoins);
 
         if (searchCoins.length) {
             const result = [];
@@ -88,21 +89,8 @@ const Currences = () => {
     const sortCurrences = (sort) =>{
         const copyCurrences = currences.slice();
 
-        const sortingNumbers = (a, b) =>{
-            if (a > b) {
-                return -1
-            } else {
-                return 1
-            }
-        }
-        console.log('функция вызвана');
         setSelectedSort(sort);
-        
-        if (sort === 'NAME') {           
-            copyCurrences.sort((a, b) =>  a[sort].localeCompare(b[sort]));
-        } else {
-            copyCurrences.sort((a, b) =>  sortingNumbers(a[sort], b[sort]));
-        }
+        sortArray(sort, 'NAME', copyCurrences);
         setCurrences(copyCurrences);
     }
 
@@ -138,10 +126,10 @@ const Currences = () => {
                 sort={sort => sortCurrences(sort)}
 
                 saerch={saerch} 
+                infoSearchSowe={infoSearchSowe}
                 sendSearchQuery={sendSearchQuery}
                 soweSearchInfo={soweSearchInfo}
                 hideSearchInfo={hideSearchInfo}
-                infoSearchSowe={infoSearchSowe}
                 getSaerchValue={getSaerchValue}
 
                 infoSearchText={infoSearch} 
@@ -149,14 +137,10 @@ const Currences = () => {
                 transferInput={transferInput}
                 />
             <hr className='content__line' />
-            {listLoading 
-                ?
-                <Loader/>
-                :
-                <CurrencesList 
+            <CurrencesList 
+                listLoading={listLoading}
                 currences={currences}
                 remove={removeCurrences}/>
-            }
         </div>
     )
 }

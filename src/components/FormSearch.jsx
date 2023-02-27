@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MyButton from './UI/MyButton/MyButton';
 import MyInput from './UI/MyInput/MyInput';
 import search from '../images/icon/search.svg'; 
