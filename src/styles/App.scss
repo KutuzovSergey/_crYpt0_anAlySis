@@ -4,21 +4,3 @@
     height: 100%;
 }
 
-.content{
-    width: 90%;
-    height: 100%;
-    margin: auto;
-    padding: 30px;
-    background-color: $background_color_fourth;
-
-    &__line{
-        width: 70%;
-        height: 5px;
-        margin: auto;
-        background-color: $background_color_second;
-        border-radius: 50%;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-}
-

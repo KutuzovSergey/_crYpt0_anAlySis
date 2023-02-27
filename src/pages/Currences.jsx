@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../styles/componentStyles/Currences.scss';
 import FormSearch from '../components/FormSearch';
 import CurrencesList from '../components/CurrencesList';
 import Loader from '../components/UI/Loader/Loader';
@@ -12,11 +13,63 @@ const Currences = () => {
     const [listLoading, setListLoading] = useState(false);
     const [allList, setAllList] = useState([]);
     const [displayedCoins, setDisplayedCoins] = useState([]);
+    const [infoSearchSowe, setInfoSearchSowe] = useState(false);
+    const [infoSearch, setInfoSearch] = useState([
+        {text:'Введите короткон имя искомой криптовалюты или несколько через запятую', id: 1}
+    ]);
+    const [visible, setVisible] = useState(false);
+
+
+    const soweSearchInfo = () => {
+        setInfoSearchSowe(true);
+    }
+    
+    const hideSearchInfo = () =>{
+        setInfoSearchSowe(false);
+            if(saerch === '') {
+            setInfoSearch([
+                {text:'Введите короткон имя искомой криптовалюты или несколько через запятую', id: 1}
+            ]);
+        }
+    }
 
     const getSaerchValue = (value) =>{
         setSaerch(value);
+        
+        const searchCoins = allList.filter(item => item.toLowerCase().includes(saerch.toLowerCase()));
+
+        console.log(searchCoins);
+
+        if (searchCoins.length) {
+            const result = [];
+            let i = 1;
+            searchCoins.forEach(item => result.push({text: item, id: ++i}));
+            setInfoSearch(result);
+            setVisible(true);
+        } else {
+            setInfoSearch([{text: 'монеты не найдены', id: 1}]);
+            setVisible(false);
+        }
     }
 
+    const sendSearchQuery = (e) =>{
+        e.preventDefault();
+        const result = saerch.split(',');
+       
+        getListCoinsOnPage(result);
+    }
+
+    const transferInput = (coinName) => {
+        
+        if (coinName === 'Введите короткон имя искомой криптовалюты или несколько через запятую' 
+        || coinName === 'монеты не найдены') {
+            return
+        }
+
+        coinName = coinName + ', ';
+        setSaerch(coinName);
+    }
+    
     const removeCurrences = (currency) =>{
         const result = []
         for (let i = 0; i < currences.length; i++) {
@@ -42,7 +95,7 @@ const Currences = () => {
                 return 1
             }
         }
-
+        console.log('функция вызвана');
         setSelectedSort(sort);
         
         if (sort === 'NAME') {           
@@ -81,10 +134,20 @@ const Currences = () => {
     return (
         <div className='content'>
             <FormSearch 
-                saerch={saerch} 
-                sort={sort => sortCurrences(sort)}
                 sortValue={selectedSort}
-                getSaerchValue={getSaerchValue} />
+                sort={sort => sortCurrences(sort)}
+
+                saerch={saerch} 
+                sendSearchQuery={sendSearchQuery}
+                soweSearchInfo={soweSearchInfo}
+                hideSearchInfo={hideSearchInfo}
+                infoSearchSowe={infoSearchSowe}
+                getSaerchValue={getSaerchValue}
+
+                infoSearchText={infoSearch} 
+                visible={visible}
+                transferInput={transferInput}
+                />
             <hr className='content__line' />
             {listLoading 
                 ?
