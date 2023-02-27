@@ -13,6 +13,7 @@ const Header = () =>{
                 <ul className="menu__block">
                     <li className="menu__item"><Link to="/">Главная</Link></li>
                     <li className="menu__item"><Link to="/currences">Монеты</Link></li>
+                    <li className="menu__item"><span>Вход</span> / <span>Регистрация</span></li>
                 </ul>
             </nav>
         </header>

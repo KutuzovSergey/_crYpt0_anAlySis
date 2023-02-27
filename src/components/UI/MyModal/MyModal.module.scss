@@ -1,0 +1,33 @@
+@import '../../../styles/Main.scss';
+
+.myModal{
+    @include modalFon();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $background_color_neutral;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.9s;
+
+    &.active{
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    &__block{
+        padding: 30px;
+        border-radius: 12px;
+        background-color: $background_color_fourth;
+        width: 60vh;
+        height: auto;
+        transform: scale(0);
+        transition: 0.8s all;
+    }
+
+    &__block.active{
+        transform: scale(1);
+    }
+}
+
+// 100vh?
