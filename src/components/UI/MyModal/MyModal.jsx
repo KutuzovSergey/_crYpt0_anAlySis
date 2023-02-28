@@ -14,7 +14,7 @@ const MyModal = ({children, ...props}) =>{
         <div 
             className={modalClass.join(' ')} 
             onClick={() => {props.setActive(false)}}>
-            <div className={modalClassBlock.join(' ')}>
+            <div onClick={(e) => e.stopPropagation()} className={modalClassBlock.join(' ')}>
                 {children}
             </div>
         </div>

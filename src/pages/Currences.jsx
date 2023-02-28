@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/componentStyles/Currences.scss';
+import '../styles/Currences.scss';
 import FormSearch from '../components/FormSearch';
 import CurrencesList from '../components/CurrencesList';
-import Loader from '../components/UI/Loader/Loader';
 import { getAllList, getListOnPage } from '../AP/getCoins';
 import { sortArray } from '../utils/sorting';
 
