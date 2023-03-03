@@ -1,0 +1,23 @@
+@import '../../../styles/Main.scss';
+
+.myButtonSmall{
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid $background_color;
+
+    &:hover{
+        box-shadow: 0px 0px 10px 3px $background_color inset;
+    }
+
+    &__text{
+        margin: auto;
+        font-weight: 900;
+        font-size: $font_size_big;
+        color: $background_color_third;
+        font-family: $font_style_element;
+    }
+}

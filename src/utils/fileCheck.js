@@ -15,6 +15,7 @@ export const dataProcessing = (obj) => {
             array[count].NAME = key;
             count = ++count;
         });
+
         return array
     }
     

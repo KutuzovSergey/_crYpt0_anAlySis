@@ -12,7 +12,10 @@ export async function getAllList(){
 }
 
 export async function  getListOnPage(coins) {
-    if(!coins.length){
+
+    if (typeof coins === 'undefined' || 
+            !Array.isArray(coins) || 
+            !coins.length) {
         coins = ['RMESH', 'ADA', 'SAL', 'ATMI', 'BAAS'];
     }
 
@@ -24,8 +27,6 @@ export async function  getListOnPage(coins) {
     const result = await RequestServer.getData(get, url, parameters, api_key);
 
     return dataProcessing(result)
-
-    // setCurrences(dataProcessing(result));
 }
 
 

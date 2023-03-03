@@ -35,6 +35,13 @@ $font_style_element: 'Rubik Mono One', sans-serif;
     left: 0;
 }
 
+@mixin textInfo {
+    color: #222225;
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
 // 1 Вариант
 // rgb(175,212,119)
 // #afd477

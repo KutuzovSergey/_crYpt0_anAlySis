@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import '../styles/Currences.scss';
 import FormSearch from '../components/FormSearch';
 import CurrencesList from '../components/CurrencesList';
 import { getAllList, getListOnPage } from '../AP/getCoins';
 import { sortArray } from '../utils/sorting';
+import { useFetching } from '../hooks/useFetching';
+import Pagination from '../components/UI/Pagination/Pagination';
 
 const Currences = () => {
 
@@ -13,14 +15,25 @@ const Currences = () => {
     const [infoSearchSowe, setInfoSearchSowe] = useState(false);
 
     const [selectedSort, setSelectedSort] = useState('');
-    const [listLoading, setListLoading] = useState(false);
     const [allList, setAllList] = useState([]);
     const [displayedCoins, setDisplayedCoins] = useState([]);
     const [infoSearch, setInfoSearch] = useState([
         {text:'Введите короткон имя искомой криптовалюты или несколько через запятую', id: 1}
     ]);
     const [visible, setVisible] = useState(false);
+    const [totalCount, setTotalCount] = useState('');
 
+    const [fetchCoin, isLoadingCoin] = useFetching(async (params) => {
+        await getListOnPage(params)
+    });
+
+    const getTotalCount = () => {
+        
+        if (allList.length > 9) {
+            let result = Math.ceil((allList.length + 1) / 9);
+            setTotalCount(result);
+        }
+    }
 
     const soweSearchInfo = () => {
         setInfoSearchSowe(true);
@@ -56,7 +69,7 @@ const Currences = () => {
         e.preventDefault();
         const result = saerch.split(',');
        
-        getListCoinsOnPage(result);
+        fetchListOnPage(result);
     }
 
     const transferInput = (coinName) => {
@@ -93,10 +106,10 @@ const Currences = () => {
         setCurrences(copyCurrences);
     }
 
-    const getDisplayedCoins = async (coins, index) =>{
-        const result = []
+    const getDisplayedCoins = async (coins, min, max) =>{
+        const result = [];
         coins.forEach( item => {
-            if (coins.indexOf(item) <= index) {
+            if (coins.indexOf(item) >= min && coins.indexOf(item) <= max) {
                 result.push(item);
             }
         });
@@ -104,20 +117,18 @@ const Currences = () => {
         setDisplayedCoins(result);
     }
 
-    const getListCoinsOnPage = async (coinList) =>{
-        setListLoading(true);
-        setCurrences( await getListOnPage(coinList));
-        setListLoading(false);
+    const getListCoins = async (indexMin, indexMax) => {
+        setAllList( await getAllList());
+        getDisplayedCoins(allList, indexMin, indexMax);
     }
 
-    const getListCoins = async () => {
-        setAllList( await getAllList());
-        getDisplayedCoins(allList, 9);
+    const fetchListOnPage = async (coinList) =>{
+        setCurrences( await fetchCoin(coinList));
     }
    
-    useEffect(() => {getListCoins()}, []);
-    useEffect(() => {getListCoinsOnPage(displayedCoins)}, [displayedCoins]);
-
+    useEffect(() => {getListCoins(1, 9)}, []);
+    useEffect(() => {fetchListOnPage(displayedCoins)}, [displayedCoins]);
+    useEffect(() => {getTotalCount()}, [allList]);
     return (
         <div className='content'>
             <FormSearch 
@@ -137,9 +148,10 @@ const Currences = () => {
                 />
             <hr className='content__line' />
             <CurrencesList 
-                listLoading={listLoading}
+                listLoading={isLoadingCoin}
                 currences={currences}
                 remove={removeCurrences}/>
+            <Pagination count={totalCount} getListCoins={getListCoins} />
         </div>
     )
 }
