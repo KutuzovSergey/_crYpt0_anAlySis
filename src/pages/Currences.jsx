@@ -24,7 +24,7 @@ const Currences = () => {
     const [totalCount, setTotalCount] = useState('');
 
     const [fetchCoin, isLoadingCoin] = useFetching(async (params) => {
-        await getListOnPage(params)
+        return await getListOnPage(params)
     });
 
     const getTotalCount = () => {
@@ -50,13 +50,15 @@ const Currences = () => {
 
     const getSaerchValue = (value) =>{
         setSaerch(value);
-        
-        const searchCoins = allList.filter(item => item.toLowerCase().includes(saerch.toLowerCase()));
+    }
 
-        if (searchCoins.length) {
+    const searchCoins = () => {
+        const searchItem = allList.filter(item => item.toLowerCase().includes(saerch.toLowerCase()));
+
+        if (searchItem.length) {
             const result = [];
             let i = 1;
-            searchCoins.forEach(item => result.push({text: item, id: ++i}));
+            searchItem.forEach(item => result.push({text: item, id: ++i}));
             setInfoSearch(result);
             setVisible(true);
         } else {
@@ -129,6 +131,7 @@ const Currences = () => {
     useEffect(() => {getListCoins(1, 9)}, []);
     useEffect(() => {fetchListOnPage(displayedCoins)}, [displayedCoins]);
     useEffect(() => {getTotalCount()}, [allList]);
+    useEffect(() => {searchCoins()}, [saerch]);
     return (
         <div className='content'>
             <FormSearch 

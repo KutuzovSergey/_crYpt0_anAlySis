@@ -29,10 +29,16 @@ export async function  getListOnPage(coins) {
     return dataProcessing(result)
 }
 
+export async function getChart(coin){
+    const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
+    const url = 'https://min-api.cryptocompare.com/data/v2/histoday';
+    const parameters = `?fsym=${coin}&tsym=USD&limit=10`;
+    const get = 'GET';
 
+    const result = await RequestServer.getData(get, url, parameters, api_key);
 
-
-
-
+    return dataProcessing(result)
+}
+// https://min-api.cryptocompare.com/data/v2/histoday?fsym=BIX&tsym=USD&limit=10
 // const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
 // // const url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,AAC,ADB,AIDOC,0XBTC&tsyms=USD,EUR';

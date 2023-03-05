@@ -1,12 +1,7 @@
 @import './Main.scss';
 
 .content{
-    width: 90%;
-    height: 100%;
-    margin: auto;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    background-color: $background_color_fourth;
+    @include content_block();
 
     &__line{
         width: 70%;

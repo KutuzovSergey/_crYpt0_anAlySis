@@ -8,6 +8,7 @@ const Pagination = (props) =>{
     const [leftArrow, setLeftArrow] = useState(false);
     const [rightArrow, setRightArrow] = useState(false);
     const [buttonsVisible, setButtonsVisible] = useState({ min: 1, max: 10 });
+    const [range, setRange] = useState(1);
 
     const createButtons = () =>{
         let min = buttonsVisible.min;
@@ -55,31 +56,48 @@ const Pagination = (props) =>{
     }
 
     const countСoins = (number) =>{
-        const result = [];
+        let result = 1;
         let second_number = number * 9;
         let first_number = second_number - 8;
 
         props.getListCoins(first_number, second_number);
+
+        result = number;
+
+        setRange(result);
     }
     
     useEffect(() => {createButtons()}, [props.count, buttonsVisible]);
 
+    const indicatorTrue = true;
+    const indicatorFalse = false;
+
+    console.log(range);
     return (
         <div className={cl.pagination}>
             <div className={cl.pagination__block}>
                 {leftArrow
-                ? <MyButtonSmall onClick={() => scrollLeft()}>&lt;</MyButtonSmall>
+                ? <MyButtonSmall
+                    activityIndicator={indicatorFalse}
+                    onClick={() => scrollLeft()}>&lt;</MyButtonSmall>
                 :
                 ''}
             </div>
             <div className={cl.pagination__wrapper}>
                 {  
-                numberButtons.map((item) => <MyButtonSmall key={item} onClick={() => countСoins(item)}>{item}</MyButtonSmall>)
+                numberButtons.map((item) => 
+                    <MyButtonSmall 
+                        key={item}
+                        activityIndicator={item === range ? indicatorTrue : indicatorFalse}
+                        onClick={() => countСoins(item)}>{item}
+                        </MyButtonSmall>)
                 } 
             </div>
             <div className={cl.pagination__block}>
                 {rightArrow
-                ? <MyButtonSmall onClick={() => scrollRight()}>&gt;</MyButtonSmall>
+                ? <MyButtonSmall 
+                    activityIndicator={indicatorFalse}
+                    onClick={() => scrollRight()}>&gt;</MyButtonSmall>
                 :
                 ''}
             </div>

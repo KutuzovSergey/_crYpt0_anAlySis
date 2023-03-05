@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import '../styles/Home.scss';
 import camera from '../images/icon/camera.svg';
 import upload from '../images/icon/upload.svg';
-import baner from "../images/home/baner_4.jpg";
 import user from "../images/user/user.png";
 import MyModal from "../components/UI/MyModal/MyModal";
 import MyInput from "../components/UI/MyInput/MyInput";
 import MyButton from "../components/UI/MyButton/MyButton";
+import Banner from "../components/Banner";
 
 const Home = () => {
     const [modalLogin, setModalLogin] = useState(false);
@@ -21,9 +21,7 @@ const Home = () => {
     }
     return (
         <div className="home">
-            <div className="home__banner" onClick={() => getRegistr()}>
-                <img src={baner} alt="baner image" />
-            </div>
+            <Banner/>
             <div className="home__text">
                 <p>Для того, чтобы повысить доходность сделок, трейдеры должны использовать все доступные им средства для снижения риска. Обычно для этой цели проводят анализ выбранных активов с применением методов технического и фундаментального анализа.</p>
             </div>

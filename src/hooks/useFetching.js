@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { getListOnPage } from "../AP/getCoins";
+// import { getListOnPage } from "../AP/getCoins";
 
 export const useFetching = (callback) =>{
     const [isLoading, getIsLoading] = useState(false);
-    const [error, setError] = useState('');
+    // const [error, setError] = useState('');
 
     const fetching = async (params) =>{
         getIsLoading(true);
-        let result = await getListOnPage(params);
+        let result = await callback(params);
         getIsLoading(false);
         return result
         // try {

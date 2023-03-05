@@ -7,5 +7,5 @@ export const routers = [
     {name: 'Home', path: '/', component: <Home/>, exact: true,},
     {name: 'Error', path: '*', component: <Error/>, exact: true,},
     {name: 'Currences', path: '/currences', component: <Currences/>, exact: true,},
-    {name: 'CurrencePeges', path: '/currence/:id', component: <CurrencePeges/>, exact: true,},
+    {name: 'CurrencePeges', path: '/currences/:id', component: <CurrencePeges/>, exact: true,},
 ]

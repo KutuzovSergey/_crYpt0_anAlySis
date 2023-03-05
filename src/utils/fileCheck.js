@@ -5,7 +5,7 @@ export const dataProcessing = (obj) => {
     } else if (typeof obj !== 'object') {
         console.log(typeof obj);
         return
-    } else {
+    } else if(obj.DISPLAY) {
         const array = [];
         const array_name = Object.keys(obj.DISPLAY);
         let count = 0;
@@ -17,6 +17,9 @@ export const dataProcessing = (obj) => {
         });
 
         return array
+    } else {
+        return obj.Data
+
     }
     
 }

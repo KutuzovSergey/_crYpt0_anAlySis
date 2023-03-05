@@ -43,4 +43,23 @@
         text-decoration: none;
         font-family: $font_style_element;
     }
+
+    &__item>a:hover{
+        color: $color_button_hover;
+    }
+
+    &__item__text{
+        color: #fff;
+        font-weight: 700;
+        font-size: 1rem;
+        font-family: $font_style_element;
+    }
+
+    &__item__link{
+        cursor: pointer;
+    }
+
+    &__item__link:hover{
+        color: $color_button_hover;
+    }
 }

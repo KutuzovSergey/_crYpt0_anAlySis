@@ -16,6 +16,15 @@ $font_size_big: 1.2rem;
 $font_style_element: 'Rubik Mono One', sans-serif;
 
 
+@mixin content_block {
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: $background_color_fourth;
+}
+
 @mixin data_entry_form($width, $height, $color, $fontSize, $padding, $border, $borderRadius){
     width: $width;
     height: $height;

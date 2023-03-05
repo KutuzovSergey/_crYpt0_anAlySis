@@ -1,0 +1,11 @@
+@import '../Main.scss';
+
+.banner{
+    width: 100%;
+    height: auto;
+
+    &__block>img{
+        width: 100%;
+        height: auto;
+    }
+}

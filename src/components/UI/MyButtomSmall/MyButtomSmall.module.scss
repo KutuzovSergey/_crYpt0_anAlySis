@@ -20,4 +20,8 @@
         color: $background_color_third;
         font-family: $font_style_element;
     }
+
+    &__active{
+        background-color: $background_color_second;
+    }
 }
