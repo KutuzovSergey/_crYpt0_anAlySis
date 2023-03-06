@@ -1,0 +1,40 @@
+@import '../Main.scss';
+
+.info{
+    width: 90%;
+    margin: 30px auto;
+    padding: 30px 0;
+
+    &__title{
+        width: 100%;
+        padding: 30px 0;
+    }
+
+    &__title>span{
+        margin: auto;
+        text-align: center;
+        display: block;
+        @include textInfo();
+    }
+
+    &__block{
+        width: 100%;
+        height: auto;
+        display: flex;
+        font-size: 1.2rem;
+    }
+
+    &__text{
+        width: 80%;
+    }
+
+    &__picture{
+        width: 20%;
+        height: auto;
+    }
+
+    &__picture>img{
+        width: 100%;
+        height: auto;
+    }
+}

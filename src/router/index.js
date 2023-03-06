@@ -3,7 +3,13 @@ import Error from "../pages/Error";
 import Currences from "../pages/Currences";
 import CurrencePeges from "../pages/CurrentcePeges";
 
-export const routers = [
+
+export const publicRouters = [
+    {name: 'Home', path: '/', component: <Home/>, exact: true,},
+    {name: 'Error', path: '*', component: <Error/>, exact: true,},
+]
+
+export const privateRouters = [
     {name: 'Home', path: '/', component: <Home/>, exact: true,},
     {name: 'Error', path: '*', component: <Error/>, exact: true,},
     {name: 'Currences', path: '/currences', component: <Currences/>, exact: true,},
