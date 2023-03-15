@@ -1,60 +1,66 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import baner from "../images/home/baner_1.jpg";
+
 import "../styles/componentStyles/Banner.scss";
-import baner_4 from "../images/home/baner_4.jpg";
-import baner_5 from "../images/home/baner_5.jpg";
+
+const arrImgBanner = [
+    {src: 'https://raw.githubusercontent.com/KutuzovSergey/images/main/baner_1.jpg', alt: 'baner', id: 0},
+    {src: 'https://raw.githubusercontent.com/KutuzovSergey/images/main/baner_2.jpg', alt: 'baner', id: 1},
+    {src: 'https://raw.githubusercontent.com/KutuzovSergey/images/main/baner_3.jpg', alt: 'baner', id: 2},
+    {src: 'https://raw.githubusercontent.com/KutuzovSergey/images/main/baner_4.jpg', alt: 'baner', id: 3},
+    {src: 'https://raw.githubusercontent.com/KutuzovSergey/images/main/baner_5.jpg', alt: 'baner', id: 4},
+];
 
 const Banner = () => {
     const [bannerActive, setBannerActive] = useState(0);
-    const [dataBanner, setDataBanner] = useState([])
-
-    const getBanerImg = () => {
-        const arr = [
-            {src: 'https://raw.githubusercontent.com/KutuzovSergey/images/main/baner_1.jpg', alt: 'baner image', id: 0},
-            {src: 'https://raw.githubusercontent.com/KutuzovSergey/images/main/baner_2.jpg', alt: 'baner image', id: 1},
-            {src: 'https://raw.githubusercontent.com/KutuzovSergey/images/main/baner_3.jpg', alt: 'baner image', id: 2},
-            {src: 'https://raw.githubusercontent.com/KutuzovSergey/images/main/baner_4.jpg', alt: 'baner image', id: 3},
-            {src: 'https://raw.githubusercontent.com/KutuzovSergey/images/main/baner_5.jpg', alt: 'baner image', id: 4},
-        ];
-
-        setDataBanner(arr);
-    }
+    const [dataBanner, setDataBanner] = useState([]);
+    const [loadedImg, setLoadedImg] = useState(false);
 
     const slideChange = () => {
-        let indicator = bannerActive;
-            
-            if (indicator === dataBanner.length - 1) {
-                indicator = 0;
-            } else {
-                indicator = ++indicator;
-            }
-        setBannerActive(indicator);
-        // return indicator
-    }
 
-    setInterval(slideChange, 2000000);
+        setBannerActive(prev=>prev+=1)
+
+        if (bannerActive === dataBanner.length-1) {
+            setBannerActive(0)
+        }
+    }
 
     const switchSlide = (slide) =>{
         setBannerActive(slide);
     }
 
-    // const interval = useMemo(() => {
-    //     slideChange()
-    // }, bannerActive);
+    useLayoutEffect(() =>{
+        setDataBanner(arrImgBanner);
+    }, []);
 
-    // console.log(bannerActive);
+    const getLoadedImg = (load) =>{
+        setLoadedImg(load);
+    }
 
-    useEffect(() => getBanerImg(), []);
+    useEffect(()=>{
+        let timer =  setTimeout(slideChange, 4000);
+        return ()=> clearInterval(timer)
+    },[bannerActive]);
 
+    console.log(loadedImg);
     return(
         <div className="banner">
-            {
-                dataBanner.map( img =>
-                    <div key={img.id} className={bannerActive === img.id ? "banner__block banner-active": "banner__block"} >
-                        <img src={img.src} alt={img.alt} />
-                        <span>{bannerActive === img.id}</span>
-                    </div>
-                )
-            }
+            <div className={loadedImg ? "banner__wrapper banner-hide" : "banner__wrapper" }>
+                {
+                    dataBanner.map( img =>
+                        <div key={img.id} className={bannerActive === img.id ? "banner__block banner-active": "banner__block"} >
+                            <img 
+                                src={img.src} 
+                                alt={img.alt} 
+                                onLoad={() => getLoadedImg(true)}/>
+                            <span>{bannerActive === img.id}</span>
+                        </div>
+                    )
+                }
+            </div>
+            <div className={loadedImg ? "banner__fon" : "banner__fon banner-hide"}>
+                <img src={baner} alt="baner" />
+            </div>
             <div className="banner__switches">
                 {
                 dataBanner.map(swit => 

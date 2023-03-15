@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './styles/App.scss';
 import Header from './components/Header';
 import { BrowserRouter } from 'react-router-dom';
@@ -11,13 +11,6 @@ function App() {
   const [modalLogin, setModalLogin] = useState(false);
   const [modalRegistr, setModalRegistr] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
-
-  class Component {
-    constructor(selector){
-      this.$el = document.querySelector(selector)
-    }
-  }
-  
   return (
     <div className="App">
       <AutchContext.Provider value={{

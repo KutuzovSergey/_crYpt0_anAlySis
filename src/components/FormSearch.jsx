@@ -5,6 +5,7 @@ import search from '../images/icon/search.svg';
 import '../styles/componentStyles/FormSearch.scss';
 import MySelect from "./UI/Select/MySelect";
 import InfoForm from "./UI/InfoForm/InfoForm";
+import InfoInput from "./UI/InfoInput/InfoInput";
 
 const FormSearch = (props) =>{
     const [options, setOptions] = useState([
@@ -12,6 +13,8 @@ const FormSearch = (props) =>{
         {name:'По стоимости', vulue:'PRICE'},
         {name:'По капитализации', vulue:'CIRCULATINGSUPPLYMKTCAP'},
     ]);
+
+    console.log(props.infoSearchSowe);
 
     return(
         <form className="search">
@@ -33,11 +36,17 @@ const FormSearch = (props) =>{
                         onFocus={() => {props.soweSearchInfo()}}
                         // onBlur={() => {props.hideSearchInfo()}}
                         onChange={(e) => {props.getSaerchValue(e.target.value)}}/>
+
                     {props.infoSearchSowe ?
                     <InfoForm 
                         infoText={props.infoSearchText}
                         visible={props.visible}
                         transferInput={props.transferInput}/>
+                    :
+                    ''
+                    }
+                    {props.infoListInput.length ?
+                    <InfoInput valueList={props.infoListInput} />
                     :
                     ''
                     }

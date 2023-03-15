@@ -1,6 +1,7 @@
 export const dataProcessing = (obj) => {
+   
     if (Array.isArray(obj)) {
-        console.log(obj);
+     
         return
     } else if (typeof obj !== 'object') {
         console.log(typeof obj);

@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import '../styles/componentStyles/Card.scss';
+
 import ChartCard from "./ChartCard";
 import MyButton from "./UI/MyButton/MyButton";
+
+import '../styles/componentStyles/Card.scss';
 
 const Card = ({props, remove}) => {
   const navigate = useNavigate();

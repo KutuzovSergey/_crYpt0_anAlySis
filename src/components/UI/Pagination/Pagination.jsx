@@ -72,7 +72,7 @@ const Pagination = (props) =>{
     const indicatorTrue = true;
     const indicatorFalse = false;
 
-    console.log(range);
+
     return (
         <div className={cl.pagination}>
             <div className={cl.pagination__block}>

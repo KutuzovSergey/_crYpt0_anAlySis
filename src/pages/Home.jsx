@@ -1,11 +1,13 @@
-import React, { useContext, useState } from "react";
-import '../styles/Home.scss';
+import React, { useContext } from "react";
 import MyModal from "../components/UI/MyModal/MyModal";
 import Banner from "../components/Banner";
 import InfoApplication from "../components/InfoApplication";
 import { AutchContext } from "../context";
 import ModalLoginForm from "../components/ModalLoginForm";
 import ModalRegistrForm from "../components/ModalRegistrForm";
+import Footer from "../components/Footer";
+
+import '../styles/Home.scss';
 
 const Home = () => {
     const {modalLogin, setModalLogin, modalRegistr, setModalRegistr,} = useContext(AutchContext);
@@ -14,6 +16,7 @@ const Home = () => {
         <div className="home">
             <Banner/>
             <InfoApplication/>
+            <Footer/>
             <MyModal className="modal" active={modalLogin} setActive={setModalLogin}>
                 <ModalLoginForm />
             </MyModal>

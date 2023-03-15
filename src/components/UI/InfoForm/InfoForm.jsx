@@ -23,6 +23,7 @@ const InfoForm = (props) => {
                     </div>
                 )
             }
+            
         </div>
     )
 }

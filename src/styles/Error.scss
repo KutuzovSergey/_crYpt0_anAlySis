@@ -1,0 +1,10 @@
+@import './Main.scss';
+
+.errot{
+    display: flex;
+
+    &__text{
+        @include textInfo();
+        margin: auto;
+    }
+}

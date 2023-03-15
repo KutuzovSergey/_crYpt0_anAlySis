@@ -19,8 +19,9 @@ export async function  getListOnPage(coins) {
         coins = ['RMESH', 'ADA', 'SAL', 'ATMI', 'BAAS'];
     }
 
+
     const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
-    const parameters = `?fsyms=${coins}&tsyms=USD`;
+    const parameters = `?fsyms=${coins.join()}&tsyms=USD`;
     const url = 'https://min-api.cryptocompare.com/data/pricemultifull';
     const get = 'GET';
      
@@ -30,6 +31,8 @@ export async function  getListOnPage(coins) {
 }
 
 export async function getChart(coin){
+
+
     const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
     const url = 'https://min-api.cryptocompare.com/data/v2/histoday';
     const parameters = `?fsym=${coin}&tsym=USD&limit=10`;

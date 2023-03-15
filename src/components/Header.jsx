@@ -31,7 +31,7 @@ const Header = () =>{
                         <li className="menu__item"><Link to="/">Главная</Link></li>
                         <li className="menu__item"><Link to="/currences">Монеты</Link></li>
                         <li className="menu__item">
-                            <span className='menu__item__text menu__item__link' onClick={() => logOutAccount()}>Выход</span>
+                            <Link to="/"><span className='menu__item__text menu__item__link' onClick={() => logOutAccount()}>Выход</span></Link>
                         </li>
                     </ul>
                     :

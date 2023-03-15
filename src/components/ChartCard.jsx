@@ -4,36 +4,41 @@ import { Chart as ChartJS } from 'chart.js/auto'
 import { useFetching } from "../hooks/useFetching";
 import { getChart } from "../AP/getCoins";
 
+const chartData = {
+  labels: ['Mon.', 'Tue.', 'Wed.', 'Thu.',  'Fri.', 'Sat.', 'Sun.'],
+  // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
+  datasets: [
+    {
+      label: 'Popularity of colours',
+      data: [55, 23, 96, 55, 23, 96, 23],
+            // you can set indiviual colors for each bar
+      backgroundColor: 'rgb(213,227,238)',
+      borderWidth: 3,
+    }
+  ]
+}
+
 const ChartCard = (props) =>{
 
-  const [dataChart, setDataChart] = useState([]);
+  // const [dataChart, setDataChart] = useState([]);
 
-  const [fetchCoin, isLoadingCoin] = useFetching(async (params) => {
-    return getChart(params)
-  });
+  // const [fetchCoin, isLoadingCoin] = useFetching(async (params) => {
 
-  const getDataChart = async () =>{
-    setDataChart(await fetchCoin(props.nameCoin).Data);
-    console.log(dataChart);
-  }
+ 
+    
+  //   return getChart(params)
+  // });
 
-  useEffect(() => {getDataChart()}, []);
+  // const getDataChart = async () =>{
+  //   setDataChart(await fetchCoin(props.nameCoin).Data);
+   
+  // }
 
-  const chartData = {
-    labels: ['Mon.', 'Tue.', 'Wed.', 'Thu.',  'Fri.', 'Sat.', 'Sun.'],
-    // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
-    datasets: [
-      {
-        label: 'Popularity of colours',
-        data: [55, 23, 96, 55, 23, 96, 23],
-              // you can set indiviual colors for each bar
-        backgroundColor: 'rgb(213,227,238)',
-        borderWidth: 3,
-      }
-    ]
-  }
+  // useEffect(() => {getDataChart()}, []);
+
+
   return (
-    <div className="card__chart">
+    <div className="card__chart" >
       <Line
         data={chartData}
         type="line"
