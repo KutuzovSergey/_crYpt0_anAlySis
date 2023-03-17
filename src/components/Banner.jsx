@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import baner from "../images/home/baner_1.jpg";
+import baner from "../images/home/baner_1.png";
 
 import "../styles/componentStyles/Banner.scss";
 
@@ -37,22 +37,35 @@ const Banner = () => {
         setLoadedImg(load);
     }
 
+    // const getLoadedImg = (url) =>{
+    //     return new Promise((resolve, reject) => {
+    //         const img = new Image();
+    //         img.onload = function () {
+    //             resolve(url);
+    //         };
+    //         img.onerror = function () {
+    //             reject(url);
+    //         };
+    //         img.src = url;
+    //     })
+    // }
     useEffect(()=>{
         let timer =  setTimeout(slideChange, 4000);
-        return ()=> clearInterval(timer)
+        return () => clearInterval(timer)
     },[bannerActive]);
 
-    console.log(loadedImg);
     return(
         <div className="banner">
             <div className={loadedImg ? "banner__wrapper banner-hide" : "banner__wrapper" }>
                 {
                     dataBanner.map( img =>
-                        <div key={img.id} className={bannerActive === img.id ? "banner__block banner-active": "banner__block"} >
+                        <div key={img.id} className={bannerActive === img.id ? "banner__block banner-active" : "banner__block"} >
                             <img 
                                 src={img.src} 
-                                alt={img.alt} 
-                                onLoad={() => getLoadedImg(true)}/>
+                                alt={img.alt}
+                                onError={() => getLoadedImg(true)}
+                                onLoad={() => getLoadedImg(false)}
+                                />
                             <span>{bannerActive === img.id}</span>
                         </div>
                     )

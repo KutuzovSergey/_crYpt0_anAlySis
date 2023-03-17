@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Line, Chart } from "react-chartjs-2";
-import { Chart as ChartJS } from 'chart.js/auto'
+import { Chart as ChartJS } from 'chart.js/auto';
 import { useFetching } from "../hooks/useFetching";
 import { getChart } from "../AP/getCoins";
 
@@ -19,23 +19,6 @@ const chartData = {
 }
 
 const ChartCard = (props) =>{
-
-  // const [dataChart, setDataChart] = useState([]);
-
-  // const [fetchCoin, isLoadingCoin] = useFetching(async (params) => {
-
- 
-    
-  //   return getChart(params)
-  // });
-
-  // const getDataChart = async () =>{
-  //   setDataChart(await fetchCoin(props.nameCoin).Data);
-   
-  // }
-
-  // useEffect(() => {getDataChart()}, []);
-
 
   return (
     <div className="card__chart" >

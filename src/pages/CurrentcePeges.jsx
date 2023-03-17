@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import '../styles/CurrentcePages.scss';
 import { useParams } from "react-router-dom";
-import { getListOnPage } from "../AP/getCoins";
+import { getChart, getListOnPage } from "../AP/getCoins";
 import { useFetching } from "../hooks/useFetching";
 import ChartCard from "../components/ChartCard";
+import { checkingUndefined } from "../utils/checks";
+import { compileUnix } from "../utils/dateAndTime";
 
 
 const CurrencePeges = () => {
     const params = useParams();
     const [currentceData, setCurrenceData] = useState([]);
+    const [dataChart, setDataChart] = useState([]);
+    const [time, setTime] = useState([]);
 
     const [fetchContent, isLoadingContent] = useFetching(async (params) => {
         return await getListOnPage(params)
+    });
+
+    const [fetchCoin, isLoadingCoin] = useFetching(async (params) => {
+        return getChart(params)
     });
 
     const getContent = async () => {
@@ -20,7 +28,30 @@ const CurrencePeges = () => {
         setCurrenceData(await fetchContent(result));
     }
 
+    const dataProcessing = (data) =>{
+        return new Promise((resolve, reject) =>{
+            if (checkingUndefined(data.length)) {
+                reject(data);
+            } else {
+                resolve(data);
+            }
+        })
+    }
+
+    const getDataChart = async () =>{
+        if (checkingUndefined(currentceData[0])) {
+            return
+        } else {
+            setDataChart(await fetchCoin(currentceData[0].NAME));
+
+            const newLabels = await dataProcessing(dataChart.Data).then(result => result);
+
+            setTime(...time, newLabels.map( item => compileUnix(item.time)));
+        }
+    }
+
     useEffect(() => {getContent()}, []);
+    useEffect(() => {getDataChart()}, [currentceData]);
 
     return (
         <div>
@@ -37,7 +68,7 @@ const CurrencePeges = () => {
                     <div className="coin__property">
                         <div className="coin__property__info">
                             <div className="coin__property__value">
-                                <span>{data.SUPPLY}</span>
+                                <span>{data.CIRCULATINGSUPPLYMKTCAP}</span>
                             </div>
                             <div className="coin__property__name">
                                 <span>капитализация</span>
@@ -77,7 +108,7 @@ const CurrencePeges = () => {
                         </div>
                     </div>
                     <div className="coin__chart">
-                        <ChartCard nameCoin={data.NAME} />
+                        <ChartCard dataChart={time} />
                     </div>
                 </div>
                 )

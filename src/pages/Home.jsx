@@ -5,7 +5,6 @@ import InfoApplication from "../components/InfoApplication";
 import { AutchContext } from "../context";
 import ModalLoginForm from "../components/ModalLoginForm";
 import ModalRegistrForm from "../components/ModalRegistrForm";
-import Footer from "../components/Footer";
 
 import '../styles/Home.scss';
 
@@ -16,7 +15,6 @@ const Home = () => {
         <div className="home">
             <Banner/>
             <InfoApplication/>
-            <Footer/>
             <MyModal className="modal" active={modalLogin} setActive={setModalLogin}>
                 <ModalLoginForm />
             </MyModal>
