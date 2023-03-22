@@ -1,0 +1,31 @@
+@import '../Main.scss';
+
+.headerCoin{
+    width: 96%;
+    margin: auto;
+    display: flex;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    background-color: #fff;
+
+    &__image{
+        width: 80px;
+        height: auto;
+    }
+
+    &__image>img{
+        width: 100%;
+        height: auto;
+    }
+
+    &__name{
+        width: 30%;
+        display: flex;
+        padding: 0 15px;
+    }
+
+    &__name>span{
+        margin: auto 0;
+       @include textInfo();
+    }
+}

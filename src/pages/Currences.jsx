@@ -112,8 +112,11 @@ const Currences = () => {
         setDisplayedCoins(result);
     }
 
-    const getListCoins = async (indexMin, indexMax) => {
+    const getAllCoins = async () => {
         setAllList( await getAllList());
+    }
+
+    const getListCoins = (indexMin, indexMax) =>{
         getDisplayedCoins(allList, indexMin, indexMax);
     }
 
@@ -121,7 +124,8 @@ const Currences = () => {
         setCurrences( await fetchCoin(coinList));
     }
    
-    useEffect(() => {getListCoins(1, 9)}, []);
+    useEffect(() => {getAllCoins()}, []);
+    useEffect(() => {getListCoins(1, 10)}, [allList]);
     useEffect(() => {fetchListOnPage(displayedCoins)}, [displayedCoins]);
     useEffect(() => {getTotalCount()}, [allList]);
     useEffect(() => {searchCoins()}, [saerch]);

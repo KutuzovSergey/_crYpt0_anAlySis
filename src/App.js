@@ -11,6 +11,8 @@ function App() {
   const [modalLogin, setModalLogin] = useState(false);
   const [modalRegistr, setModalRegistr] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
+  const [errorPages, setErrorPages] = useState(false);
+
   return (
     <div className="App">
       <AutchContext.Provider value={{
@@ -18,6 +20,8 @@ function App() {
         setIsAuth,
         modalLogin,
         setModalLogin,
+        errorPages,
+        setErrorPages,
         modalRegistr,
         setModalRegistr,
       }}>

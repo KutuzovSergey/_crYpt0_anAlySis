@@ -10,7 +10,7 @@ const chartData = {
   datasets: [
     {
       label: 'Popularity of colours',
-      data: [55, 23, 96, 55, 23, 96, 23],
+      data: [ 0.4667, 0.47009999999999996, 0.50465, 0.52215, 0.49105, 0.48345000000000005, 0.4975, 0.515, 0.51435, 0.50515, 0.513],
             // you can set indiviual colors for each bar
       backgroundColor: 'rgb(213,227,238)',
       borderWidth: 3,
@@ -19,6 +19,17 @@ const chartData = {
 }
 
 const ChartCard = (props) =>{
+
+  const fillData = () =>{
+    console.log(props.nawChartData);
+
+    chartData.labels = props.nawChartData.time;
+    chartData.datasets[0].data = props.nawChartData.averageIndex;
+    chartData.datasets[0].label = props.nawChartData.text;
+    chartData.datasets[0].backgroundColor = props.nawChartData.backgroundColor;
+  }
+
+  useEffect(() => {fillData()}, [props.nawChartData]);
 
   return (
     <div className="card__chart" >

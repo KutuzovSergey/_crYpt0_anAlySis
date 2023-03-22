@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AutchContext } from '../context';
 import logo from '../images/logo.png';
+
 import '../styles/Header.scss';
 
 const Header = () =>{
-    const {setModalLogin, setModalRegistr, isAuth, setIsAuth} = useContext(AutchContext);
+    const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages,} = useContext(AutchContext);
 
     const openModalLogin = () =>{
         setModalLogin(true);
@@ -17,6 +18,10 @@ const Header = () =>{
 
     const logOutAccount = () =>{
         setIsAuth(false);
+    }
+
+    const showMainPageMenu = () =>{
+        setErrorPages(false);
     }
     
     return (
@@ -36,11 +41,16 @@ const Header = () =>{
                     </ul>
                     :
                     <ul className="menu__block">
-                        <li className="menu__item">
-                            <span className='menu__item__text menu__item__link' onClick={() => openModalLogin()}>Вход</span>
-                            <span className='menu__item__text'> / </span>
-                            <span className='menu__item__text menu__item__link' onClick={() => openModalRegistration()}>Регистрация</span>
-                        </li>
+                        {
+                            errorPages ?
+                            <li className="menu__item"><Link to="/" onClick={() => showMainPageMenu()}>Главная</Link></li>
+                            :
+                            <li className="menu__item">
+                                <span className='menu__item__text menu__item__link' onClick={() => openModalLogin()}>Вход</span>
+                                <span className='menu__item__text'> / </span>
+                                <span className='menu__item__text menu__item__link' onClick={() => openModalRegistration()}>Регистрация</span>
+                            </li>
+                        }
                     </ul>
                 }
             </nav>
