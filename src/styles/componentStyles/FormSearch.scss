@@ -8,11 +8,12 @@
     flex-direction: column;
     justify-content: space-between;
 
-    .search__info__form_hide{
-        @include modalFon();
+    &__info-hide{
+        display: none;
     }
 
     &__input{
+        z-index: 99999999;
         display: flex;
     }
 

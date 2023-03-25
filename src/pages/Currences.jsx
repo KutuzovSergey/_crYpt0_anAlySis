@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/Currences.scss';
 import FormSearch from '../components/FormSearch';
 import CurrencesList from '../components/CurrencesList';
 import { getAllList, getListOnPage } from '../AP/getCoins';
@@ -7,21 +6,20 @@ import { sortArray } from '../utils/sorting';
 import { useFetching } from '../hooks/useFetching';
 import Pagination from '../components/UI/Pagination/Pagination';
 
-
+import '../styles/Currences.scss';
+import { calculateTotal } from '../utils/totalCount';
 
 const Currences = () => {
 
     const [currences, setCurrences] = useState([]);
 
-    const [saerch, setSaerch] = useState('');
-    const [infoSearchSowe, setInfoSearchSowe] = useState(false);
+    const [search, setSaerch] = useState('');
+    const [infoSearchShowe, setInfoSearchShowe] = useState(false);
 
     const [selectedSort, setSelectedSort] = useState('');
     const [allList, setAllList] = useState([]);
     const [displayedCoins, setDisplayedCoins] = useState([]);
-    const [infoSearch, setInfoSearch] = useState([
-        {text:'Введите короткон имя искомой криптовалюты или несколько через запятую', id: 1}
-    ]);
+    const [infoSearch, setInfoSearch] = useState('Введите короткон имя искомой криптовалюты или несколько через запятую');
 
     const [infoListInput, setInfoListInput] = useState([]);
 
@@ -33,23 +31,17 @@ const Currences = () => {
     });
 
     const getTotalCount = () => {
-        
-        if (allList.length > 9) {
-            let result = Math.ceil((allList.length + 1) / 9);
-            setTotalCount(result);
-        }
+        setTotalCount(calculateTotal(allList, 9));
     }
 
     const soweSearchInfo = () => {
-        setInfoSearchSowe(true);
+        setInfoSearchShowe(true);
     }
     
     const hideSearchInfo = () =>{
-        setInfoSearchSowe(false);
-            if(saerch === '') {
-            setInfoSearch([
-                {text:'Введите короткон имя искомой криптовалюты или несколько через запятую', id: 1}
-            ]);
+        setInfoSearchShowe(false);
+            if(search === '') {
+            setInfoSearch('Введите короткон имя искомой криптовалюты или несколько через запятую');
         }
     }
 
@@ -57,36 +49,49 @@ const Currences = () => {
         setSaerch(value);
     }
 
-    const searchCoins = () => {
-        const searchItem = allList.filter(item => item.toLowerCase().includes(saerch.toLowerCase()));
 
-        if (searchItem.length) {
-            const result = [];
-            let i = 1;
-            searchItem.forEach(item => result.push({text: item, id: ++i}));
-            setInfoListInput(result);
-        } else {
-            setInfoSearch([{text: 'монеты не найдены', id: 1}]);
+    const searchCoins = () => {
+        if (search === '') {
+            setInfoSearch('Введите короткон имя искомой криптовалюты или несколько через запятую');
             setVisible(false);
+        } else {
+            let searchItem = allList.slice();
+
+            searchItem = searchItem.filter(item => item.toLowerCase().includes(search.toLowerCase())).sort();
+            let searchVerificationIndicator = false;
+
+            allList.forEach(item => {
+                console.log(`${item}, ` === search);
+                if (item === search || `${item},` === search || `${item}, ` === search ) {
+                    searchVerificationIndicator = true;
+                }
+            })
+
+            if (searchItem.length || searchVerificationIndicator) {
+                const result = [];
+                let i = 1;
+                searchItem.forEach(item => result.push({text: item, id: ++i}));
+                setInfoListInput(result);
+                setVisible(true);
+            } else if (!searchItem.length || searchVerificationIndicator){
+                setInfoSearch('монеты не найдены');
+                setVisible(false);
+            }
         }
+
+    }
+
+    const transferInput = (coinName) => {
+        coinName = coinName + ', ';
+        setSaerch(coinName);
     }
 
     const sendSearchQuery = (e) =>{
         e.preventDefault();
-        const result = saerch.split(',');
+        const result = search.split(',');
        
         fetchListOnPage(result);
-    }
-
-    const transferInput = (coinName) => {
-        
-        if (coinName === 'Введите короткон имя искомой криптовалюты или несколько через запятую' 
-        || coinName === 'монеты не найдены') {
-            return
-        }
-
-        coinName = coinName + ', ';
-        setSaerch(coinName);
+        setInfoSearchShowe(false);
     }
     
     const removeCurrences = (currency) =>{
@@ -128,15 +133,16 @@ const Currences = () => {
     useEffect(() => {getListCoins(1, 10)}, [allList]);
     useEffect(() => {fetchListOnPage(displayedCoins)}, [displayedCoins]);
     useEffect(() => {getTotalCount()}, [allList]);
-    useEffect(() => {searchCoins()}, [saerch]);
+    useEffect(() => {searchCoins()}, [search]);
+
     return (
         <div className='content'>
             <FormSearch 
                 sortValue={selectedSort}
                 sort={sort => sortCurrences(sort)}
 
-                saerch={saerch} 
-                infoSearchSowe={infoSearchSowe}
+                search={search} 
+                infoSearchShowe={infoSearchShowe}
                 infoListInput={infoListInput}
                 sendSearchQuery={sendSearchQuery}
                 soweSearchInfo={soweSearchInfo}
@@ -153,6 +159,13 @@ const Currences = () => {
                 currences={currences}
                 remove={removeCurrences}/>
             <Pagination count={totalCount} getListCoins={getListCoins} />
+            {infoSearchShowe ? 
+                <div className='content__info__search__hide'
+                    onClick={hideSearchInfo}></div>
+                :
+                ''
+            }
+            
         </div>
     )
 }

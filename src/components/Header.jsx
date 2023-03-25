@@ -46,9 +46,11 @@ const Header = () =>{
                             <li className="menu__item"><Link to="/" onClick={() => showMainPageMenu()}>Главная</Link></li>
                             :
                             <li className="menu__item">
-                                <span className='menu__item__text menu__item__link' onClick={() => openModalLogin()}>Вход</span>
+                                <span className='menu__item__text menu__item__link' 
+                                    onClick={() => openModalLogin()}>Вход</span>
                                 <span className='menu__item__text'> / </span>
-                                <span className='menu__item__text menu__item__link' onClick={() => openModalRegistration()}>Регистрация</span>
+                                <span className='menu__item__text menu__item__link' 
+                                    onClick={() => openModalRegistration()}>Регистрация</span>
                             </li>
                         }
                     </ul>

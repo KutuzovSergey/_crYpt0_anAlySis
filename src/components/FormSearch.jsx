@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import search from '../images/icon/search.svg'; 
 import MyButton from './UI/MyButton/MyButton';
 import MyInput from './UI/MyInput/MyInput';
-import search from '../images/icon/search.svg'; 
-import '../styles/componentStyles/FormSearch.scss';
 import MySelect from "./UI/Select/MySelect";
 import InfoForm from "./UI/InfoForm/InfoForm";
 import InfoInput from "./UI/InfoInput/InfoInput";
+
+import '../styles/componentStyles/FormSearch.scss';
 
 const FormSearch = (props) =>{
     const [options, setOptions] = useState([
@@ -14,39 +15,36 @@ const FormSearch = (props) =>{
         {name:'По капитализации', vulue:'CIRCULATINGSUPPLYMKTCAP'},
     ]);
 
-    console.log(props.infoSearchSowe);
-
     return(
         <form className="search">
-            {props.infoSearchSowe ?
-                <div 
-                    className="search__info__form_hide"
-                    onClick={() => {props.hideSearchInfo()}}
-                ></div>
-            :
-            ''
-            }
             
             <div className="search__input">
                 <div className="search__input__block">
                     <MyInput 
                         type='text'
-                        value={props.saerch}
+                        list=''
+                        name='search'
+                        autocomplete='off'
+                        value={props.search}
                         placeholder='поиск'
                         onFocus={() => {props.soweSearchInfo()}}
                         // onBlur={() => {props.hideSearchInfo()}}
                         onChange={(e) => {props.getSaerchValue(e.target.value)}}/>
 
-                    {props.infoSearchSowe ?
-                    <InfoForm 
-                        infoText={props.infoSearchText}
-                        visible={props.visible}
-                        transferInput={props.transferInput}/>
-                    :
-                    ''
-                    }
-                    {props.infoListInput.length ?
-                    <InfoInput valueList={props.infoListInput} />
+                    {props.infoSearchShowe ?
+                    <div>
+                        <div className = {props.visible ? 'search__info-hide' : ''}>
+                            <InfoForm 
+                                infoText={props.infoSearchText}/>
+                        </div>
+                        <div className = {props.visible ? '' : 'search__info-hide'}>
+                            <InfoInput 
+                                datalistId={'search'} 
+                                visible={props.visible}
+                                valueList={props.infoListInput} 
+                                transferInput={props.transferInput}/>
+                        </div>
+                    </div>
                     :
                     ''
                     }
