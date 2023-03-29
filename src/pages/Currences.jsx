@@ -26,6 +26,8 @@ const Currences = () => {
     const [visible, setVisible] = useState(false);
     const [totalCount, setTotalCount] = useState('');
 
+    const [foundCoin, setFoundCoin] = useState([]);
+
     const [fetchCoin, isLoadingCoin] = useFetching(async (params) => {
         return await getListOnPage(params)
     });
@@ -58,22 +60,14 @@ const Currences = () => {
             let searchItem = allList.slice();
 
             searchItem = searchItem.filter(item => item.toLowerCase().includes(search.toLowerCase())).sort();
-            let searchVerificationIndicator = false;
 
-            allList.forEach(item => {
-                console.log(`${item}, ` === search);
-                if (item === search || `${item},` === search || `${item}, ` === search ) {
-                    searchVerificationIndicator = true;
-                }
-            })
-
-            if (searchItem.length || searchVerificationIndicator) {
+            if (searchItem.length) {
                 const result = [];
                 let i = 1;
                 searchItem.forEach(item => result.push({text: item, id: ++i}));
                 setInfoListInput(result);
                 setVisible(true);
-            } else if (!searchItem.length || searchVerificationIndicator){
+            } else if (!searchItem.length){
                 setInfoSearch('монеты не найдены');
                 setVisible(false);
             }
@@ -82,8 +76,14 @@ const Currences = () => {
     }
 
     const transferInput = (coinName) => {
-        coinName = coinName + ', ';
-        setSaerch(coinName);
+        const result = [];
+        result.push(coinName);
+        
+        setFoundCoin( (coins) => coins.concat(result));
+    }
+
+    const deleteFoundCoin = (coin) =>{
+        setFoundCoin(foundCoin.filter(item => item !== coin));s
     }
 
     const sendSearchQuery = (e) =>{
@@ -142,12 +142,14 @@ const Currences = () => {
                 sort={sort => sortCurrences(sort)}
 
                 search={search} 
+                foundCoin={foundCoin} 
                 infoSearchShowe={infoSearchShowe}
                 infoListInput={infoListInput}
                 sendSearchQuery={sendSearchQuery}
                 soweSearchInfo={soweSearchInfo}
                 hideSearchInfo={hideSearchInfo}
                 getSaerchValue={getSaerchValue}
+                deleteFoundCoin={deleteFoundCoin}
 
                 infoSearchText={infoSearch} 
                 visible={visible}

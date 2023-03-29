@@ -7,6 +7,7 @@ import InfoForm from "./UI/InfoForm/InfoForm";
 import InfoInput from "./UI/InfoInput/InfoInput";
 
 import '../styles/componentStyles/FormSearch.scss';
+import FoundCoins from "./FoundCoins";
 
 const FormSearch = (props) =>{
     const [options, setOptions] = useState([
@@ -15,16 +16,21 @@ const FormSearch = (props) =>{
         {name:'По капитализации', vulue:'CIRCULATINGSUPPLYMKTCAP'},
     ]);
 
+    console.log(props.deleteFoundCoin);
+
     return(
         <form className="search">
             
             <div className="search__input">
                 <div className="search__input__block">
+                    <FoundCoins 
+                        coins={props.foundCoin}
+                        deleteCoin={props.deleteFoundCoin} />
                     <MyInput 
                         type='text'
                         list=''
                         name='search'
-                        autocomplete='off'
+                        autoComplete='off'
                         value={props.search}
                         placeholder='поиск'
                         onFocus={() => {props.soweSearchInfo()}}
