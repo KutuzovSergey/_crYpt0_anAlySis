@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { useFetching } from '../hooks/useFetching';
 import FormSearch from '../components/FormSearch';
+import MyModal from '../components/UI/MyModal/MyModal';
 import CurrencesList from '../components/CurrencesList';
+import Pagination from '../components/UI/Pagination/Pagination';
 import { getAllList, getListOnPage } from '../AP/getCoins';
 import { sortArray } from '../utils/sorting';
-import { useFetching } from '../hooks/useFetching';
-import Pagination from '../components/UI/Pagination/Pagination';
+import { calculateTotal } from '../utils/totalCount';
 
 import '../styles/Currences.scss';
-import { calculateTotal } from '../utils/totalCount';
 
 const Currences = () => {
 
     const [currences, setCurrences] = useState([]);
+
+    const [modalInfo, setModalInfo] = useState(false);
 
     const [search, setSaerch] = useState('');
     const [infoSearchShowe, setInfoSearchShowe] = useState(false);
@@ -77,13 +80,20 @@ const Currences = () => {
 
     const transferInput = (coinName) => {
         const result = [];
+        
+        if(foundCoin.includes(coinName)){
+            setModalInfo(true);
+            return
+        }
+        
         result.push(coinName);
         
         setFoundCoin( (coins) => coins.concat(result));
+        setSaerch('');
     }
 
     const deleteFoundCoin = (coin) =>{
-        setFoundCoin(foundCoin.filter(item => item !== coin));s
+        setFoundCoin(foundCoin.filter(item => item !== coin));
     }
 
     const sendSearchQuery = (e) =>{
@@ -167,6 +177,7 @@ const Currences = () => {
                 :
                 ''
             }
+            <MyModal  active={modalInfo} setActive={setModalInfo}>монета уже добавленна в список найденых</MyModal>
             
         </div>
     )

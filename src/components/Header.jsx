@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AutchContext } from '../context';
 import logo from '../images/logo.png';
 
-import '../styles/Header.scss';
+import '../styles/componentStyles/Header.scss';
 
 const Header = () =>{
     const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages,} = useContext(AutchContext);

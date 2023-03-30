@@ -16,8 +16,6 @@ const FormSearch = (props) =>{
         {name:'По капитализации', vulue:'CIRCULATINGSUPPLYMKTCAP'},
     ]);
 
-    console.log(props.deleteFoundCoin);
-
     return(
         <form className="search">
             
