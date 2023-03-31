@@ -15,6 +15,7 @@ const Currences = () => {
     const [currences, setCurrences] = useState([]);
 
     const [modalInfo, setModalInfo] = useState(false);
+    const [modalInfoText, setModalInfoText] = useState('')
 
     const [search, setSaerch] = useState('');
     const [infoSearchShowe, setInfoSearchShowe] = useState(false);
@@ -82,9 +83,14 @@ const Currences = () => {
         const result = [];
         
         if(foundCoin.includes(coinName)){
+            setModalInfoText('монета уже добавленна в список найденых');
             setModalInfo(true);
             return
-        }
+        } else if (foundCoin.length >= 10) {
+            setModalInfoText('нельзя выбрать более десяти монет для одного запроса');
+            setModalInfo(true);
+            return
+        } 
         
         result.push(coinName);
         
@@ -96,12 +102,37 @@ const Currences = () => {
         setFoundCoin(foundCoin.filter(item => item !== coin));
     }
 
+    const checkSearchText = (text, arr) =>{
+
+        text = text.toUpperCase();
+        const newArr = arr.map(item => item.toUpperCase());
+    
+        return text.split(/[\s,]/g).filter(item => newArr.includes(item));
+    }
+
     const sendSearchQuery = (e) =>{
         e.preventDefault();
-        const result = search.split(',');
-       
-        fetchListOnPage(result);
-        setInfoSearchShowe(false);
+
+        if (search !== '' || foundCoin.length) {
+            const dataSearch = checkSearchText(search, allList);
+
+            if (!dataSearch.length && !foundCoin.length) {
+                setModalInfoText('в страке поиска ошибка, такой монеты несуществует');
+                setModalInfo(true);
+            } else {
+                const result = dataSearch.concat(foundCoin);
+        
+                fetchListOnPage(result);
+                setInfoSearchShowe(false);
+                setFoundCoin([]);
+                setSaerch('');
+            }
+            
+        } else {
+            setModalInfoText('монеты не выбраны');
+            setModalInfo(true);
+        }
+        
     }
     
     const removeCurrences = (currency) =>{
@@ -177,7 +208,11 @@ const Currences = () => {
                 :
                 ''
             }
-            <MyModal  active={modalInfo} setActive={setModalInfo}>монета уже добавленна в список найденых</MyModal>
+            <MyModal active={modalInfo} setActive={setModalInfo}>
+                <div className='content__modal__info'>
+                    <span className='content__modal__info__text'>{modalInfoText}</span>
+                </div>
+            </MyModal>
             
         </div>
     )

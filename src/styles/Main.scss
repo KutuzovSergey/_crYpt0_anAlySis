@@ -33,6 +33,7 @@ $font_style_element: 'Rubik Mono One', sans-serif;
     padding: $padding;
     border: 1px solid $border;
     border-radius: $borderRadius;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
     font-family: 'Rubik Mono One', sans-serif;
 }
 
@@ -53,6 +54,13 @@ $font_style_element: 'Rubik Mono One', sans-serif;
 
 @mixin textNormal {
     color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+@mixin textNormalDark {
+    color: #222225;
     font-size: 1.2rem;
     font-weight: 600;
     font-family: 'Rubik Mono One', sans-serif;

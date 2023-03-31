@@ -22,4 +22,16 @@
         z-index: 9999999;
         pointer-events: all;
     }
+
+    &__modal__info{
+        width: 100%;
+        height: auto;
+        display: flex;
+    }
+
+    &__modal__info__text{
+        @include textNormalDark();
+        margin: auto;
+        text-align: center;
+    }
 }

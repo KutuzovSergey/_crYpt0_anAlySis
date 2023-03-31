@@ -21,9 +21,14 @@ const FormSearch = (props) =>{
             
             <div className="search__input">
                 <div className="search__input__block">
-                    <FoundCoins 
-                        coins={props.foundCoin}
-                        deleteCoin={props.deleteFoundCoin} />
+                    {props.foundCoin.length ?
+                        <FoundCoins 
+                            coins={props.foundCoin}
+                            deleteCoin={props.deleteFoundCoin} />
+                        :
+                        ''
+                    }
+                    
                     <MyInput 
                         type='text'
                         list=''

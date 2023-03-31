@@ -3,12 +3,18 @@
 .foundCoins{
     width: 100%;
     height: 30px;
-    overflow: auto;
     display: flex;
+    justify-content: space-between;
     position: absolute;
     top: -30px;
     background-color: #000;
     border-radius: 3px 3px 0 0;
+
+    &__wrapper{
+        width: 60%;
+        height: 30px;
+        display: flex;
+    }
 
     &__block{
         width: auto;
@@ -18,25 +24,42 @@
     }
 
     &__delete{
-        right: 0;
-        width: 7px;
-        height: 7px;
+        width: 13px;
+        height: 13px;
         display: flex;
         cursor: pointer;
         position: absolute;
+        border: 1px solid #000;
+        top: -7px;
+        right: -6px;
         border-radius: 50%;
         background-color: $background_color_fourth;
     }
 
     &__delete_text{
         margin: auto;
-        font-size: 0.3rem;
+        font-size: 0.4rem;
         color: $color_button;
     }
 
     &__text{
         font-weight: 700;
         font-size: 0.8rem;
+        color: $color_text;
+        font-family: $font_style_element;
+    }
+
+    &__info{
+        width: 40%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__info_text{
+        display: block;
+        margin: auto 10px;
+        font-weight: 700;
+        font-size: 0.6rem;
         color: $color_text;
         font-family: $font_style_element;
     }
