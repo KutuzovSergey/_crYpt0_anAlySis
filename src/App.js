@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import './styles/App.scss';
 import Header from './components/Header';
 import { BrowserRouter } from 'react-router-dom';
 import {AutchContext} from './context/index.js';
 import AppRouter from './components/AppRouter';
 import Footer from './components/Footer';
+
+import './styles/App.scss';
 
 
 function App() {

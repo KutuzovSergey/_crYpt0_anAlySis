@@ -7,10 +7,19 @@ import Pagination from '../components/UI/Pagination/Pagination';
 import { getAllList, getListOnPage } from '../AP/getCoins';
 import { sortArray } from '../utils/sorting';
 import { calculateTotal } from '../utils/totalCount';
+import { useDispatch, useSelector } from 'react-redux'; 
+import { getCoinsList } from '../store/allCoinListReducer';
 
 import '../styles/Currences.scss';
+import { type } from '@testing-library/user-event/dist/type';
+
 
 const Currences = () => {
+
+    const dispatch = useDispatch();
+
+    const allCoinList = useSelector(state => state.allCoinList.coinsList);
+    const userCoinList = useSelector(state => state.userCoinList.coinList);
 
     const [currences, setCurrences] = useState([]);
 
@@ -20,8 +29,8 @@ const Currences = () => {
     const [search, setSaerch] = useState('');
     const [infoSearchShowe, setInfoSearchShowe] = useState(false);
 
+    // const [allList, setAllList] = useState([]);
     const [selectedSort, setSelectedSort] = useState('');
-    const [allList, setAllList] = useState([]);
     const [displayedCoins, setDisplayedCoins] = useState([]);
     const [infoSearch, setInfoSearch] = useState('Введите короткон имя искомой криптовалюты или несколько через запятую');
 
@@ -37,7 +46,7 @@ const Currences = () => {
     });
 
     const getTotalCount = () => {
-        setTotalCount(calculateTotal(allList, 9));
+        setTotalCount(calculateTotal(allCoinList, 9));
     }
 
     const soweSearchInfo = () => {
@@ -61,7 +70,7 @@ const Currences = () => {
             setInfoSearch('Введите короткон имя искомой криптовалюты или несколько через запятую');
             setVisible(false);
         } else {
-            let searchItem = allList.slice();
+            let searchItem = allCoinList.slice();
 
             searchItem = searchItem.filter(item => item.toLowerCase().includes(search.toLowerCase())).sort();
 
@@ -114,7 +123,7 @@ const Currences = () => {
         e.preventDefault();
 
         if (search !== '' || foundCoin.length) {
-            const dataSearch = checkSearchText(search, allList);
+            const dataSearch = checkSearchText(search, allCoinList);
 
             if (!dataSearch.length && !foundCoin.length) {
                 setModalInfoText('в страке поиска ошибка, такой монеты несуществует');
@@ -157,13 +166,14 @@ const Currences = () => {
 
         setDisplayedCoins(result);
     }
-
+    
     const getAllCoins = async () => {
-        setAllList( await getAllList());
+        dispatch({type:'GET_COINS_LIST', payload: await getAllList()});
+        // dispatch(getCoinsList( await getAllList()));
     }
 
     const getListCoins = (indexMin, indexMax) =>{
-        getDisplayedCoins(allList, indexMin, indexMax);
+        getDisplayedCoins(allCoinList, indexMin, indexMax);
     }
 
     const fetchListOnPage = async (coinList) =>{
@@ -171,9 +181,9 @@ const Currences = () => {
     }
    
     useEffect(() => {getAllCoins()}, []);
-    useEffect(() => {getListCoins(1, 10)}, [allList]);
+    useEffect(() => {getListCoins(1, 10)}, [allCoinList]);
     useEffect(() => {fetchListOnPage(displayedCoins)}, [displayedCoins]);
-    useEffect(() => {getTotalCount()}, [allList]);
+    useEffect(() => {getTotalCount()}, [allCoinList]);
     useEffect(() => {searchCoins()}, [search]);
 
     return (
