@@ -18,6 +18,7 @@ const Header = () =>{
 
     const logOutAccount = () =>{
         setIsAuth(false);
+        localStorage.isAuth = false;
     }
 
     const showMainPageMenu = () =>{

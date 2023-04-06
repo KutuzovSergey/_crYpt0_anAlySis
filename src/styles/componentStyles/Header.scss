@@ -2,20 +2,21 @@
 
 .header{
     width: 100%;
-    height: 110px;
+    height: 60px;
     display: flex;
+    // position: fixed;
     justify-content: space-between;
     background-color: $background_color;
 }
 
 .login{
-    width: 80px;
-    height: 80px;
+    width: 45px;
+    height: 45px;
     margin: auto 3rem;
 
     &__image{
-        width: 80px;
-        height: 80px;
+        width: 45px;
+        height: 45px;
     }
 }
 

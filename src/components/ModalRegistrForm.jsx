@@ -12,6 +12,7 @@ const ModalRegistrForm = () => {
     const registration = event => {
         event.preventDefault();
         setIsAuth(true);
+        localStorage.isAuth = true;
         setModalRegistr(false);
     }
 
@@ -34,23 +35,27 @@ const ModalRegistrForm = () => {
                     <div className="form__input">
                         <MyInput
                             type='text'
-                            placeholder='имя' />
+                            placeholder='имя'
+                            autoComplete='name'/>
                     </div>
                     <div className="form__input">
                         <MyInput 
                             type='password'
-                            placeholder='пароль'/>
+                            placeholder='пароль'
+                            autoComplete='new-password'/>
                     </div>
                     <div className="form__input">
                         <MyInput 
                             type='password'
+                            autoComplete='new-password'
                             placeholder='повторите пароль'/>
                     </div>
                 </div>
             </div>
             <div className="form__input">
                 <MyInput 
-                    type='password'
+                    type='text'
+                    autoComplete='email'
                     placeholder='почта / телефон'/>
             </div>
             <div className="form__button">

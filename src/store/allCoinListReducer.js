@@ -1,6 +1,6 @@
 
 const defaultState = {
-    coinsList: ['coin'],
+    coinsList: [],
 }
 
 const GET_COINS_LIST = 'GET_COINS_LIST';
@@ -14,4 +14,4 @@ export const allCoinListReducer = (state = defaultState, action) => {
     }
 }
 
-export const getCoinsList = async (allList) => ({type: 'GET_COINS_LIST', payload: await allList})
+// export const getCoinsListAction = async (allList) => ({type: 'GET_COINS_LIST', payload: await allList})

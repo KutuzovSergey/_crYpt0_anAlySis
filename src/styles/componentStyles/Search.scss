@@ -1,0 +1,32 @@
+@import '../Main.scss';
+
+.search{
+    display: flex;
+
+    &__input__block{
+        width: 90%;
+        position: relative;
+        z-index: 99999999;
+    }
+
+    &__button{
+        z-index: 99999999;
+        width: 10%;
+        height: 40px;
+    }
+
+    &__info-hide{
+        display: none;
+    }
+
+    &__info__search__hide{
+        width: 100%;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        position: fixed;
+        z-index: 9999999;
+        pointer-events: all;
+        background-color: rgba(237, 19, 19, 0.178);
+    }
+}

@@ -9,6 +9,7 @@ const ModalLoginForm = () => {
     const login = event =>{
         event.preventDefault();
         setIsAuth(true);
+        localStorage.isAuth = true;
         setModalLogin(false);
     }
 
@@ -20,12 +21,14 @@ const ModalLoginForm = () => {
             <div className="form__input">
                 <MyInput
                     type='text'
-                    placeholder='логин' />
+                    placeholder='почта / телефон'
+                    autoComplete='email' />
             </div>
             <div className="form__input">
                 <MyInput 
                     type='pasword'
-                    placeholder='пароль'/>
+                    placeholder='пароль'
+                    autoComplete='current-password'/>
             </div>
             <div className="form__button">
                 <MyButton>войти</MyButton>

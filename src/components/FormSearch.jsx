@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
-import search from '../images/icon/search.svg'; 
-import MyButton from './UI/MyButton/MyButton';
-import MyInput from './UI/MyInput/MyInput';
+import React, { useState } from "react";
 import MySelect from "./UI/Select/MySelect";
-import InfoForm from "./UI/InfoForm/InfoForm";
-import InfoInput from "./UI/InfoInput/InfoInput";
+import Search from "./Search";
 
 import '../styles/componentStyles/FormSearch.scss';
-import FoundCoins from "./FoundCoins";
 
 const FormSearch = (props) =>{
     const [options, setOptions] = useState([
@@ -17,53 +12,12 @@ const FormSearch = (props) =>{
     ]);
 
     return(
-        <form className="search">
-            
-            <div className="search__input">
-                <div className="search__input__block">
-                    {props.foundCoin.length ?
-                        <FoundCoins 
-                            coins={props.foundCoin}
-                            deleteCoin={props.deleteFoundCoin} />
-                        :
-                        ''
-                    }
-                    
-                    <MyInput 
-                        type='text'
-                        list=''
-                        name='search'
-                        autoComplete='off'
-                        value={props.search}
-                        placeholder='поиск'
-                        onFocus={() => {props.soweSearchInfo()}}
-                        // onBlur={() => {props.hideSearchInfo()}}
-                        onChange={(e) => {props.getSaerchValue(e.target.value)}}/>
-
-                    {props.infoSearchShowe ?
-                    <div>
-                        <div className = {props.visible ? 'search__info-hide' : ''}>
-                            <InfoForm 
-                                infoText={props.infoSearchText}/>
-                        </div>
-                        <div className = {props.visible ? '' : 'search__info-hide'}>
-                            <InfoInput 
-                                datalistId={'search'} 
-                                visible={props.visible}
-                                valueList={props.infoListInput} 
-                                transferInput={props.transferInput}/>
-                        </div>
-                    </div>
-                    :
-                    ''
-                    }
-                </div>
-                <MyButton className="search__button" onClick={(e) => {props.sendSearchQuery(e)}}>
-                    <img src={search} alt="search" />
-                </MyButton>
-            </div>
-            
-            <div className="search__sorting">
+        <form className="FormSearch">
+            <Search 
+                    fetchListOnPage={props.fetchListOnPage}
+                    statusSearchInfo={props.statusSearchInfo}
+                    openModalInfo={props.openModalInfo}/>
+            <div className="FormSearch__sorting">
                 <MySelect 
                     value={props.sortValue}
                     options={options}

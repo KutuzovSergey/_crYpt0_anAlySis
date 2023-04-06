@@ -40,6 +40,7 @@ const Card = ({props, remove}) => {
           {/* <ChartCard/> */}
           <div className="card__footer">
             <MyButton onClick={() => {navigate(`/currences/${props.FROMSYMBOL}`)}}>Посмотреть монету</MyButton>
+            <MyButton>Добавить к себе</MyButton>
           </div>
         </div>
     )
