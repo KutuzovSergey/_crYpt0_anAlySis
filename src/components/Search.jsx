@@ -28,39 +28,13 @@ const Search = (props) =>{
     // открыть информационное окно
     const openInfoSearch = () =>{
         setInfoSearchShow(true);
-        console.log(visible)
-        setVisible(true);
-        console.log(visible)
     }
 
     const closeInfoSearch = () =>{
         setInfoSearchShow(false);
-        setVisible(false);
-    }
-
-    // отслеживает ввод в поискоый инпут осуществляет поиск
-    const searchCoins = () => {
-        console.log("работает");
-        if (search === '') {
-            setInfoSearch('Введите короткое имя искомой криптовалюты или несколько через запятую');
-            setVisible(false);
-        } else {
-            let searchItem = findingValueInArray(allCoinList.slice(), search);
-
-            // searchItem = searchItem.filter(item => item.toLowerCase().includes(search.toLowerCase())).sort();
-
-            if (searchItem.length) {
-                const result = [];
-                let i = 1;
-                searchItem.forEach(item => result.push({text: item, id: ++i}));
-                setInfoListInput(result);
-                setVisible(true);
-            } else if (!searchItem.length){
-                setInfoSearch('монеты не найдены');
-                setVisible(false);
-            }
+        if(search === '') {
+            setInfoSearch('Введите короткон имя искомой криптовалюты или несколько через запятую');
         }
-
     }
 
     // вызывает модальное окно с информацией
@@ -116,7 +90,26 @@ const Search = (props) =>{
         
     }
 
-    useEffect(() => {searchCoins()}, [search]);
+    // отслеживает ввод в поискоый инпут осуществляет поиск
+    useEffect(() => {
+        if (search === '') {
+            setInfoSearch('Введите короткое имя искомой криптовалюты или несколько через запятую');
+            setVisible(false);
+        } else {
+            let searchItem = findingValueInArray(allCoinList.slice(), search);
+
+            if (searchItem.length) {
+                const result = [];
+                let i = 1;
+                searchItem.forEach(item => result.push({text: item, id: ++i}));
+                setInfoListInput(result);
+                setVisible(true);
+            } else if (!searchItem.length){
+                setInfoSearch('монеты не найдены');
+                setVisible(false);
+            }
+        }
+    }, [search, allCoinList]);
 
     return (
         <div className="search">
@@ -137,12 +130,10 @@ const Search = (props) =>{
                         value={search}
                         placeholder='поиск'
                         onFocus={() => {openInfoSearch()}}
-                        // onBlur={() => {props.hideSearchInfo()}}
                         onChange={(e) => {getSaerchValue(e.target.value)}}/>
 
-                    {props.infoSearchShowe ?
+                    {infoSearchShow ?
                     <div>
-                        <span>sdf</span>
                         <div className = {visible ? 'search__info-hide' : ''}>
                             <InfoForm 
                                 infoText={infoSearch}/>

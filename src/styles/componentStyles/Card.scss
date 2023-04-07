@@ -67,6 +67,7 @@
 
     &__info{
         width: 100%;
+        height: 110px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -84,14 +85,15 @@
         color: $color_text;
     }
 
-    &__chart{
-        width: 100%;
-        height: 120px;
-    }
-
     &__footer{
         width: 100%;
-        height: 30px;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__footer__buttom{
+        width: 45%;
     }
 }
 

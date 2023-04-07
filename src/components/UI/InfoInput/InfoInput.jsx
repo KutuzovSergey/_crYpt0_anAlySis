@@ -9,6 +9,7 @@ const InfoInput = (props) =>{
         infoClasses.push(cl.info_active);
         infoBlockClasses.push(cl.info__block_active);
     }
+
     return (
         <datalist 
             id={props.datalistId}
