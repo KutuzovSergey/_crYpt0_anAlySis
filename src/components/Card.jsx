@@ -1,7 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
-import ChartCard from "./ChartCard";
 import MyButton from "./UI/MyButton/MyButton";
 
 import '../styles/componentStyles/Card.scss';
@@ -38,7 +36,6 @@ const Card = ({props, remove}) => {
             </div>
           </div>
 
-          {/* <ChartCard/> */}
           <div className="card__footer">
             <div className="card__footer__buttom">
               <MyButton onClick={() => {navigate(`/currences/${props.FROMSYMBOL}`)}}>Посмотреть</MyButton>

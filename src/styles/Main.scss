@@ -66,6 +66,32 @@ $font_style_element: 'Rubik Mono One', sans-serif;
     font-family: 'Rubik Mono One', sans-serif;
 }
 
+@mixin menu{
+    margin: 0;
+    padding: 0;
+}
+
+@mixin menuItem{
+    display: inline-block;
+    margin: 0 1rem;
+}
+
+@mixin menuItemLink{
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: .2rem;
+    text-decoration: none;
+    font-family: $font_style_element;
+}
+
+@mixin menuItemText{
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: $font_style_element;
+}
+
 // 1 Вариант
 // rgb(175,212,119)
 // #afd477

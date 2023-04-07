@@ -1,6 +1,7 @@
 import React from 'react';
-import cl from './Loader.module.scss';
 import loader from '../../../images/icon/loader.gif';
+
+import cl from './Loader.module.scss';
 
 const Loader = () => {
     return (

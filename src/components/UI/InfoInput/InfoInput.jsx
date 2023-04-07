@@ -1,5 +1,6 @@
 import React from "react";
-import cl from "./InfoInput.module.scss"
+
+import cl from "./InfoInput.module.scss";
 
 const InfoInput = (props) =>{
 

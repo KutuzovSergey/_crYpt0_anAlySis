@@ -5,8 +5,6 @@ import { store } from './store/index.js';
 import App from './App';
 
 import './styles/index.scss';
-// import { configureStore } from '@reduxjs/toolkit';
-// import { StoreContext } from "./store/context";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,5 +12,3 @@ root.render(
         <App />
     </Provider>
 );
-
-// context={StoreContext}

@@ -4,63 +4,24 @@
     width: 100%;
     height: 60px;
     display: flex;
-    // position: fixed;
+    position: fixed;
     justify-content: space-between;
     background-color: $background_color;
-}
 
-.login{
-    width: 45px;
-    height: 45px;
-    margin: auto 3rem;
+    &__wrapper{
+        width: 100%;
+        height: 60px;
+    }
 
-    &__image{
-        width: 45px;
-        height: 45px;
+    &__menu{
+        width: 50%;
+        margin: auto 0;
+    }
+
+    &__menu__wrapper{
+        display: flex;
+        justify-content: space-between;
     }
 }
 
 
-
-.menu{
-    width: 30%;
-    margin: auto 0;
-
-    &__block{
-        margin: 0;
-        padding: 0;
-    }
-
-    &__item{
-        display: inline-block;
-        margin: 0 1rem;
-    }
-
-    &__item>a{
-        color: #fff;
-        font-weight: 700;
-        font-size: 1.2rem;
-        letter-spacing: .2rem;
-        text-decoration: none;
-        font-family: $font_style_element;
-    }
-
-    &__item>a:hover{
-        color: $color_button_hover;
-    }
-
-    &__item__text{
-        color: #fff;
-        font-weight: 700;
-        font-size: 1rem;
-        font-family: $font_style_element;
-    }
-
-    &__item__link{
-        cursor: pointer;
-    }
-
-    &__item__link:hover{
-        color: $color_button_hover;
-    }
-}

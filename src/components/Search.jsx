@@ -42,7 +42,7 @@ const Search = (props) =>{
         const result = [];
         
         if(foundCoin.includes(coinName)){
-            props.openModalInfo('монета уже добавленна в список найденых')
+            props.openModalInfo('монета уже добавлена в список найденных')
             return
         } else if (foundCoin.length >= 10) {
             props.openModalInfo('нельзя выбрать более десяти монет для одного запроса')

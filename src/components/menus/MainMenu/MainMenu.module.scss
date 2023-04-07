@@ -1,0 +1,32 @@
+@import '../../../styles/Main.scss';
+
+.menu{
+
+    &__block{
+        @include menu();
+    }
+
+    &__item{
+        @include menuItem();
+    }
+
+    &__item>a{
+        @include menuItemLink();
+    }
+
+    &__item>a:hover{
+        color: $color_button_hover;
+    }
+
+    &__item__text{
+        @include menuItemText();
+    }
+
+    &__item__link{
+        cursor: pointer;
+    }
+
+    &__item__link:hover{
+        color: $color_button_hover;
+    }
+}

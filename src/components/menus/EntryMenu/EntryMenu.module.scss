@@ -1,0 +1,33 @@
+@import '../../../styles/Main.scss';
+
+.menu{
+    @include menu();
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    &__item{
+        @include menuItem();
+    }
+
+    &__item>a{
+        @include menuItemLink();
+    }
+
+    &__item>a:hover{
+        color: $color_button_hover;
+    }
+
+    &__item__text{
+        @include menuItemText();
+    }
+
+    &__item__link{
+        @include menuItemText();
+        cursor: pointer;
+    }
+
+    &__item__link:hover{
+        color: $color_button_hover;
+    }
+}

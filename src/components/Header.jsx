@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { AutchContext } from '../context';
-import logo from '../images/logo.png';
+import Login from './Login';
 
 import '../styles/componentStyles/Header.scss';
+import MainMenu from './menus/MainMenu/MainMenu';
+import MenuExit from './menus/MenuExit/MenuExit';
+import EntryMenu from './menus/EntryMenu/EntryMenu';
 
 const Header = () =>{
     const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages,} = useContext(AutchContext);
@@ -26,38 +28,26 @@ const Header = () =>{
     }
     
     return (
-        <header className="header">
-            <div className="login">
-                <img src={logo} alt="login" className="login__image" />
-            </div>
-            <nav className="menu">
-                {
-                    isAuth ?
-                    <ul className="menu__block">
-                        <li className="menu__item"><Link to="/">Главная</Link></li>
-                        <li className="menu__item"><Link to="/currences">Монеты</Link></li>
-                        <li className="menu__item">
-                            <Link to="/"><span className='menu__item__text menu__item__link' onClick={() => logOutAccount()}>Выход</span></Link>
-                        </li>
-                    </ul>
-                    :
-                    <ul className="menu__block">
-                        {
-                            errorPages ?
-                            <li className="menu__item"><Link to="/" onClick={() => showMainPageMenu()}>Главная</Link></li>
-                            :
-                            <li className="menu__item">
-                                <span className='menu__item__text menu__item__link' 
-                                    onClick={() => openModalLogin()}>Вход</span>
-                                <span className='menu__item__text'> / </span>
-                                <span className='menu__item__text menu__item__link' 
-                                    onClick={() => openModalRegistration()}>Регистрация</span>
-                            </li>
-                        }
-                    </ul>
-                }
-            </nav>
-        </header>
+        <div className='header__wrapper'>
+            <header className="header">
+                <Login />
+                <div className="header__menu">
+                    {
+                        isAuth ?
+                        <div className='header__menu__wrapper'>
+                            <MainMenu />
+                            <MenuExit logOutAccount={logOutAccount} />
+                        </div>
+                        :
+                        <EntryMenu
+                            errorPages={errorPages}
+                            openModalLogin={openModalLogin} 
+                            showMainPageMenu={showMainPageMenu}
+                            openModalRegistration={openModalRegistration}/>
+                    }
+                </div>
+            </header>
+        </div>
     )
 }
 

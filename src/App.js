@@ -48,11 +48,3 @@ function App() {
 }
 
 export default App;
-
-
-// CIRCULATINGSUPPLYMKTCAP капитолизация
-// HIGH24HOUR самый высокий показатель за период
-// CHANGE24HOUR изменения цены  за период
-// LOW24HOUR самый низкий показатель за перииод
-// PRICE цена
-// SUPPLY тоже, что и капитализация
