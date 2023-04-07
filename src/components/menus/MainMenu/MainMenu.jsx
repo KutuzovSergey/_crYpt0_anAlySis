@@ -9,7 +9,7 @@ const MainMenu = () =>{
             <ul className={cl.menu__block}>
                 <li className={cl.menu__item}><Link to="/">Главная</Link></li>
                 <li className={cl.menu__item}><Link to="/currences">Монеты</Link></li>
-                <li className={cl.menu__item}><Link to="/currences">Кабинет</Link></li>
+                <li className={cl.menu__item}><Link to="/user-account">Кабинет</Link></li>
             </ul>
         </nav>
     )

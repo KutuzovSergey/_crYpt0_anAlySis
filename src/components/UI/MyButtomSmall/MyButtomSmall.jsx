@@ -1,7 +1,7 @@
 import React from "react";
 import cl from './MyButtomSmall.module.scss';
 
-const  MyButtonSmall = ({children, ...props}) =>{
+const  MyButtonSmall = ({children, activityIndicator, ...props}) =>{
 
     const classButtons = [cl.myButtonSmall];
 

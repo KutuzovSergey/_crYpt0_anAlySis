@@ -10,25 +10,6 @@ const Pagination = (props) =>{
     const [buttonsVisible, setButtonsVisible] = useState({ min: 1, max: 10 });
     const [range, setRange] = useState(1);
 
-    const createButtons = () =>{
-        let min = buttonsVisible.min;
-        let max = buttonsVisible.max;
-        let result = [];
-
-        while(min <= props.count && min <= max){
-            result.push(min);
-            min = ++min;
-        }
-
-        props.count > 10 ? setRightArrow(true) : '';
-
-        buttonsVisible.max >= props.count ? setRightArrow(false) : '';
-
-        buttonsVisible.min > 10 ? setLeftArrow(true) : setLeftArrow(false);
-
-        setNumberButtons(result);
-    }
-
     const scrollRight = () =>{
         let nawObject = {}
 
@@ -67,7 +48,26 @@ const Pagination = (props) =>{
         setRange(result);
     }
     
-    useEffect(() => {createButtons()}, [props.count, buttonsVisible]);
+    useEffect(() => {
+        let min = buttonsVisible.min;
+        let max = buttonsVisible.max;
+        let result = [];
+    
+        while(min <= props.count && min <= max){
+            result.push(min);
+            min = ++min;
+        }
+    
+        if (props.count > 10) {
+            setRightArrow(true);
+        } else if (buttonsVisible.max >= props.count) {
+            setRightArrow(false);
+        }
+    
+        buttonsVisible.min > 10 ? setLeftArrow(true) : setLeftArrow(false);
+    
+        setNumberButtons(result);
+    }, [props.count, buttonsVisible]);
 
     const indicatorTrue = true;
     const indicatorFalse = false;
