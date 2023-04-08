@@ -4,14 +4,17 @@ import { BrowserRouter } from 'react-router-dom';
 import {AutchContext} from './context/index.js';
 import AppRouter from './components/AppRouter';
 import Footer from './components/Footer';
+import AdaptiveMenu from './components/menus/AdaptiveMenu/AdaptiveMenu';
 
 import './styles/App.scss';
+
 
 
 function App() {
   const [modalLogin, setModalLogin] = useState(false);
   const [modalRegistr, setModalRegistr] = useState(false);
   const [errorPages, setErrorPages] = useState(false);
+  const [menuAdaptive, setMenuAdaptive] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
 
   const setUserStatus = () =>{
@@ -36,11 +39,14 @@ function App() {
         setErrorPages,
         modalRegistr,
         setModalRegistr,
+        menuAdaptive,
+        setMenuAdaptive,
       }}>
         <BrowserRouter>
           <Header/>
           <AppRouter/>
           <Footer/>
+          <AdaptiveMenu/>
         </BrowserRouter>
       </AutchContext.Provider>
     </div>

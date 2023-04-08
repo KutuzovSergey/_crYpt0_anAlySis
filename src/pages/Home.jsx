@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import MyModal from "../components/UI/MyModal/MyModal";
-import Banner from "../components/Banner";
-import InfoApplication from "../components/InfoApplication";
 import { AutchContext } from "../context";
+import Banner from "../components/Banner";
+import MyModal from "../components/UI/MyModal/MyModal";
+import InfoApplication from "../components/InfoApplication";
 import ModalLoginForm from "../components/ModalLoginForm";
 import ModalRegistrForm from "../components/ModalRegistrForm";
 

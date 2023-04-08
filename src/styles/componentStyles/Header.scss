@@ -3,6 +3,7 @@
 .header{
     width: 100%;
     height: 60px;
+    z-index: 100;
     display: flex;
     position: fixed;
     justify-content: space-between;
@@ -22,6 +23,63 @@
         display: flex;
         justify-content: space-between;
     }
+
+    &__menu__burger__wrapper{
+        display: none;
+    }
+
+    &__menu__burger{
+        width: auto;
+        height: auto;
+    }
 }
 
+@media (max-width: 1300px){
+    .header{
+        &__menu__burger__wrapper{
+            width: 75%;
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+}
 
+@media (max-width: 1000px){
+    .header{
+        &__menu__burger__wrapper{
+            width: 70%;
+        }
+    }
+}
+
+@media (max-width: 800px){
+    .header{
+        &__menu__burger__wrapper{
+            width: 60%;
+        }
+    }
+}
+
+@media (max-width: 600px){
+    .header{
+        &__menu__burger__wrapper{
+            width: 50%;
+        }
+    }
+}
+
+@media (max-width: 500px){
+    .header{
+        &__menu__burger__wrapper{
+            width: 40%;
+        }
+    }
+}
+
+@media (max-width: 400px){
+    .header{
+        &__menu__burger__wrapper{
+            width: 20%;
+        }
+    }
+}

@@ -30,3 +30,9 @@
         color: $color_button_hover;
     }
 }
+
+@media (max-width: 1300px){
+    .menu{
+        display: none;
+    }
+}

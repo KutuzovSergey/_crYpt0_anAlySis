@@ -6,9 +6,10 @@ import '../styles/componentStyles/Header.scss';
 import MainMenu from './menus/MainMenu/MainMenu';
 import MenuExit from './menus/MenuExit/MenuExit';
 import EntryMenu from './menus/EntryMenu/EntryMenu';
+import BurgerMenu from './menus/BurgerMenu/BurgerMenu';
 
 const Header = () =>{
-    const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages,} = useContext(AutchContext);
+    const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages, setMenuAdaptive} = useContext(AutchContext);
 
     const openModalLogin = () =>{
         setModalLogin(true);
@@ -29,13 +30,18 @@ const Header = () =>{
     
     return (
         <div className='header__wrapper'>
-            <header className="header">
+            <header className="header" onClick={() => {setMenuAdaptive(false)}}>
                 <Login />
                 <div className="header__menu">
                     {
                         isAuth ?
                         <div className='header__menu__wrapper'>
                             <MainMenu />
+                            <div className='header__menu__burger__wrapper'>
+                                <div className='header__menu__burger' onClick={(e) => {e.stopPropagation()}}>
+                                    <BurgerMenu />
+                                </div>
+                            </div>
                             <MenuExit logOutAccount={logOutAccount} />
                         </div>
                         :

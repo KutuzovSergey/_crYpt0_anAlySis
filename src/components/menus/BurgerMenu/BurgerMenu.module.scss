@@ -1,0 +1,49 @@
+@import '../../../styles/Main.scss';
+
+.menu{
+    width: 30px;
+    height: 30px;
+    display: none;
+    justify-content: flex-end;
+
+    &__burger_btn{
+        width: 30px;
+        height: 30px;
+        margin-left: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    &__burger_btn::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 30px;
+        height: 4px;
+        background-color: $background_color_third;
+    }
+
+    &__burger_btn>span{
+        position: absolute;
+        top: 11px;
+        width: 30px;
+        height: 4px;
+        background-color: $background_color_third;
+    }
+
+    &__burger_btn::after{
+        content: '';
+        position: absolute;
+        bottom: 4px;
+        width: 30px;
+        height: 4px;
+        background-color: $background_color_third;
+    }
+}
+
+@media (max-width: 1300px){
+    .menu{
+        display: flex;
+    }
+}
+
