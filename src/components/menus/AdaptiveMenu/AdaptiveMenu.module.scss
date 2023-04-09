@@ -3,28 +3,22 @@
 .menu {
     position: fixed;
     width: 100vw;
-    height: 100vw;
+    height: 100%;
     top: 60px;
     left: 0;
+    z-index: 999999999;
     display: flex;
     justify-content: flex-end;
     transform: translateX(200%);
     transition: all 0.5s;
 
     &.active{
-        position: fixed;
-        width: 100vw;
-        height: 100vw;
-        top: 60px;
-        left: 0;
-        display: flex;
-        justify-content: flex-end;
         transform: translateX(0);
     }
 
     &__blur{
-        width: 100vw;
-        height: 100vw;
+        width: 70%;
+        height: 100%;
         backdrop-filter: blur(5px);
         position: absolute;
         right: 30%;
@@ -49,14 +43,61 @@
     }
 
     &__item>a{
+        display: flex;
+        justify-content: center;
+    }
+
+    &__item__text{
         @include menuItemLink();
+        margin: auto 0;
+    }
+
+    &__item__icon{
+        width: 25px;
+        height: 25px;
+        margin-right: 15px;
+    }
+
+    &__item__icon>img{
+        width: 25px;
+        height: 25px;
     }
 
     &__line{
-        width: 20%;
+        width: 40%;
         height: 2px;
         margin: auto;
         background-color: #fff;
         border-radius: 20%;
     }
+}
+
+@media (max-width: 900px){
+    .menu {
+    
+        &__blur{
+            width: 60%;
+            right: 40%;
+        }
+    
+        &__content{
+            width: 40%;
+        }
+    }
+    
+}
+
+@media (max-width: 600px){
+    .menu {
+    
+        &__blur{
+            width: 60%;
+            right: 50%;
+        }
+    
+        &__content{
+            width: 50%;
+        }
+    }
+    
 }
