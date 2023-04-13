@@ -1,0 +1,24 @@
+@import '../styles/Main.scss';
+
+.account{
+    display: flex;
+    flex-direction: column;
+}
+
+.selectedCoins{
+    width: 90%;
+    margin: auto;
+
+    &__title{
+        width: 100%;
+        height: 60px;
+        display: flex;
+        
+    }
+
+    &__title__text{
+        @include textInfo();
+        text-align: center;
+        margin: auto;
+    }
+}

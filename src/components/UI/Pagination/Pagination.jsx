@@ -63,7 +63,7 @@ const Pagination = (props) =>{
         } else if (buttonsVisible.max >= props.count) {
             setRightArrow(false);
         }
-
+        
         buttonsVisible.min > 10 ? setLeftArrow(true) : setLeftArrow(false);
     
         setNumberButtons(result);
