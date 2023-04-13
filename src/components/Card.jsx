@@ -1,12 +1,20 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addCoin } from "../store/userCoinListReducer";
 import MyButton from "./UI/MyButton/MyButton";
+import MyButtonSmall from "./UI/MyButtomSmall/MyButtomSmall";
 
 import '../styles/componentStyles/Card.scss';
-import MyButtonSmall from "./UI/MyButtomSmall/MyButtomSmall";
 
 const Card = ({props, remove}) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const  addNewCoinPersonalAccount = (coin) => {
+    dispatch(addCoin(coin));
+  } 
+
     return(
         <div id={props.FROMSYMBOL} className='card'>
           <div className='card__header'>
@@ -41,7 +49,7 @@ const Card = ({props, remove}) => {
               <MyButton onClick={() => {navigate(`/currences/${props.FROMSYMBOL}`)}}>Посмотреть</MyButton>
             </div>
             <div className="card__footer__buttom">
-              <MyButton>Добавить</MyButton>
+              <MyButton onClick={() => addNewCoinPersonalAccount(props)} >Добавить</MyButton>
             </div>
           </div>
         </div>

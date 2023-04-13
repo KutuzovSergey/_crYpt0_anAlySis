@@ -16,7 +16,6 @@ const Currences = () => {
     const dispatch = useDispatch();
 
     const allCoinList = useSelector(state => state.allCoinList.coinsList);
-    const userCoinList = useSelector(state => state.userCoinList.coinList);
 
     const [modalInfo, setModalInfo] = useState(false);
     const [modalInfoText, setModalInfoText] = useState('')
@@ -44,7 +43,6 @@ const Currences = () => {
     const removeCurrences = (currency) =>{
         setCurrences(currences.filter((item) => item.NAME !== currency.NAME));
     }
-
 
     // сортировка
     const sortCurrences = (sort) =>{

@@ -12,3 +12,12 @@
         width: 30%;
     }
 }
+
+@media (max-width: 580px){
+    .FormSearch{
+    
+        &__sorting{
+            width: 40%;
+        }
+    }
+}

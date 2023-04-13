@@ -1,6 +1,6 @@
 
 const defaultState = {
-    coinsList: [],
+    coinsList: ['Sdr0'],
 }
 
 const GET_COINS_LIST = 'GET_COINS_LIST';

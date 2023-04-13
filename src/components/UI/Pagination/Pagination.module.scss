@@ -1,18 +1,52 @@
 @import '../../../styles/Main.scss';
 
 .pagination{
-    width: 540px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-
-    &__wrapper{
-        width: 400px;
+        width: 540px;
+        margin: auto;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+
+        &__wrapper{
+            width: 400px;
+            display: flex;
+            justify-content: center;
+            flex-flow: row wrap;
+        }
+
+        &__block{
+            width: 40px;
+        }
     }
 
-    &__block{
-        width: 40px;
+    @media (max-width: 600px) {
+        .pagination{
+            width: 440px;
+        
+            &__wrapper{
+                width: 300px;
+            }
+        
+        }
     }
-}
+
+    @media (max-width: 500px) {
+        .pagination{
+            width: 340px;
+        
+            &__wrapper{
+                width: 200px;
+            }
+        
+        }
+    }
+
+    @media (max-width: 360px) {
+        .pagination{
+            width: 100%;
+        
+            &__wrapper{
+                width: 200px;
+            }
+        
+        }
+    }

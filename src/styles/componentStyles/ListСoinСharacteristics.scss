@@ -4,9 +4,14 @@
     width: 96%;
     margin: auto;
     display: flex;
+    flex-wrap: wrap;
     padding: 20px 0;
     background-color: #fff;
     justify-content: space-around;
+
+    &__info{
+        width: 20%;
+    }
 
     &__value>span{
         margin: auto;
@@ -30,5 +35,36 @@
         font-size: 0.8rem;
         text-transform: uppercase;
         font-family: 'Rubik Mono One', sans-serif;
+    }
+}
+
+@media (max-width: 1100px) {
+    .property{
+        justify-content: center;
+
+        &__info{
+            width: 33%;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@media (max-width: 660px){
+    .property{
+        justify-content: normal;
+
+        &__info{
+            width: 50%;
+            margin-bottom: 15px;
+        }
+    }
+}
+
+@media (max-width: 460px){
+    .property{
+
+        &__info{
+            width: 100%;
+        }
     }
 }

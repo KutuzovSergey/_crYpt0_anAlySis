@@ -18,3 +18,55 @@
         margin: auto;
     }
 }
+
+@media (max-width: 860px) {
+    .coin{
+
+        &__chart__wrapper{
+            width: 500px;
+        }
+    }
+}
+
+@media (max-width: 660px) {
+    .coin{
+        width: 100%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+        &__chart{
+            height: 250px;
+            margin-top: 20px;
+            padding: 10px 20px;
+        }
+
+        &__chart__wrapper{
+            width: 400px;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .coin{
+       
+        &__chart__wrapper{
+            width: 360px;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .coin{
+        &__chart__wrapper{
+            width: 300px;
+        }
+    }
+}
+
+@media (max-width: 350px) {
+    .coin{
+        &__chart__wrapper{
+            width: 200px;
+        }
+    }
+}

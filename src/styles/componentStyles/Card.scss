@@ -5,7 +5,7 @@
     width: 30%;
     height: 200px;
     display: flex;
-    padding-bottom: 10px;
+    padding: 10px;
     margin-bottom: 4rem;
     flex-direction: column;
     justify-content: space-between;
@@ -67,7 +67,7 @@
 
     &__info{
         width: 100%;
-        height: 110px;
+        height: 100px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -108,4 +108,15 @@
         width: 80%;
         margin: 2rem auto 0 auto;
     }
+}
+
+@media (max-width: 580px){
+    .card{
+        width: 90%;
+        
+        &__footer__buttom{
+            width: 48%;
+        }
+    }
+    
 }
