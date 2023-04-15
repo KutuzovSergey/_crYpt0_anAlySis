@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+<h1 aling="centr">CrYptO AnAlySis </h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![alt text](https://raw.githubusercontent.com/KutuzovSergey/images/main/logo.png)
 
-## Available Scripts
+The application "Crypto Analysis" should help users navigate the world of cryptocurrencies.
 
-In the project directory, you can run:
+The application is based on the React js library /
+ The project is launched with a standard command in any terminal:
 
-### `npm start`
+## `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Otherwise, all standard commands also work.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+After the launch, the project will open on the main page. /
+To log in to the user's personal account, you must fill out one of the forms in the pop-up window.
 
-### `npm test`
+![alt text](https://raw.githubusercontent.com/KutuzovSergey/images/main/58.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The forms are called by clicking on the "Login" or "Registration" link and are filled in randomly according to validation. /
+The data that will be entered into the form affects only the state of the button, their presence allows you to change the value of the "disabled" attribute and not where they are not sent but partially stored in state Redux.
 
-### `npm run build`
+After logging in to the Coins page, the user has the opportunity to find the cryptomonets that interest him, sort them and add them to his account.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+When you enter values in the drop-down list into the search bar, found coins appear under the search bar that can be selected by clicking.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The selected coins are displayed above the search bar. /
+The application allows you to select up to ten sonnets. When you try to select more, an information window pops up with a warning.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![alt text](https://raw.githubusercontent.com/KutuzovSergey/images/3526954806b1e90130e17e0e866a83224ad356f7/1.gif)
 
-### `npm run eject`
+After clicking the search button, the application will load the desired coins.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Any coin can be viewed in more detail or added to yourself. /
+The selected coins can be viewed in your personal account.

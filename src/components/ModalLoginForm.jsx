@@ -5,6 +5,7 @@ import { AutchContext } from "../context";
 import ErrorForm from "./UI/ErrorForm/ErrorForm";
 
 const ModalLoginForm = () => {
+
     const {setIsAuth, setModalLogin, modalLogin} = useContext(AutchContext);
 
     const [form, setForm] = useState({

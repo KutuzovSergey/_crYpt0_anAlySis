@@ -4,8 +4,6 @@ import cl from './MyButton.module.scss'
 const MyButton = ({children, ...props}) => {
     const buttonStyles = [cl.myButton];
 
-    console.log(props.disabled);
-
     if (props.disabled) {
         buttonStyles.push(cl.myButton_disabled);
     }
