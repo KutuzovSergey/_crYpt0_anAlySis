@@ -18,10 +18,10 @@ const Banner = () => {
 
     const slideChange = () => {
 
-        setBannerActive(prev=>prev+=1)
+        setBannerActive(prev=>prev+=1);
 
         if (bannerActive === dataBanner.length-1) {
-            setBannerActive(0)
+            setBannerActive(0);
         }
     }
 
@@ -36,19 +36,6 @@ const Banner = () => {
     const getLoadedImg = (load) =>{
         setLoadedImg(load);
     }
-
-    // const getLoadedImg = (url) =>{
-    //     return new Promise((resolve, reject) => {
-    //         const img = new Image();
-    //         img.onload = function () {
-    //             resolve(url);
-    //         };
-    //         img.onerror = function () {
-    //             reject(url);
-    //         };
-    //         img.src = url;
-    //     })
-    // }
     useEffect(()=>{
         let timer =  setTimeout(slideChange, 4000);
         return () => clearInterval(timer)

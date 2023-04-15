@@ -1,0 +1,13 @@
+@import '../../../styles/Main.scss';
+
+.error{
+    width: 100%;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+
+    &__text{
+        font-size: 0.8rem;
+        color: rgb(250, 0, 0);
+    }
+}

@@ -19,4 +19,10 @@
         color: $color_button_hover;
         background-color: $background_color_fifth;
     }
+
+    &_disabled{
+        opacity: .5;
+        color: $color_button_hover;
+        background-color: $background_color_fifth;
+    }
 }
