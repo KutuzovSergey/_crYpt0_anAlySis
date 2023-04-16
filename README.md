@@ -1,13 +1,13 @@
-<h1 aling="centr">CrYptO AnAlySis </h1>
+# CrYptO AnAlySis
 
-![alt text](https://raw.githubusercontent.com/KutuzovSergey/images/main/logo.png)
+![alt text](https://raw.githubusercontent.com/KutuzovSergey/images/main/logo_min_100px.png)
 
 The application "Crypto Analysis" should help users navigate the world of cryptocurrencies.
 
 The application is based on the React js library /
  The project is launched with a standard command in any terminal:
 
-## `npm start`
+### `npm start`
 
 Otherwise, all standard commands also work.
 
@@ -23,10 +23,12 @@ After logging in to the Coins page, the user has the opportunity to find the cry
 
 When you enter values in the drop-down list into the search bar, found coins appear under the search bar that can be selected by clicking.
 
+![alt text](https://raw.githubusercontent.com/KutuzovSergey/images/main/2.gif)
+
 The selected coins are displayed above the search bar. /
 The application allows you to select up to ten sonnets. When you try to select more, an information window pops up with a warning.
 
-![alt text](https://raw.githubusercontent.com/KutuzovSergey/images/3526954806b1e90130e17e0e866a83224ad356f7/1.gif)
+![alt text](https://raw.githubusercontent.com/KutuzovSergey/images/main/screen_2min.png)
 
 After clicking the search button, the application will load the desired coins.
 
