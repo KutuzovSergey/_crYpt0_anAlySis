@@ -3,7 +3,7 @@ import '../styles/componentStyles/CurrencesList.scss';
 import Card from './Card';
 import Loader from "./UI/Loader/Loader";
 
-const CurrencesList = ({listLoading, currences, remove}) => {
+const CurrencesList = ({listLoading, currences, remove, textInfo}) => {
   if (listLoading) {
     return <Loader/>
   }
@@ -16,7 +16,7 @@ const CurrencesList = ({listLoading, currences, remove}) => {
               props={currency}
               remove={remove}/>)
           : <div className="card-block__none">
-              <span>Монеты не найдены</span>
+              <span>{textInfo}</span>
             </div>
         }
       </div>

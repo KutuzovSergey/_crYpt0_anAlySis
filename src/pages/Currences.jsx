@@ -94,6 +94,7 @@ const Currences = () => {
             <CurrencesList 
                 listLoading={isLoadingCoin}
                 currences={currences}
+                textInfo={'Монеты не найдены'}
                 remove={removeCurrences}/>
             <Pagination count={totalCount} getListCoins={getListCoins} />
             <MyModal active={modalInfo} setActive={setModalInfo}>

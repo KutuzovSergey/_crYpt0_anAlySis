@@ -24,6 +24,7 @@ const UserAccount = () => {
                     currences={userCoinList}
                     listLoading={false}
                     remove={removeCurrences}
+                    textInfo={''}
                      />
             </div>
         </div>

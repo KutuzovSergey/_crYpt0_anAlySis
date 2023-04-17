@@ -1,4 +1,6 @@
 import React from "react";
+import Button from '@mui/material/Button';
+
 import cl from './MyButton.module.scss'
 
 const MyButton = ({children, ...props}) => {

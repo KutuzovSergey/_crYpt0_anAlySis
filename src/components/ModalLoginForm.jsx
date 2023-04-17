@@ -13,6 +13,25 @@ const ModalLoginForm = () => {
         pasword: ''
     });
 
+    // const useValidation = (value, validations) =>{
+
+    //     const [isEmpty, setIsEmpty] = useState(true)
+
+    //     useEffect(() => {
+    //         for(const validation in validations){
+    //             switch (validation){
+    //                 case 'minLength':
+    //                     break;
+    //                 case 'isEmpty':
+    //                     value ? setIsEmpty(false) : setIsEmpty(true);
+    //                     break;
+    //                     default: 
+    //             }
+    //         }
+    //     }, [value])
+
+    // }
+
     const [dirty, setDirty] = useState({
         loginDirty: false,
         paswordDirty: false
