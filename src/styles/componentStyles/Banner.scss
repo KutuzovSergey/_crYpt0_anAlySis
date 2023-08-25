@@ -3,6 +3,7 @@
 .banner{
     width: 100%;
     height: auto;
+    position: relative;
 
     &__block{
         width: 100%;
@@ -46,6 +47,7 @@
         display: flex;
         justify-content: center;
         position: absolute;
+        bottom: 30px;
     }
 
     &__switch{

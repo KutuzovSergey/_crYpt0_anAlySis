@@ -5,6 +5,7 @@ import MyModal from "../components/UI/MyModal/MyModal";
 import InfoApplication from "../components/InfoApplication";
 import ModalLoginForm from "../components/ModalLoginForm";
 import ModalRegistrForm from "../components/ModalRegistrForm";
+import SubscribeNews from '../components/SubscribeNews';
 
 import '../styles/Home.scss';
 
@@ -14,6 +15,7 @@ const Home = () => {
     return (
         <div className="home">
             <Banner/>
+            <SubscribeNews/>
             <InfoApplication/>
             <MyModal className="modal" active={modalLogin} setActive={setModalLogin}>
                 <ModalLoginForm />

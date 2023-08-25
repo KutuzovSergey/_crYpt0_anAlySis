@@ -1,12 +1,13 @@
 @import '../fonts/RubikMonoOne-Regular.ttf';
 
-$background_color: rgb(59,180,74);
+$background_color: #212529;
+$background: #0c0c0c;
 $background_color_second: rgb(255,226,122);
-$background_color_third: rgb(12,58,91);
+$background_color_third: #243238;
 $background_color_fourth: rgb(213,227,238);
 $background_color_fifth: rgb(255,203,91);
 $background_color_neutral: rgba(0, 0, 0, 0.500);
-$color: #222225;
+$color: #ffffff;
 $color_text: #6a6d78;
 $color_button: #454855;
 $color_button_hover: #6d707a;
@@ -23,6 +24,11 @@ $font_style_element: 'Rubik Mono One', sans-serif;
     padding-top: 40px;
     padding-bottom: 30px;
     background-color: $background_color_fourth;
+}
+
+@mixin contentBlockWrapper {
+    width: 80%;
+    margin: 0 auto;
 }
 
 @mixin data_entry_form($width, $height, $color, $fontSize, $padding, $border, $borderRadius){
@@ -50,6 +56,23 @@ $font_style_element: 'Rubik Mono One', sans-serif;
     font-size: 1.5rem;
     font-weight: 800;
     font-family: 'Rubik Mono One', sans-serif;
+}
+
+@mixin textInfoTitle {
+    margin: auto;
+    text-align: center;
+    display: block;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 800;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+@mixin text{
+    margin-bottom: 5px;
+    font-size: 1.25rem;
+    color: $color;
+    font-family: $font_style_element;
 }
 
 @mixin textNormal {
