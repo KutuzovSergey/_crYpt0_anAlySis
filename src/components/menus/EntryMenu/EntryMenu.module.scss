@@ -15,7 +15,7 @@
     }
 
     &__item>a:hover{
-        color: $color_button_hover;
+        @include textHover();
     }
 
     &__item__text{
@@ -28,6 +28,6 @@
     }
 
     &__item__link:hover{
-        color: $color_button_hover;
+        @include textHover();
     }
 }

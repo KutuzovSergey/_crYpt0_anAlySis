@@ -27,7 +27,7 @@
     }
 
     &__item__link:hover{
-        color: $color_button_hover;
+        @include textHover();
     }
 }
 

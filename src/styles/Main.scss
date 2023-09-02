@@ -1,16 +1,19 @@
 @import '../fonts/RubikMonoOne-Regular.ttf';
 
+$main_color: #0E1B2F;
 $background_color: #212529;
 $background: #0c0c0c;
 $background_color_second: rgb(255,226,122);
 $background_color_third: #243238;
-$background_color_fourth: rgb(213,227,238);
-$background_color_fifth: rgb(255,203,91);
-$background_color_neutral: rgba(0, 0, 0, 0.500);
+$background_color_fourth: #0c0c0c;
+$background_color_fifth: rgb(252, 187, 46);
+$background_color_neutral: rgba(0, 0, 0, 0.554);
 $color: #ffffff;
+$inputText: #222225;
+$placeholderText: #80808b;
 $color_text: #6a6d78;
-$color_button: #454855;
-$color_button_hover: #6d707a;
+$color_button: #FFBC00;
+$color_button_hover: #fd7e14;
 $font_size_text: 0.6rem;
 $font_size_elements: 0.8rem;
 $font_size_big: 1.2rem;
@@ -52,9 +55,21 @@ $font_style_element: 'Rubik Mono One', sans-serif;
 }
 
 @mixin textInfo {
-    color: #222225;
+    color: $color;
     font-size: 1.5rem;
     font-weight: 800;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+@mixin textHover {
+    transition: all s;
+    color: $color_button_hover;
+}
+
+@mixin textInput($color) {
+    color: $color;
+    font-size: 1rem;
+    font-weight: 300;
     font-family: 'Rubik Mono One', sans-serif;
 }
 

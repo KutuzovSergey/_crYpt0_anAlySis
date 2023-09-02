@@ -6,6 +6,8 @@ import camera from "../images/icon/camera.svg";
 import upload from "../images/icon/upload.svg";
 import { AutchContext } from "../context";
 
+import '../styles/Form.scss';
+
 const ModalRegistrForm = () => {
     const {setIsAuth, setModalRegistr} = useContext(AutchContext);
 
