@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { AutchContext } from '../context';
 import Login from './Login';
-
-import '../styles/componentStyles/Header.scss';
 import MainMenu from './menus/MainMenu/MainMenu';
 import MenuExit from './menus/MenuExit/MenuExit';
 import EntryMenu from './menus/EntryMenu/EntryMenu';
 import BurgerMenu from './menus/BurgerMenu/BurgerMenu';
+
+import '../styles/componentStyles/Header.scss';
 
 const Header = () =>{
     const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages, setMenuAdaptive} = useContext(AutchContext);
