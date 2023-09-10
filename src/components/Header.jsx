@@ -12,10 +12,12 @@ const Header = () =>{
     const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages, setMenuAdaptive} = useContext(AutchContext);
 
     const openModalLogin = () =>{
+        setModalRegistr(false);
         setModalLogin(true);
     }
 
     const openModalRegistration = () =>{
+        setModalLogin(false);
         setModalRegistr(true);
     }
 

@@ -2,6 +2,10 @@ import React, { useContext } from 'react';
 
 import '../styles/componentStyles/SubscribeNews.scss';
 
+const subscribeSitesNews = (e) =>{
+    e.preventDefault();
+}
+
 const SubscribeNews = () =>{
     
     return (
@@ -19,7 +23,7 @@ const SubscribeNews = () =>{
                     <form action="" className='subscribe__form'>
                         <div  className='subscribe__form_block'>
                             <input type="text" className='subscribe__input' placeholder='Введите свой E-Mail' />
-                            <button className='subscribe__button'>Подписаться</button>
+                            <button className='subscribe__button' onClick={(e) => subscribeSitesNews(e)}>Подписаться</button>
                         </div>
                     </form>
                 </div>
