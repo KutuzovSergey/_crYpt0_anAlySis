@@ -5,17 +5,25 @@ import user from "../images/user/user.png";
 import camera from "../images/icon/camera.svg";
 import upload from "../images/icon/upload.svg";
 import { AutchContext } from "../context";
+import { useInputСontrol, useValidation } from "../hooks/useInput";
+import ErrorForm from "./UI/ErrorForm/ErrorForm";
 
 import '../styles/Form.scss';
 
 const ModalRegistrForm = () => {
     const {setIsAuth, setModalRegistr} = useContext(AutchContext);
+    const {value, dirty, onChange, onBlur} = useInputСontrol();
+    const [validatuon, formValid, error] = useValidation();
 
     const registration = event => {
         event.preventDefault();
-        setIsAuth(true);
-        localStorage.isAuth = true;
-        setModalRegistr(false);
+        validatuon(event);
+
+        if(formValid){
+            setIsAuth(true);
+            localStorage.isAuth = true;
+            setModalRegistr(false);
+        }
     }
 
     return (
@@ -35,30 +43,50 @@ const ModalRegistrForm = () => {
                 </div>
                 <div className="form__block__input">
                     <div className="form__input">
+                        {error.loginError != '' && <ErrorForm>{error.loginError}</ErrorForm>}
                         <MyInput
+                            name='name'
                             type='text'
                             placeholder='имя'
-                            autoComplete='name'/>
+                            autoComplete='name'
+                            value={value.valueName} 
+                            onChange={ (e) => onChange(e) }
+                            onBlur={ (e) => onBlur(e) }/>
                     </div>
                     <div className="form__input">
+                        {error.paswordError != '' && <ErrorForm>{error.paswordError}</ErrorForm>}
                         <MyInput 
+                            name='password'
                             type='password'
                             placeholder='пароль'
-                            autoComplete='new-password'/>
+                            autoComplete='new-password'
+                            value={value.valuePassword} 
+                            onChange={ (e) => onChange(e) }
+                            onBlur={ (e) => onBlur(e) }/>
                     </div>
                     <div className="form__input">
+                        {error.repeatPassword != '' && <ErrorForm>{error.repeatPassword}</ErrorForm>}
                         <MyInput 
+                            name='repeatPassword'
                             type='password'
                             autoComplete='new-password'
-                            placeholder='повторите пароль'/>
+                            placeholder='повторите пароль'
+                            value={value.valueRepeatPassword} 
+                            onChange={ (e) => onChange(e) }
+                            onBlur={ (e) => onBlur(e) }/>
                     </div>
                 </div>
             </div>
             <div className="form__input">
+                {error.mailPhone != '' && <ErrorForm>{error.mailPhone}</ErrorForm>}
                 <MyInput 
+                    name='mailPhone'
                     type='text'
                     autoComplete='email'
-                    placeholder='почта / телефон'/>
+                    placeholder='почта / телефон'
+                    value={value.valueMailPhone}
+                    onChange={ (e) => onChange(e) }
+                    onBlur={ (e) => onBlur(e) }/>
             </div>
             <div className="form__button">
                 <MyButton>войти</MyButton>

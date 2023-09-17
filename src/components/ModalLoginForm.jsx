@@ -13,25 +13,6 @@ const ModalLoginForm = () => {
         pasword: ''
     });
 
-    // const useValidation = (value, validations) =>{
-
-    //     const [isEmpty, setIsEmpty] = useState(true)
-
-    //     useEffect(() => {
-    //         for(const validation in validations){
-    //             switch (validation){
-    //                 case 'minLength':
-    //                     break;
-    //                 case 'isEmpty':
-    //                     value ? setIsEmpty(false) : setIsEmpty(true);
-    //                     break;
-    //                     default: 
-    //             }
-    //         }
-    //     }, [value])
-
-    // }
-
     const [dirty, setDirty] = useState({
         loginDirty: false,
         paswordDirty: false
@@ -87,7 +68,7 @@ const ModalLoginForm = () => {
             case 'pasword':
                 setDirty({...dirty, paswordDirty: true})
                 break;
-                default: 
+            default: 
         }
     }
 
@@ -103,7 +84,7 @@ const ModalLoginForm = () => {
     useEffect( () => {
         if(modalLogin){
             setForm({...form, login: '', pasword: ''});
-            setDirty({...dirty, loginDirty: false, paswordDirty: false})
+            setDirty({...dirty, loginDirty: false, paswordDirty: false});
         }
     }, [modalLogin]);
 

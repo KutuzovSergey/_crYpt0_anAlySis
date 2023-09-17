@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Line, Chart } from "react-chartjs-2";
-import { Chart as ChartJS } from 'chart.js/auto';
-import { useFetching } from "../hooks/useFetching";
-import { getChart } from "../AP/getCoins";
+import { Line } from "react-chartjs-2";
 
 const chartData = {
   labels: ['Mon.', 'Tue.', 'Wed.', 'Thu.',  'Fri.', 'Sat.', 'Sun.'],
@@ -21,7 +18,6 @@ const chartData = {
 const ChartCard = (props) =>{
 
   const fillData = () =>{
-    console.log(props.nawChartData);
 
     chartData.labels = props.nawChartData.time;
     chartData.datasets[0].data = props.nawChartData.averageIndex;
