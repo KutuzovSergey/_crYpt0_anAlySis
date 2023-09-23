@@ -1,30 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MyInput from "./UI/MyInput/MyInput";
 import MyButton from "./UI/MyButton/MyButton";
 import user from "../images/user/user.png";
 import camera from "../images/icon/camera.svg";
 import upload from "../images/icon/upload.svg";
 import { AutchContext } from "../context";
-import { useInputСontrol, useValidation } from "../hooks/useInput";
+import { useInputControl } from "../hooks/useInput";
 import ErrorForm from "./UI/ErrorForm/ErrorForm";
 
 import '../styles/Form.scss';
 
 const ModalRegistrForm = () => {
-    const {setIsAuth, setModalRegistr} = useContext(AutchContext);
-    const {value, dirty, onChange, onBlur} = useInputСontrol();
-    const [validatuon, formValid, error] = useValidation();
+    const {setIsAuth, setModalRegistr, modalRegistr, errorPages} = useContext(AutchContext);
+    const {value, errorStatus, onChange, validation, formValid, error, resetFormValues} = useInputControl();  
 
     const registration = event => {
         event.preventDefault();
-        validatuon(event);
-
+        validation(event);
+        console.log(formValid);
         if(formValid){
             setIsAuth(true);
             localStorage.isAuth = true;
             setModalRegistr(false);
         }
     }
+
+    const onChangeInput = (e) =>{
+        onChange(e);
+    }
+
+    useEffect( (modalRegistr) => {
+        console.log(modalRegistr);
+        console.log(errorPages);
+        resetFormValues(modalRegistr);
+    }, [modalRegistr])
 
     return (
         <form className="form" onSubmit={registration}> 
@@ -43,50 +52,49 @@ const ModalRegistrForm = () => {
                 </div>
                 <div className="form__block__input">
                     <div className="form__input">
-                        {error.loginError != '' && <ErrorForm>{error.loginError}</ErrorForm>}
+                        {(error.loginError && errorStatus.errorName) && <ErrorForm>{error.loginError}</ErrorForm>}
                         <MyInput
                             name='name'
                             type='text'
                             placeholder='имя'
                             autoComplete='name'
                             value={value.valueName} 
-                            onChange={ (e) => onChange(e) }
-                            onBlur={ (e) => onBlur(e) }/>
+                            onChange={ (e) => onChangeInput(e) }/>
                     </div>
                     <div className="form__input">
-                        {error.paswordError != '' && <ErrorForm>{error.paswordError}</ErrorForm>}
+                        {(error.passwordError && errorStatus.errorPassword) && 
+                            <ErrorForm>{error.passwordError}</ErrorForm>}
                         <MyInput 
                             name='password'
                             type='password'
                             placeholder='пароль'
                             autoComplete='new-password'
                             value={value.valuePassword} 
-                            onChange={ (e) => onChange(e) }
-                            onBlur={ (e) => onBlur(e) }/>
+                            onChange={ (e) => onChangeInput(e) }/>
                     </div>
                     <div className="form__input">
-                        {error.repeatPassword != '' && <ErrorForm>{error.repeatPassword}</ErrorForm>}
-                        <MyInput 
+                        {(error.repeatPassword && errorStatus.errorRepeatPassword) && 
+                            <ErrorForm>{error.repeatPassword}</ErrorForm>}
+                        <MyInput
                             name='repeatPassword'
                             type='password'
                             autoComplete='new-password'
                             placeholder='повторите пароль'
                             value={value.valueRepeatPassword} 
-                            onChange={ (e) => onChange(e) }
-                            onBlur={ (e) => onBlur(e) }/>
+                            onChange={ (e) => onChangeInput(e) }/>
                     </div>
                 </div>
             </div>
             <div className="form__input">
-                {error.mailPhone != '' && <ErrorForm>{error.mailPhone}</ErrorForm>}
+                {(error.mailPhone && errorStatus.errorMailPhone) && 
+                    <ErrorForm>{error.mailPhone}</ErrorForm>}
                 <MyInput 
                     name='mailPhone'
                     type='text'
                     autoComplete='email'
                     placeholder='почта / телефон'
                     value={value.valueMailPhone}
-                    onChange={ (e) => onChange(e) }
-                    onBlur={ (e) => onBlur(e) }/>
+                    onChange={ (e) => onChangeInput(e) }/>
             </div>
             <div className="form__button">
                 <MyButton>войти</MyButton>
