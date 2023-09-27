@@ -10,7 +10,9 @@ import SubscribeNews from '../components/SubscribeNews';
 import '../styles/Home.scss';
 
 const Home = () => {
-    const {modalLogin, setModalLogin, modalRegistr, setModalRegistr,} = useContext(AutchContext);
+    const {modalLogin, setModalLogin, setModalRegistr, modalRegistr,} = useContext(AutchContext);
+
+    // console.log(modalRegistr);
 
     return (
         <div className="home">
@@ -21,7 +23,7 @@ const Home = () => {
                 <ModalLoginForm />
             </MyModal>
             <MyModal className="modal" active={modalRegistr} setActive={setModalRegistr}>
-                <ModalRegistrForm/>
+                <ModalRegistrForm active={modalRegistr} setActive={setModalRegistr} />
             </MyModal>
         </div>
     )

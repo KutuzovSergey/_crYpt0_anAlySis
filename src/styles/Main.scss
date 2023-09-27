@@ -130,47 +130,14 @@ $font_style_element: 'Rubik Mono One', sans-serif;
     font-family: $font_style_element;
 }
 
-// 1 Вариант
-// rgb(175,212,119)
-// #afd477
-
-// rgb(255,226,122)
-// #ffe27a
-
-// rgb(255,255,255)
-// #ffffff
-
-
-
-
-// 2 вариант
-// rgb(137,199,98)
-// #89c762
-
-// rgb(255,203,91)
-// #ffcb5b
-
-// rgb(213,227,238)
-// #d5e3ee
-
-
-
-
-// 3 вариант
-// rgb(59,180,74)
-// #3bb44a
-
-// rgb(174,196,220)
-// #f6b446
-
-// rgb(213,227,238)
-// #aec4dc
-
-
-
-
-// rgb(12,58,91)
-
-// #0c3a5b
-
-// кодворс
+@mixin buttonStyle($width, $height){
+    width: $width;
+    height: $height;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: $color_button;
+    border: 1px solid $color_button;
+}

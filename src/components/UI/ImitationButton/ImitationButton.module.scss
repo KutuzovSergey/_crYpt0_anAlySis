@@ -1,7 +1,7 @@
 @import '../../../styles/Main.scss';
 
-.myButtonSmall{
-    @include buttonStyle(30px, 30px);
+.ImitationButton{
+    @include buttonStyle(100%, 100%);
 
     &:hover{
         box-shadow: 0px 0px 10px 3px $color_button_hover inset;

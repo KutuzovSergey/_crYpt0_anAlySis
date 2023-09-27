@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import MyInput from "./UI/MyInput/MyInput";
 import MyButton from "./UI/MyButton/MyButton";
+import ImitationButton from "./UI/ImitationButton/ImitationButton";
 import user from "../images/user/user.png";
 import camera from "../images/icon/camera.svg";
 import upload from "../images/icon/upload.svg";
@@ -10,18 +11,16 @@ import ErrorForm from "./UI/ErrorForm/ErrorForm";
 
 import '../styles/Form.scss';
 
-const ModalRegistrForm = () => {
-    const {setIsAuth, setModalRegistr, modalRegistr, errorPages} = useContext(AutchContext);
-    const {value, errorStatus, onChange, validation, formValid, error, resetFormValues} = useInputControl();  
-
+const ModalRegistrForm = (props) => {
+    const {setIsAuth} = useContext(AutchContext);
+    const {value, errorStatus, onChange, validation, formValid, error, resetFormValues} = useInputControl();
+    
     const registration = event => {
         event.preventDefault();
         validation(event);
-        console.log(formValid);
         if(formValid){
             setIsAuth(true);
             localStorage.isAuth = true;
-            setModalRegistr(false);
         }
     }
 
@@ -29,11 +28,39 @@ const ModalRegistrForm = () => {
         onChange(e);
     }
 
-    useEffect( (modalRegistr) => {
-        console.log(modalRegistr);
-        console.log(errorPages);
-        resetFormValues(modalRegistr);
-    }, [modalRegistr])
+    const inputUpload = React.createRef();
+    const profilePhoto = React.createRef();
+    const [srcProfilePhoto, setSrcProfilePhoto] = useState(user);
+
+    const uploadImage = () =>{
+        inputUpload.current.click();
+    }
+
+    const showUploadedImage = (e) =>{
+        const file = e.target.files[0];
+
+        let reader = new FileReader();
+
+        if (file) {
+            reader.readAsDataURL(file);
+
+            reader.onload = function(e) {
+                setSrcProfilePhoto(e.target.result);
+            };
+
+            reader.onerror = () =>{
+                console.log(reader.error);
+            }
+        }
+    }
+
+    const takePhoto = () => {
+        console.log("take poto");
+    }
+
+    useEffect( () => {
+        resetFormValues(props.active);
+    }, [props.active]);
 
     return (
         <form className="form" onSubmit={registration}> 
@@ -41,13 +68,32 @@ const ModalRegistrForm = () => {
                 <span className="form__title_text">Зарегистрироваться</span>
             </div>
             <div className="form__wrapper">
-                <div className="form__block__get__img">
-                    <div className="form__user__img">
-                        <img src={user} alt="user" />
+                <div className="form__blockImg imgBlock">
+                    <div className="imgBlock__userImg__wrapper">
+                        <div className="imgBlock__userImg">
+                            <img src={srcProfilePhoto} alt="profile photo" ref={profilePhoto} />
+                        </div>
                     </div>
-                    <div className="form__block__get__img__button">
-                        <MyButton><img src={camera} alt="camera" /></MyButton>
-                        <MyButton><img src={upload} alt="upload" /></MyButton>
+                    <div className="imgBlock__buttons">
+                        <div className="imgBlock__button">
+                            <ImitationButton
+                                onClick = {() => {takePhoto()}}>
+                                <img src={camera} alt="camera" className="imgBlock__images" />
+                            </ImitationButton>
+                        </div>
+                        <div className="imgBlock__button">
+                            <ImitationButton
+                                onClick = {() => {uploadImage()}}>
+                                <img src={upload} alt="upload" className="imgBlock__images" />
+                            </ImitationButton>
+                            <input 
+                                type="file" 
+                                ref={inputUpload} 
+                                className="imgBlock__uploadImage" 
+                                id="uploadImage"
+                                accept="image/jpeg, image/png, image/jpg"
+                                onChange={ (e) => {showUploadedImage(e)}}/>
+                        </div>
                     </div>
                 </div>
                 <div className="form__block__input">

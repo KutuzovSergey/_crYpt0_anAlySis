@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import cl from "./EntryMenu.module.scss";
 
 const EntryMenu = (props) =>{
+   
     return (
         <ul className={cl.menu}>
             { props.errorPages ?

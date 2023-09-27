@@ -9,7 +9,7 @@ import BurgerMenu from './menus/BurgerMenu/BurgerMenu';
 import '../styles/componentStyles/Header.scss';
 
 const Header = () =>{
-    const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages, setMenuAdaptive} = useContext(AutchContext);
+    const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages, setMenuAdaptive, modalRegistr} = useContext(AutchContext);
 
     const openModalLogin = () =>{
         setModalRegistr(false);
