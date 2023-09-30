@@ -7,13 +7,6 @@ export const useInputControl = (modalRegistr) => {
         valueRepeatPassword: '',
         valueMailPhone: '',
     });
-    
-    // const [dirty, setDirty] = useState({
-    //     dirtyName: false,
-    //     dirtyPassword: false,
-    //     dirtyRepeatPassword: false,
-    //     dirtyMailPhone: false,
-    // });
 
     const [errorStatus, setErrorStatus] = useState({
         errorName: false,
@@ -50,25 +43,6 @@ export const useInputControl = (modalRegistr) => {
         setValue(nawValue);
         setErrorStatus(newErrorStatus);
     }
-
-    // const onBlur = (e) =>{
-    //     switch (e.target.name) {
-    //         case 'name':
-    //             setDirty({...dirty, dirtyName: true});
-    //             break;
-    //         case 'password':
-    //             setDirty({...dirty, dirtyPassword: true});
-    //             break;
-    //         case 'repeatPassword':
-    //             setDirty({...dirty, dirtyRepeatPassword: true});
-    //             break;
-    //         case 'mailPhone':
-    //             setDirty({...dirty, dirtyMailPhone: true});
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // }
 
     const [formValid, setFormValid] = useState(false);
 
@@ -212,4 +186,42 @@ export const useInputControl = (modalRegistr) => {
         resetFormValues,
     }
 
+}
+
+export const useUploadImage = (user, inputUpload) => {
+
+    const [srcProfilePhoto, setSrcProfilePhoto] = useState(user);
+
+    const uploadImage = () =>{
+        inputUpload.current.click();
+    }
+
+    const showUploadedImage = (e) =>{
+        const file = e.target.files[0];
+
+        let reader = new FileReader();
+
+        if (file) {
+            reader.readAsDataURL(file);
+
+            reader.onload = function(e) {
+                setSrcProfilePhoto(e.target.result);
+            }
+
+            reader.onerror = () =>{
+                console.log(reader.error);
+            }
+        }
+    }
+
+    const resetImputFile = (user) =>{
+        setSrcProfilePhoto(user);
+    }
+
+    return [
+        srcProfilePhoto,
+        uploadImage,
+        showUploadedImage,
+        resetImputFile,
+    ]
 }

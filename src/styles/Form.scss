@@ -58,16 +58,16 @@
     }
 
     &__userImg{
-        max-width: 210px;
-        max-height: 210px;
+        width: 210px;
+        height: 210px;
         margin: auto;
         overflow: hidden;
         border-radius: 50%;
     }
 
     &__userImg>img{
-        max-width: 210px;
-        max-height: 210px;
+        width: 100%;
+        height: auto;
     }
 
     &__buttons{
@@ -84,15 +84,5 @@
     &__images{
         width: 30px;
         height: 20px;
-    }
-
-    &__uploadImage{
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: none;
-        z-index: 999;
     }
 }
