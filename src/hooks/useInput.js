@@ -117,15 +117,21 @@ export const useInputControl = (modalRegistr) => {
                     }
                 break;
                 case 'mailPhone':
-                    const pattern_mail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-                    const pattern_phone = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-
+                    const incomplete_phone = /^[0-9-)(+\s]+$/;
+                    const incomplete_email = /^[a-zA-Z_.@]+$/;
+                    const pattern_mail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+                    const pattern_phone = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d*)\)?)[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?)+)(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i;
+                    
                     if (!element.value) {
                         ++errorCount;
                         newError = { ...newError, mailPhone: 'Введите почту или телефон'};
                         newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
-                    } else if (typeof element.value === 'number') {
-                        if (pattern_phone.test(String(element.value))) {
+                    } else if (incomplete_phone.test(String(element.value))) {
+                        if (element.value.length > 26 || element.value.length < 9) {
+                            ++errorCount;
+                            newError = { ...newError, mailPhone: 'Не коректный телефон'};
+                            newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
+                        } else if (!pattern_phone.test(String(element.value))) {
                             ++errorCount;
                             newError = { ...newError, mailPhone: 'Не коректный телефон'};
                             newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
@@ -135,8 +141,8 @@ export const useInputControl = (modalRegistr) => {
                             newErrorStatus = { ...newErrorStatus, errorMailPhone: false};
                             formDataObject = { ...formDataObject, mail: element.value};
                         }
-                    } else if (typeof element.value === 'string') {
-                        if (pattern_mail.test(String(element.value.toLowerCase()))) {
+                    } else if (incomplete_email.test(String(element.value))) {
+                        if (!pattern_mail.test(String(element.value.toLowerCase()))) {
                             ++errorCount;
                             newError = { ...newError, mailPhone: 'Не коректный E-mail'};
                             newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
@@ -145,6 +151,10 @@ export const useInputControl = (modalRegistr) => {
                             newErrorStatus = { ...newErrorStatus, errorMailPhone: false};
                             formDataObject = { ...formDataObject, mail: element.value};
                         }
+                    } else {
+                        ++errorCount;
+                            newError = { ...newError, mailPhone: 'Не коректный E-mail'};
+                            newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
                     }
                 break;
             }

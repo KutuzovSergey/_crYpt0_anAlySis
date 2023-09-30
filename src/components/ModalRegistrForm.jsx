@@ -27,6 +27,7 @@ const ModalRegistrForm = (props) => {
         if(formValid){
             setIsAuth(true);
             localStorage.isAuth = true;
+            props.setActive(false);
         }
     }
 
