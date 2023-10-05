@@ -15,9 +15,10 @@ export const useInputControl = (modalRegistr) => {
         errorMailPhone: false,
     });
 
-    const onChange = (e) => {
+    const onChangeInput = (e) => {
         let nawValue = { ...valueUserInfo };
         let newErrorStatus = { ...errorStatus };
+        console.log(e.target.name);
 
         switch (e.target.name){
             case 'name': 
@@ -36,8 +37,12 @@ export const useInputControl = (modalRegistr) => {
                 nawValue = {...nawValue, valueMailPhone: e.target.value};
                 newErrorStatus = {...newErrorStatus, errorMailPhone: false};
                 break;
+            case 'mail':
+                nawValue = {...nawValue, valueMailPhone: e.target.value};
+                newErrorStatus = {...newErrorStatus, errorMailPhone: false};
+                break;
             default:
-            break;
+                break;
         }
 
         setValueUserInfo(nawValue);
@@ -56,6 +61,12 @@ export const useInputControl = (modalRegistr) => {
     const [formData, setFormData] = useState({})
 
     const validation = (e) =>{
+        const incomplete_phone = /^[0-9-)(+\s]+$/;
+        const incomplete_email = /^[a-zA-Z_.@]+$/;
+        const pattern_mail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+        const pattern_phone = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d*)\)?)[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?)+)(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i;
+                    
+        
         let errorCount = 0;
         const form = e.target;
 
@@ -117,11 +128,6 @@ export const useInputControl = (modalRegistr) => {
                     }
                 break;
                 case 'mailPhone':
-                    const incomplete_phone = /^[0-9-)(+\s]+$/;
-                    const incomplete_email = /^[a-zA-Z_.@]+$/;
-                    const pattern_mail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-                    const pattern_phone = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d*)\)?)[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?)+)(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i;
-                    
                     if (!element.value) {
                         ++errorCount;
                         newError = { ...newError, mailPhone: 'Введите почту или телефон'};
@@ -156,7 +162,24 @@ export const useInputControl = (modalRegistr) => {
                             newError = { ...newError, mailPhone: 'Не коректный E-mail'};
                             newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
                     }
-                break;
+                    break;
+                case 'mail':
+                    if (!element.value) {
+                        ++errorCount;
+                        newError = { ...newError, mailPhone: 'Введите почту'};
+                        newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
+                    } else if (!pattern_mail.test(String(element.value.toLowerCase()))) {
+                        ++errorCount;
+                        newError = { ...newError, mailPhone: 'Не коректный E-mail'};
+                        newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
+                    } else {
+                        newError = { ...newError, mailPhone: ''};
+                        newErrorStatus = { ...newErrorStatus, errorMailPhone: false};
+                        formDataObject = { ...formDataObject, mail: element.value};
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -189,7 +212,7 @@ export const useInputControl = (modalRegistr) => {
     return {
         valueUserInfo,
         errorStatus,
-        onChange,
+        onChangeInput,
         validation,
         formValid,
         error,

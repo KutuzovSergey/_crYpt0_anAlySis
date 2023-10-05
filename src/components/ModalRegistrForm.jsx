@@ -21,7 +21,7 @@ const ModalRegistrForm = (props) => {
     const dispatch = useDispatch();
 
     const {setIsAuth} = useContext(AutchContext);
-    const {valueUserInfo, errorStatus, onChange, validation, formValid, error, resetFormValues} = useInputControl();
+    const {valueUserInfo, errorStatus, onChangeInput, validation, formValid, error, resetFormValues} = useInputControl();
     const [takingPhotos, getTakingPhotos] = useState(false);
 
     const inputUpload = React.createRef();
@@ -38,10 +38,6 @@ const ModalRegistrForm = (props) => {
             localStorage.isAuth = true;
             props.setActive(false);
         }
-    }
-
-    const onChangeInput = (e) =>{
-        onChange(e);
     }
 
     // const openTakePhoto = () => {
