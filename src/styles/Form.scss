@@ -77,7 +77,7 @@
     }
 
     &__button{
-        width: 50%;
+        width: 100%;
         position: relative;
     }
 
@@ -85,4 +85,12 @@
         width: 30px;
         height: 20px;
     }
+}
+
+.takingPhotosv{
+    width: 420px;
+    height: auto;
+    padding: 10px;
+    position: absolute;
+    background-color: #fff;
 }

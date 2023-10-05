@@ -13,5 +13,3 @@ export const allCoinListReducer = (state = defaultState, action) => {
             return state
     }
 }
-
-// export const getCoinsListAction = async (allList) => ({type: 'GET_COINS_LIST', payload: await allList})

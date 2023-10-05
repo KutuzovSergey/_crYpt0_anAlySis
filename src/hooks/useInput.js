@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const useInputControl = (modalRegistr) => {
-    const [value, setValue] = useState({
+    const [valueUserInfo, setValueUserInfo] = useState({
         valueName: '',
         valuePassword: '',
         valueRepeatPassword: '',
@@ -16,7 +16,7 @@ export const useInputControl = (modalRegistr) => {
     });
 
     const onChange = (e) => {
-        let nawValue = { ...value };
+        let nawValue = { ...valueUserInfo };
         let newErrorStatus = { ...errorStatus };
 
         switch (e.target.name){
@@ -40,7 +40,7 @@ export const useInputControl = (modalRegistr) => {
             break;
         }
 
-        setValue(nawValue);
+        setValueUserInfo(nawValue);
         setErrorStatus(newErrorStatus);
     }
 
@@ -91,7 +91,7 @@ export const useInputControl = (modalRegistr) => {
                         ++errorCount;
                         newError = { ...newError, passwordError: 'Пароль меньше 6 символов'};
                         newErrorStatus = { ...newErrorStatus, errorPassword: true};
-                    } else if (element.value!== value.valueRepeatPassword) {
+                    } else if (element.value!== valueUserInfo.valueRepeatPassword) {
                         ++errorCount;
                         newError = { ...newError, passwordError: 'Пароли не совпадают'};
                         newErrorStatus = { ...newErrorStatus, errorPassword: true};
@@ -106,7 +106,7 @@ export const useInputControl = (modalRegistr) => {
                         ++errorCount;
                         newError = { ...newError, repeatPassword: 'Поле не может быть пустым'};
                         newErrorStatus = { ...newErrorStatus, errorRepeatPassword: true};
-                    } else if (element.value !== value.valuePassword) {
+                    } else if (element.value !== valueUserInfo.valuePassword) {
                         ++errorCount;
                         newError = { ...newError, repeatPassword: 'Пароли не совпадают'};
                         newErrorStatus = { ...newErrorStatus, errorRepeatPassword: true};
@@ -169,7 +169,7 @@ export const useInputControl = (modalRegistr) => {
 
     const resetFormValues = (reasonDataReset) => {
         if (reasonDataReset) {
-            setValue({
+            setValueUserInfo({
                 valueName: '',
                 valuePassword: '',
                 valueRepeatPassword: '',
@@ -187,7 +187,7 @@ export const useInputControl = (modalRegistr) => {
     }
 
     return {
-        value,
+        valueUserInfo,
         errorStatus,
         onChange,
         validation,

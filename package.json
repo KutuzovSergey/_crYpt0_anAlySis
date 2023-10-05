@@ -54,5 +54,10 @@
   "devDependencies": {
     "tailwindcss": "^3.3.1",
     "typescript": "^5.2.2"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
   }
 }

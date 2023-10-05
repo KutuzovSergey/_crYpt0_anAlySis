@@ -8,7 +8,7 @@ import '../styles/UserAccount.scss';
 
 const UserAccount = () => {
     const dispatch = useDispatch();
-    const userCoinList = useSelector(state => state.userCoinList.coinsList);
+    const userCoinList = useSelector(state => state.userCoinList);
     
     const removeCurrences = (currency) =>{
         dispatch(deleteCoin(currency))

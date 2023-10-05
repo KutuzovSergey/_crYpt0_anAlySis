@@ -1,5 +1,5 @@
 import React from "react";
-import cl from './MyButtomSmall.module.scss';
+import cl from './MyButtonSmall.module.scss';
 
 const  MyButtonSmall = ({children, activityIndicator, ...props}) =>{
 

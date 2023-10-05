@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addCoin } from "../store/userCoinListReducer";
 import MyButton from "./UI/MyButton/MyButton";
-import MyButtonSmall from "./UI/MyButtomSmall/MyButtomSmall";
+import MyButtonSmall from "./UI/MyButtonSmall/MyButtonSmall";
 
 import '../styles/componentStyles/Card.scss';
 

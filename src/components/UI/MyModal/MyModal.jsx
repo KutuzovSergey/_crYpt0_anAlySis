@@ -1,5 +1,5 @@
 import React from "react";
-import MyButtomSmall from "../MyButtomSmall/MyButtomSmall";
+import MyButtonSmall from "../MyButtonSmall/MyButtonSmall";
 
 import cl from "./MyModal.module.scss";
 
@@ -18,7 +18,7 @@ const MyModal = ({children, ...props}) =>{
             onClick={() => {props.setActive(false)}}>
             <div onClick={(e) => e.stopPropagation()} className={modalClassBlock.join(' ')}>
                 <div className={cl.myModal__close}>
-                    <MyButtomSmall onClick={() => props.setActive(false)}>&#10006;</MyButtomSmall>
+                    <MyButtonSmall onClick={() => props.setActive(false)}>&#10006;</MyButtonSmall>
                 </div>
                 {children}
             </div>

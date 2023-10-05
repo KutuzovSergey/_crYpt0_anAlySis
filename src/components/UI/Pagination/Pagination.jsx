@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import cl from "./Pagination.module.scss";
-import MyButtonSmall from "../MyButtomSmall/MyButtomSmall";
+import MyButtonSmall from "../MyButtonSmall/MyButtonSmall";
 
 const Pagination = (props) =>{
 

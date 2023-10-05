@@ -1,20 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { store } from "../store";
 import MyInput from "./UI/MyInput/MyInput";
 import MyButton from "./UI/MyButton/MyButton";
 import ImitationButton from "./UI/ImitationButton/ImitationButton";
 import MyInputFile from "./UI/MyInputFile/MyInputFile";
+import ErrorForm from "./UI/ErrorForm/ErrorForm";
+// import CapturingPhotosWebcam from "./CapturingPhotosWebcam";
 import user from "../images/user/user.png";
 import camera from "../images/icon/camera.svg";
 import upload from "../images/icon/upload.svg";
 import { AutchContext } from "../context";
 import { useInputControl, useUploadImage } from "../hooks/useInput";
-import ErrorForm from "./UI/ErrorForm/ErrorForm";
+import { addUser } from "../action/actionCreators";
 
 import '../styles/Form.scss';
 
 const ModalRegistrForm = (props) => {
+
+    const dispatch = useDispatch();
+
     const {setIsAuth} = useContext(AutchContext);
-    const {value, errorStatus, onChange, validation, formValid, error, resetFormValues} = useInputControl();
+    const {valueUserInfo, errorStatus, onChange, validation, formValid, error, resetFormValues} = useInputControl();
+    const [takingPhotos, getTakingPhotos] = useState(false);
 
     const inputUpload = React.createRef();
     const profilePhoto = React.createRef();
@@ -25,6 +33,7 @@ const ModalRegistrForm = (props) => {
         event.preventDefault();
         validation(event);
         if(formValid){
+            dispatch(addUser(valueUserInfo));
             setIsAuth(true);
             localStorage.isAuth = true;
             props.setActive(false);
@@ -35,9 +44,13 @@ const ModalRegistrForm = (props) => {
         onChange(e);
     }
 
-    const takePhoto = () => {
-        console.log("take poto");
-    }
+    // const openTakePhoto = () => {
+    //     getTakingPhotos(true);
+    // }
+
+    // const closeTakePhoto = () => {
+    //     getTakingPhotos(false);
+    // }
 
     useEffect( () => {
         resetFormValues(props.active);
@@ -58,12 +71,12 @@ const ModalRegistrForm = (props) => {
                         </div>
                     </div>
                     <div className="imgBlock__buttons">
-                        <div className="imgBlock__button">
+                        {/* <div className="imgBlock__button">
                             <ImitationButton
-                                onClick = {() => {takePhoto()}}>
+                                onClick = {() => {openTakePhoto()}}>
                                 <img src={camera} alt="camera" className="imgBlock__images" />
                             </ImitationButton>
-                        </div>
+                        </div> */}
                         <div className="imgBlock__button">
                             <ImitationButton
                                 onClick = {() => {uploadImage()}}>
@@ -86,7 +99,7 @@ const ModalRegistrForm = (props) => {
                             type='text'
                             placeholder='имя'
                             autoComplete='name'
-                            value={value.valueName} 
+                            value={valueUserInfo.valueName} 
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
                     <div className="form__input">
@@ -97,7 +110,7 @@ const ModalRegistrForm = (props) => {
                             type='password'
                             placeholder='пароль'
                             autoComplete='new-password'
-                            value={value.valuePassword} 
+                            value={valueUserInfo.valuePassword} 
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
                     <div className="form__input">
@@ -108,7 +121,7 @@ const ModalRegistrForm = (props) => {
                             type='password'
                             autoComplete='new-password'
                             placeholder='повторите пароль'
-                            value={value.valueRepeatPassword} 
+                            value={valueUserInfo.valueRepeatPassword} 
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
                 </div>
@@ -121,12 +134,20 @@ const ModalRegistrForm = (props) => {
                     type='text'
                     autoComplete='email'
                     placeholder='почта / телефон'
-                    value={value.valueMailPhone}
+                    value={valueUserInfo.valueMailPhone}
                     onChange={ (e) => onChangeInput(e) }/>
             </div>
             <div className="form__button">
                 <MyButton>войти</MyButton>
             </div>
+            {takingPhotos ? 
+            <div className="takingPhotosv">
+                {/* <CapturingPhotosWebcam closeTakePhoto={closeTakePhoto}/> */}
+            </div>
+            :
+            ''
+            }
+            
         </form>
     )
 }
