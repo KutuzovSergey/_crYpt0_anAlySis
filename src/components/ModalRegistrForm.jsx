@@ -32,6 +32,7 @@ const ModalRegistrForm = (props) => {
     const registration = event => {
         event.preventDefault();
         validation(event);
+        
         if(formValid){
             dispatch(addUser(valueUserInfo));
             setIsAuth(true);

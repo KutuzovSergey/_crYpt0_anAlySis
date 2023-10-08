@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import '../styles/CurrentcePages.scss';
 import { useParams } from "react-router-dom";
 import { getChart, getListOnPage } from "../AP/getCoins";
 import { useFetching } from "../hooks/useFetching";
-import MyChart from "../components/UI/MyChart/MyChart";
 import { checkingUndefined } from "../utils/checks";
 import { compileUnix } from "../utils/dateAndTime";
+import { findAverageNumber } from "../utils/findAverageNumber";
+import MyChart from "../components/UI/MyChart/MyChart";
 import ListСoinСharacteristics from "../components/ListСoinСharacteristics";
 import HeaderCoin from "../components/HeaderCoin";
-import { findAverageNumber } from "../utils/findAverageNumber";
 
+import '../styles/CurrentcePages.scss';
 
-const CurrencePeges = () => {
+const CurrencePages = () => {
     const params = useParams();
-    const [currentceData, setCurrenceData] = useState([]);
+    const [currenceData, setCurrenceData] = useState([]);
     const [dataChart, setDataChart] = useState([]);
     const [chart, setChart] = useState({time: [], averageIndex: [], text: ``, backgroundColor: ''});
 
@@ -32,11 +32,11 @@ const CurrencePeges = () => {
         return getChart(params)
     });
 
-     const getDataChart = async (currentceData) =>{
-        if (checkingUndefined(currentceData[0]) || currentceData.length === 0) {
+     const getDataChart = async (currenceData) =>{
+        if (checkingUndefined(currenceData[0]) || currenceData.length === 0) {
             return
         } else {
-            setDataChart(await fetchCoin(currentceData[0].NAME));
+            setDataChart(await fetchCoin(currenceData[0].NAME));
         }
     }
 
@@ -50,19 +50,19 @@ const CurrencePeges = () => {
         nawChart.backgroundColor = 'rgb(213,227,238)';
         nawChart.averageIndex = newLabels.map( item => findAverageNumber(item.low, item.high));
         nawChart.time = newLabels.map( item => compileUnix(item.time)).map(date => date.slice(0, 10));
-        nawChart.text = `график средних значений стоимости ${currentceData[0].FROMSYMBOL}, в ${currentceData[0].TOSYMBOL} за 10 дней`;
+        nawChart.text = `график средних значений стоимости ${currenceData[0].FROMSYMBOL}, в ${currenceData[0].TOSYMBOL} за 10 дней`;
 
         setChart(nawChart);
         }
     }
 
     useEffect(() => {getContent()}, []);
-    useEffect(() => {getDataChart(currentceData)}, [currentceData]);
+    useEffect(() => {getDataChart(currenceData)}, [currenceData]);
     useEffect(() => {processDataChart(dataChart.Data)}, [dataChart]);
 
     return (
         <div>
-            {currentceData.map( data => 
+            {currenceData.map( data => 
                 <div className="coin" key={data.NAME}>
                     <HeaderCoin
                         name={data.NAME}
@@ -88,6 +88,6 @@ const CurrencePeges = () => {
     )
 }
 
-export default CurrencePeges;
+export default CurrencePages;
 
    

@@ -4,6 +4,7 @@ import Card from './Card';
 import Loader from "./UI/Loader/Loader";
 
 const CurrencesList = ({listLoading, currences, remove, textInfo}) => {
+
   if (listLoading) {
     return <Loader/>
   }

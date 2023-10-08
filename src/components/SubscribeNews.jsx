@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useInputControl } from '../hooks/useInput';
 import MyModal from './UI/MyModal/MyModal';
+import MyInput from './UI/MyInput/MyInput';
+import MessageToUser from './UI/MessageToUser/MessageToUser';
 
 import '../styles/componentStyles/SubscribeNews.scss';
-import MessageToUser from './UI/MessageToUser/MessageToUser';
 
 const SubscribeNews = () =>{
     
@@ -16,9 +17,9 @@ const SubscribeNews = () =>{
         validation(e);
         setShowMessage(true);
 
-        console.log(valueUserInfo);
-        if (formValid) {
+        if (!errorStatus.errorMailPhone) {
             resetFormValues(true);
+            // console.log(error);
         }
     }
 
@@ -36,28 +37,24 @@ const SubscribeNews = () =>{
                 <div className='subscribe__block'>
                     <form action="" className='subscribe__form' onSubmit={subscribeSitesNews}>
                         <div  className='subscribe__form_block'>
-                            <input 
-                                type='text' 
+                            <MyInput
+                                type='email' 
                                 name='mail'
+                                value={valueUserInfo.valueMailPhone}
                                 className='subscribe__input' placeholder='Введите свой E-Mail'
                                 onChange={ (e) => onChangeInput(e)} />
                             <button className='subscribe__button'>Подписаться</button>
                         </div>
                     </form>
                 </div>
-                <div className='subscribe__notification'>
-                    <span>Подписка оформлина</span>
-                </div>
             </div>
-            <div>
-                <MyModal className="modal" active={showMessage} setActive={setShowMessage}>
-                    {errorStatus.errorMailPhone ?
-                        <MessageToUser>{error.mailPhone}</MessageToUser>
-                    :
-                        <MessageToUser>{messageUser}</MessageToUser>
-                    }
-                </MyModal>
-            </div>
+            <MyModal className="modal" active={showMessage} setActive={setShowMessage}>
+                {error.mailPhone !== '' ?
+                    <MessageToUser>{error.mailPhone}</MessageToUser>
+                :
+                    <MessageToUser>{messageUser}</MessageToUser>
+                }
+            </MyModal>
         </div>
     )
 }

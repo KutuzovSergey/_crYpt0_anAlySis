@@ -10,8 +10,8 @@ const Error = () => {
         setErrorPages(true);
     }, []);
     return (
-        <div className="errot">
-            <span className="errot__text">Этой страници не существует</span>
+        <div className="error">
+            <span className="error__text">Этой страницы не существует</span>
         </div>
     )
 }

@@ -16,36 +16,35 @@ export const useInputControl = (modalRegistr) => {
     });
 
     const onChangeInput = (e) => {
-        let nawValue = { ...valueUserInfo };
+        let newValue = { ...valueUserInfo };
         let newErrorStatus = { ...errorStatus };
-        console.log(e.target.name);
 
         switch (e.target.name){
             case 'name': 
-                nawValue = {...nawValue, valueName: e.target.value};
+                newValue = {...newValue, valueName: e.target.value};
                 newErrorStatus = {...newErrorStatus, errorName: false};
                 break;
             case 'password':
-                nawValue = {...nawValue, valuePassword: e.target.value};
+                newValue = {...newValue, valuePassword: e.target.value};
                 newErrorStatus = {...newErrorStatus, errorPassword: false};
                 break;
             case 'repeatPassword':
-                nawValue = {...nawValue, valueRepeatPassword: e.target.value};
+                newValue = {...newValue, valueRepeatPassword: e.target.value};
                 newErrorStatus = {...newErrorStatus, errorRepeatPassword: false};
                 break;
             case 'mailPhone':
-                nawValue = {...nawValue, valueMailPhone: e.target.value};
+                newValue = {...newValue, valueMailPhone: e.target.value};
                 newErrorStatus = {...newErrorStatus, errorMailPhone: false};
                 break;
             case 'mail':
-                nawValue = {...nawValue, valueMailPhone: e.target.value};
+                newValue = {...newValue, valueMailPhone: e.target.value};
                 newErrorStatus = {...newErrorStatus, errorMailPhone: false};
                 break;
             default:
                 break;
         }
 
-        setValueUserInfo(nawValue);
+        setValueUserInfo(newValue);
         setErrorStatus(newErrorStatus);
     }
 
@@ -57,8 +56,6 @@ export const useInputControl = (modalRegistr) => {
         repeatPassword: '',
         mailPhone: '',
     });
-
-    const [formData, setFormData] = useState({})
 
     const validation = (e) =>{
         const incomplete_phone = /^[0-9-)(+\s]+$/;
@@ -72,72 +69,69 @@ export const useInputControl = (modalRegistr) => {
 
         let newError = { ...error };
         let newErrorStatus = { ...errorStatus };
-        let formDataObject = { ...formData }
+        // let newFormValid = formValid;
 
         for (let i = 0; i < form.length; i++) {
             const element = form.elements[i];
+            const elementValue = element.value.trim();
 
             switch(element.name){
                 case 'name':
-                    if (!element.value) {
+                    if (!elementValue) {
                         ++errorCount;
                         newError = { ...newError, loginError: 'Логин не может быть пустым'};
                         newErrorStatus = { ...newErrorStatus, errorName: true};
-                    } else if (element.value.length < 2) {
+                    } else if (elementValue.length < 2) {
                         ++errorCount;
                         newError = { ...newError, loginError: 'Логин меньше 2 символов'};
-                        newErrorStatus = { ...newErrorStatus, errorName: true};
                     } else {
                         newError = { ...newError, loginError: ''};
                         newErrorStatus = { ...newErrorStatus, errorName: false};
-                        formDataObject = { ...formDataObject, name: element.value};
                     }
                 break;
                 case 'password':
-                    if (!element.value) {
+                    if (!elementValue) {
                         ++errorCount;
                         newError = { ...newError, passwordError: 'Пароль не может быть пустым'};
                         newErrorStatus = { ...newErrorStatus, errorPassword: true};
-                    } else if (element.value.length < 6) {
+                    } else if (elementValue.length < 6) {
                         ++errorCount;
                         newError = { ...newError, passwordError: 'Пароль меньше 6 символов'};
                         newErrorStatus = { ...newErrorStatus, errorPassword: true};
-                    } else if (element.value!== valueUserInfo.valueRepeatPassword) {
+                    } else if (elementValue!== valueUserInfo.valueRepeatPassword) {
                         ++errorCount;
                         newError = { ...newError, passwordError: 'Пароли не совпадают'};
                         newErrorStatus = { ...newErrorStatus, errorPassword: true};
                     } else {
                         newError = { ...newError, passwordError: ''};
                         newErrorStatus = { ...newErrorStatus, errorPassword: false};
-                        formDataObject = { ...formDataObject, password: element.value};
                     }
                 break;
                 case 'repeatPassword':
-                    if(!element.value){
+                    if(!elementValue){
                         ++errorCount;
                         newError = { ...newError, repeatPassword: 'Поле не может быть пустым'};
                         newErrorStatus = { ...newErrorStatus, errorRepeatPassword: true};
-                    } else if (element.value !== valueUserInfo.valuePassword) {
+                    } else if (elementValue !== valueUserInfo.valuePassword) {
                         ++errorCount;
                         newError = { ...newError, repeatPassword: 'Пароли не совпадают'};
                         newErrorStatus = { ...newErrorStatus, errorRepeatPassword: true};
                     } else {
                         newError = { ...newError, repeatPassword: ''};
                         newErrorStatus = { ...newErrorStatus, errorRepeatPassword: false};
-                        formDataObject = { ...formDataObject, repeatPassword: element.value};
                     }
                 break;
                 case 'mailPhone':
-                    if (!element.value) {
+                    if (!elementValue) {
                         ++errorCount;
                         newError = { ...newError, mailPhone: 'Введите почту или телефон'};
                         newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
-                    } else if (incomplete_phone.test(String(element.value))) {
-                        if (element.value.length > 26 || element.value.length < 9) {
+                    } else if (incomplete_phone.test(String(elementValue))) {
+                        if (elementValue.length > 26 || elementValue.length < 9) {
                             ++errorCount;
                             newError = { ...newError, mailPhone: 'Не коректный телефон'};
                             newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
-                        } else if (!pattern_phone.test(String(element.value))) {
+                        } else if (!pattern_phone.test(String(elementValue))) {
                             ++errorCount;
                             newError = { ...newError, mailPhone: 'Не коректный телефон'};
                             newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
@@ -145,17 +139,15 @@ export const useInputControl = (modalRegistr) => {
                         else {
                             newError = { ...newError, mailPhone: ''};
                             newErrorStatus = { ...newErrorStatus, errorMailPhone: false};
-                            formDataObject = { ...formDataObject, mail: element.value};
                         }
-                    } else if (incomplete_email.test(String(element.value))) {
-                        if (!pattern_mail.test(String(element.value.toLowerCase()))) {
+                    } else if (incomplete_email.test(String(elementValue))) {
+                        if (!pattern_mail.test(String(elementValue.toLowerCase()))) {
                             ++errorCount;
                             newError = { ...newError, mailPhone: 'Не коректный E-mail'};
                             newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
                         } else {
                             newError = { ...newError, mailPhone: ''};
                             newErrorStatus = { ...newErrorStatus, errorMailPhone: false};
-                            formDataObject = { ...formDataObject, mail: element.value};
                         }
                     } else {
                         ++errorCount;
@@ -164,18 +156,18 @@ export const useInputControl = (modalRegistr) => {
                     }
                     break;
                 case 'mail':
-                    if (!element.value) {
+                    
+                    if (!elementValue) {
                         ++errorCount;
                         newError = { ...newError, mailPhone: 'Введите почту'};
                         newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
-                    } else if (!pattern_mail.test(String(element.value.toLowerCase()))) {
+                    } else if (!pattern_mail.test(String(elementValue.toLowerCase()))) {
                         ++errorCount;
-                        newError = { ...newError, mailPhone: 'Не коректный E-mail'};
+                        newError = { ...newError, mailPhone: 'Некорректный E-mail'};
                         newErrorStatus = { ...newErrorStatus, errorMailPhone: true};
                     } else {
                         newError = { ...newError, mailPhone: ''};
                         newErrorStatus = { ...newErrorStatus, errorMailPhone: false};
-                        formDataObject = { ...formDataObject, mail: element.value};
                     }
                     break;
                 default:
@@ -185,8 +177,11 @@ export const useInputControl = (modalRegistr) => {
 
         setError(newError);
         setErrorStatus(newErrorStatus);
-        setFormData(formDataObject);
         
+        // console.log(valueUserInfo.valueMailPhone);
+        // console.log(newErrorStatus);
+        
+        // console.log(errorCount);
         errorCount > 0 ? setFormValid(false) : setFormValid(true);
     }
 

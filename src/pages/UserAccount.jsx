@@ -18,10 +18,10 @@ const UserAccount = () => {
         <div className="account">
             <div className="selectedCoins">
                 <div className="selectedCoins__title">
-                    <span className="selectedCoins__title__text">Выбраные монеты</span>
+                    <span className="selectedCoins__title__text">Выбранные монеты</span>
                 </div>
                 <CurrencesList
-                    currences={userCoinList}
+                    currences={userCoinList.coinsList}
                     listLoading={false}
                     remove={removeCurrences}
                     textInfo={''}
