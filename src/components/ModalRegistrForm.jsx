@@ -90,7 +90,7 @@ const ModalRegistrForm = (props) => {
                 </div>
                 <div className="form__block__input">
                     <div className="form__input">
-                        {(error.loginError && errorStatus.errorName) && <ErrorForm>{error.loginError}</ErrorForm>}
+                        {(error.errorName && errorStatus.errorName) && <ErrorForm>{error.errorName}</ErrorForm>}
                         <MyInput
                             name='name'
                             type='text'
@@ -100,8 +100,8 @@ const ModalRegistrForm = (props) => {
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
                     <div className="form__input">
-                        {(error.passwordError && errorStatus.errorPassword) && 
-                            <ErrorForm>{error.passwordError}</ErrorForm>}
+                        {(error.errorPassword && errorStatus.errorPassword) && 
+                            <ErrorForm>{error.errorPassword}</ErrorForm>}
                         <MyInput 
                             name='password'
                             type='password'
@@ -111,8 +111,8 @@ const ModalRegistrForm = (props) => {
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
                     <div className="form__input">
-                        {(error.repeatPassword && errorStatus.errorRepeatPassword) && 
-                            <ErrorForm>{error.repeatPassword}</ErrorForm>}
+                        {(error.errorRepeatPassword && errorStatus.errorRepeatPassword) && 
+                            <ErrorForm>{error.errorRepeatPassword}</ErrorForm>}
                         <MyInput
                             name='repeatPassword'
                             type='password'
@@ -124,8 +124,8 @@ const ModalRegistrForm = (props) => {
                 </div>
             </div>
             <div className="form__input">
-                {(error.mailPhone && errorStatus.errorMailPhone) && 
-                    <ErrorForm>{error.mailPhone}</ErrorForm>}
+                {(error.errorMailPhone && errorStatus.errorMailPhone) && 
+                    <ErrorForm>{error.errorMailPhone}</ErrorForm>}
                 <MyInput 
                     name='mailPhone'
                     type='text'

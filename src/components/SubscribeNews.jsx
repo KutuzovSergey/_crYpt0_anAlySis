@@ -17,7 +17,9 @@ const SubscribeNews = () =>{
         validation(e);
         setShowMessage(true);
 
-        if (!errorStatus.errorMailPhone) {
+        console.log(`formValid: ${formValid}`);
+        if (formValid) {
+            console.log(`formValid: ${formValid}`);
             resetFormValues(true);
             // console.log(error);
         }
@@ -49,10 +51,10 @@ const SubscribeNews = () =>{
                 </div>
             </div>
             <MyModal className="modal" active={showMessage} setActive={setShowMessage}>
-                {error.mailPhone !== '' ?
-                    <MessageToUser>{error.mailPhone}</MessageToUser>
+                {error.errorMailPhone === '' ?
+                    <MessageToUser>{messageUser}</MessageToUser>   
                 :
-                    <MessageToUser>{messageUser}</MessageToUser>
+                    <MessageToUser>{error.errorMailPhone}</MessageToUser>
                 }
             </MyModal>
         </div>
