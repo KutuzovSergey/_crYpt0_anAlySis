@@ -10,7 +10,7 @@ import ErrorForm from "./UI/ErrorForm/ErrorForm";
 import user from "../images/user/user.png";
 import camera from "../images/icon/camera.svg";
 import upload from "../images/icon/upload.svg";
-import { AutchContext } from "../context";
+import { AppContext } from "../context";
 import { useInputControl, useUploadImage } from "../hooks/useInput";
 import { addUser } from "../action/actionCreators";
 
@@ -20,14 +20,14 @@ const ModalRegistrForm = (props) => {
 
     const dispatch = useDispatch();
 
-    const {setIsAuth} = useContext(AutchContext);
+    const {setIsAuth} = useContext(AppContext);
     const {valueUserInfo, errorStatus, onChangeInput, validation, formValid, error, resetFormValues} = useInputControl();
     const [takingPhotos, getTakingPhotos] = useState(false);
 
     const inputUpload = React.createRef();
     const profilePhoto = React.createRef();
 
-    const [srcProfilePhoto, uploadImage, showUploadedImage, resetImputFile] = useUploadImage(user, inputUpload);
+    const [srcProfilePhoto, uploadImage, showUploadedImage, resetInputFile] = useUploadImage(user, inputUpload);
     
     const registration = event => {
         event.preventDefault();
@@ -51,7 +51,7 @@ const ModalRegistrForm = (props) => {
 
     useEffect( () => {
         resetFormValues(props.active);
-        resetImputFile(user);
+        resetInputFile(user);
         
     }, [props.active]);
 

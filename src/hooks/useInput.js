@@ -75,7 +75,7 @@ export const useInputControl = (modalRegistr) => {
             console.log(`были ошибки`);
         } else {
             setFormValid(true);
-            console.log(`небыло ошибок`);
+            console.log(`не было ошибок`);
         }
     }
     const validation = (e) =>{
@@ -137,10 +137,10 @@ export const useInputControl = (modalRegistr) => {
                     } else if (incomplete_phone.test(String(elementValue))) {
                         if (elementValue.length > 26 || elementValue.length < 9) {
                             ++errorCount;
-                            newError = { ...newError, errorMailPhone: 'Не коректный телефон'};
+                            newError = { ...newError, errorMailPhone: 'Некорректный телефон'};
                         } else if (!pattern_phone.test(String(elementValue))) {
                             ++errorCount;
-                            newError = { ...newError, errorMailPhone: 'Не коректный телефон'};
+                            newError = { ...newError, errorMailPhone: 'Некорректный телефон'};
                         }
                         else {
                             newError = { ...newError, errorMailPhone: ''};
@@ -148,13 +148,13 @@ export const useInputControl = (modalRegistr) => {
                     } else if (incomplete_email.test(String(elementValue))) {
                         if (!pattern_mail.test(String(elementValue.toLowerCase()))) {
                             ++errorCount;
-                            newError = { ...newError, mailPhone: 'Не коректный E-mail'};
+                            newError = { ...newError, mailPhone: 'Некорректный E-mail'};
                         } else {
                             newError = { ...newError, mailPhone: ''};
                         }
                     } else {
                         ++errorCount;
-                            newError = { ...newError, errorMailPhone: 'Не коректный E-mail'};
+                            newError = { ...newError, errorMailPhone: 'Некорректный E-mail'};
                     }
                     break;
                 case 'mail':
@@ -268,7 +268,7 @@ export const useUploadImage = (user, inputUpload) => {
         }
     }
 
-    const resetImputFile = (user) =>{
+    const resetInputFile = (user) =>{
         setSrcProfilePhoto(user);
     }
 
@@ -276,6 +276,6 @@ export const useUploadImage = (user, inputUpload) => {
         srcProfilePhoto,
         uploadImage,
         showUploadedImage,
-        resetImputFile,
+        resetInputFile,
     ]
 }

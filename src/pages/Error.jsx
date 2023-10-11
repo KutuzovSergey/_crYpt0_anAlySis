@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { AutchContext } from "../context";
+import { AppContext } from "../context";
 
 import "../styles/Error.scss";
 
 const Error = () => {
-    const {setErrorPages,} = useContext(AutchContext);
+    const {setErrorPages,} = useContext(AppContext);
 
     useEffect(() =>{
         setErrorPages(true);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import { BrowserRouter } from 'react-router-dom';
-import {AutchContext} from './context/index.js';
+import {AppContext} from './context/index.js';
 import AppRouter from './components/AppRouter';
 import Footer from './components/Footer';
 import AdaptiveMenu from './components/menus/AdaptiveMenu/AdaptiveMenu';
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="App">
-      <AutchContext.Provider value={{
+      <AppContext.Provider value={{
         isAuth,
         setIsAuth,
         modalLogin,
@@ -48,7 +48,7 @@ function App() {
           <Footer/>
           <AdaptiveMenu/>
         </BrowserRouter>
-      </AutchContext.Provider>
+      </AppContext.Provider>
     </div>
   );
 }

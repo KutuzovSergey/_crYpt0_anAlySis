@@ -1,19 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
 import MyInput from "./UI/MyInput/MyInput";
 import MyButton from "./UI/MyButton/MyButton";
-import { AutchContext } from "../context";
+import { AppContext } from "../context";
 import ErrorForm from "./UI/ErrorForm/ErrorForm";
 import { useLogAccount } from "../hooks/useLogInAccount";
 
 const ModalLoginForm = () => {
-    const {setIsAuth, setModalLogin, modalLogin} = useContext(AutchContext);
+    const {setIsAuth, setModalLogin, modalLogin} = useContext(AppContext);
     const [dirty, error, formLog, formValid, blurHandler, loginChange, passwordChange] = useLogAccount(modalLogin);
 
     const logAccount = event => {
-        event.preventDefault();
-        setIsAuth(true);
-        localStorage.isAuth = true;
-        setModalLogin(false);
+        console.log(formValid);
+        if(formValid){
+            event.preventDefault();
+            setIsAuth(true);
+            localStorage.isAuth = true;
+            setModalLogin(false);
+        }
     }
 
     return (

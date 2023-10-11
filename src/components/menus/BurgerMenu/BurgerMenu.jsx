@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { AutchContext } from "../../../context";
+import { AppContext } from "../../../context";
 
 import cl from "./BurgerMenu.module.scss";
 
 const BurgerMenu = (props) =>{
-    const {setMenuAdaptive, menuAdaptive} = useContext(AutchContext);
+    const {setMenuAdaptive, menuAdaptive} = useContext(AppContext);
 
     const chengeAdapiveMenu = (index) => {
         setMenuAdaptive(index)

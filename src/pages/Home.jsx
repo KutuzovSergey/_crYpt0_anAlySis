@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AutchContext } from "../context";
+import { AppContext } from "../context";
 import Banner from "../components/Banner";
 import MyModal from "../components/UI/MyModal/MyModal";
 import InfoApplication from "../components/InfoApplication";
@@ -10,7 +10,7 @@ import SubscribeNews from '../components/SubscribeNews';
 import '../styles/Home.scss';
 
 const Home = () => {
-    const {modalLogin, setModalLogin, setModalRegistr, modalRegistr,} = useContext(AutchContext);
+    const {modalLogin, setModalLogin, setModalRegistr, modalRegistr,} = useContext(AppContext);
 
     // console.log(modalRegistr);
 

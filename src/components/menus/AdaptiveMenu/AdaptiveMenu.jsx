@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
-import { AutchContext } from "../../../context";
+import { AppContext } from "../../../context";
 import home_page_icon from "../../../images/icon/home_page_icon.png";
 import person_icon from "../../../images/icon/person_icon.png";
 import coin_icon from "../../../images/icon/coin_icon.png";
@@ -8,7 +8,7 @@ import coin_icon from "../../../images/icon/coin_icon.png";
 import cl from "./AdaptiveMenu.module.scss";
 
 const AdaptiveMenu = () =>{
-    const {menuAdaptive, setMenuAdaptive} = useContext(AutchContext);
+    const {menuAdaptive, setMenuAdaptive} = useContext(AppContext);
 
     const classMenu = [cl.menu]
 

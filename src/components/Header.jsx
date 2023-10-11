@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AutchContext } from '../context';
+import { AppContext } from '../context';
 import Login from './Login';
 import MainMenu from './menus/MainMenu/MainMenu';
 import MenuExit from './menus/MenuExit/MenuExit';
@@ -9,7 +9,7 @@ import BurgerMenu from './menus/BurgerMenu/BurgerMenu';
 import '../styles/componentStyles/Header.scss';
 
 const Header = () =>{
-    const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages, setMenuAdaptive, modalRegistr} = useContext(AutchContext);
+    const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages, setMenuAdaptive, modalRegistr} = useContext(AppContext);
 
     const openModalLogin = () =>{
         setModalRegistr(false);

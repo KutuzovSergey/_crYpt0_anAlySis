@@ -13,7 +13,7 @@ export const useLogAccount = (modalLogin) => {
     })
 
     const [error, setError] = useState({
-        loginError: 'Логин не моет быть пустым',
+        loginError: 'Логин не может быть пустым',
         passwordError: 'Пароль не может быть пустым'
     });
 
@@ -25,7 +25,7 @@ export const useLogAccount = (modalLogin) => {
         const reEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 
         if(!reEmail.test(String(e.target.value).toLowerCase())){
-            setError({...error, loginError: 'Логин указан не коректно, введите телефон или email'});
+            setError({...error, loginError: 'Логин указан некоректно, введите телефон или email'});
             if (!e.target.value) {
                 setError({...error, loginError: 'Пароль не может быть пустым'});
             }
@@ -72,6 +72,7 @@ export const useLogAccount = (modalLogin) => {
             if(modalLogin){
                 setFormLog({...formLog, login: '', password: ''});
                 setDirty({...dirty, loginDirty: false, passwordDirty: false});
+                setFormValid(false);
             }
         }, [modalLogin]);
 
