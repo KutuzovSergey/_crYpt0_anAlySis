@@ -3,6 +3,7 @@ import Error from "../pages/Error";
 import Currences from "../pages/Currences";
 import CurrencePages from "../pages/CurrencePages";
 import UserAccount from "../pages/UserAccount";
+import EditProfile from "../pages/EditProfile";
 
 
 export const publicRouters = [
@@ -14,6 +15,7 @@ export const privateRouters = [
     {name: 'Home', path: '/', component: <Home/>, exact: true,},
     {name: 'Error', path: '*', component: <Error/>, exact: true,},
     {name: 'Currences', path: '/currences', component: <Currences/>, exact: true,},
+    {name: 'EditProfile', path: '/editProfile', component: <EditProfile/>, exact: true,},
     {name: 'UserAccount', path: '/user-account', component: <UserAccount/>, exact: true,},
     {name: 'CurrencePages', path: '/currences/:id', component: <CurrencePages/>, exact: true,},
 ]

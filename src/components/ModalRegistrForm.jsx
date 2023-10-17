@@ -34,6 +34,7 @@ const ModalRegistrForm = (props) => {
         validation(event);
         
         if(formValid){
+            valueUserInfo.userPhoto = srcProfilePhoto;
             dispatch(addUser(valueUserInfo));
             setIsAuth(true);
             localStorage.isAuth = true;

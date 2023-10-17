@@ -1,0 +1,22 @@
+@import '../../../styles/Main.scss';
+
+.LinkButton{
+    @include buttonStyle(100%, 100%);
+
+    &:hover{
+        box-shadow: 0px 0px 10px 3px $color_button_hover inset;
+    }
+
+    &__text{
+        margin: auto;
+        font-weight: 900;
+        text-decoration: none;
+        font-size: $font_size_big;
+        color: $background_color_third;
+        font-family: $font_style_element;
+    }
+
+    &__active{
+        background-color: $background_color_second;
+    }
+}

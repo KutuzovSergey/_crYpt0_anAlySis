@@ -8,6 +8,7 @@ import { findAverageNumber } from "../utils/findAverageNumber";
 import MyChart from "../components/UI/MyChart/MyChart";
 import ListСoinСharacteristics from "../components/ListСoinСharacteristics";
 import HeaderCoin from "../components/HeaderCoin";
+import LinksInternetSearch from "../components/LinksInternetSearch";
 
 import '../styles/CurrentcePages.scss';
 
@@ -61,9 +62,9 @@ const CurrencePages = () => {
     useEffect(() => {processDataChart(dataChart.Data)}, [dataChart]);
 
     return (
-        <div>
+        <div className="coin">
             {currenceData.map( data => 
-                <div className="coin" key={data.NAME}>
+                <div className="coin__wrapper" key={data.NAME}>
                     <HeaderCoin
                         name={data.NAME}
                         alt={data.FROMSYMBOL}
@@ -76,8 +77,9 @@ const CurrencePages = () => {
                         capitalization={data.CIRCULATINGSUPPLYMKTCAP}/>
                         
                     <div className="coin__chart">
-                        <div className="coin__chart__wrapper">
-                            <MyChart nawChartData={chart} />
+                        <MyChart nawChartData={chart} />
+                        <div className="coin__links-internet">
+                            <LinksInternetSearch nameCoin={data.NAME}/>
                         </div>
                     </div>
                 </div>

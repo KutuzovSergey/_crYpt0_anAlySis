@@ -2,11 +2,11 @@
 @import '../../fonts/RubikMonoOne-Regular.ttf';
 
 .card{
-    width: 30%;
+    width: 360px;
     height: 200px;
     display: flex;
     padding: 10px;
-    margin-bottom: 4rem;
+    margin: 2rem auto 0 auto;
     flex-direction: column;
     justify-content: space-between;
     background-color: #14223C;
@@ -97,22 +97,19 @@
     }
 }
 
-@media (max-width: 1300px) {
-    .card{
-        width: 46%;
-    }
-}
+// @media (max-width: 1300px) {
+//     .card{
+//     }
+// }
 
 @media (max-width: 860px) {
     .card{
-        width: 80%;
         margin: 2rem auto 0 auto;
     }
 }
 
 @media (max-width: 580px){
     .card{
-        width: 90%;
         
         &__footer__buttom{
             width: 48%;

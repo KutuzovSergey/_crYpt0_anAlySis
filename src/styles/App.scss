@@ -2,8 +2,7 @@
 
 .App{
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: grid;
+    grid-template-rows: 60px 1fr 110px;
 }
 

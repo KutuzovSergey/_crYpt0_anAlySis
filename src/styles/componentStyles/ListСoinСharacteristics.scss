@@ -2,11 +2,12 @@
 
 .property{
     width: 96%;
+    height: 90px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
     padding: 20px 0;
-    background-color: #fff;
+    background-color: $background_color;
     justify-content: space-around;
 
     &__info{

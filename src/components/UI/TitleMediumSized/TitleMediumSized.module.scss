@@ -1,0 +1,15 @@
+@import '../../../styles/Main.scss';
+@import '../../../fonts/RubikMonoOne-Regular.ttf';
+
+.title{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+
+    &__text{
+        @include textTitleMedium();
+        text-align: center;
+        margin: auto;
+    }
+}

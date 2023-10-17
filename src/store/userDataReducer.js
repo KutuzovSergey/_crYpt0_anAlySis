@@ -4,7 +4,7 @@ const defaultState = {
     userData: [],
 }
 
-export const userData = (state = defaultState, action) => {
+export const userDataReducer = (state = defaultState, action) => {
     switch (action.type){
         case actionConst.ADD_USER_DATA:
             return {...state, userData: [...state.userData, action.userData]}

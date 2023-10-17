@@ -22,7 +22,7 @@ $font_style_element: 'Rubik Mono One', sans-serif;
 
 @mixin content_block {
     width: 90%;
-    height: auto;
+    height: 100%;
     margin: auto;
     padding-top: 40px;
     padding-bottom: 30px;
@@ -58,6 +58,22 @@ $font_style_element: 'Rubik Mono One', sans-serif;
     color: $color;
     font-size: 1.5rem;
     font-weight: 800;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+@mixin textTitle {
+    color: $color;
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+@mixin textTitleMedium {
+    color: $color;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
     font-family: 'Rubik Mono One', sans-serif;
 }
 

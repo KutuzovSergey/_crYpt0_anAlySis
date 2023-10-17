@@ -180,7 +180,7 @@ export const useInputControl = (modalRegistr) => {
     }
 
     useEffect(() => {
-        console.log(error);
+        // console.log(error);
         let newErrorStatus = { ...errorStatus };
 
         if (error.errorName !== '') {

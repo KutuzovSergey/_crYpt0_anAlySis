@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { AppContext } from "../context";
+import TitleForPage from "../components/UI/TitleForPage/TitleForPage";
 
 import "../styles/Error.scss";
 
@@ -11,7 +12,7 @@ const Error = () => {
     }, []);
     return (
         <div className="error">
-            <span className="error__text">Этой страницы не существует</span>
+            <TitleForPage>Этой страницы не существует</TitleForPage>
         </div>
     )
 }

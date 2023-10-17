@@ -2,11 +2,12 @@
 
 .headerCoin{
     width: 96%;
+    height: 130px;
     margin: auto;
     display: flex;
     padding: 20px 30px;
     margin-bottom: 30px;
-    background-color: #fff;
+    background-color: $background_color;
 
     &__image{
         width: 80px;
