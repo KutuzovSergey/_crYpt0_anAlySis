@@ -1,6 +1,19 @@
+@import '../../../styles/Main.scss';
+
 .chart{
     min-width: 100px;
     min-height: 100px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+
+    &__plan{
+        display: flex;
+        justify-content: center;
+        background-color: $background;
+        width: 500px;
+        height: 400px;
+        padding: 10px;
+        margin: 20px auto 0 auto;
+    }
 }

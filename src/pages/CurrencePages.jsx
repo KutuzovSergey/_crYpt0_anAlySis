@@ -77,7 +77,7 @@ const CurrencePages = () => {
                         capitalization={data.CIRCULATINGSUPPLYMKTCAP}/>
                         
                     <div className="coin__chart">
-                        <MyChart nawChartData={chart} />
+                        <MyChart nawChartData={chart} nameCoin={data.NAME}/>
                         <div className="coin__links-internet">
                             <LinksInternetSearch nameCoin={data.NAME}/>
                         </div>

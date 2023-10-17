@@ -3,50 +3,55 @@ import React, { useEffect, useRef, useState } from "react";
 import Chart from 'chart.js/auto';
 
 import cl from "./MyChart.module.scss";
+import TitleMediumSized from "../TitleMediumSized/TitleMediumSized";
 
 const MyChart = (props) =>{
 
-  // const canvasChart = React.createRef().getContext("2d");
-
-  // const canvasChart = React.createRef();
   console.log(props.nawChartData);
+  
   const canvasChart = useRef(null);
 
   useEffect( () => {
-    console.log(canvasChart.current);
+    Chart.overrides.line.spanGaps = true;
     const myChart = new Chart(canvasChart.current, {
       type: 'line',
       data: {
           labels: props.nawChartData.time,
           datasets: [{
-              label: props.nawChartData.text,
+              label: props.nameCoin,
               data: props.nawChartData.averageIndex,
               backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
+                  'rgba(52, 42, 139, 0.190',
               ],
               borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
+                  '#fd7e14',
               ],
-              pointRadius: 4,
-              pointBorderWidth: 2,
-              borderWidth: 4
+              pointBackgroundColor: [
+                '#ffffff'
+              ],
+              pointHoverBackgroundColor: '#32c46f',
+              pointRadius: 3,
+              pointHoverRadius: 4,
+              pointBorderWidth: 4,
+              borderWidth: 3,
+              tension: 0.5,
+              borderCapStyle: '#6a6d78',
+              cubicInterpolationMode: 'rgba(52, 42, 139, 0.554)',
+              fill: true,
           }]
       },
       options: {
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
+        legend: {
+          display: true,
+          labels: {
+            fontColor: '#ffffff',
+            fontSize: 14
+          }
+        },
+        scales: {
+            y: {
+              beginAtZero: true
+            }
           }
       }
   });
@@ -54,66 +59,12 @@ const MyChart = (props) =>{
     myChart.destroy();
   }}, [props.nawChartData]);
 
-  // const [chartData, setChartData] = useState({
-  //   labels: props.nawChartData.time,  
-  //   datasets: [
-  //     {
-  //       label: props.nawChartData.text,
-  //       data: props.nawChartData.averageIndex,
-  //       pointRadius: 4,
-  //       pointBorderWidth: 2,
-  //       backgroundColor: props.nawChartData.backgroundColor,
-  //       hoverBackgroundColor: '#ff0000',
-  //       borderColor: '#3bb44a',
-  //       borderWidth: 4,
-  //     }
-  //   ],
-  //   defaults: {
-  //     backgroundColor: '#9BD0F5'
-  //   }
-  // });
-
-  // useEffect(() => {
-  //   setChartData({
-  //     labels: props.nawChartData.time,  
-  //     datasets: [
-  //       {
-  //         label: props.nawChartData.text,
-  //         data: props.nawChartData.averageIndex,
-  //         pointRadius: 4,
-  //         pointBorderWidth: 2,
-  //         backgroundColor: props.nawChartData.backgroundColor,
-  //         hoverBackgroundColor: '#ff0000',
-  //         borderColor: '#3bb44a',
-  //         borderWidth: 4,
-  //       }
-  //     ],
-  //     defaults: {
-  //       backgroundColor: '#9BD0F5'
-  //     }
-  //   })
-  // }, [props.nawChartData]);
-
   return (
     <div className={cl.chart} >
-      <div>
-        <canvas ref={canvasChart} id="myChart" width="400" height="400"></canvas>
+      <TitleMediumSized>{props.nawChartData.text}</TitleMediumSized>
+      <div className={cl.chart__plan}>
+        <canvas ref={canvasChart} id="myChart" width="500" height="400"></canvas>
       </div>
-      
-      {/* <Line
-        data={chartData}
-        type="line"
-        ptions={{
-          plugins: {
-            title: {
-              display: true,
-              text: "Валюта в течение 10 дней"
-              },
-            legend: {
-              display: false
-            }
-          }
-        }}/> */}
     </div>
   )
 }

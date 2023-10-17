@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 import cl from './LinkButtonNative.module.scss';
 
@@ -12,10 +13,10 @@ const  LinkButtonNative = ({children, ...props}) =>{
 
     return (
         <div className={classButtons.join(' ')}>
-            <a 
+            <Link 
                 className={cl.LinkButton__text} 
                 target={props.target} 
-                to={props.link}>{children}</a>
+                to={props.link}>{children}</Link>
         </div>
     )
 }
