@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useInputControl = (modalRegistr) => {
+export const useInputControl = () => {
     const [valueUserInfo, setValueUserInfo] = useState({
         valueName: '',
         valuePassword: '',
@@ -53,13 +53,6 @@ export const useInputControl = (modalRegistr) => {
                     newErrorStatus = {...newErrorStatus, errorMailPhone: false};
                 }
                 break;
-            case 'mail':
-                newValue = {...newValue, valueMailPhone: e.target.value};
-                // !newErrorStatus.errorMailPhone ?
-                //     newErrorStatus = {...newErrorStatus, errorMailPhone: false}
-                // :
-                //     ''
-                break;
             default:
                 break;
         }
@@ -68,16 +61,6 @@ export const useInputControl = (modalRegistr) => {
         setErrorStatus(newErrorStatus);
     }
 
-    const checkingFormValidity = (numberValidErrors) =>{
-        console.log(`Количество ошибок: ${numberValidErrors}`);
-        if (numberValidErrors > 0) {
-            setFormValid(false);
-            console.log(`были ошибки`);
-        } else {
-            setFormValid(true);
-            console.log(`не было ошибок`);
-        }
-    }
     const validation = (e) =>{
         const incomplete_phone = /^[0-9-)(+\s]+$/;
         const incomplete_email = /^[a-zA-Z_.@]+$/;
@@ -87,6 +70,7 @@ export const useInputControl = (modalRegistr) => {
         const form = e.target;
 
         let newError = { ...error };
+
         let errorCount = 0;
 
         for (let i = 0; i < form.length; i++) {
@@ -153,20 +137,7 @@ export const useInputControl = (modalRegistr) => {
                             newError = { ...newError, mailPhone: ''};
                         }
                     } else {
-                        ++errorCount;
-                            newError = { ...newError, errorMailPhone: 'Некорректный E-mail'};
-                    }
-                    break;
-                case 'mail':
-                    
-                    if (!elementValue) {
-                        ++errorCount;
-                        newError = { ...newError, errorMailPhone: 'Введите почту'};
-                    } else if (!pattern_mail.test(String(elementValue.toLowerCase()))) {
-                        ++errorCount;
-                        newError = { ...newError, errorMailPhone: 'Некорректный E-mail'};
-                    } else {
-                        newError = { ...newError, errorMailPhone: ''};
+                            newError = { ...newError, errorMailPhone: ''};
                     }
                     break;
                 default:
@@ -176,11 +147,12 @@ export const useInputControl = (modalRegistr) => {
  
         setError(newError);
 
-        checkingFormValidity(errorCount);
+        if (errorCount === 0) {
+            setFormValid(true);
+        }
     }
 
     useEffect(() => {
-        // console.log(error);
         let newErrorStatus = { ...errorStatus };
 
         if (error.errorName !== '') {
@@ -210,6 +182,31 @@ export const useInputControl = (modalRegistr) => {
         setErrorStatus(newErrorStatus);
        
     }, [error]);
+
+     useEffect(() =>{
+        let errorValid = false;
+        for(let indexStatus in errorStatus){
+            if (errorStatus[indexStatus]) {
+                errorValid = true;
+            } else {
+                errorValid = false;
+            }
+        }
+
+        for(let indexValue in valueUserInfo){
+            if (valueUserInfo[indexValue] != '') {
+                errorValid = true;
+            } else {
+                errorValid = false;
+            }
+        }
+
+        if (errorValid) {
+            setFormValid(true);
+        } else {
+            setFormValid(false);
+        }
+    }, [errorStatus, valueUserInfo]);
 
     const resetFormValues = (reasonDataReset) => {
         if (reasonDataReset) {

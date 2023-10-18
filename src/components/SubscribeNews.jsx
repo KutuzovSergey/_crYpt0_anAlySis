@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useInputControl } from '../hooks/useInput';
+import { useEmailControl } from '../hooks/useInputEmail';
 import MyModal from './UI/MyModal/MyModal';
 import MyInput from './UI/MyInput/MyInput';
 import MessageToUser from './UI/MessageToUser/MessageToUser';
@@ -8,19 +8,24 @@ import '../styles/componentStyles/SubscribeNews.scss';
 
 const SubscribeNews = () =>{
     
-    const [showMessage, setShowMessage] = useState(false);
-    const [messageUser, setMessageUser] = useState('Спасибо за подписку, подписка оформленна!');
-    const {valueUserInfo, errorStatus, onChangeInput, validation, formValid, error, resetFormValues} = useInputControl();
+    const {emailValid, 
+            valueEmail, 
+            messageUser, 
+            showMessage, 
+            validEmail, 
+            onChangeEmail, 
+            resetEmailValues, 
+            changeShowMessage} = useEmailControl();
 
     const subscribeSitesNews = (e) =>{
         e.preventDefault();
-        validation(e);
-        setShowMessage(true);
+        validEmail(e); 
+        changeShowMessage(true);
 
-        console.log(`formValid: ${formValid}`);
-        if (formValid) {
-            console.log(`formValid: ${formValid}`);
-            resetFormValues(true);
+        // console.log(`formValid: ${formValid}`);
+        if (emailValid) {
+            // console.log(`formValid: ${formValid}`);
+            resetEmailValues(true);
             // console.log(error);
         }
     }
@@ -42,20 +47,16 @@ const SubscribeNews = () =>{
                             <MyInput
                                 type='email' 
                                 name='mail'
-                                value={valueUserInfo.valueMailPhone}
+                                value={valueEmail}
                                 className='subscribe__input' placeholder='Введите свой E-Mail'
-                                onChange={ (e) => onChangeInput(e)} />
+                                onChange={ (e) => onChangeEmail(e)} />
                             <button className='subscribe__button'>Подписаться</button>
                         </div>
                     </form>
                 </div>
             </div>
-            <MyModal className="modal" active={showMessage} setActive={setShowMessage}>
-                {error.errorMailPhone === '' ?
+            <MyModal className="modal" active={showMessage} setActive={changeShowMessage}>
                     <MessageToUser>{messageUser}</MessageToUser>   
-                :
-                    <MessageToUser>{error.errorMailPhone}</MessageToUser>
-                }
             </MyModal>
         </div>
     )

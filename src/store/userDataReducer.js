@@ -12,5 +12,3 @@ export const userDataReducer = (state = defaultState, action) => {
             return state
     }
 }
-
-// export const addUser = (coin) => ({type: actionConst.ADD_USER, payload: coin});

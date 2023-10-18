@@ -32,7 +32,7 @@ const ModalRegistrForm = (props) => {
     const registration = event => {
         event.preventDefault();
         validation(event);
-        
+        console.log(formValid);
         if(formValid){
             valueUserInfo.userPhoto = srcProfilePhoto;
             dispatch(addUser(valueUserInfo));

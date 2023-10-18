@@ -1,5 +1,4 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { userData } from "./userDataReducer"
 import { allCoinListReducer } from "./allCoinListReducer";
 import { userCoinListReducer } from "./userCoinListReducer";
 import { userDataReducer } from "./userDataReducer";

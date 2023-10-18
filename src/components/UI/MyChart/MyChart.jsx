@@ -6,8 +6,6 @@ import cl from "./MyChart.module.scss";
 import TitleMediumSized from "../TitleMediumSized/TitleMediumSized";
 
 const MyChart = (props) =>{
-
-  console.log(props.nawChartData);
   
   const canvasChart = useRef(null);
 
