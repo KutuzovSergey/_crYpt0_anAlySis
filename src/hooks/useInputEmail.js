@@ -27,15 +27,34 @@ export const useEmailControl = () => {
         setMessageUser(newMessageUser);
     }
 
-    useEffect(() =>{ 
+    const validationCheck = () =>{
+        let emailValid = false;
+
         if (valueEmail != '' && messageUser === 'Спасибо за подписку, подписка оформленна!') {
-            console.log(`не было ошибок`);
-            setEmailValid(true);
+            emailValid = true;
         } else {
-            setEmailValid(false);
-            console.log(`были ошибки`);
+            emailValid = false;
         }
-    }, [messageUser, valueEmail]);
+
+        return emailValid
+    }
+
+    // useEffect(() =>{ 
+    //     let errorValid = false;
+
+    //     if (valueEmail != '' && messageUser === 'Спасибо за подписку, подписка оформленна!') {
+    //         errorValid = true;
+    //     } else {
+    //         errorValid = false;
+    //     }
+
+    //     if (errorValid) {
+    //         console.log(errorValid);
+    //         setEmailValid(true);
+    //     } else {
+    //         setEmailValid(false);
+    //     }
+    // }, [showMessage]);
 
     const resetEmail = (reasonDataReset, stateСhange) => {
         if (reasonDataReset) {
@@ -45,6 +64,7 @@ export const useEmailControl = () => {
         }
     }
     const resetEmailValues = (reasonDataReset) => {
+        console.log(reasonDataReset);
         resetEmail(reasonDataReset, setValueEmail);
         // if (reasonDataReset) {
         //     setValueEmail('');
@@ -66,6 +86,7 @@ export const useEmailControl = () => {
         validEmail,
         onChangeEmail,
         resetEmailValues,
-        changeShowMessage
+        changeShowMessage,
+        validationCheck
     }
 }

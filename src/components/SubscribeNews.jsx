@@ -15,18 +15,17 @@ const SubscribeNews = () =>{
             validEmail, 
             onChangeEmail, 
             resetEmailValues, 
-            changeShowMessage} = useEmailControl();
+            changeShowMessage,
+            validationCheck} = useEmailControl();
 
     const subscribeSitesNews = (e) =>{
         e.preventDefault();
         validEmail(e); 
         changeShowMessage(true);
 
-        // console.log(`formValid: ${formValid}`);
-        if (emailValid) {
-            // console.log(`formValid: ${formValid}`);
+        // console.log(`formValid: ${emailValid}`);
+        if (validationCheck()) {
             resetEmailValues(true);
-            // console.log(error);
         }
     }
 
