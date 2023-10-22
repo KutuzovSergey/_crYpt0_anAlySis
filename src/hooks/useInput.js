@@ -1,28 +1,30 @@
 import { useEffect, useState } from "react";
+import { _email, _phone } from "../utils/regularExpressions";
 
 export const useInputControl = () => {
     const [valueUserInfo, setValueUserInfo] = useState({
         valueName: '',
         valuePassword: '',
         valueRepeatPassword: '',
-        valueMailPhone: '',
+        valueMail: '',
+        valuePhone: '',
     });
 
     const [errorStatus, setErrorStatus] = useState({
         errorName: false,
         errorPassword: false,
         errorRepeatPassword: false,
-        errorMailPhone: false,
+        errorMail: false,
+        errorPhone: false,
     });
 
     const [error, setError] = useState({
         errorName: '',
         errorPassword: '',
         errorRepeatPassword: '',
-        errorMailPhone: '',
+        errorMail: '',
+        errorPhone: '',
     });
-
-    const [formValid, setFormValid] = useState(false);
 
     const onChangeInput = (e) => {
         let newValue = { ...valueUserInfo };
@@ -47,10 +49,16 @@ export const useInputControl = () => {
                     newErrorStatus = {...newErrorStatus, errorRepeatPassword: false};
                 }
                 break;
-            case 'mailPhone':
-                newValue = {...newValue, valueMailPhone: e.target.value};
-                if (newErrorStatus.errorMailPhone) {
-                    newErrorStatus = {...newErrorStatus, errorMailPhone: false};
+            case 'mail':
+                newValue = {...newValue, valueMail: e.target.value};
+                if (newErrorStatus.errorMail) {
+                    newErrorStatus = {...newErrorStatus, errorMail: false};
+                }
+                break;
+            case 'phone':
+                newValue = {...newValue, valuePhone: e.target.value};
+                if (newErrorStatus.errorPhone) {
+                    newErrorStatus = {...newErrorStatus, errorPhone: false};
                 }
                 break;
             default:
@@ -62,10 +70,6 @@ export const useInputControl = () => {
     }
 
     const validation = (e) =>{
-        const incomplete_phone = /^[0-9-)(+\s]+$/;
-        const incomplete_email = /^[a-zA-Z_.@]+$/;
-        const pattern_mail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-        const pattern_phone = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d*)\)?)[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?)+)(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i;
                     
         const form = e.target;
 
@@ -114,30 +118,26 @@ export const useInputControl = () => {
                         newError = { ...newError, errorRepeatPassword: ''};
                     }
                 break;
-                case 'mailPhone':
+                case 'mail':
                     if (!elementValue) {
-                        ++errorCount;
-                        newError = { ...newError, errorMailPhone: 'Введите почту или телефон'};
-                    } else if (incomplete_phone.test(String(elementValue))) {
-                        if (elementValue.length > 26 || elementValue.length < 9) {
-                            ++errorCount;
-                            newError = { ...newError, errorMailPhone: 'Некорректный телефон'};
-                        } else if (!pattern_phone.test(String(elementValue))) {
-                            ++errorCount;
-                            newError = { ...newError, errorMailPhone: 'Некорректный телефон'};
-                        }
-                        else {
-                            newError = { ...newError, errorMailPhone: ''};
-                        }
-                    } else if (incomplete_email.test(String(elementValue))) {
-                        if (!pattern_mail.test(String(elementValue.toLowerCase()))) {
-                            ++errorCount;
-                            newError = { ...newError, mailPhone: 'Некорректный E-mail'};
-                        } else {
-                            newError = { ...newError, mailPhone: ''};
-                        }
+                        newError = { ...newError, errorMail: 'Введите почту'};
+                    } else if (!_email.test(String(elementValue.toLowerCase()))) {
+                        newError = { ...newError, errorMail: 'Некорректный E-mail'};
                     } else {
-                            newError = { ...newError, errorMailPhone: ''};
+                        newError = { ...newError, errorMail: ''};
+                    }
+                    break;
+                case 'phone':
+                    if (!elementValue) {
+                        newError = { ...newError, errorPhone: 'Введите телефон'};
+                    } else if (elementValue.length > 26) {
+                        newError = { ...newError, errorPhone: 'Номер слишком длинный'};
+                    } else if (elementValue.length < 9) {
+                        newError = { ...newError, errorPhone: 'Номер слишком короткий'};
+                    } else if (!_phone.test(String(elementValue))) {
+                        newError = { ...newError, errorPhone: 'Некорректный номер телефона'};
+                    } else {
+                        newError = { ...newError, errorPhone: ''};
                     }
                     break;
                 default:
@@ -147,9 +147,27 @@ export const useInputControl = () => {
  
         setError(newError);
 
-        if (errorCount === 0) {
-            setFormValid(true);
+        const checkValidErrors = () =>{
+            let counterError = 0;
+            let validResultForm =false;
+
+            for(let indexError in newError){
+                if (newError[indexError] === '') {
+                    counterError = ++counterError;
+                }
+            }
+
+            if (counterError === Object.keys(newError).length) {
+                validResultForm = true;
+            } else {
+                counterError = 0;
+                validResultForm = false;
+            }
+
+            return validResultForm
         }
+
+        return checkValidErrors()
     }
 
     useEffect(() => {
@@ -173,40 +191,60 @@ export const useInputControl = () => {
             newErrorStatus.errorRepeatPassword = false;
         }
 
-        if (error.errorMailPhone !== '') {
-            newErrorStatus.errorMailPhone = true;
+        if (error.errorMail !== '') {
+            newErrorStatus.errorMail = true;
         } else {
-            newErrorStatus.errorMailPhone = false;
+            newErrorStatus.errorMail = false;
+        }
+
+        if (error.errorPhone !== '') {
+            newErrorStatus.errorPhone = true;
+        } else {
+            newErrorStatus.errorPhone = false;
         }
 
         setErrorStatus(newErrorStatus);
        
     }, [error]);
 
-     useEffect(() =>{
-        let errorValid = false;
-        for(let indexStatus in errorStatus){
-            if (errorStatus[indexStatus]) {
-                errorValid = true;
-            } else {
-                errorValid = false;
-            }
-        }
+    // const validCheckForm = () => {
+    //     let validErrorStatus = false;
+    //     let validValueInfo = false;
+    //     let errorValid = false;
+    //     let counterErrorStatus = 0;
+    //     let counterValueInfo = 0;
 
-        for(let indexValue in valueUserInfo){
-            if (valueUserInfo[indexValue] != '') {
-                errorValid = true;
-            } else {
-                errorValid = false;
-            }
-        }
 
-        if (errorValid) {
-            setFormValid(true);
-        } else {
-            setFormValid(false);
-        }
-    }, [errorStatus, valueUserInfo]);
+    //     for(let indexStatus in errorStatus){
+    //         if (!errorStatus[indexStatus]) {
+    //             counterErrorStatus = ++counterErrorStatus;
+    //         }
+    //     }
+    
+    //     for(let indexValue in valueUserInfo){
+    //         if (valueUserInfo[indexValue] != '') {
+    //             counterValueInfo = ++counterValueInfo;
+    //         }
+    //     }
+
+    //     const installVerificationCounter = (count, obj, validResult) =>{
+    
+    //         if (count === Object.keys(obj).length) {
+    //             validResult = true;
+    //         } else {
+    //             count = 0;
+    //         }
+
+    //         return validResult
+    //     }
+
+    //     if (installVerificationCounter(counterErrorStatus, errorStatus, validErrorStatus) 
+    //     && installVerificationCounter(counterValueInfo, valueUserInfo, validValueInfo)) {
+    //         errorValid = true;
+    //     }
+
+    //     return errorValid
+    // }
 
     const resetFormValues = (reasonDataReset) => {
         if (reasonDataReset) {
@@ -214,13 +252,15 @@ export const useInputControl = () => {
                 valueName: '',
                 valuePassword: '',
                 valueRepeatPassword: '',
-                valueMailPhone: '',
+                valueMail: '',
+                valuePhone: '',
             });
             setError({
                 errorName: '',
                 errorPassword: '',
                 errorRepeatPassword: '',
-                errorMailPhone: '',
+                errorMail: '',
+                errorPhone: '',
             });
         } else {
             return
@@ -232,7 +272,6 @@ export const useInputControl = () => {
         errorStatus,
         onChangeInput,
         validation,
-        formValid,
         error,
         resetFormValues,
     }
@@ -260,7 +299,7 @@ export const useUploadImage = (user, inputUpload) => {
             }
 
             reader.onerror = () =>{
-                console.log(reader.error);
+                console.error(reader.error);
             }
         }
     }

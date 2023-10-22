@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const useEmailControl = () => {
     const [valueEmail, setValueEmail] = useState('');
     const [messageUser, setMessageUser] = useState('');
-    const [emailValid, setEmailValid] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
 
     const onChangeEmail = (e) => {
@@ -25,36 +24,33 @@ export const useEmailControl = () => {
             }
 
         setMessageUser(newMessageUser);
-    }
 
-    const validationCheck = () =>{
-        let emailValid = false;
+        const validCheckResult = () => {
+            let emailValid = false;
 
-        if (valueEmail != '' && messageUser === 'Спасибо за подписку, подписка оформленна!') {
-            emailValid = true;
-        } else {
-            emailValid = false;
+            if (newMessageUser === 'Спасибо за подписку, подписка оформленна!') {
+                emailValid = true;
+            } else {
+                emailValid = false;
+            }
+
+            return emailValid
         }
 
-        return emailValid
+        return validCheckResult()
     }
 
-    // useEffect(() =>{ 
-    //     let errorValid = false;
+    // const validationCheck = () =>{
+    //     let emailValid = false;
 
     //     if (valueEmail != '' && messageUser === 'Спасибо за подписку, подписка оформленна!') {
-    //         errorValid = true;
+    //         emailValid = true;
     //     } else {
-    //         errorValid = false;
+    //         emailValid = false;
     //     }
 
-    //     if (errorValid) {
-    //         console.log(errorValid);
-    //         setEmailValid(true);
-    //     } else {
-    //         setEmailValid(false);
-    //     }
-    // }, [showMessage]);
+    //     return emailValid
+    // }
 
     const resetEmail = (reasonDataReset, stateСhange) => {
         if (reasonDataReset) {
@@ -64,14 +60,7 @@ export const useEmailControl = () => {
         }
     }
     const resetEmailValues = (reasonDataReset) => {
-        console.log(reasonDataReset);
         resetEmail(reasonDataReset, setValueEmail);
-        // if (reasonDataReset) {
-        //     setValueEmail('');
-        //     setMessageUser('');
-        // } else {
-        //     return
-        // }
     }
 
     const changeShowMessage = (stateModalWindow) =>{
@@ -79,7 +68,6 @@ export const useEmailControl = () => {
     }
 
     return {
-        emailValid,
         valueEmail,
         messageUser,
         showMessage,
@@ -87,6 +75,5 @@ export const useEmailControl = () => {
         onChangeEmail,
         resetEmailValues,
         changeShowMessage,
-        validationCheck
     }
 }

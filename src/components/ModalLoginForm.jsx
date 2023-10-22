@@ -7,11 +7,18 @@ import { useLogAccount } from "../hooks/useLogInAccount";
 
 const ModalLoginForm = () => {
     const {setIsAuth, setModalLogin, modalLogin} = useContext(AppContext);
-    const [dirty, error, formLog, formValid, blurHandler, loginChange, passwordChange] = useLogAccount(modalLogin);
+    const [errorMessage,
+        formLogValue,
+        loginErrorStatus,
+        loginChange,
+        validLogin,
+        resetLog,] = useLogAccount(modalLogin);
 
     const logAccount = event => {
-        console.log(formValid);
-        if(formValid){
+        event.preventDefault();
+
+        if(validLogin(event)){
+            resetLog();
             event.preventDefault();
             setIsAuth(true);
             localStorage.isAuth = true;
@@ -25,29 +32,27 @@ const ModalLoginForm = () => {
                 <span className="form__title_text">Войти в аккаунт</span>
             </div>
             <div className="form__input">
-                {(dirty.loginDirty && error.loginError) && <ErrorForm>{error.loginError}</ErrorForm>}
+                {(loginErrorStatus.loginStatus && errorMessage.loginError) && <ErrorForm>{errorMessage.loginError}</ErrorForm>}
                 <MyInput
                     type='text'
                     name='login'
-                    value={formLog.login}
+                    value={formLogValue.login}
                     onChange={ (e) => loginChange(e)}
-                    onBlur={ (e) => blurHandler(e)}
                     placeholder='почта'
                     autoComplete='email' />
             </div>
             <div className="form__input">
-                {(dirty.passwordDirty && error.passwordError) && <ErrorForm>{error.passwordError}</ErrorForm>}
+                {(loginErrorStatus.passwordStatus && errorMessage.passwordError) && <ErrorForm>{errorMessage.passwordError}</ErrorForm>}
                 <MyInput 
                     type='password'
                     name='password'
-                    value={formLog.password}
-                    onChange={ (e) => passwordChange(e)}
-                    onBlur={ (e) => blurHandler(e)}
+                    value={formLogValue.password}
+                    onChange={ (e) => loginChange(e)}
                     placeholder='пароль'
                     autoComplete='current-password'/>
             </div>
             <div className="form__button">
-                <MyButton disabled={!formValid} >войти</MyButton>
+                <MyButton>войти</MyButton>
             </div>
         </form>
     )

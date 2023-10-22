@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from "react";
 import { useEmailControl } from '../hooks/useInputEmail';
 import MyModal from './UI/MyModal/MyModal';
 import MyInput from './UI/MyInput/MyInput';
@@ -8,23 +8,19 @@ import '../styles/componentStyles/SubscribeNews.scss';
 
 const SubscribeNews = () =>{
     
-    const {emailValid, 
-            valueEmail, 
+    const { valueEmail, 
             messageUser, 
             showMessage, 
             validEmail, 
             onChangeEmail, 
             resetEmailValues, 
-            changeShowMessage,
-            validationCheck} = useEmailControl();
+            changeShowMessage} = useEmailControl();
 
     const subscribeSitesNews = (e) =>{
         e.preventDefault();
-        validEmail(e); 
         changeShowMessage(true);
 
-        // console.log(`formValid: ${emailValid}`);
-        if (validationCheck()) {
+        if (validEmail(e)) {
             resetEmailValues(true);
         }
     }

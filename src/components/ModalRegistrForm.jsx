@@ -21,19 +21,26 @@ const ModalRegistrForm = (props) => {
     const dispatch = useDispatch();
 
     const {setIsAuth} = useContext(AppContext);
-    const {valueUserInfo, errorStatus, onChangeInput, validation, formValid, error, resetFormValues} = useInputControl();
     const [takingPhotos, getTakingPhotos] = useState(false);
 
     const inputUpload = React.createRef();
     const profilePhoto = React.createRef();
 
-    const [srcProfilePhoto, uploadImage, showUploadedImage, resetInputFile] = useUploadImage(user, inputUpload);
+    const {valueUserInfo, 
+        errorStatus, 
+        onChangeInput, 
+        validation, 
+        error, 
+        resetFormValues} = useInputControl();
+    const [srcProfilePhoto, 
+        uploadImage, 
+        showUploadedImage, 
+        resetInputFile] = useUploadImage(user, inputUpload);
     
     const registration = event => {
         event.preventDefault();
-        validation(event);
-        console.log(formValid);
-        if(formValid){
+
+        if(validation(event)){
             valueUserInfo.userPhoto = srcProfilePhoto;
             dispatch(addUser(valueUserInfo));
             setIsAuth(true);
@@ -125,14 +132,25 @@ const ModalRegistrForm = (props) => {
                 </div>
             </div>
             <div className="form__input">
-                {(error.errorMailPhone && errorStatus.errorMailPhone) && 
-                    <ErrorForm>{error.errorMailPhone}</ErrorForm>}
+                {(error.errorMail && errorStatus.errorMail) && 
+                    <ErrorForm>{error.errorMail}</ErrorForm>}
                 <MyInput 
-                    name='mailPhone'
-                    type='text'
+                    name='mail'
+                    type='email'
                     autoComplete='email'
-                    placeholder='почта / телефон'
-                    value={valueUserInfo.valueMailPhone}
+                    placeholder='почта'
+                    value={valueUserInfo.valueMail}
+                    onChange={ (e) => onChangeInput(e) }/>
+            </div>
+            <div className="form__input">
+                {(error.errorPhone && errorStatus.errorPhone) && 
+                    <ErrorForm>{error.errorPhone}</ErrorForm>}
+                <MyInput 
+                    name='phone'
+                    type='tel'
+                    autoComplete='tel'
+                    placeholder='телефон'
+                    value={valueUserInfo.valuePhone}
                     onChange={ (e) => onChangeInput(e) }/>
             </div>
             <div className="form__button">
