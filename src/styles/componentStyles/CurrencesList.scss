@@ -20,9 +20,3 @@
         @include textInfo();
     }
 }
-
-@media (max-width: 860px){
-    .card-block{
-        padding: 30px 10px;
-    }
-}

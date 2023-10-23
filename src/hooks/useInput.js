@@ -207,45 +207,6 @@ export const useInputControl = () => {
        
     }, [error]);
 
-    // const validCheckForm = () => {
-    //     let validErrorStatus = false;
-    //     let validValueInfo = false;
-    //     let errorValid = false;
-    //     let counterErrorStatus = 0;
-    //     let counterValueInfo = 0;
-
-
-    //     for(let indexStatus in errorStatus){
-    //         if (!errorStatus[indexStatus]) {
-    //             counterErrorStatus = ++counterErrorStatus;
-    //         }
-    //     }
-    
-    //     for(let indexValue in valueUserInfo){
-    //         if (valueUserInfo[indexValue] != '') {
-    //             counterValueInfo = ++counterValueInfo;
-    //         }
-    //     }
-
-    //     const installVerificationCounter = (count, obj, validResult) =>{
-    
-    //         if (count === Object.keys(obj).length) {
-    //             validResult = true;
-    //         } else {
-    //             count = 0;
-    //         }
-
-    //         return validResult
-    //     }
-
-    //     if (installVerificationCounter(counterErrorStatus, errorStatus, validErrorStatus) 
-    //     && installVerificationCounter(counterValueInfo, valueUserInfo, validValueInfo)) {
-    //         errorValid = true;
-    //     }
-
-    //     return errorValid
-    // }
-
     const resetFormValues = (reasonDataReset) => {
         if (reasonDataReset) {
             setValueUserInfo({

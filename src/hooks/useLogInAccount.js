@@ -128,6 +128,12 @@ export const useLogAccount = (modalLogin) => {
         }
     }, [modalLogin]);
 
+    useEffect( () => {
+        if (modalLogin) {
+            resetLog();
+        }
+    }, [modalLogin]);
+
     return [
         errorMessage,
         formLogValue,

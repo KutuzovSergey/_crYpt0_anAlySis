@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { _email } from "../utils/regularExpressions";
 
 export const useEmailControl = () => {
     const [valueEmail, setValueEmail] = useState('');
@@ -10,14 +11,13 @@ export const useEmailControl = () => {
     }
 
     const validEmail = (e) =>{
-        const pattern_mail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
         const form = e.target;
         const formValue = form.mail.value.trim();
         let newMessageUser = '';
 
             if (!formValue) {
                 newMessageUser = 'Введите почту';
-            } else if (!pattern_mail.test(String(formValue.toLowerCase()))) {
+            } else if (!_email.test(String(formValue.toLowerCase()))) {
                 newMessageUser = 'Некорректный E-mail';
             } else {
                 newMessageUser = 'Спасибо за подписку, подписка оформленна!';
@@ -39,18 +39,6 @@ export const useEmailControl = () => {
 
         return validCheckResult()
     }
-
-    // const validationCheck = () =>{
-    //     let emailValid = false;
-
-    //     if (valueEmail != '' && messageUser === 'Спасибо за подписку, подписка оформленна!') {
-    //         emailValid = true;
-    //     } else {
-    //         emailValid = false;
-    //     }
-
-    //     return emailValid
-    // }
 
     const resetEmail = (reasonDataReset, stateСhange) => {
         if (reasonDataReset) {

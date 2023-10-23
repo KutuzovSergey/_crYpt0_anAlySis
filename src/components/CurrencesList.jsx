@@ -1,13 +1,10 @@
 import React from "react";
-import '../styles/componentStyles/CurrencesList.scss';
 import Card from './Card';
-import Loader from "./UI/Loader/Loader";
 
-const CurrencesList = ({listLoading, currences, remove, textInfo}) => {
+import '../styles/componentStyles/CurrencesList.scss';
 
-  if (listLoading) {
-    return <Loader/>
-  }
+const CurrencesList = ({currences, remove, textInfo}) => {
+
   return (
       <div className='card-block'>
         {currences.length !== 0

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useFetching } from '../hooks/useFetching';
-import FormSearch from '../components/FormSearch';
 import MyModal from '../components/UI/MyModal/MyModal';
-import CurrencesList from '../components/CurrencesList';
 import Pagination from '../components/UI/Pagination/Pagination';
+import LoaderCurrences from '../components/UI/LoaderCurrences/LoaderCurrences';
+import FormSearch from '../components/FormSearch';
+import CurrencesList from '../components/CurrencesList';
 import { getAllList, getListOnPage } from '../AP/getCoins';
 import { sortArray } from '../utils/sorting';
 import { calculateTotal } from '../utils/totalCount';
@@ -80,7 +81,10 @@ const Currences = () => {
     useEffect(() => {getListCoins(1, 10)}, [allCoinList]);
     useEffect(() => {fetchListOnPage(displayedCoins)}, [displayedCoins]);
     useEffect(() => {getTotalCount()}, [allCoinList]);
-
+    
+    if (isLoadingCoin){
+        return <LoaderCurrences/>
+    }
     return (
         <div className='content'>
             <FormSearch 
@@ -92,7 +96,7 @@ const Currences = () => {
                 />
             <hr className='content__line' />
             <CurrencesList 
-                listLoading={isLoadingCoin}
+                // listLoading={isLoadingCoin}
                 currences={currences}
                 textInfo={'Монеты не найдены'}
                 remove={removeCurrences}/>
