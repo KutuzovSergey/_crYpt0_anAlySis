@@ -49,6 +49,10 @@ const ModalRegistrForm = (props) => {
         }
     }
 
+    const uploadedImage = (e) => {
+        showUploadedImage(e);
+    }
+
     // const openTakePhoto = () => {
     //     getTakingPhotos(true);
     // }
@@ -89,10 +93,10 @@ const ModalRegistrForm = (props) => {
                             </ImitationButton>
                             <MyInputFile
                                 type="file" 
-                                ref={inputUpload} 
                                 id="uploadImage"
                                 accept="image/jpeg, image/png, image/jpg"
-                                onChange={ (e) => {showUploadedImage(e)}}/>
+                                onChange={uploadedImage}
+                                ref={inputUpload} />
                         </div>
                     </div>
                 </div>

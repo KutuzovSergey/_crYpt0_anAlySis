@@ -96,7 +96,6 @@ const Currences = () => {
                 />
             <hr className='content__line' />
             <CurrencesList 
-                // listLoading={isLoadingCoin}
                 currences={currences}
                 textInfo={'Монеты не найдены'}
                 remove={removeCurrences}/>

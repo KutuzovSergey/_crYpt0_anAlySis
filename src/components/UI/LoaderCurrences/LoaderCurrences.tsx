@@ -3,7 +3,7 @@ import loader from '../../../images/icon/loader.gif';
 
 import cl from './LoaderCurrences.module.scss';
 
-const Loader = () => {
+const Loader:React.FC = () => {
     return (
         <div className={cl.loaderPage}>
             <div className={cl.loader}>
@@ -14,12 +14,14 @@ const Loader = () => {
             <div className={cl.loaderPage__wrapper}>
                 <div className={cl.loaderPage__header}>
                     <div className={[cl.loaderPage__search, cl.search].join(' ')}>
-                        <div className={cl.search__wrapper}>
-                            <div className={[cl.loaderPage__block, cl.search__input].join(' ')}></div>
-                            <div className={[cl.loaderPage__block, cl.search__button].join(' ')}></div>
-                        </div>
-                        <div className={cl.search__wrapper}>
-                            <div className={[cl.loaderPage__block, cl.search__select].join(' ')}>
+                        <div className={cl.search__block}>
+                            <div className={cl.search__wrapper}>
+                                <div className={[cl.loaderPage__block, cl.search__input].join(' ')}></div>
+                                <div className={[cl.loaderPage__block, cl.search__button].join(' ')}></div>
+                            </div>
+                            <div className={cl.search__wrapper}>
+                                <div className={[cl.loaderPage__block, cl.search__select].join(' ')}>
+                            </div>
                         </div>
                         </div>
                         <div className={cl.search__block__line}>

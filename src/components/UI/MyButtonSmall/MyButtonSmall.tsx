@@ -1,11 +1,19 @@
 import React from "react";
+
 import cl from './MyButtonSmall.module.scss';
 
-const  MyButtonSmall = ({children, activityIndicator, ...props}) =>{
+type Parameters = {
+    key?: number,
+    children: string | number,
+    activityIndicator: boolean,
+    onClick: () => void,
+}
+
+const  MyButtonSmall:React.FC<Parameters> = ({children, activityIndicator, ...props}: Parameters) =>{
 
     const classButtons = [cl.myButtonSmall];
 
-    if (props.activityIndicator) {
+    if (activityIndicator) {
         classButtons.push(cl.myButtonSmall__active);
     }
 

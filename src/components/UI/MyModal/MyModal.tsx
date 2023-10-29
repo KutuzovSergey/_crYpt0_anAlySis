@@ -3,13 +3,24 @@ import MyButtonSmall from "../MyButtonSmall/MyButtonSmall";
 
 import cl from "./MyModal.module.scss";
 
-const MyModal = ({children, ...props}) =>{
-    const modalClass = [cl.myModal];
-    const modalClassBlock = [cl.myModal__block];
+type Parameters = {
+    children: string,
+    active: boolean,
+    setActive: (bool: boolean) => void,
+    activityIndicator: boolean
+}
+
+const MyModal:React.FC<Parameters> = ({children, ...props}: Parameters) =>{
+    const modalClass: string[] = [cl.myModal];
+    const modalClassBlock: string[] = [cl.myModal__block];
 
     if (props.active) {
         modalClass.push(cl.active);
         modalClassBlock.push(cl.active);
+    }
+
+    const closeMyModal = (): void => {
+        props.setActive(false);
     }
     
     return (
@@ -18,7 +29,7 @@ const MyModal = ({children, ...props}) =>{
             onClick={() => {props.setActive(false)}}>
             <div onClick={(e) => e.stopPropagation()} className={modalClassBlock.join(' ')}>
                 <div className={cl.myModal__close}>
-                    <MyButtonSmall onClick={() => props.setActive(false)}>&#10006;</MyButtonSmall>
+                    <MyButtonSmall onClick={closeMyModal} activityIndicator={true}>&#10006;</MyButtonSmall>
                 </div>
                 {children}
             </div>

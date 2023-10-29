@@ -2,10 +2,18 @@ import React from "react";
 
 import cl from "./InfoInput.module.scss";
 
-const InfoInput = (props) =>{
+type Props = {
+    visible: boolean,
+    datalistId: string | undefined,
+    valueList: Array< any >,
+    transferInput: (text: string) => void
+}
 
-    const infoClasses = [cl.info];
-    const infoBlockClasses = [cl.info__block];
+const InfoInput:React.FC<Props> = (props: Props) =>{
+
+    const infoClasses: Array<string> = [cl.info];
+    const infoBlockClasses: Array<string> = [cl.info__block];
+
     if(props.visible){
         infoClasses.push(cl.info_active);
         infoBlockClasses.push(cl.info__block_active);
@@ -16,7 +24,7 @@ const InfoInput = (props) =>{
             id={props.datalistId}
             className={infoClasses.join(' ')}>
             {
-                props.valueList.map(val => 
+                props.valueList.map( val => 
                     <option 
                         key={val.id} 
                         value={val.text} 

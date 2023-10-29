@@ -3,9 +3,15 @@ import { Link } from 'react-router-dom';
 
 import cl from './LinkButton.module.scss';
 
-const  LinkButton = ({children, ...props}) =>{
+type Parameters = {
+    children: string,
+    link: string,
+    activityIndicator: boolean
+}
 
-    const classButtons = [cl.LinkButton];
+const  LinkButton:React.FC<Parameters> = ({children, ...props}:Parameters) =>{
+
+    const classButtons: string[]= [cl.LinkButton];
 
     if (props.activityIndicator) {
         classButtons.push(cl.LinkButton__active);

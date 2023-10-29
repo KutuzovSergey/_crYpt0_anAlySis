@@ -12,14 +12,12 @@
         height: 100vh;
         margin: auto;
         display: grid;
-        grid-template-rows: 205px 1fr;
+        grid-template-rows: 185px 1fr;
         background-color: $background_loader;
     }
 
     &__header{
         width: 100%;
-        display: grid;
-        grid-template-rows: 1fr 1fr 1fr;
     }
 
     &__block{
@@ -38,16 +36,24 @@
     &__card{
         width: 360px;
         height: 200px;
-        margin-bottom: 30px;
+        margin: 2rem auto 0 auto;
     }
 }
 
 .search{
-    margin: 20px 0;
+    margin-top: 20px;
     width: 100%;
     display: grid;
     row-gap: 20px;
-    grid-template-rows: 40px 40px 45px;
+    grid-template-rows: 90px 45px;
+
+    &__block{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
     &__wrapper{
         width: 80%;
@@ -56,18 +62,24 @@
     }
 
     &__input{
-        width: 80%;
+        width: 90%;
         height: 40px;
     }
 
     &__button{
-        width: 20%;
+        width: 10%;
         height: 40px;
     }
 
     &__select{
-        width: 33%;
+        width: 30%;
         height: 40px;
+    }
+
+    &__block__line{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     &__line{

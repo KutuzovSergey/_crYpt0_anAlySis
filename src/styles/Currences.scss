@@ -2,6 +2,9 @@
 
 .content{
     @include content_block();
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     &__line{
         width: 70%;

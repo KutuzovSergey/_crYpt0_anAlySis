@@ -2,10 +2,14 @@ import React from "react";
 
 import cl from './TitleMediumSized.module.scss'
 
-const TitleMediumSized = ({children, ...props}) => {
+type Parameters = {
+    children: string,
+}
+
+const TitleMediumSized:React.FC<Parameters> = ({children}:Parameters) => {
 
     return (
-        <div {...props} className={cl.title}>
+        <div className={cl.title}>
             <h1 className={cl.title__text}>{children}</h1>
         </div>
     )
