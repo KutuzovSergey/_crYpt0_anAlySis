@@ -7,10 +7,10 @@ import coin_icon from "../../../images/icon/coin_icon.png";
 
 import cl from "./AdaptiveMenu.module.scss";
 
-const AdaptiveMenu = () =>{
-    const {menuAdaptive, setMenuAdaptive} = useContext(AppContext);
+const AdaptiveMenu:React.FC = () =>{
+    const {menuAdaptive, setMenuAdaptive} = useContext<any>(AppContext);
 
-    const classMenu = [cl.menu]
+    const classMenu:string[] = [cl.menu];
 
     if (menuAdaptive) {
         classMenu.push(cl.active);

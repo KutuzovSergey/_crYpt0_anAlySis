@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 
 import cl from "./EntryMenu.module.scss";
 
-const EntryMenu = (props) =>{
+type Parameters = {
+    errorPages: boolean,
+    showMainPageMenu: () => boolean,
+    openModalLogin: () => void,
+    openModalRegistration: () => void,
+}
+
+const EntryMenu:React.FC<Parameters> = (props: Parameters) =>{
    
     return (
         <ul className={cl.menu}>

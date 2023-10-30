@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import cl from "./MainMenu.module.scss";
 
-const MainMenu = () =>{
+const MainMenu:React.FC = () =>{
     return (
         <nav className={cl.menu}>
             <ul className={cl.menu__block}>

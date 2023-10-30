@@ -3,11 +3,11 @@ import { AppContext } from "../../../context";
 
 import cl from "./BurgerMenu.module.scss";
 
-const BurgerMenu = (props) =>{
-    const {setMenuAdaptive, menuAdaptive} = useContext(AppContext);
+const BurgerMenu:React.FC = () =>{
+    const {setMenuAdaptive, menuAdaptive} = useContext<any>(AppContext);
 
-    const chengeAdapiveMenu = (index) => {
-        setMenuAdaptive(index)
+    const chengeAdapiveMenu = (index: boolean) => {
+        setMenuAdaptive(index);
     }
 
     return (
