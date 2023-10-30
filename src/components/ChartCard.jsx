@@ -19,13 +19,13 @@ const ChartCard = (props) =>{
 
   const fillData = () =>{
 
-    chartData.labels = props.nawChartData.time;
-    chartData.datasets[0].data = props.nawChartData.averageIndex;
-    chartData.datasets[0].label = props.nawChartData.text;
-    chartData.datasets[0].backgroundColor = props.nawChartData.backgroundColor;
+    chartData.labels = props.newChartData.time;
+    chartData.datasets[0].data = props.newChartData.averageIndex;
+    chartData.datasets[0].label = props.newChartData.text;
+    chartData.datasets[0].backgroundColor = props.newChartData.backgroundColor;
   }
 
-  useEffect(() => {fillData()}, [props.nawChartData]);
+  useEffect(() => {fillData()}, [props.newChartData]);
 
   return (
     <div className="card__chart" >

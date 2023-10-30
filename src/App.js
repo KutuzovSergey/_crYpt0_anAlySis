@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import { BrowserRouter } from 'react-router-dom';
-import {AppContext} from './context/index.js';
+import {AppContext} from './context/index.ts';
 import AppRouter from './components/AppRouter';
 import Footer from './components/Footer';
 import AdaptiveMenu from './components/menus/AdaptiveMenu/AdaptiveMenu';
 
 import './styles/App.scss';
-
-
 
 function App() {
   const [modalLogin, setModalLogin] = useState(false);

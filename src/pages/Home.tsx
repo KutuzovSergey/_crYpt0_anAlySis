@@ -9,21 +9,27 @@ import SubscribeNews from '../components/SubscribeNews';
 
 import '../styles/Home.scss';
 
-const Home = () => {
-    const {modalLogin, setModalLogin, setModalRegistr, modalRegistr,} = useContext(AppContext);
-
-    // console.log(modalRegistr);
+const Home:React.FC = () => {
+    const {modalLogin, setModalLogin, setModalRegistr, modalRegistr,} = useContext<any>(AppContext);
 
     return (
         <div className="home">
             <Banner/>
             <SubscribeNews/>
             <InfoApplication/>
-            <MyModal className="modal" active={modalLogin} setActive={setModalLogin}>
-                <ModalLoginForm />
+            <MyModal 
+                className="modal" 
+                activityIndicator={true} 
+                active={modalLogin} 
+                setActive={setModalLogin}>
+                    <ModalLoginForm />
             </MyModal>
-            <MyModal className="modal" active={modalRegistr} setActive={setModalRegistr}>
-                <ModalRegistrForm active={modalRegistr} setActive={setModalRegistr} />
+            <MyModal 
+                className="modal" 
+                activityIndicator={true} 
+                active={modalRegistr} 
+                setActive={setModalRegistr}>
+                    <ModalRegistrForm active={modalRegistr} setActive={setModalRegistr} />
             </MyModal>
         </div>
     )

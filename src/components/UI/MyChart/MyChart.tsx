@@ -5,7 +5,7 @@ import TitleMediumSized from "../TitleMediumSized/TitleMediumSized";
 import cl from "./MyChart.module.scss";
 
 type Props = {
-  nawChartData: {
+  newChartData: {
     time: string[],
     nameCoin: string,
     averageIndex: number[],
@@ -58,10 +58,10 @@ const MyChart:React.FC<Props> = (props: Props) =>{
   useEffect( () => {
     Chart.overrides.line.spanGaps = true;
     const data: StocksData = {
-      labels: props.nawChartData.time,
+      labels: props.newChartData.time,
       datasets: [{
           label: props.nameCoin,
-          data: props.nawChartData.averageIndex,
+          data: props.newChartData.averageIndex,
           backgroundColor: [
               'rgba(52, 42, 139, 0.190',
           ],
@@ -107,11 +107,11 @@ const MyChart:React.FC<Props> = (props: Props) =>{
   });
   return () => {
     myChart.destroy();
-  }}, [props.nawChartData]);
+  }}, [props.newChartData]);
 
   return (
     <div className={cl.chart} >
-      <TitleMediumSized>{props.nawChartData.text}</TitleMediumSized>
+      <TitleMediumSized>{props.newChartData.text}</TitleMediumSized>
       <div className={cl.chart__plan}>
         <canvas ref={canvasChart} id="myChart" width="500" height="400"></canvas>
       </div>

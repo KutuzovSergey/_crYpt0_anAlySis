@@ -4,10 +4,11 @@ import MyButtonSmall from "../MyButtonSmall/MyButtonSmall";
 import cl from "./MyModal.module.scss";
 
 type Parameters = {
-    children: string,
+    children: React.ReactNode | string,
     active: boolean,
     setActive: (bool: boolean) => void,
-    activityIndicator: boolean
+    activityIndicator: boolean,
+    className: string
 }
 
 const MyModal:React.FC<Parameters> = ({children, ...props}: Parameters) =>{

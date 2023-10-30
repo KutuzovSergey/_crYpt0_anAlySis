@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { AppContext } from "../context";
 
 import "../styles/EditProfile.scss";

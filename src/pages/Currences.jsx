@@ -8,7 +8,8 @@ import CurrencesList from '../components/CurrencesList';
 import { getAllList, getListOnPage } from '../AP/getCoins';
 import { sortArray } from '../utils/sorting';
 import { calculateTotal } from '../utils/totalCount';
-import { useDispatch, useSelector } from 'react-redux'; 
+import { useDispatch, useSelector } from 'react-redux';
+import { allCoinListConst } from '../constants/constants';
 
 import '../styles/Currences.scss';
 
@@ -66,7 +67,7 @@ const Currences = () => {
     }
 
     const getAllCoins = async () => {
-        dispatch({type:'GET_COINS_LIST', payload: await getAllList()});
+        dispatch({type:allCoinListConst.GET_COINS_LIST, payload: await getAllList()});
     }
 
     const getListCoins = (indexMin, indexMax) =>{

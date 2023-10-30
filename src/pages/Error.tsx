@@ -4,8 +4,8 @@ import TitleForPage from "../components/UI/TitleForPage/TitleForPage";
 
 import "../styles/Error.scss";
 
-const Error = () => {
-    const {setErrorPages,} = useContext(AppContext);
+const Error:React.FC = () => {
+    const {setErrorPages,} = useContext<any>(AppContext);
 
     useEffect(() =>{
         setErrorPages(true);

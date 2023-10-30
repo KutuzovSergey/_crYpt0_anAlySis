@@ -20,7 +20,7 @@ export const useEmailControl = () => {
             } else if (!_email.test(String(formValue.toLowerCase()))) {
                 newMessageUser = 'Некорректный E-mail';
             } else {
-                newMessageUser = 'Спасибо за подписку, подписка оформленна!';
+                newMessageUser = 'Спасибо за подписку, подписка оформлена!';
             }
 
         setMessageUser(newMessageUser);
@@ -28,7 +28,7 @@ export const useEmailControl = () => {
         const validCheckResult = () => {
             let emailValid = false;
 
-            if (newMessageUser === 'Спасибо за подписку, подписка оформленна!') {
+            if (newMessageUser === 'Спасибо за подписку, подписка оформлена!') {
                 emailValid = true;
             } else {
                 emailValid = false;
