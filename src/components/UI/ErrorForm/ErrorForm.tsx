@@ -2,11 +2,11 @@ import React from "react";
 
 import styles from "./ErrorForm.module.scss";
 
-type Parameter = {
+type Props = {
     children: string
   }
 
-const ErrorForm:React.FC<Parameter> = ({children}: Parameter) =>{
+const ErrorForm:React.FC<Props> = ({children}: Props) =>{
 
     return (
         <div className={styles.error}>

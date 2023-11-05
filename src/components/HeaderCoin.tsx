@@ -2,7 +2,13 @@ import React from "react";
 
 import "../styles/componentStyles/HeaderCoin.scss";
 
-const HeaderCoin = (props) => {
+type Props = {
+    images: string,
+    alt: string,
+    name: string
+}
+
+const HeaderCoin:React.FC<Props> = (props: Props) => {
     return (
         <div className="headerCoin">
             <div className="headerCoin__image">

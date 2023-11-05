@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 import cl from "./MenuExit.module.scss";
 
-type Parameter = {
+type Props = {
     logOutAccount: () => void
 }
 
-const MenuExit:React.FC<Parameter> = (props: Parameter) =>{
+const MenuExit:React.FC<Props> = (props: Props) =>{
     return (
 
         <ul className={cl.menu}>

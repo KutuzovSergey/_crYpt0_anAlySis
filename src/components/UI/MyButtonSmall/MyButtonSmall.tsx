@@ -2,14 +2,14 @@ import React from "react";
 
 import cl from './MyButtonSmall.module.scss';
 
-type Parameters = {
+type Props = {
     key?: number,
     children: string | number,
-    activityIndicator: boolean,
+    activityIndicator?: boolean,
     onClick: () => void,
 }
 
-const  MyButtonSmall:React.FC<Parameters> = ({children, activityIndicator, ...props}: Parameters) =>{
+const  MyButtonSmall:React.FC<Props> = ({children, activityIndicator, ...props}: Props) =>{
 
     const classButtons = [cl.myButtonSmall];
 

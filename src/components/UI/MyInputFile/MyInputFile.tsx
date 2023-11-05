@@ -2,14 +2,14 @@ import React, { forwardRef } from 'react';
 
 import cl from './MyInputFile.module.scss';
 
-type Parameters ={
+type Props ={
     type: string,
     id: string,
     accept: string,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => any,
 }
 
-const MyInputFile:React.FC<Parameters> = forwardRef((props: Parameters, ref: any) => {
+const MyInputFile:React.FC<Props> = forwardRef((props: Props, ref: any) => {
 
     return (
         <input className={cl.input} {...props} ref={ref}/>

@@ -7,13 +7,20 @@ import MyButtonSmall from "./UI/MyButtonSmall/MyButtonSmall";
 
 import '../styles/componentStyles/Card.scss';
 
-const Card = ({props, remove}) => {
-  const navigate = useNavigate();
+type Props = {
+  props: {
+    [key:string]: string
+  },
+  remove: (obj: {[key:string]: string}) => void
+}
+
+const Card:React.FC<Props> = ({props, remove}: Props) => {
+  const navigate: (way: string) => void = useNavigate();
   const dispatch = useDispatch();
 
-  const  addNewCoinPersonalAccount = (coin) => {
+  const  addNewCoinPersonalAccount = (coin: {[key:string]: string}) => {
     dispatch(addCoin(coin));
-  } 
+  }
 
     return(
         <div id={props.FROMSYMBOL} className='card'>

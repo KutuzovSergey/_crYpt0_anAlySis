@@ -19,14 +19,14 @@ const Home:React.FC = () => {
             <InfoApplication/>
             <MyModal 
                 className="modal" 
-                activityIndicator={true} 
+                // activityIndicator={true} 
                 active={modalLogin} 
                 setActive={setModalLogin}>
                     <ModalLoginForm />
             </MyModal>
             <MyModal 
                 className="modal" 
-                activityIndicator={true} 
+                // activityIndicator={true} 
                 active={modalRegistr} 
                 setActive={setModalRegistr}>
                     <ModalRegistrForm active={modalRegistr} setActive={setModalRegistr} />

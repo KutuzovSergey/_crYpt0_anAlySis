@@ -2,11 +2,11 @@ import React from "react";
 
 import cl from './TitleForPage.module.scss';
 
-type Parameters = {
+type Props = {
     children: string,
 }
 
-const TitleForPage:React.FC<Parameters> = ({children}: Parameters) => {
+const TitleForPage:React.FC<Props> = ({children}: Props) => {
 
     return (
         <div className={cl.title}>

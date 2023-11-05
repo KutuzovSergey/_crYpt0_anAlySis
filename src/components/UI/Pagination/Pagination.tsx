@@ -4,17 +4,17 @@ import { usePagination } from "../../../hooks/usePagination";
 
 import cl from "./Pagination.module.scss";
 
-type Parameters = {
+type Props = {
     getListCoins: (first_number: number, second_number: number) => {},
     count: number
 }
 
-const Pagination:React.FC<Parameters> = (props) =>{
+const Pagination:React.FC<Props> = (props: Props) =>{
 
     const {range, leftArrow, rightArrow, numberButtons, scrollRight, scrollLeft, countСoins} = usePagination(props.getListCoins, props.count);
 
-    const indicatorTrue = true;
-    const indicatorFalse = false;
+    const indicatorTrue: boolean = true;
+    const indicatorFalse: boolean = false;
 
     return (
         <div className={cl.pagination}>

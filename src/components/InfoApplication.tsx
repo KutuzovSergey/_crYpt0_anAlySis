@@ -4,7 +4,7 @@ import imgFon_second from '../images/home/imgFon_second.jpg';
 
 import '../styles/componentStyles/InfoApplication.scss';
 
-const InfoApplication = () => {
+const InfoApplication:React.FC = () => {
 
     return (
         <div className="info">

@@ -7,7 +7,7 @@ import "../styles/componentStyles/UserCard.scss";
 
 const UserCard = () => {
 
-    const userData = useSelector(state => state.userData);
+    const userData = useSelector((state: any) => state.userData);
 
     return (
         <div className="user-card">

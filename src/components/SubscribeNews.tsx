@@ -6,7 +6,7 @@ import MessageToUser from './UI/MessageToUser/MessageToUser';
 
 import '../styles/componentStyles/SubscribeNews.scss';
 
-const SubscribeNews = () =>{
+const SubscribeNews:React.FC = () =>{
     
     const { valueEmail, 
             messageUser, 
@@ -16,7 +16,7 @@ const SubscribeNews = () =>{
             resetEmailValues, 
             changeShowMessage} = useEmailControl();
 
-    const subscribeSitesNews = (e) =>{
+    const subscribeSitesNews = (e: React.FormEvent<HTMLFormElement>): void =>{
         e.preventDefault();
         changeShowMessage(true);
 
@@ -43,8 +43,9 @@ const SubscribeNews = () =>{
                                 type='email' 
                                 name='mail'
                                 value={valueEmail}
-                                className='subscribe__input' placeholder='Введите свой E-Mail'
-                                onChange={ (e) => onChangeEmail(e)} />
+                                // className='subscribe__input' 
+                                placeholder='Введите свой E-Mail'
+                                onChange={ (e) => onChangeEmail(e) } />
                             <button className='subscribe__button'>Подписаться</button>
                         </div>
                     </form>

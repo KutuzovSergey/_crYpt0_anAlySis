@@ -1,36 +1,38 @@
 import { useEffect, useState } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
+import { ErrorType, ValueType, ErrorStatusType, CheckResultType } from "../type/typesLogAccount";
 
-export const useLogAccount = (modalLogin) => {
+export const useLogAccount = (modalLogin: boolean) => {
 
-    const [errorMessage, setErrorMessage] = useState({
+    const [errorMessage, setErrorMessage] = useState<ErrorType>({
         loginError: '',
         passwordError: '',
     });
 
-    const [formLogValue, setFormLogValue] = useState({
+    const [formLogValue, setFormLogValue] = useState<ValueType>({
         login: '',
         password: '',
     });
 
-    const [loginErrorStatus, setLoginErrorStatus] = useState({
+    const [loginErrorStatus, setLoginErrorStatus] = useState<ErrorStatusType>({
         loginStatus: false,
         passwordStatus: false,
     });
 
-    const loginChange = (e) =>{
+    const loginChange = (e: React.FormEvent<HTMLInputElement>): void =>{
         let newFormLogValue = { ...formLogValue };
         let newLoginErrorStatus = { ...loginErrorStatus };
+        const inputElem = e.target as HTMLInputElement;
 
-        switch (e.target.name){
+        switch (inputElem.name){
             case ('login'):
-                newFormLogValue = {...formLogValue, login: e.target.value};
+                newFormLogValue = {...formLogValue, login: inputElem.value};
                 if(newFormLogValue.login){
                     newLoginErrorStatus.loginStatus = false;
                 }
                 break;
             case ('password'):
-                newFormLogValue = {...formLogValue, password: e.target.value};
+                newFormLogValue = {...formLogValue, password:inputElem.value};
                 if (newFormLogValue.password) {
                     newLoginErrorStatus.passwordStatus = false;
                 }
@@ -43,13 +45,13 @@ export const useLogAccount = (modalLogin) => {
         setLoginErrorStatus(newLoginErrorStatus);
     }
 
-    const validLogin = (e) =>{
-        const form = e.target;
-        let newErrorMessage = { ...errorMessage };
+    const validLogin = (e: React.FormEvent): CheckResultType =>{
+        const form = e.target as HTMLFormElement;
+        let newErrorMessage: ErrorType = { ...errorMessage };
 
         for (let i = 0; i < form.length; i++) {
-            const element = form[i];
-            let valueFormElem = element.value;
+            const element = form[i] as HTMLInputElement;
+            let valueFormElem: string = element.value;
 
             switch(element.name){
                 case ('login'):
@@ -77,11 +79,11 @@ export const useLogAccount = (modalLogin) => {
 
         setErrorMessage(newErrorMessage);
 
-        const validCheckResult = () =>{
-            let formValid = false;
+        const validCheckResult: CheckResultType = () =>{
+            let formValid: boolean = false;
 
             for(let indexMessage in newErrorMessage){
-                if (newErrorMessage[indexMessage] === '') {
+                if (newErrorMessage[indexMessage as keyof ErrorType] === '') {
                     formValid = true;
                 } else {
                     formValid = false;
@@ -91,10 +93,10 @@ export const useLogAccount = (modalLogin) => {
             return formValid
         }
 
-        return validCheckResult()
+        return validCheckResult
     }
 
-    const resetLog = () =>{
+    const resetLog = (): void =>{
         setFormLogValue({
             login: '',
             password: ''
@@ -141,7 +143,7 @@ export const useLogAccount = (modalLogin) => {
         loginChange,
         validLogin,
         resetLog,
-    ]
+    ] as const
 }
 
    

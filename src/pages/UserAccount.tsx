@@ -8,14 +8,11 @@ import { RootState } from "../store";
 
 import '../styles/UserAccount.scss';
 
-// type ArrUserCoinList = [] | {[key: string]: string}[];
-
 const UserAccount:React.FC = () => {
     const dispatch = useDispatch();
     const userCoinList:any = useSelector((state: RootState) => state.userCoinList);
-    // console.log(userCoinList);
     
-    const removeCurrences = (currency: boolean) =>{
+    const removeCurrences = (currency: {[key: string]: string}) =>{
         dispatch(deleteCoin(currency));
     }
 

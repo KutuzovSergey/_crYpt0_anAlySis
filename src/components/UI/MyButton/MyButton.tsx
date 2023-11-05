@@ -3,13 +3,13 @@ import Button from '@mui/material/Button';
 
 import cl from './MyButton.module.scss'
 
-type Parameters = {
+type Props = {
     children: string,
-    disabled: boolean,
-    onClick: () => void
+    disabled?: boolean,
+    onClick?: () => void
 }
 
-const MyButton:React.FC<Parameters> = ({children, ...props}: Parameters) => {
+const MyButton:React.FC<Props> = ({children, ...props}: Props) => {
     const buttonStyles: string[] = [cl.myButton];
 
     if (props.disabled) {

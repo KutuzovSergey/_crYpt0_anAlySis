@@ -5,8 +5,8 @@ import { AppContext } from "../context";
 import ErrorForm from "./UI/ErrorForm/ErrorForm";
 import { useLogAccount } from "../hooks/useLogInAccount";
 
-const ModalLoginForm = () => {
-    const {setIsAuth, setModalLogin, modalLogin} = useContext(AppContext);
+const ModalLoginForm:React.FC = () => {
+    const { setIsAuth, modalLogin, setModalLogin } = useContext<any>(AppContext);
     const [errorMessage,
         formLogValue,
         loginErrorStatus,
@@ -14,12 +14,12 @@ const ModalLoginForm = () => {
         validLogin,
         resetLog,] = useLogAccount(modalLogin);
 
-    const logAccount = event => {
-        event.preventDefault();
+    const logAccount = (e: React.FormEvent): void => {
+        e.preventDefault();
 
-        if(validLogin(event)){
+        if(validLogin(e)){
             resetLog();
-            event.preventDefault();
+            e.preventDefault();
             setIsAuth(true);
             localStorage.isAuth = true;
             setModalLogin(false);

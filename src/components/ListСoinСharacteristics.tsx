@@ -2,7 +2,15 @@ import React from "react";
 
 import "../styles/componentStyles/ListСoinСharacteristics.scss";
 
-const ListСoinСharacteristics = (props) => {
+type Props = {
+    capitalization: string,
+    cost: string,
+    chenge: string,
+    maximum: string,
+    minimum: string,
+}
+
+const ListСoinСharacteristics:React.FC<Props> = (props: Props) => {
     return (
         <div className="property">
             <div className="property__info">

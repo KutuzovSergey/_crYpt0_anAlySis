@@ -8,8 +8,8 @@ import BurgerMenu from './menus/BurgerMenu/BurgerMenu';
 
 import '../styles/componentStyles/Header.scss';
 
-const Header = () =>{
-    const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages, setMenuAdaptive, modalRegistr} = useContext(AppContext);
+const Header:React.FC = () =>{
+    const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages, setMenuAdaptive} = useContext<any>(AppContext);
 
     const openModalLogin = () =>{
         setModalRegistr(false);

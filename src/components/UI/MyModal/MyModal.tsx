@@ -3,15 +3,15 @@ import MyButtonSmall from "../MyButtonSmall/MyButtonSmall";
 
 import cl from "./MyModal.module.scss";
 
-type Parameters = {
+type Props = {
     children: React.ReactNode | string,
     active: boolean,
     setActive: (bool: boolean) => void,
-    activityIndicator: boolean,
+    activityIndicator?: boolean,
     className: string
 }
 
-const MyModal:React.FC<Parameters> = ({children, ...props}: Parameters) =>{
+const MyModal:React.FC<Props> = ({children, ...props}: Props) =>{
     const modalClass: string[] = [cl.myModal];
     const modalClassBlock: string[] = [cl.myModal__block];
 

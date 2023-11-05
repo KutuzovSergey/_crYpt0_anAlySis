@@ -2,13 +2,13 @@ import React from "react";
 
 import cl from "./MySelect.module.scss"
 
-type Parameter = {
+type Props = {
     options: Array<any>,
     defaultVulue: string,
     value: string,
     onChange: (e: string) => void
 }
-const MySelect:React.FC<Parameter> = ({options, defaultVulue, value, onChange}: Parameter) =>{
+const MySelect:React.FC<Props> = ({options, defaultVulue, value, onChange}: Props) =>{
     return (
         <select
             value={value}

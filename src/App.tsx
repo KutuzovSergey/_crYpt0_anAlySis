@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import { BrowserRouter } from 'react-router-dom';
-import {AppContext} from './context/index.ts';
+import {AppContext} from './context';
 import AppRouter from './components/AppRouter';
 import Footer from './components/Footer';
 import AdaptiveMenu from './components/menus/AdaptiveMenu/AdaptiveMenu';
@@ -9,7 +9,7 @@ import AdaptiveMenu from './components/menus/AdaptiveMenu/AdaptiveMenu';
 import './styles/App.scss';
 
 function App() {
-  const [modalLogin, setModalLogin] = useState(false);
+  const [modalLogin, setModalLogin] = useState<boolean>(false);
   const [modalRegistr, setModalRegistr] = useState(false);
   const [errorPages, setErrorPages] = useState(false);
   const [menuAdaptive, setMenuAdaptive] = useState(false);
@@ -17,10 +17,10 @@ function App() {
 
   const setUserStatus = () =>{
     if (localStorage.getItem('isAuth') !== null) {
-      const valueIsAuth = localStorage.getItem('isAuth');
+      const valueIsAuth: string = localStorage.getItem('isAuth')!;
       setIsAuth(JSON.parse(valueIsAuth));
     } else {
-      localStorage.setItem('isAuth', false);
+      localStorage.setItem('isAuth', 'false');
     }
   }
 

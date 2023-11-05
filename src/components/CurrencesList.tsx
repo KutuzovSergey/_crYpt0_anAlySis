@@ -3,7 +3,13 @@ import Card from './Card';
 
 import '../styles/componentStyles/CurrencesList.scss';
 
-const CurrencesList = ({currences, remove, textInfo}) => {
+type Props ={
+  currences: any[],
+  remove: (obj: {[key: string]: string}) => void,
+  textInfo: string
+}
+
+const CurrencesList:React.FC<Props> = ({currences, remove, textInfo}: Props) => {
 
   return (
       <div className='card-block'>

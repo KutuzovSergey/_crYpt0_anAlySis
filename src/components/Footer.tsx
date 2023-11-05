@@ -3,7 +3,7 @@ import logo from "../images/logo.png";
 
 import "../styles/componentStyles/Footer.scss";
 
-const Footer = () => {
+const Footer:React.FC = () => {
 
     return (
         <div className="footer">

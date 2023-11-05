@@ -4,11 +4,17 @@ import LinkButtonNative from "./UI/LinkButtonNative/LinkButtonNative";
 
 import "../styles/componentStyles/LinksInternetSearch.scss";
 
-const LinksInternetSearch = (props) => {
+type Props = {
+    nameCoin: string,
+}
+
+const LinksInternetSearch:React.FC<Props> = (props: Props) => {
+
+    let textTitleMediumSized: string = `Искать ${props.nameCoin} в интернете`;
 
     return (
         <div className="searchLink">
-            <TitleMediumSized>Искать ${props.nameCoin} в интернете</TitleMediumSized>
+            <TitleMediumSized>{textTitleMediumSized}</TitleMediumSized>
             <div className="searchLink__link">
                 <LinkButtonNative
                     activityIndicator={true}
@@ -23,4 +29,4 @@ const LinksInternetSearch = (props) => {
     )
 }
 
-export default LinksInternetSearch; 
+export default LinksInternetSearch;

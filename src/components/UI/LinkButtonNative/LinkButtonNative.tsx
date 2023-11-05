@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 import cl from './LinkButtonNative.module.scss';
 
-type Parameters = {
+type Props = {
     children: string,
     link: string,
     target: string,
     activityIndicator: boolean
 }
 
-const  LinkButtonNative:React.FC<Parameters> = ({children, ...props}:Parameters) =>{
+const  LinkButtonNative:React.FC<Props> = ({children, ...props}: Props) =>{
 
     const classButtons = [cl.LinkButton];
 

@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 import cl from './LinkButton.module.scss';
 
-type Parameters = {
+type Props = {
     children: string,
     link: string,
     activityIndicator: boolean
 }
 
-const  LinkButton:React.FC<Parameters> = ({children, ...props}:Parameters) =>{
+const  LinkButton:React.FC<Props> = ({children, ...props}: Props) =>{
 
     const classButtons: string[]= [cl.LinkButton];
 

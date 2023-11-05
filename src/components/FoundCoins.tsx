@@ -2,7 +2,12 @@ import React from "react";
 
 import "../styles/componentStyles/FoundCoins.scss";
 
-const FoundCoins = (props) =>{
+type Props = {
+    coins: string[],
+    deleteCoin: (item: string) => void
+}
+
+const FoundCoins:React.FC<Props> = (props: Props) =>{
 
     return (
         <div className="foundCoins">

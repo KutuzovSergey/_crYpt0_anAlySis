@@ -3,7 +3,7 @@ import logo from "../images/logo.png";
 
 import "../styles/componentStyles/Login.scss";
 
-const Login = () =>{
+const Login:React.FC = () =>{
 
     return (
         <div className="login">
