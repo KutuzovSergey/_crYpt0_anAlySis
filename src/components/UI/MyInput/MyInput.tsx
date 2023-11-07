@@ -8,7 +8,8 @@ type Props = {
     value: string,
     placeholder: string,
     autoComplete?: string,
-    onChange: (e: React.FormEvent<HTMLInputElement>) => void
+    onFocus?: () => void,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const MyInput:React.FC<Props> = (props: Props) => {

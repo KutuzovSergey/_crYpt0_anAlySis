@@ -6,6 +6,7 @@ type Props ={
     type: string,
     id: string,
     accept: string,
+    ref: any,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => any,
 }
 

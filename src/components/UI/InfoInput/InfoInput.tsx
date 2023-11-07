@@ -6,7 +6,7 @@ type Props = {
     visible: boolean,
     datalistId: string | undefined,
     valueList: Array< any >,
-    transferInput: (text: string) => void
+    transferInput: (text: string | never) => void
 }
 
 const InfoInput:React.FC<Props> = (props: Props) =>{

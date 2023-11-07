@@ -4,9 +4,9 @@ import Button from '@mui/material/Button';
 import cl from './MyButton.module.scss'
 
 type Props = {
-    children: string,
+    children: string | React.ReactNode,
     disabled?: boolean,
-    onClick?: () => void
+    onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const MyButton:React.FC<Props> = ({children, ...props}: Props) => {

@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
+import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, UseInputControlType, UseUploadImageType } from "../type/typesUseInput";
 
-export const useInputControl = () => {
-    const [valueUserInfo, setValueUserInfo] = useState({
+
+
+export const useInputControl = (): UseInputControlType => {
+    const [valueUserInfo, setValueUserInfo] = useState<ValueUserType>({
         valueName: '',
         valuePassword: '',
         valueRepeatPassword: '',
@@ -10,7 +13,7 @@ export const useInputControl = () => {
         valuePhone: '',
     });
 
-    const [errorStatus, setErrorStatus] = useState({
+    const [errorStatus, setErrorStatus] = useState<ErrorStatusType>({
         errorName: false,
         errorPassword: false,
         errorRepeatPassword: false,
@@ -18,7 +21,7 @@ export const useInputControl = () => {
         errorPhone: false,
     });
 
-    const [error, setError] = useState({
+    const [error, setError] = useState<ErrorType>({
         errorName: '',
         errorPassword: '',
         errorRepeatPassword: '',
@@ -26,37 +29,38 @@ export const useInputControl = () => {
         errorPhone: '',
     });
 
-    const onChangeInput = (e) => {
+    const onChangeInput = (e: React.ChangeEvent): void => {
         let newValue = { ...valueUserInfo };
         let newErrorStatus = { ...errorStatus };
+        const formElem = e.target as HTMLInputElement;
 
-        switch (e.target.name){
+        switch (formElem.name){
             case 'name': 
-                newValue = {...newValue, valueName: e.target.value};
+                newValue = {...newValue, valueName: formElem.value};
                 if (newErrorStatus.errorName) {
                     newErrorStatus = {...newErrorStatus, errorName: false};
                 }
                 break;
             case 'password':
-                newValue = {...newValue, valuePassword: e.target.value};
+                newValue = {...newValue, valuePassword: formElem.value};
                 if (newErrorStatus.errorPassword) {
                     newErrorStatus = {...newErrorStatus, errorPassword: false};
                 }
                 break;
             case 'repeatPassword':
-                newValue = {...newValue, valueRepeatPassword: e.target.value};
+                newValue = {...newValue, valueRepeatPassword: formElem.value};
                 if (newErrorStatus.errorRepeatPassword) {
                     newErrorStatus = {...newErrorStatus, errorRepeatPassword: false};
                 }
                 break;
             case 'mail':
-                newValue = {...newValue, valueMail: e.target.value};
+                newValue = {...newValue, valueMail: formElem.value};
                 if (newErrorStatus.errorMail) {
                     newErrorStatus = {...newErrorStatus, errorMail: false};
                 }
                 break;
             case 'phone':
-                newValue = {...newValue, valuePhone: e.target.value};
+                newValue = {...newValue, valuePhone: formElem.value};
                 if (newErrorStatus.errorPhone) {
                     newErrorStatus = {...newErrorStatus, errorPhone: false};
                 }
@@ -69,17 +73,17 @@ export const useInputControl = () => {
         setErrorStatus(newErrorStatus);
     }
 
-    const validation = (e) =>{
+    const validation = (e:  React.FormEvent): CheckValidErrorsType =>{
                     
-        const form = e.target;
+        const form = e.target as HTMLFormElement;
 
-        let newError = { ...error };
+        let newError: ErrorType = { ...error };
 
-        let errorCount = 0;
+        let errorCount: number = 0;
 
         for (let i = 0; i < form.length; i++) {
-            const element = form.elements[i];
-            const elementValue = element.value.trim();
+            const element = form.elements[i] as HTMLInputElement;
+            const elementValue: string = element.value.trim();
             
             switch(element.name){
                 case 'name':
@@ -147,7 +151,7 @@ export const useInputControl = () => {
  
         setError(newError);
 
-        const checkValidErrors = () =>{
+        const checkValidErrors = (): boolean =>{
             let counterError = 0;
             let validResultForm =false;
 
@@ -167,7 +171,7 @@ export const useInputControl = () => {
             return validResultForm
         }
 
-        return checkValidErrors()
+        return checkValidErrors
     }
 
     useEffect(() => {
@@ -207,7 +211,7 @@ export const useInputControl = () => {
        
     }, [error]);
 
-    const resetFormValues = (reasonDataReset) => {
+    const resetFormValues = (reasonDataReset: boolean): void => {
         if (reasonDataReset) {
             setValueUserInfo({
                 valueName: '',
@@ -239,16 +243,17 @@ export const useInputControl = () => {
 
 }
 
-export const useUploadImage = (user, inputUpload) => {
+export const useUploadImage = (user: HTMLImageElement, inputUpload: any):any => {
 
-    const [srcProfilePhoto, setSrcProfilePhoto] = useState(user);
+    const [srcProfilePhoto, setSrcProfilePhoto] = useState<HTMLImageElement | any>(user);
 
-    const uploadImage = () =>{
+    const uploadImage = (): void =>{
         inputUpload.current.click();
     }
 
-    const showUploadedImage = (e) =>{
-        const file = e.target.files[0];
+    const showUploadedImage = (e: React.ChangeEvent<HTMLInputElement>): void =>{
+        const inputFile: any = e.target as HTMLInputElement;
+        const file = inputFile.files[0];
 
         let reader = new FileReader();
 
@@ -256,7 +261,7 @@ export const useUploadImage = (user, inputUpload) => {
             reader.readAsDataURL(file);
 
             reader.onload = function(e) {
-                setSrcProfilePhoto(e.target.result);
+                setSrcProfilePhoto(inputFile.result);
             }
 
             reader.onerror = () =>{
@@ -265,7 +270,7 @@ export const useUploadImage = (user, inputUpload) => {
         }
     }
 
-    const resetInputFile = (user) =>{
+    const resetInputFile = (user: HTMLImageElement): void =>{
         setSrcProfilePhoto(user);
     }
 
@@ -274,5 +279,5 @@ export const useUploadImage = (user, inputUpload) => {
         uploadImage,
         showUploadedImage,
         resetInputFile,
-    ]
+    ] as const
 }

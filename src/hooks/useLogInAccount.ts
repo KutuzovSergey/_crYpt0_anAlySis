@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
-import { ErrorType, ValueType, ErrorStatusType, CheckResultType } from "../type/typesLogAccount";
+import { ErrorType, ValueType, ErrorStatusType, CheckResultType } from "../type/typesUseLogAccount";
 
 export const useLogAccount = (modalLogin: boolean) => {
 

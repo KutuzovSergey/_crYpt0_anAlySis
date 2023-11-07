@@ -3,8 +3,8 @@ import React from "react";
 import styles from './ImitationButton.module.scss';
 
 type Props = {
-    children: string,
-    activityIndicator: boolean,
+    children: string | React.ReactNode,
+    activityIndicator?: boolean,
     onClick: () => void,
 }
 
@@ -19,7 +19,7 @@ const  ImitationButton:React.FC<Props> = ({children, activityIndicator, ...props
     return (
         <div {...props} className={classButtons.join(' ')}>
             <span className={styles.ImitationButton__text}>{children}</span>
-        </div>
+        </div> 
     )
 }
 

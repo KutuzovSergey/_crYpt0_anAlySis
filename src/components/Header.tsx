@@ -11,22 +11,22 @@ import '../styles/componentStyles/Header.scss';
 const Header:React.FC = () =>{
     const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages, setMenuAdaptive} = useContext<any>(AppContext);
 
-    const openModalLogin = () =>{
+    const openModalLogin = (): void =>{
         setModalRegistr(false);
         setModalLogin(true);
     }
 
-    const openModalRegistration = () =>{
+    const openModalRegistration = (): void =>{
         setModalLogin(false);
         setModalRegistr(true);
     }
 
-    const logOutAccount = () =>{
+    const logOutAccount = (): void =>{
         setIsAuth(false);
         localStorage.isAuth = false;
     }
 
-    const showMainPageMenu = () =>{
+    const showMainPageMenu = (): void =>{
         setErrorPages(false);
     }
     

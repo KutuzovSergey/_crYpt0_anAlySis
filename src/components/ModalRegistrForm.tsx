@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { store } from "../store";
 import MyInput from "./UI/MyInput/MyInput";
@@ -16,15 +16,20 @@ import { addUser } from "../action/actionCreators";
 
 import '../styles/Form.scss';
 
-const ModalRegistrForm = (props) => {
+type Props = {
+    setActive: (activ: boolean) => void,
+    active: boolean
+}
+
+const ModalRegistrForm:React.FC<Props> = (props: Props) => {
 
     const dispatch = useDispatch();
 
-    const {setIsAuth} = useContext(AppContext);
-    const [takingPhotos, getTakingPhotos] = useState(false);
+    const {setIsAuth} = useContext<any>(AppContext);
+    const [takingPhotos, getTakingPhotos] = useState<boolean>(false);
 
-    const inputUpload = React.createRef();
-    const profilePhoto = React.createRef();
+    const inputUpload = useRef<HTMLInputElement | null>(null);
+    const profilePhoto = useRef<HTMLImageElement | null>(null);
 
     const {valueUserInfo, 
         errorStatus, 
@@ -37,10 +42,11 @@ const ModalRegistrForm = (props) => {
         showUploadedImage, 
         resetInputFile] = useUploadImage(user, inputUpload);
     
-    const registration = event => {
-        event.preventDefault();
+    const registration = (e: React.FormEvent) => {
+        const eventForm = e 
+        e.preventDefault();
 
-        if(validation(event)){
+        if(validation(e)){
             valueUserInfo.userPhoto = srcProfilePhoto;
             dispatch(addUser(valueUserInfo));
             setIsAuth(true);
@@ -49,7 +55,7 @@ const ModalRegistrForm = (props) => {
         }
     }
 
-    const uploadedImage = (e) => {
+    const uploadedImage = (e: React.ChangeEvent<HTMLInputElement>) => {
         showUploadedImage(e);
     }
 

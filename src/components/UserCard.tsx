@@ -5,7 +5,7 @@ import user from "../images/user/user.png";
 
 import "../styles/componentStyles/UserCard.scss";
 
-const UserCard = () => {
+const UserCard:React.FC = () => {
 
     const userData = useSelector((state: any) => state.userData);
 
