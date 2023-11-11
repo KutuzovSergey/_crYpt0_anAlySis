@@ -39,11 +39,11 @@ const SubscribeNews:React.FC = () =>{
                 <div className='subscribe__block'>
                     <form action="" className='subscribe__form' onSubmit={subscribeSitesNews}>
                         <div  className='subscribe__form_block'>
-                            <MyInput
+                            <input
                                 type='email' 
                                 name='mail'
                                 value={valueEmail}
-                                // className='subscribe__input' 
+                                className='subscribe__input' 
                                 placeholder='Введите свой E-Mail'
                                 onChange={ (e) => onChangeEmail(e) } />
                             <button className='subscribe__button'>Подписаться</button>

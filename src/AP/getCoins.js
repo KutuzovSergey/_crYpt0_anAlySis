@@ -2,17 +2,22 @@ import RequestServer from './RequestServer';
 import { dataProcessing } from '../utils/fileCheck';
 
 export async function getAllList(){
+    try {
     const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
     const url = 'https://min-api.cryptocompare.com/data/blockchain/list';
     const get = 'GET';
 
     const result = await RequestServer.getData(get, url, api_key);
     
-    return Object.keys(result.Data);
+    // console.log(Object.keys(result.Data));
+    return Object.keys(result.Data)
+    } catch {
+        return []
+    }
 }
 
 export async function  getListOnPage(coins) {
-
+    // console.log(coins);
     if (typeof coins === 'undefined' || 
             !Array.isArray(coins) || 
             !coins.length) {

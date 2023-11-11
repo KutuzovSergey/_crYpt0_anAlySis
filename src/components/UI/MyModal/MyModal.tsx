@@ -8,7 +8,7 @@ type Props = {
     active: boolean,
     setActive: (bool: boolean) => void,
     activityIndicator?: boolean,
-    className: string
+    className?: string
 }
 
 const MyModal:React.FC<Props> = ({children, ...props}: Props) =>{

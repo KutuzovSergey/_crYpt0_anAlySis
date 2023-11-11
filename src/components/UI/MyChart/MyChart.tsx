@@ -1,53 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import Chart, { ChartData, ChartOptions} from 'chart.js/auto';
 import TitleMediumSized from "../TitleMediumSized/TitleMediumSized";
+import { Props, StocksData, StocksOptions } from "../../../type/typeComponents/typesMyChart";
 
 import cl from "./MyChart.module.scss";
-
-type Props = {
-  newChartData: {
-    time: string[],
-    nameCoin: string,
-    averageIndex: number[],
-    text: string,
-  },
-  nameCoin: string
-}
-
-interface StocksData extends ChartData {
-  labels: string[],
-  datasets: [{
-    label: string,
-    data: number[],
-    backgroundColor: string[],
-    borderColor: string[],
-    pointBackgroundColor: string[],
-    pointHoverBackgroundColor: string,
-    pointRadius: number,
-    pointHoverRadius: number,
-    pointBorderWidth: number,
-    borderWidth: number,
-    tension: number,
-    borderCapStyle: string,
-    cubicInterpolationMode: string,
-    fill: boolean
-  }],
-}
-
-interface StocksOptions extends ChartOptions {
-  legend: {
-    display: boolean,
-    labels: {
-      fontColor: string,
-      fontSize: number
-    }
-  },
-  scales: {
-    y: {
-      beginAtZero: boolean
-    }
-  }
-}
 
 const MyChart:React.FC<Props> = (props: Props) =>{
   
@@ -100,7 +56,7 @@ const MyChart:React.FC<Props> = (props: Props) =>{
 
     const ChartItem: any = canvasChart;
 
-    const myChart = new Chart(ChartItem, {
+    const myChart = new Chart(ChartItem.Parameters, {
       type: 'line',
       data: data,
       options: options

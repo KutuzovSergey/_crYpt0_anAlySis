@@ -5,8 +5,8 @@ import { usePagination } from "../../../hooks/usePagination";
 import cl from "./Pagination.module.scss";
 
 type Props = {
-    getListCoins: (first_number: number, second_number: number) => {},
-    count: number
+    getListCoins: (first_number: number, second_number: number) => void,
+    count: string | number
 }
 
 const Pagination:React.FC<Props> = (props: Props) =>{

@@ -1,0 +1,1 @@
+export type UseFetchingCallbackType = (params: UseFetchingCallbackType) => Promise<any>

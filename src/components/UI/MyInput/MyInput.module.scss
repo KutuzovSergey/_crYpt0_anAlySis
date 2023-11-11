@@ -2,6 +2,7 @@
 
 .myInput{
      @include data_entry_form(100%, 40px, $inputText, 0.9em, 5px 15px, $background_color, 3px);
+     
 
     &::placeholder{
         font-size: 0.9em;

@@ -10,7 +10,7 @@ import SubscribeNews from '../components/SubscribeNews';
 import '../styles/Home.scss';
 
 const Home:React.FC = () => {
-    const {modalLogin, setModalLogin, setModalRegistr, modalRegistr,} = useContext<any>(AppContext);
+    const {modalLogin, setModalLogin, setModalRegistr, modalRegistr} = useContext<any>(AppContext);
 
     return (
         <div className="home">
