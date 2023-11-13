@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect, useEffect } from "react";
 import { findingValueInArray } from "../utils/filters";
 import { useSelector } from "react-redux";
-import { SearchItemType } from "../type/typesUseSearch";
+import { SearchItemType } from "../type/typeHooks/typesUseSearch";
 
 export const useSearch = (openModalInfo: (text: string) => void, fetchListOnPage: (foundCoin: any) => void) =>{
 
@@ -15,16 +15,16 @@ export const useSearch = (openModalInfo: (text: string) => void, fetchListOnPage
     const [infoSearch, setInfoSearch] = useState<string>('Введите короткон имя искомой криптовалюты или несколько через запятую');
 
     // отслеживает поискоый инпут
-    const getSaerchValue = (value: string) =>{
+    const getSaerchValue = (value: string): void =>{
         setSearchValue(value);
     }
     
     // открыть информационное окно
-    const openInfoSearch = () =>{
+    const openInfoSearch = (): void =>{
         setInfoSearchShow(true);
     }
 
-    const closeInfoSearch = () =>{
+    const closeInfoSearch = (): void =>{
         setInfoSearchShow(false);
         if(searchValue === '') {
             setInfoSearch('Введите короткон имя искомой криптовалюты или несколько через запятую');
@@ -32,7 +32,7 @@ export const useSearch = (openModalInfo: (text: string) => void, fetchListOnPage
     }
 
     // вызывает модальное окно с информацией
-    const transferInput = (coinName: string) => {
+    const transferInput = (coinName: string): void => {
         const result: string[] = [];
         
         if(foundCoin.includes(coinName as never)){
@@ -49,7 +49,7 @@ export const useSearch = (openModalInfo: (text: string) => void, fetchListOnPage
         setSearchValue('');
     }
 
-    const deleteFoundCoin = (coin: string) =>{
+    const deleteFoundCoin = (coin: string): void =>{
         setFoundCoin(foundCoin.filter(item => item !== coin));
     }
 

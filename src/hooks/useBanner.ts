@@ -1,5 +1,5 @@
 import { useState, useLayoutEffect, useEffect } from "react";
-import { ImgBanner } from "../type/typesUseBanner";
+import { ImgBanner } from "../type/typeHooks/typesUseBanner";
 
 export const useBannerOperation = () =>{
     const [bannerActive, setBannerActive] = useState<number>(0);

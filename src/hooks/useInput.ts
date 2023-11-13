@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
-import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, UseInputControlType, UseUploadImageType } from "../type/typesUseInput";
+import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, UseInputControlType, UseUploadImageType } from "../type/typeHooks/typesUseInput";
 
 
 
@@ -153,7 +153,7 @@ export const useInputControl = (): UseInputControlType => {
 
         const checkValidErrors = (): boolean =>{
             let counterError = 0;
-            let validResultForm =false;
+            let validResultForm = false;
 
             for(let indexError in newError){
                 if (newError[indexError] === '') {

@@ -5,7 +5,7 @@ import { getAllList, getListOnPage } from '../AP/getCoins';
 import { useDispatch, useSelector } from 'react-redux';
 import { calculateTotal } from '../utils/totalCount';
 import { RootState } from "../store";
-import { UseFetchingCallbackType } from "../type/typesUseCurrences";
+import { UseFetchingCallbackType } from "../type/typeHooks/typesUseCurrences";
 
 export const useCurrences = () =>{
     const allCoinList: any = useSelector((state: RootState) => state.allCoinList.coinsList);
@@ -16,7 +16,7 @@ export const useCurrences = () =>{
     const [currences, setCurrences] = useState([]);
     const [modalInfoText, setModalInfoText] = useState('');
     const [displayedCoins, setDisplayedCoins] = useState([]);
-    const [totalCount, setTotalCount] = useState<string | number>('');
+    const [totalCount, setTotalCount] = useState<number>(0);
 
     const [fetchCoin, isLoadingCoin] = useFetching(async (params: UseFetchingCallbackType): Promise<any> => {
         return await getListOnPage(params)

@@ -6,12 +6,12 @@ import cl from "./Pagination.module.scss";
 
 type Props = {
     getListCoins: (first_number: number, second_number: number) => void,
-    count: string | number
+    count: number
 }
 
 const Pagination:React.FC<Props> = (props: Props) =>{
 
-    const {range, leftArrow, rightArrow, numberButtons, scrollRight, scrollLeft, countСoins} = usePagination(props.getListCoins, props.count);
+    const [range, leftArrow, rightArrow, numberButtons, scrollRight, scrollLeft, countСoins] = usePagination(props.getListCoins, props.count);
 
     const indicatorTrue: boolean = true;
     const indicatorFalse: boolean = false;

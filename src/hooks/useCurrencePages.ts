@@ -5,7 +5,7 @@ import { useFetching } from "../hooks/useFetching";
 import { checkingUndefined } from "../utils/checks";
 import { compileUnix } from "../utils/dateAndTime";
 import { findAverageNumber } from "../utils/findAverageNumber";
-import { CurrencePagesType, ChartDataType, DescriptionCoinType, LabelsType, LabelType, CurrenceDataType } from "../type/typesUseCurrencePages";
+import { CurrencePagesType, ChartDataType, DescriptionCoinType, LabelsType, LabelType, CurrenceDataType } from "../type/typeHooks/typesUseCurrencePages";
 
 export const useCurrencePages = (): CurrencePagesType =>{
     const params = useParams();

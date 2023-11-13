@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UseFetchingCallbackType } from "../type/typesUseCurrences";
+import { UseFetchingCallbackType } from "../type/typeHooks/typesUseCurrences";
 
 export const useFetching = (callback: UseFetchingCallbackType) =>{
     const [isLoading, getIsLoading] = useState(false);

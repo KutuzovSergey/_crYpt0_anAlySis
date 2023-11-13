@@ -55,8 +55,8 @@ const MyChart:React.FC<Props> = (props: Props) =>{
         }
 
     const ChartItem: any = canvasChart;
-
-    const myChart = new Chart(ChartItem.Parameters, {
+    
+    const myChart = new Chart(ChartItem.current, {
       type: 'line',
       data: data,
       options: options

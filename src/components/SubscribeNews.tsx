@@ -8,13 +8,13 @@ import '../styles/componentStyles/SubscribeNews.scss';
 
 const SubscribeNews:React.FC = () =>{
     
-    const { valueEmail, 
+    const [ valueEmail, 
             messageUser, 
             showMessage, 
             validEmail, 
             onChangeEmail, 
             resetEmailValues, 
-            changeShowMessage} = useEmailControl();
+            changeShowMessage] = useEmailControl();
 
     const subscribeSitesNews = (e: React.FormEvent<HTMLFormElement>): void =>{
         e.preventDefault();
