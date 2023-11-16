@@ -18,7 +18,7 @@ export const useCurrences = () =>{
     const [displayedCoins, setDisplayedCoins] = useState([]);
     const [totalCount, setTotalCount] = useState<number>(0);
 
-    const [fetchCoin, isLoadingCoin] = useFetching(async (params: UseFetchingCallbackType): Promise<any> => {
+    const [fetchCoin, isLoadingCoin] = useFetching(async (params: any): Promise<any> => {
         return await getListOnPage(params)
     });
 

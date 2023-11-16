@@ -1,4 +1,4 @@
-export const checkingUndefined = (tested) => {
+export const checkingUndefined = (tested: any): boolean => {
     if (typeof tested === 'undefined') {
         return true
     }

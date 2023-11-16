@@ -2,7 +2,10 @@ import { userDataConst } from '../constants/constants';
 
 const defaultState = {
     valueName: '',
-    userPhoto: null
+    valuePassword: '',
+    valueRepeatPassword: '',
+    valueMail: '',
+    valuePhone: '',
 }
 
 export const userDataReducer = (state = defaultState, action) => {

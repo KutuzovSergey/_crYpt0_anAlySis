@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, FC } from "react";
 import { Route, Routes, } from "react-router-dom";
 import {privateRouters, publicRouters, } from "../router";
 import {AppContext} from '../context/index';
+import { RouterProviderProps } from "react-router-dom";
 
-const AppRouter = () => {
-    const {isAuth} = useContext(AppContext);
+const AppRouter: FC = () => {
+    const {isAuth} = useContext<any>(AppContext);
    
     return (
         isAuth
@@ -13,7 +14,6 @@ const AppRouter = () => {
                 {privateRouters.map(route =>
                     <Route
                         key={route.name}
-                        exact={route.exact}
                         path={route.path} 
                         element={route.component} />
                     )}
@@ -23,7 +23,6 @@ const AppRouter = () => {
                 {publicRouters.map(route =>
                     <Route
                         key={route.name}
-                        exact={route.exact}
                         path={route.path} 
                         element={route.component} />
                     )}

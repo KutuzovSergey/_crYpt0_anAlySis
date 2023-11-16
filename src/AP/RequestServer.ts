@@ -1,4 +1,4 @@
-const serviceList = (method, url, param, apiKey) =>{
+const serviceList = (method: string, url: string, param: string, apiKey: string) =>{
     return new Promise((resolve, reject) => {
 
     const xhr = new XMLHttpRequest();
@@ -24,7 +24,7 @@ const serviceList = (method, url, param, apiKey) =>{
 
 export default class CurrencesService {
 
-    static async getData(method, url, api_key, param=''){
+    static async getData(method: string, url: string, api_key: string, param=''){
         return serviceList(method, url, api_key, param='')
             .then(data => data)
             .catch(err => err)

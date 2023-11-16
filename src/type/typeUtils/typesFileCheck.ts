@@ -1,0 +1,1 @@
+export type DataProcessingType = {[key: string]: string}[]

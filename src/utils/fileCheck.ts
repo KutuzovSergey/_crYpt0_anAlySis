@@ -1,4 +1,6 @@
-export const dataProcessing = (obj) => {
+import { GetDataProcessingType } from "../type/typeAP/typesGetCoins";
+
+export const dataProcessing = (obj: any): any => {
    
     if (Array.isArray(obj)) {
      
@@ -7,7 +9,7 @@ export const dataProcessing = (obj) => {
         console.log(typeof obj);
         return
     } else if(obj.DISPLAY) {
-        const array = [];
+        const array: any = [];
         const array_name = Object.keys(obj.DISPLAY);
         let count = 0;
 
@@ -17,10 +19,10 @@ export const dataProcessing = (obj) => {
             count = ++count;
         });
 
+        console.log(array);
         return array
     } else {
+        console.log(obj.Data);
         return obj.Data
-
     }
-    
 }

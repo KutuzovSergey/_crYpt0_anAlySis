@@ -1,7 +1,8 @@
-// Store
-
-// export type
-
+// export type userDataType = 
+export type defaultStateUserDataType = {
+    valueName: string,
+    userPhoto: string
+}
 // export type ContextType = {
 //     isAuth: boolean,
 //     setIsAuth: React.Dispatch<React.SetStateAction<boolean>>,

@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getChart, getListOnPage } from "../AP/getCoins";
 import { useFetching } from "../hooks/useFetching";
@@ -6,6 +6,7 @@ import { checkingUndefined } from "../utils/checks";
 import { compileUnix } from "../utils/dateAndTime";
 import { findAverageNumber } from "../utils/findAverageNumber";
 import { CurrencePagesType, ChartDataType, DescriptionCoinType, LabelsType, LabelType, CurrenceDataType } from "../type/typeHooks/typesUseCurrencePages";
+import { UseFetchingCallbackType } from "../type/typeHooks/typesUseCurrences";
 
 export const useCurrencePages = (): CurrencePagesType =>{
     const params = useParams();
@@ -59,7 +60,7 @@ export const useCurrencePages = (): CurrencePagesType =>{
     const [descriptionCoin, setDescriptionCoin] = useState<any>({});
     const [chartData, setChartData] = useState<ChartDataType>({time: [], averageIndex: [], text: ``});
 
-    const [fetchContent, isLoadingContent] = useFetching(async (params) => {
+    const [fetchContent, isLoadingContent] = useFetching(async (params: any) => {
         return await getListOnPage(params)
     });
 
@@ -69,7 +70,7 @@ export const useCurrencePages = (): CurrencePagesType =>{
         setCurrenceData(await fetchContent(result));
     }
 
-    const [fetchCoin, isLoadingCoin] = useFetching(async (params) => {
+    const [fetchCoin, isLoadingCoin] = useFetching(async (params: any) => {
         return getChart(params)
     });
 
