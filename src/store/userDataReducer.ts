@@ -1,6 +1,7 @@
 import { userDataConst } from '../constants/constants';
+import { UserDataActionType, UserDataType } from '../type/typeStore/typesStore';
 
-const defaultState = {
+const defaultState: UserDataType = {
     valueName: '',
     valuePassword: '',
     valueRepeatPassword: '',
@@ -8,7 +9,7 @@ const defaultState = {
     valuePhone: '',
 }
 
-export const userDataReducer = (state = defaultState, action) => {
+export const userDataReducer = (state = defaultState, action: UserDataActionType) => {
     switch (action.type){
         case userDataConst.ADD_USER_DATA:
             return {...state, userData: [...state.userData, action.userData]}

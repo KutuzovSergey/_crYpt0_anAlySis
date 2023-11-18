@@ -1,10 +1,11 @@
 import { allCoinListConst } from "../constants/constants";
+import { AllCoinsListType, CoinListType, GetCoinsActionType } from "../type/typeStore/typesStore";
 
 const defaultState = {
     coinsList: ['Sdr0'],
 }
 
-export const allCoinListReducer = (state = defaultState, action) => {
+export const allCoinListReducer = (state = defaultState, action: GetCoinsActionType): CoinListType => {
     switch (action.type){
         case allCoinListConst.GET_COINS_LIST:
             return {...state, coinsList: [...action.payload]}

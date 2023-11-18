@@ -1,19 +1,19 @@
 import { userCoinListConst } from "../constants/constants";
+import { UserCoinListActionType, UserCoinListType } from "../type/typeStore/typesStore";
 
-const defaultState = {
+const defaultState: UserCoinListType = {
     coinsList: [],
 }
 
-export const userCoinListReducer = (state = defaultState, action) => {
+export const userCoinListReducer = (state = defaultState, action: UserCoinListActionType): UserCoinListType => {
     switch (action.type){
         case userCoinListConst.ADD_COIN:
+            console.log(state);
             return {...state, coinsList: [...state.coinsList, action.payload]}
         case userCoinListConst.DELETE_COIN:
+            console.log(state);
             return {...state, coinsList: state.coinsList.filter( item => item.NAME !== action.payload.NAME)}
         default:
             return state
     }
 }
-
-export const addCoin = (coin) => ({type: userCoinListConst.ADD_COIN, payload: coin});
-export const deleteCoin = (coin) => ({type: userCoinListConst.DELETE_COIN, payload: coin});

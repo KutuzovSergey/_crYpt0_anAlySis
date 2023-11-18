@@ -4,12 +4,12 @@ import Pagination from '../components/UI/Pagination/Pagination';
 import LoaderCurrences from '../components/UI/LoaderCurrences/LoaderCurrences';
 import FormSearch from '../components/FormSearch';
 import CurrencesList from '../components/CurrencesList';
-import { getAllList, getListOnPage } from '../AP/getCoins';
-import { useDispatch, useSelector } from 'react-redux';
-import { allCoinListConst } from '../constants/constants';
+import { getAllList } from '../AP/getCoins';
+import { useDispatch } from 'react-redux';
 import { useCurrences } from '../hooks/useCurrences';
 
 import '../styles/Currences.scss';
+import { getAllCoinsList } from '../action/actionCreators';
 
 const Currences:React.FC = () => {
 
@@ -29,9 +29,8 @@ const Currences:React.FC = () => {
         setModalInfo,
         modalInfoText] = useCurrences();
 
-    // console.log(foundCoin);
     const getAllCoins = async () => {
-        dispatch({type:allCoinListConst.GET_COINS_LIST, payload: await getAllList()});
+        dispatch(getAllCoinsList(await getAllList()));
     }
 
     useEffect(() => {getAllCoins()}, []);

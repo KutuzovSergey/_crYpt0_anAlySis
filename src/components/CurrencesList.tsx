@@ -1,11 +1,12 @@
 import React from "react";
 import Card from './Card';
+import { CurrencesType, ObjCoinsType } from "../type/typeComponents/typesMain";
 
 import '../styles/componentStyles/CurrencesList.scss';
 
 type Props ={
-  currences: any[],
-  remove: (obj: {[key: string]: string}) => void,
+  currences: CurrencesType,
+  remove: (obj: ObjCoinsType) => void,
   textInfo: string
 }
 

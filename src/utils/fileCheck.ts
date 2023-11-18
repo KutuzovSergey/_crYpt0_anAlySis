@@ -6,7 +6,7 @@ export const dataProcessing = (obj: any): any => {
      
         return
     } else if (typeof obj !== 'object') {
-        console.log(typeof obj);
+        // console.log(typeof obj);
         return
     } else if(obj.DISPLAY) {
         const array: any = [];
@@ -19,10 +19,10 @@ export const dataProcessing = (obj: any): any => {
             count = ++count;
         });
 
-        console.log(array);
+        // console.log(array);
         return array
     } else {
-        console.log(obj.Data);
+        // console.log(obj.Data);
         return obj.Data
     }
 }

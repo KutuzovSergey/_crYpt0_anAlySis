@@ -34,12 +34,12 @@ export async function  getListOnPage(coins: string[]): Promise<GetDataProcessing
      
     const result = await RequestServer.getData(get, url, parameters, api_key);
 
-    console.log(result);
+    // console.log(result);
     return dataProcessing(result)
 }
 
 export async function getChart(coin: string): Promise<GetDataProcessingType>{
-    console.log(coin);
+    // console.log(coin);
     const api_key: string = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
     const url: string = 'https://min-api.cryptocompare.com/data/v2/histoday';
     const parameters: string = `?fsym=${coin}&tsym=USD&limit=10`;

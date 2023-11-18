@@ -1,11 +1,10 @@
 import { useState, useLayoutEffect, useEffect } from "react";
 import { useFetching } from '../hooks/useFetching';
 import { sortArray } from '../utils/sorting';
-import { getAllList, getListOnPage } from '../AP/getCoins';
-import { useDispatch, useSelector } from 'react-redux';
+import { getListOnPage } from '../AP/getCoins';
+import { useSelector } from 'react-redux';
 import { calculateTotal } from '../utils/totalCount';
 import { RootState } from "../store";
-import { UseFetchingCallbackType } from "../type/typeHooks/typesUseCurrences";
 
 export const useCurrences = () =>{
     const allCoinList: any = useSelector((state: RootState) => state.allCoinList.coinsList);

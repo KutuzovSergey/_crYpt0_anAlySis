@@ -1,17 +1,100 @@
-// export type userDataType = 
-export type defaultStateUserDataType = {
-    valueName: string,
-    userPhoto: string
-}
-// export type ContextType = {
-//     isAuth: boolean,
-//     setIsAuth: React.Dispatch<React.SetStateAction<boolean>>,
-//     modalLogin: boolean,
-//     setModalLogin: React.Dispatch<React.SetStateAction<boolean>>,
-//     errorPages: boolean,
-//     setErrorPages: React.Dispatch<React.SetStateAction<boolean>>,
-//     modalRegistr: boolean,
-//     setModalRegistr: React.Dispatch<React.SetStateAction<boolean>>,
-//     menuAdaptive: boolean,
-//     setMenuAdaptive: React.Dispatch<React.SetStateAction<boolean>>,
+// export type defaultStateUserDataType = {
+//     valueName: string,
+//     userPhoto: string
 // }
+
+import { type } from "os"
+
+// работа с данными пользователя
+export type UserDataType = {[key: string]: string}
+
+export type AddUserActionType = {
+    type: 'ADD_USER_DATA',
+    userData: UserDataType
+}
+
+export type UserDataActionType = {
+    type: string,
+    userData: UserDataType
+}
+
+// добавляем и удаляем монеты пользывателя
+export type CoinType = {
+    CHANGE24HOUR: string,
+    CHANGEDAY: string,
+    CHANGEHOUR: string,
+    CHANGEPCT24HOUR: string,
+    CHANGEPCTDAY: string,
+    CHANGEPCTHOUR: string,
+    CIRCULATINGSUPPLY: string,
+    CIRCULATINGSUPPLYMKTCAP: string,
+    CONVERSIONLASTUPDATE: string,
+    CONVERSIONSYMBOL: string,
+    CONVERSIONTYPE: string,
+    FROMSYMBOL: string,
+    HIGH24HOUR: string,
+    HIGHDAY: string, 
+    HIGHHOUR: string, 
+    IMAGEURL: string,
+    LASTMARKET: string,
+    LASTTRADEID: string,
+    LASTUPDATE: string,
+    LASTVOLUME: string,
+    LASTVOLUMETO: string,
+    LOW24HOUR: string,
+    LOWDAY: string,
+    LOWHOUR: string,
+    MARKET: string,
+    MKTCAP: string,
+    MKTCAPPENALTY: string,
+    NAME: string,
+    OPEN24HOUR: string,
+    OPENDAY: string,
+    OPENHOUR: string,
+    PRICE: string,
+    SUPPLY: string,
+    TOPTIERVOLUME24HOUR: string,
+    TOPTIERVOLUME24HOURTO: string,
+    TOSYMBOL: string,
+    TOTALTOPTIERVOLUME24H: string,
+    TOTALTOPTIERVOLUME24HTO: string,
+    TOTALVOLUME24H: string,
+    TOTALVOLUME24HTO: string,
+    VOLUME24HOUR: string,
+    VOLUME24HOURTO: string,
+    VOLUMEDAY: string,
+    VOLUMEDAYTO: string,
+    VOLUMEHOUR: string,
+    VOLUMEHOURTO: string,
+}
+
+export type AddCoinActionType = {
+    type: 'ADD_COIN',
+    payload: CoinType
+}
+
+export type DeleteCoinActionType = {
+    type: 'DELETE_COIN',
+    payload: CoinType
+}
+
+export type UserCoinListActionType = {
+    type: string,
+    payload: CoinType
+}
+
+export type UserCoinListType = {
+    coinsList: CoinType[]
+}
+
+// получение всех монет 
+export type AllCoinsListType = string[]
+
+export type GetCoinsActionType = {
+    type: 'GET_COINS_LIST',
+    payload: string[]
+}
+
+export type CoinListType = {
+    coinsList: string[]
+}

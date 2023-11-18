@@ -1,24 +1,23 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addCoin } from "../store/userCoinListReducer";
+import { addCoin } from "../action/actionCreators";
 import MyButton from "./UI/MyButton/MyButton";
 import MyButtonSmall from "./UI/MyButtonSmall/MyButtonSmall";
+import { ObjCoinsType } from "../type/typeComponents/typesMain";
 
 import '../styles/componentStyles/Card.scss';
 
 type Props = {
-  props: {
-    [key:string]: string
-  },
-  remove: (obj: {[key:string]: string}) => void
+  props: ObjCoinsType,
+  remove: (obj: ObjCoinsType) => void
 }
 
 const Card:React.FC<Props> = ({props, remove}: Props) => {
   const navigate: (way: string) => void = useNavigate();
   const dispatch = useDispatch();
 
-  const  addNewCoinPersonalAccount = (coin: {[key:string]: string}) => {
+  const  addNewCoinPersonalAccount = (coin: ObjCoinsType) => {
     dispatch(addCoin(coin));
   }
 
