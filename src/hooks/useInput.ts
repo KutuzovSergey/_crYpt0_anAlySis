@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
-import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, UseInputControlType, UseUploadImageType } from "../type/typeHooks/typesUseInput";
+import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, UseInputControlType, UseUploadImageType, FileType, ProfilePhotoType } from "../type/typeHooks/typesUseInput";
 
 
 
 export const useInputControl = (): UseInputControlType => {
     const [valueUserInfo, setValueUserInfo] = useState<ValueUserType>({
-        valueName: '',
-        valuePassword: '',
-        valueRepeatPassword: '',
-        valueMail: '',
-        valuePhone: '',
+        userName: '',
+        userPassword: '',
+        userRepeatPassword: '',
+        userMail: '',
+        userPhone: '',
     });
 
     const [errorStatus, setErrorStatus] = useState<ErrorStatusType>({
@@ -29,38 +29,38 @@ export const useInputControl = (): UseInputControlType => {
         errorPhone: '',
     });
 
-    const onChangeInput = (e: React.ChangeEvent): void => {
+    const onChangeInput = (e: ChangeEvent): void => {
         let newValue = { ...valueUserInfo };
         let newErrorStatus = { ...errorStatus };
         const formElem = e.target as HTMLInputElement;
 
         switch (formElem.name){
             case 'name': 
-                newValue = {...newValue, valueName: formElem.value};
+                newValue = {...newValue, userName: formElem.value};
                 if (newErrorStatus.errorName) {
                     newErrorStatus = {...newErrorStatus, errorName: false};
                 }
                 break;
             case 'password':
-                newValue = {...newValue, valuePassword: formElem.value};
+                newValue = {...newValue, userPassword: formElem.value};
                 if (newErrorStatus.errorPassword) {
                     newErrorStatus = {...newErrorStatus, errorPassword: false};
                 }
                 break;
             case 'repeatPassword':
-                newValue = {...newValue, valueRepeatPassword: formElem.value};
+                newValue = {...newValue, userRepeatPassword: formElem.value};
                 if (newErrorStatus.errorRepeatPassword) {
                     newErrorStatus = {...newErrorStatus, errorRepeatPassword: false};
                 }
                 break;
             case 'mail':
-                newValue = {...newValue, valueMail: formElem.value};
+                newValue = {...newValue, userMail: formElem.value};
                 if (newErrorStatus.errorMail) {
                     newErrorStatus = {...newErrorStatus, errorMail: false};
                 }
                 break;
             case 'phone':
-                newValue = {...newValue, valuePhone: formElem.value};
+                newValue = {...newValue, userPhone: formElem.value};
                 if (newErrorStatus.errorPhone) {
                     newErrorStatus = {...newErrorStatus, errorPhone: false};
                 }
@@ -104,7 +104,7 @@ export const useInputControl = (): UseInputControlType => {
                     } else if (elementValue.length < 6) {
                         ++errorCount;
                         newError = { ...newError, errorPassword: 'Пароль меньше 6 символов'};
-                    } else if (elementValue!== valueUserInfo.valueRepeatPassword) {
+                    } else if (elementValue!== valueUserInfo.userRepeatPassword) {
                         ++errorCount;
                         newError = { ...newError, errorPassword: 'Пароли не совпадают'};
                     } else {
@@ -115,7 +115,7 @@ export const useInputControl = (): UseInputControlType => {
                     if(!elementValue){
                         ++errorCount;
                         newError = { ...newError, errorRepeatPassword: 'Поле не может быть пустым'};
-                    } else if (elementValue !== valueUserInfo.valuePassword) {
+                    } else if (elementValue !== valueUserInfo.userPassword) {
                         ++errorCount;
                         newError = { ...newError, errorRepeatPassword: 'Пароли не совпадают'};
                     } else {
@@ -152,8 +152,8 @@ export const useInputControl = (): UseInputControlType => {
         setError(newError);
 
         const checkValidErrors = (): boolean =>{
-            let counterError = 0;
-            let validResultForm = false;
+            let counterError: number = 0;
+            let validResultForm: boolean = false;
 
             for(let indexError in newError){
                 if (newError[indexError] === '') {
@@ -214,11 +214,11 @@ export const useInputControl = (): UseInputControlType => {
     const resetFormValues = (reasonDataReset: boolean): void => {
         if (reasonDataReset) {
             setValueUserInfo({
-                valueName: '',
-                valuePassword: '',
-                valueRepeatPassword: '',
-                valueMail: '',
-                valuePhone: '',
+                userName: '',
+                userPassword: '',
+                userRepeatPassword: '',
+                userMail: '',
+                userPhone: '',
             });
             setError({
                 errorName: '',
@@ -243,25 +243,28 @@ export const useInputControl = (): UseInputControlType => {
 
 }
 
-export const useUploadImage = (user: HTMLImageElement, inputUpload: any):any => {
+export const useUploadImage = (user: HTMLImageElement, inputUpload: React.RefObject<HTMLInputElement>): any => {
 
-    const [srcProfilePhoto, setSrcProfilePhoto] = useState<HTMLImageElement | any>(user);
+    // console.log(inputUpload.current);
+    const [srcProfilePhoto, setSrcProfilePhoto] = useState<ProfilePhotoType>(user);
 
     const uploadImage = (): void =>{
-        inputUpload.current.click();
+        inputUpload.current?.click();
     }
 
-    const showUploadedImage = (e: React.ChangeEvent<HTMLInputElement>): void =>{
+    const showUploadedImage = (e: ChangeEvent<HTMLInputElement>): void =>{
+        
         const inputFile: any = e.target as HTMLInputElement;
+        
         const file = inputFile.files[0];
-
+        
         let reader = new FileReader();
 
         if (file) {
             reader.readAsDataURL(file);
-
-            reader.onload = function(e) {
-                setSrcProfilePhoto(inputFile.result);
+            
+            reader.onload = function() {
+                setSrcProfilePhoto(reader.result);
             }
 
             reader.onerror = () =>{
@@ -273,7 +276,7 @@ export const useUploadImage = (user: HTMLImageElement, inputUpload: any):any => 
     const resetInputFile = (user: HTMLImageElement): void =>{
         setSrcProfilePhoto(user);
     }
-
+    
     return [
         srcProfilePhoto,
         uploadImage,

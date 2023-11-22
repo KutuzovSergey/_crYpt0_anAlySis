@@ -1,4 +1,12 @@
-export type ValueUserType = {[key: string]: string}
+export type ProfilePhotoType = HTMLImageElement | ArrayBuffer | null | string | undefined
+
+export type ValueUserType = {
+    userName: string,
+    userPassword: string,
+    userRepeatPassword: string,
+    userMail: string,
+    userPhone: string,
+}
 
 export type ErrorStatusType = {[key: string]: boolean}
 
@@ -21,3 +29,13 @@ export type UseUploadImageType = [
     showUploadedImage: (e: React.ChangeEvent<HTMLInputElement>) => void,
     resetInputFile: (user: HTMLImageElement) => void
 ]
+
+export type FileType = {
+    lastModified: number,
+    lastModifiedDate: any,
+    name: string
+    size: number,
+    type: string,
+    webkitRelativePath: string
+}
+// DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> |

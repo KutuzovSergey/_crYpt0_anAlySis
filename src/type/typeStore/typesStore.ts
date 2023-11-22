@@ -1,12 +1,28 @@
-// export type defaultStateUserDataType = {
-//     valueName: string,
-//     userPhoto: string
-// }
-
 import { type } from "os"
 
 // работа с данными пользователя
-export type UserDataType = {[key: string]: string}
+export type ProfilePhotoType = HTMLImageElement | ArrayBuffer | null | string | undefined
+
+export type StateUserDataType = {
+    userData: {
+        userName: string,
+        userPassword: string,
+        userRepeatPassword: string,
+        userMail: string,
+        userPhone: string,
+        userPhoto: ProfilePhotoType,
+    }
+}
+
+export type UserDataType = {
+    userName: string,
+    userPassword: string,
+    userRepeatPassword: string,
+    userMail: string,
+    userPhone: string,
+    userPhoto: ProfilePhotoType,
+}
+
 
 export type AddUserActionType = {
     type: 'ADD_USER_DATA',
@@ -97,4 +113,10 @@ export type GetCoinsActionType = {
 
 export type CoinListType = {
     coinsList: string[]
+}
+
+export type StateType = {
+    allCoinList: {coinsList: string[]},
+    userCoinList: {coinsList: CoinType[]},
+    userData: {userData: UserDataType},
 }

@@ -1,9 +1,19 @@
-import { DataProcessingType } from "../typeUtils/typesFileCheck"
+import { DataObjType, DataProcessingType } from "../typeUtils/typesFileCheck"
+
+type CoinsInListType = {
+    data_available_from: number,
+    id: number, 
+    partner_symbol: string
+    symbol: string
+}
 
 export type GetAllListType = string[] | []
 
-type ArgumentGetListType = {
-    DISPLAY: {[key:string]:any},
-    RAW: {[key:string]:any}
+export type ResultAllListType = {
+    Data: {[key:string]: CoinsInListType},
+    HasWarning: boolean,
+    Message: string,
+    RateLimit: object,
+    Response: string,
+    Type: number,
 }
-export type GetDataProcessingType = (result: ArgumentGetListType) => DataProcessingType

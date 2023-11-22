@@ -1,4 +1,6 @@
-const serviceList = (method: string, url: string, param: string, apiKey: string) =>{
+import { DataObjType } from "../type/typeUtils/typesFileCheck";
+
+const serviceList = (method: string, url: string, param: string, apiKey: string): Promise<DataObjType> =>{
     return new Promise((resolve, reject) => {
 
     const xhr = new XMLHttpRequest();
@@ -9,9 +11,9 @@ const serviceList = (method: string, url: string, param: string, apiKey: string)
 
     xhr.onload = () => {
         if(xhr.status >= 400){
-        reject(xhr.response);
+            reject(xhr.response);
         } else {
-        resolve(xhr.response);
+            resolve(xhr.response);
         }
     }
 

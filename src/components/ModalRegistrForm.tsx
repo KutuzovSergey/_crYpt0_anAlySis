@@ -15,6 +15,7 @@ import { useInputControl, useUploadImage } from "../hooks/useInput";
 import { addUser } from "../action/actionCreators";
 
 import '../styles/Form.scss';
+import { UserDataType } from "../type/typeStore/typesStore";
 
 type Props = {
     setActive: (activ: boolean) => void,
@@ -28,7 +29,7 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
     const {setIsAuth} = useContext<any>(AppContext);
     const [takingPhotos, getTakingPhotos] = useState<boolean>(false);
 
-    const inputUpload = useRef<HTMLInputElement | null>(null);
+    const inputUpload = useRef<HTMLInputElement>(null);
     const profilePhoto = useRef<HTMLImageElement | null>(null);
 
     const {valueUserInfo, 
@@ -47,8 +48,10 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
         e.preventDefault();
 
         if(validation(e)){
-            valueUserInfo.userPhoto = srcProfilePhoto;
-            dispatch(addUser(valueUserInfo));
+            // console.log(srcProfilePhoto);
+            const fullUserInfo: UserDataType = {...valueUserInfo, userPhoto: srcProfilePhoto};
+
+            dispatch(addUser(fullUserInfo));
             setIsAuth(true);
             localStorage.isAuth = true;
             props.setActive(false);
@@ -114,7 +117,7 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
                             type='text'
                             placeholder='имя'
                             autoComplete='name'
-                            value={valueUserInfo.valueName} 
+                            value={valueUserInfo.userName} 
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
                     <div className="form__input">
@@ -125,7 +128,7 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
                             type='password'
                             placeholder='пароль'
                             autoComplete='new-password'
-                            value={valueUserInfo.valuePassword} 
+                            value={valueUserInfo.userPassword} 
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
                     <div className="form__input">
@@ -136,7 +139,7 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
                             type='password'
                             autoComplete='new-password'
                             placeholder='повторите пароль'
-                            value={valueUserInfo.valueRepeatPassword} 
+                            value={valueUserInfo.userRepeatPassword} 
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
                 </div>
@@ -149,7 +152,7 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
                     type='email'
                     autoComplete='email'
                     placeholder='почта'
-                    value={valueUserInfo.valueMail}
+                    value={valueUserInfo.userMail}
                     onChange={ (e) => onChangeInput(e) }/>
             </div>
             <div className="form__input">
@@ -160,7 +163,7 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
                     type='tel'
                     autoComplete='tel'
                     placeholder='телефон'
-                    value={valueUserInfo.valuePhone}
+                    value={valueUserInfo.userPhone}
                     onChange={ (e) => onChangeInput(e) }/>
             </div>
             <div className="form__button">
