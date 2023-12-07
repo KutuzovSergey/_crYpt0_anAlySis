@@ -1,0 +1,13 @@
+@import '../../../styles/Main.scss';
+
+.UserImage{
+    width: 190px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 20px;
+
+    &__img{
+        width: 190px;
+        height: auto;
+    }
+}

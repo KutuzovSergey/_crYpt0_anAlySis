@@ -1,5 +1,48 @@
 @import './Main.scss';
 
 .profile{
+    width: 90%;
+    height: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: auto;
+    background-color: $background_loader_block;
     display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 90% 10%;
+
+    &__take_photo_button{
+        width: 200px;
+        margin: auto;
+    }
+
+    &__data{
+        width: 500px;
+        margin: 0 auto;
+        display: grid;
+        gap: 10px;
+        grid-template-rows: 70px 70px 70px 70px 70px;
+    }
+
+    &__change_password{
+        background-color: $background;
+        width: 400px;
+        height: 70px;
+        padding: 0 10px;
+        display: flex;
+    }
+
+    &__change_password>input{
+        margin: auto;
+    }
+
+    &__button{
+        grid-column: 1 / span 2;
+        display: flex;
+    }
+
+    &__button>button{
+        width: 20%;
+        margin: auto;
+    }
 }

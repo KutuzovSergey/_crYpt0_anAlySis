@@ -10,75 +10,38 @@ import { UseFetchingCallbackType } from "../type/typeHooks/typesUseCurrences";
 
 export const useCurrencePages = (): CurrencePagesType =>{
     const params = useParams();
-    const [currenceData, setCurrenceData] = useState<CurrenceDataType>([{
-        CHANGE24HOUR: '', 
-        CHANGEDAY: '', 
-        CHANGEHOUR: '', 
-        CHANGEPCT24HOUR: '', 
-        CHANGEPCTDAY: '', 
-        CHANGEPCTHOUR: '', 
-        CIRCULATINGSUPPLY: '',
-        CIRCULATINGSUPPLYMKTCAP: '', 
-        CONVERSIONLASTUPDATE: '',
-        CONVERSIONSYMBOL: '',
-        CONVERSIONTYPE: '',
-        FROMSYMBOL: '',
-        HIGH24HOUR: '',
-        HIGHDAY: '',
-        HIGHHOUR: '',
-        IMAGEURL: '',
-        LASTMARKET: '',
-        LASTTRADEID: '',
-        LASTUPDATE: '',
-        LASTVOLUME: '',
-        LASTVOLUMETO: '',
-        LOW24HOUR: '',
-        LOWDAY: '',
-        LOWHOUR: '',
-        MARKET: '',
-        MKTCAP: '',
-        MKTCAPPENALTY: '',
-        NAME: '',
-        OPEN24HOUR: '',
-        OPENDAY: '',
-        OPENHOUR: '',
-        PRICE: '',
-        SUPPLY: '',
-        TOPTIERVOLUME24HOUR: '',
-        TOPTIERVOLUME24HOURTO: '',
-        TOSYMBOL: '',
-        TOTALTOPTIERVOLUME24H: '',
-        TOTALTOPTIERVOLUME24HTO: '',
-        TOTALVOLUME24H: '',
-        TOTALVOLUME24HTO: '',
-        VOLUME24HOUR: '',
-        VOLUME24HOURTO: '',
-        VOLUMEDAY: '',
-        VOLUMEDAYTO: '',
-        VOLUMEHOUR: '',
-        VOLUMEHOURTO: '' }]);
+    const [currenceData, setCurrenceData] = useState<CurrenceDataType>([]);
     const [descriptionCoin, setDescriptionCoin] = useState<any>({});
     const [chartData, setChartData] = useState<ChartDataType>({time: [], averageIndex: [], text: ``});
 
-    const [fetchContent, isLoadingContent] = useFetching(async (params: any) => {
+    const [fetchContent, isLoadingContent] = useFetching(async (params: string[]) => {
+        // console.log(params);
         return await getListOnPage(params)
     });
 
     const getContent = async () => {
-        const result = [];
-        result.push(params.id);
+        const result: string[] = [];
+        if (typeof params.id !== 'undefined') {
+            result.push(params.id);
+        }
         setCurrenceData(await fetchContent(result));
     }
 
-    const [fetchCoin, isLoadingCoin] = useFetching(async (params: any) => {
+    const [fetchCoin, isLoadingCoin] = useFetching(async (params: string[]) => {
+        // console.log(params);
         return getChart(params)
     });
 
     const getDescriptionCoin = async (currenceData: CurrenceDataType ): Promise<any> =>{
+        // console.log(currenceData);
         if (checkingUndefined(currenceData[0]) || +currenceData.length === 0) {
             return
         } else {
-            setDescriptionCoin(await fetchCoin(currenceData[0].NAME));
+            // console.log("worked out");
+            const arrayName: string[] = [];
+            arrayName.push(currenceData[0].NAME);
+            console.log(await fetchCoin(arrayName));
+            setDescriptionCoin(await fetchCoin(arrayName));
         }
     }
 
@@ -99,7 +62,10 @@ export const useCurrencePages = (): CurrencePagesType =>{
 
     useEffect(() => {getContent()}, []);
     useEffect(() => {getDescriptionCoin(currenceData)}, [currenceData]);
-    useEffect(() => {processDataChart(descriptionCoin.Data)}, [descriptionCoin]);
+    useEffect(() => {
+        // console.log(descriptionCoin.Data);
+        processDataChart(descriptionCoin.Data)
+    }, [descriptionCoin]);
 
     const resultCurrence: CurrencePagesType = [ currenceData, chartData ] as const;
 

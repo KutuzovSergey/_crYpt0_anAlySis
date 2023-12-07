@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 
 import cl from './MyInput.module.scss';
 
@@ -12,7 +12,7 @@ type Props = {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const MyInput:React.FC<Props> = (props: Props) => {
+const MyInput:FC<Props> = (props: Props) => {
     return (
         <input className={cl.myInput} {...props}/>
     )

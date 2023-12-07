@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 import { store } from "../store";
 import MyInput from "./UI/MyInput/MyInput";
@@ -9,7 +9,7 @@ import ErrorForm from "./UI/ErrorForm/ErrorForm";
 // import CapturingPhotosWebcam from "./CapturingPhotosWebcam";
 import user from "../images/user/user.png";
 import camera from "../images/icon/camera.svg";
-import upload from "../images/icon/upload.svg";
+import upload from "../images/icon/upload.png";
 import { AppContext } from "../context";
 import { useInputControl, useUploadImage } from "../hooks/useInput";
 import { addUser } from "../action/actionCreators";
@@ -58,7 +58,7 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
         }
     }
 
-    const uploadedImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const uploadedImage = (e: ChangeEvent<HTMLInputElement>) => {
         showUploadedImage(e);
     }
 
@@ -113,10 +113,10 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
                     <div className="form__input">
                         {(error.errorName && errorStatus.errorName) && <ErrorForm>{error.errorName}</ErrorForm>}
                         <MyInput
-                            name='name'
-                            type='text'
-                            placeholder='имя'
-                            autoComplete='name'
+                            name="name"
+                            type="text"
+                            placeholder="имя"
+                            autoComplete="name"
                             value={valueUserInfo.userName} 
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
@@ -124,10 +124,10 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
                         {(error.errorPassword && errorStatus.errorPassword) && 
                             <ErrorForm>{error.errorPassword}</ErrorForm>}
                         <MyInput 
-                            name='password'
-                            type='password'
-                            placeholder='пароль'
-                            autoComplete='new-password'
+                            name="password"
+                            type="password"
+                            placeholder="пароль"
+                            autoComplete="new-password"
                             value={valueUserInfo.userPassword} 
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
@@ -135,10 +135,10 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
                         {(error.errorRepeatPassword && errorStatus.errorRepeatPassword) && 
                             <ErrorForm>{error.errorRepeatPassword}</ErrorForm>}
                         <MyInput
-                            name='repeatPassword'
-                            type='password'
-                            autoComplete='new-password'
-                            placeholder='повторите пароль'
+                            name="repeatPassword"
+                            type="password"
+                            autoComplete="new-password"
+                            placeholder="повторите пароль"
                             value={valueUserInfo.userRepeatPassword} 
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
@@ -148,10 +148,10 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
                 {(error.errorMail && errorStatus.errorMail) && 
                     <ErrorForm>{error.errorMail}</ErrorForm>}
                 <MyInput 
-                    name='mail'
-                    type='email'
-                    autoComplete='email'
-                    placeholder='почта'
+                    name="mail"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="почта"
                     value={valueUserInfo.userMail}
                     onChange={ (e) => onChangeInput(e) }/>
             </div>
@@ -159,10 +159,10 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
                 {(error.errorPhone && errorStatus.errorPhone) && 
                     <ErrorForm>{error.errorPhone}</ErrorForm>}
                 <MyInput 
-                    name='phone'
-                    type='tel'
-                    autoComplete='tel'
-                    placeholder='телефон'
+                    name="phone"
+                    type="tel"
+                    autoComplete="tel"
+                    placeholder="телефон"
                     value={valueUserInfo.userPhone}
                     onChange={ (e) => onChangeInput(e) }/>
             </div>

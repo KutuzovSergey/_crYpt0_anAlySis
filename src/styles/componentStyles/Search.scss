@@ -15,6 +15,11 @@
         height: 40px;
     }
 
+    &__button>button>img{
+        width: 30px;
+        height: auto;
+    }
+
     &__info-hide{
         display: none;
     }

@@ -5,7 +5,7 @@ import MyInput from './UI/MyInput/MyInput';
 import MyButton from './UI/MyButton/MyButton';
 import FoundCoins from "./FoundCoins";
 import { useSearch } from "../hooks/useSearch";
-import searchImg from "../images/icon/search.svg";
+import searchImg from "../images/icon/search.png";
 
 import '../styles/componentStyles/Search.scss';
 

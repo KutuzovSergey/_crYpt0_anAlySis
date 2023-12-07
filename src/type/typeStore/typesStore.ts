@@ -1,7 +1,5 @@
-import { type } from "os"
-
 // работа с данными пользователя
-export type ProfilePhotoType = HTMLImageElement | ArrayBuffer | null | string | undefined
+export type ProfilePhotoType = string | undefined
 
 export type StateUserDataType = {
     userData: {

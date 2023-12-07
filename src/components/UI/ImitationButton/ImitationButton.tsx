@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 
 import styles from './ImitationButton.module.scss';
 
@@ -8,7 +8,7 @@ type Props = {
     onClick: () => void,
 }
 
-const  ImitationButton:React.FC<Props> = ({children, activityIndicator, ...props}: Props) =>{
+const  ImitationButton:FC<Props> = ({children, activityIndicator, ...props}: Props) =>{
 
     const classButtons: string[] = [styles.ImitationButton];
 
