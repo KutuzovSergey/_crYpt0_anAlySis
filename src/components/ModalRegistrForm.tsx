@@ -44,7 +44,6 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
         resetInputFile] = useUploadImage(user, inputUpload);
     
     const registration = (e: React.FormEvent) => {
-        const eventForm = e 
         e.preventDefault();
 
         if(validation(e)){

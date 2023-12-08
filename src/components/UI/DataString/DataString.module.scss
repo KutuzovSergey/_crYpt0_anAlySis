@@ -1,11 +1,12 @@
 @import '../../../styles/Main.scss';
 
 .dataUser{
-    width: 400px;
+    width: 460px;
     height: 60px;
+    margin: auto;
     background-color: $background;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 160px 280px;
     padding: 10px;
 
     &__property_text{
@@ -14,18 +15,28 @@
     }
 
     &__description{
+        display: grid;
+        grid-template-columns: 240px 40px;
+    }
+
+    &__description_block{
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__description_text{
         color: $color;
     }
 
-    &__description{
-        display: grid;
-        grid-template-columns: 80% 20%;
-    }
-
     &__button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
-        width: 20px;
-        height: 20px;
+        width: 40px;
+        height: 40px;
         background: none;
         border: none;
     }
@@ -33,5 +44,17 @@
     &__button>img{
         width: 20px;
         height: 20px;
+    }
+
+    &__input{
+        display: grid;
+        grid-template-columns: 230px 40px;
+    }
+
+    &__hide_input{
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }

@@ -1,0 +1,19 @@
+@import '../../../styles/Main.scss';
+
+.delete{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid $color;
+    border-radius: 5px;
+    background-color: $main_color;
+
+    &__text{
+        position: absolute;
+        left: 3.8px;
+        bottom: 0px;
+        font-size: 0.8rem;
+        color: $background_color_fifth;
+    }
+}
