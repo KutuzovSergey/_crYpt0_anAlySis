@@ -1,18 +1,19 @@
 import React from "react";
 
-import cl from "./ErrorForm.module.scss";
+import cl from "./SmallButtonClose.module.scss";
 
 type Props = {
-    children: string
+    item: string,
+    deleteCoin: (item: string) => void
   }
 
-const ErrorForm:React.FC<Props> = ({children}: Props) =>{
+const SmallButtonClose:React.FC<Props> = (props: Props) =>{
 
     return (
-        <div className={cl.error}>
-            <span className={cl.error__text}>{children}</span>
+        <div className={cl.delete} onClick={() => props.deleteCoin(props.item)}>
+            <span className={cl.delete__text}>&#10006;</span>
         </div>
     )
 }
 
-export default ErrorForm;
+export default SmallButtonClose;

@@ -1,14 +1,19 @@
 @import '../../../styles/Main.scss';
 
-.error{
-    width: 100%;
-    position: absolute;
-    bottom: 40px;
-    left: 0;
+.delete{
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid $color;
+    border-radius: 50%;
+    background-color: $main_color;
 
     &__text{
-        font-weight: 900;
-        font-size: 0.82rem;
-        color: rgb(250, 0, 0);
+        position: absolute;
+        left: 1.5px;
+        bottom: -2px;
+        font-size: 0.8rem;
+        color: $background_color_fifth;
     }
 }

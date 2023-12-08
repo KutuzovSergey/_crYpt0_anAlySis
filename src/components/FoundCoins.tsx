@@ -1,4 +1,5 @@
 import React from "react";
+import SmallButtonClose from "./UI/SmallButtonClose/SmallButtonClose";
 
 import "../styles/componentStyles/FoundCoins.scss";
 
@@ -15,9 +16,7 @@ const FoundCoins:React.FC<Props> = (props: Props) =>{
                 {props.coins.map((item) =>
                     <div className="foundCoins__block" key={item}>
                         <span className="foundCoins__text">{item}</span>
-                        <div className="foundCoins__delete" onClick={() => props.deleteCoin(item)}>
-                            <span className="foundCoins__delete_text">&#10006;</span>
-                        </div>
+                        <SmallButtonClose item={item} deleteCoin={props.deleteCoin} />
                     </div>
                 )}
             </div>
