@@ -18,7 +18,6 @@ export async function getAllList(): Promise<GetAllListType> {
 }
 
 export async function  getListOnPage(coins: string[]): Promise<DataProcessingType | void> {
-    // console.log(coins);
     if (typeof coins === 'undefined' || 
             !Array.isArray(coins) || 
             !coins.length) {
@@ -36,16 +35,14 @@ export async function  getListOnPage(coins: string[]): Promise<DataProcessingTyp
 }
 
 export async function getChart(coin: string[]): Promise<DataProcessingType | void>{
-    console.log(coin.join());
     const url: string = 'https://min-api.cryptocompare.com/data/v2/histoday';
     const parameters: string = `?fsym=${coin.join()}&tsym=USD&limit=10`;
     const api_key: string = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
     const get: string = 'GET';
 
     const result = await RequestServer.getData(get, url, parameters, api_key);
-    console.log(`${url}${parameters}${api_key}`);
 
-    return dataProcessing(result)
+    return result
 }
 // https://min-api.cryptocompare.com/data/v2/histoday?fsym=BIX&tsym=USD&limit=10
 // const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';

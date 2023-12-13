@@ -1,7 +1,6 @@
 import { DataObjType, DataProcessingType } from "../type/typeUtils/typesFileCheck";
 
 export const dataProcessing = (obj: DataObjType): DataProcessingType | void => {
-
     if (obj === null || Array.isArray(obj) || typeof obj !== 'object') {
         return
     } else if(obj.DISPLAY) {

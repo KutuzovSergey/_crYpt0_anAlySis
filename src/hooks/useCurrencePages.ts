@@ -15,7 +15,6 @@ export const useCurrencePages = (): CurrencePagesType =>{
     const [chartData, setChartData] = useState<ChartDataType>({time: [], averageIndex: [], text: ``});
 
     const [fetchContent, isLoadingContent] = useFetching(async (params: string[]) => {
-        // console.log(params);
         return await getListOnPage(params)
     });
 
@@ -28,19 +27,15 @@ export const useCurrencePages = (): CurrencePagesType =>{
     }
 
     const [fetchCoin, isLoadingCoin] = useFetching(async (params: string[]) => {
-        // console.log(params);
         return getChart(params)
     });
 
     const getDescriptionCoin = async (currenceData: CurrenceDataType ): Promise<any> =>{
-        // console.log(currenceData);
         if (checkingUndefined(currenceData[0]) || +currenceData.length === 0) {
             return
         } else {
-            // console.log("worked out");
             const arrayName: string[] = [];
             arrayName.push(currenceData[0].NAME);
-            console.log(await fetchCoin(arrayName));
             setDescriptionCoin(await fetchCoin(arrayName));
         }
     }
@@ -63,8 +58,11 @@ export const useCurrencePages = (): CurrencePagesType =>{
     useEffect(() => {getContent()}, []);
     useEffect(() => {getDescriptionCoin(currenceData)}, [currenceData]);
     useEffect(() => {
-        // console.log(descriptionCoin.Data);
-        processDataChart(descriptionCoin.Data)
+        if ("Data" in descriptionCoin) {
+            processDataChart(descriptionCoin.Data.Data);
+        } else {
+            return
+        }
     }, [descriptionCoin]);
 
     const resultCurrence: CurrencePagesType = [ currenceData, chartData ] as const;
