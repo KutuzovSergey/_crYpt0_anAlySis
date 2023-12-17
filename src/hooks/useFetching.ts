@@ -9,7 +9,6 @@ export const useFetching = (callback: CallbackType) =>{
         getIsLoading(true);
         let result = await callback(params);
         getIsLoading(false);
-        // console.log(params);
         return result
     }
     return [fetching, isLoading] as const

@@ -35,15 +35,22 @@ export async function  getListOnPage(coins: string[]): Promise<DataProcessingTyp
 }
 
 export async function getChart(coin: string[]): Promise<DataProcessingType | void>{
-    const url: string = 'https://min-api.cryptocompare.com/data/v2/histoday';
-    const parameters: string = `?fsym=${coin.join()}&tsym=USD&limit=10`;
-    const api_key: string = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
-    const get: string = 'GET';
+    if (coin[0] !== '') {
+        const url: string = 'https://min-api.cryptocompare.com/data/v2/histoday';
+        const parameters: string = `?fsym=${coin.join()}&tsym=USD&limit=10`;
+        const api_key: string = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
+        const get: string = 'GET';
 
-    const result = await RequestServer.getData(get, url, parameters, api_key);
+        const result = await RequestServer.getData(get, url, parameters, api_key);
 
-    return result
+        console.log(result);
+
+        return result
+    } else {
+        return
+    }
 }
+
 // https://min-api.cryptocompare.com/data/v2/histoday?fsym=BIX&tsym=USD&limit=10
 // const api_key = '?api_key=92c340e1dee1b05551b8fe09fb59f2bc6ba4715e3ec434f226370c7654de8b38';
 // // const url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,AAC,ADB,AIDOC,0XBTC&tsyms=USD,EUR'; 

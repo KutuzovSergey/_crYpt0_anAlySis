@@ -23,6 +23,7 @@ export const useCurrences = () =>{
 
     // сортировка
     const sortCurrences = (sort: any) =>{
+        // console.log(sort);
         const copyCurrences = currences.slice();
        
         setSelectedSort(sort);
@@ -46,6 +47,7 @@ export const useCurrences = () =>{
     }
 
     const removeCurrences = (currency: any): void =>{
+        // console.log(currency);
         setCurrences(currences.filter((item: any) => item.NAME !== currency.NAME));
     }
 

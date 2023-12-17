@@ -2,7 +2,7 @@ import { allCoinListConst } from "../constants/constants";
 import { AllCoinsListType, CoinListType, GetCoinsActionType } from "../type/typeStore/typesStore";
 
 const defaultState = {
-    coinsList: ['Sdr0'],
+    coinsList: ['ABT'],
 }
 
 export const allCoinListReducer = (state = defaultState, action: GetCoinsActionType): CoinListType => {

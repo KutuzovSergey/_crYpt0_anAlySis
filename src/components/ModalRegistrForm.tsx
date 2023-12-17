@@ -13,9 +13,9 @@ import upload from "../images/icon/upload.png";
 import { AppContext } from "../context";
 import { useInputControl, useUploadImage } from "../hooks/useInput";
 import { addUser } from "../action/actionCreators";
+import { UserDataType } from "../type/typeStore/typesStore";
 
 import '../styles/Form.scss';
-import { UserDataType } from "../type/typeStore/typesStore";
 
 type Props = {
     setActive: (activ: boolean) => void,

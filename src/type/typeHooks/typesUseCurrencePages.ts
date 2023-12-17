@@ -15,6 +15,30 @@ export type DescriptionCoinType = {
     TimeTo: number,
 }
 
+export type DescriptionCoin = {
+    Data: {
+        Aggregated: boolean,
+        Data: {
+            close: number,
+            conversionSymbol: string,
+            conversionType: string,
+            high: number,
+            low: number,
+            open: number,
+            time: number,
+            volumefrom: number,
+            volumeto: number
+        }[],
+        TimeFrom: number,
+        TimeTo: number
+    },
+    HasWarning: boolean,
+    Message: string,
+    RateLimit: {},
+    Response: string,
+    Type: number
+}
+
 export type CurrenceDataType = {
     CHANGE24HOUR: string,
     CHANGEDAY: string,
@@ -80,4 +104,9 @@ export type LabelsType = LabelType[]
 export type CurrencePagesType = readonly [
     CurrenceDataType,
     ChartDataType
+]
+
+export type UseCompareCoinsType = [
+    secondDescriptionCoin: any,
+    getSecondCoin: (nameCoin: string) => void
 ]

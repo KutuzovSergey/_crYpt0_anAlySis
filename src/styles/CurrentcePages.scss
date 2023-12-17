@@ -18,9 +18,10 @@
         background-color: $background_color;
     }
 
-    &__links-internet{
+    &__interface{
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
+        flex-direction: column;
     }
 }
 

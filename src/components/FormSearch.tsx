@@ -19,6 +19,7 @@ const FormSearch:React.FC<Props> = (props: Props) =>{
         {name:'По капитализации', value:'CIRCULATINGSUPPLYMKTCAP'},
     ]);
 
+    // console.log(props.sortValue);
     return(
         <form className="FormSearch">
             <Search 

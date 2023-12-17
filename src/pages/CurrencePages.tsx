@@ -1,14 +1,16 @@
-import React from "react";
+import React, {FC} from "react";
 import MyChart from "../components/UI/MyChart/MyChart";
 import ListСoinСharacteristics from "../components/ListСoinСharacteristics";
 import HeaderCoin from "../components/HeaderCoin";
 import LinksInternetSearch from "../components/LinksInternetSearch";
-import { useCurrencePages } from "../hooks/useCurrencePages";
+import { useCompareCoins, useCurrencePages } from "../hooks/useCurrencePages";
+import OtherCoins from "../components/OtherCoins";
 
 import '../styles/CurrentcePages.scss';
 
-const CurrencePages = () => {
+const CurrencePages:FC = () => {
     const [currenceData, chartData] = useCurrencePages();
+    const [secondDescriptionCoin, getSecondCoin] = useCompareCoins();
 
     return (
         <div className="coin">
@@ -26,9 +28,10 @@ const CurrencePages = () => {
                         capitalization={data.CIRCULATINGSUPPLYMKTCAP}/>
                         
                     <div className="coin__chart">
-                        <MyChart newChartData={chartData} nameCoin={data.NAME}/>
-                        <div className="coin__links-internet">
+                        <MyChart newChartData={chartData} nameCoin={data.NAME} secondCoin={secondDescriptionCoin} nameCoinSecond={''}/>
+                        <div className="coin__interface">
                             <LinksInternetSearch nameCoin={data.NAME}/>
+                            <OtherCoins getCoin={getSecondCoin}/>
                         </div>
                     </div>
                 </div>

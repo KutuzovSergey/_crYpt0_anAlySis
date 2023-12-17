@@ -1,15 +1,21 @@
-import React from "react";
+import React, {FC} from "react";
 import { SelectProps } from "@mui/material";
 
 import cl from "./MySelect.module.scss"
 
+type Option = {
+    name: string,
+    value: string
+}
+
 type Props = {
-    options: any,
+    options: Option[],
     defaultValue: string,
     value: string,
     onChange: (e: string) => void
 }
-const MySelect:React.FC<Props> = ({options, defaultValue, value, onChange}: Props) =>{
+
+const MySelect:FC<Props> = ({options, defaultValue, value, onChange}: Props) =>{
     return (
         <select
             value={value}
@@ -17,7 +23,7 @@ const MySelect:React.FC<Props> = ({options, defaultValue, value, onChange}: Prop
             onChange={(e) => onChange(e.target.value)}>
             <option disabled value=''>{defaultValue}</option>
             {
-                options.map((item: any) => 
+                options.map((item: Option) => 
                     <option value={item.value} key={item.value}>{item.name}</option>
                 )
             }

@@ -1,0 +1,13 @@
+@import '../Main.scss';
+@import '../../fonts/RubikMonoOne-Regular.ttf';
+
+.otherCoins{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: $main_color;
+    padding: 23px;
+    border-radius: 5px;
+    height: 202px;
+}
+

@@ -6,6 +6,8 @@ import { Props, StocksData, StocksOptions } from "../../../type/typeComponents/t
 import cl from "./MyChart.module.scss";
 
 const MyChart:React.FC<Props> = (props: Props) =>{
+
+  console.log(props.secondCoin);
   
   const canvasChart = useRef<HTMLCanvasElement>(null);
   
