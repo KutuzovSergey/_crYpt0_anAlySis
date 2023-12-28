@@ -10,8 +10,9 @@ import '../styles/CurrentcePages.scss';
 
 const CurrencePages:FC = () => {
     const [currenceData, chartData] = useCurrencePages();
-    const [secondDescriptionCoin, getSecondCoin] = useCompareCoins();
-
+    const [secondDescriptionCoin, secondNameCoin, getSecondCoin] = useCompareCoins();
+    // console.log(secondDescriptionCoin);
+    // console.log(currenceData);
     return (
         <div className="coin">
             {currenceData.map( data => 
@@ -28,7 +29,11 @@ const CurrencePages:FC = () => {
                         capitalization={data.CIRCULATINGSUPPLYMKTCAP}/>
                         
                     <div className="coin__chart">
-                        <MyChart newChartData={chartData} nameCoin={data.NAME} secondCoin={secondDescriptionCoin} nameCoinSecond={''}/>
+                        <MyChart 
+                            newChartData={chartData} 
+                            nameCoin={data.NAME} 
+                            secondCoin={secondDescriptionCoin} 
+                            nameCoinSecond={secondNameCoin}/>
                         <div className="coin__interface">
                             <LinksInternetSearch nameCoin={data.NAME}/>
                             <OtherCoins getCoin={getSecondCoin}/>

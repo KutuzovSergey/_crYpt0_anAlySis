@@ -108,5 +108,11 @@ export type CurrencePagesType = readonly [
 
 export type UseCompareCoinsType = [
     secondDescriptionCoin: any,
+    secondNameCoin: string,
     getSecondCoin: (nameCoin: string) => void
 ]
+
+export type ObjectResultsType = {
+    averageIndex: number[],
+    time: string[]
+}

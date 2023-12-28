@@ -6,31 +6,33 @@ type ChartDataCoin = {
   text: string,
 }
 
-export type Props = {
+export type PropsType = {
   newChartData: ChartDataCoin,
   nameCoin: string,
   secondCoin: ChartDataCoin,
   nameCoinSecond: string
 }
 
+export type DatasetsCoinType = {
+  label: string,
+  data: number[],
+  backgroundColor: string[],
+  borderColor: string[],
+  pointBackgroundColor: string[],
+  pointHoverBackgroundColor: string,
+  pointRadius: number,
+  pointHoverRadius: number,
+  pointBorderWidth: number,
+  borderWidth: number,
+  tension: number,
+  borderCapStyle: string,
+  cubicInterpolationMode: string,
+  fill: boolean
+}
+
 export interface StocksData extends ChartData {
     labels: string[],
-    datasets: [{
-    label: string,
-    data: number[],
-    backgroundColor: string[],
-    borderColor: string[],
-    pointBackgroundColor: string[],
-    pointHoverBackgroundColor: string,
-    pointRadius: number,
-    pointHoverRadius: number,
-    pointBorderWidth: number,
-    borderWidth: number,
-    tension: number,
-    borderCapStyle: string,
-    cubicInterpolationMode: string,
-    fill: boolean
-  }],
+    datasets: DatasetsCoinType[],
 }
 
   export interface StocksOptions extends ChartOptions {
