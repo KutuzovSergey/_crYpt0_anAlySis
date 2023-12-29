@@ -2,8 +2,6 @@ import { useEffect, useState, ChangeEvent } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
 import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, UseInputControlType, UseUploadImageType, FileType, ProfilePhotoType } from "../type/typeHooks/typesUseInput";
 
-
-
 export const useInputControl = (): UseInputControlType => {
     const [valueUserInfo, setValueUserInfo] = useState<ValueUserType>({
         userName: '',
