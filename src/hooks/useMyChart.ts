@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import Chart from 'chart.js/auto';
-import { ChartDataCoin, StocksData, StocksOptions, DatasetsCoinType, DatasetsCoinArrType } from "../type/typeComponents/typesMyChart";
+import { ChartDataCoin, StocksData, StocksOptions, DatasetsCoinType, DatasetsCoinArrType, RandomParametersType } from "../type/typeComponents/typesMyChart";
+import { getRandomNumber } from "../utils/getRandomNumber";
+import { colorHEXMap, colorRgbaMap } from "../utils/colorsChartsGraphs";
 
 export const useMyChart = (nameCoin: string, 
                           newChartData: ChartDataCoin, 
@@ -17,9 +19,7 @@ export const useMyChart = (nameCoin: string,
       data: newChartData.averageIndex,
       borderColor: '#fd7e14',
       backgroundColor: 'rgba(52, 42, 139, 0.100)',
-      pointBackgroundColor: [
-        '#ffffff'
-      ],
+      pointBackgroundColor: '#ffffff',
       pointHoverBackgroundColor: '#32c46f',
       pointRadius: 3,
       pointHoverRadius: 4,
@@ -74,13 +74,42 @@ export const useMyChart = (nameCoin: string,
       if (chartStatus !== undefined) {
         chartStatus.destroy();
       }
-      
+      const randomParameters: RandomParametersType = {
+        borderColor: '',
+        backgroundColor: '',
+        pointBackgroundColor: '',
+        pointHoverBackgroundColor: '',
+        borderCapStyle: '',
+        cubicInterpolationMode: ''
+      }
+
+      const determineColors = (): void =>{
+        randomParameters.borderColor = colorHEXMap.get(getRandomNumber(0, 100));
+        randomParameters.backgroundColor = colorHEXMap.get(getRandomNumber(0, 100));
+        randomParameters.pointBackgroundColor = colorHEXMap.get(getRandomNumber(0, 100));
+        randomParameters.pointHoverBackgroundColor = colorHEXMap.get(getRandomNumber(0, 100));
+        randomParameters.borderCapStyle = colorHEXMap.get(getRandomNumber(0, 100));
+        randomParameters.cubicInterpolationMode = colorRgbaMap.get(getRandomNumber(0, 100));
+      }
+
+      determineColors();
+
       const newDataCoinChart = [...dataCoinChart];
       const dataSecondCoin: DatasetsCoinType = {
           label: nameCoinSecond,
           data: secondCoin.averageIndex,
-          borderColor: '#6d6d48',
-          backgroundColor: '#6d6d48',
+          borderColor: randomParameters.borderColor,
+          backgroundColor: randomParameters.backgroundColor,
+          pointBackgroundColor: randomParameters.pointBackgroundColor,
+          pointHoverBackgroundColor: randomParameters.pointHoverBackgroundColor,
+          pointRadius: 3,
+          pointHoverRadius: 4,
+          pointBorderWidth: 4,
+          borderWidth: 3,
+          tension: 0.5,
+          borderCapStyle: randomParameters.borderCapStyle,
+          cubicInterpolationMode: randomParameters.cubicInterpolationMode,
+          fill: true,
         }
       newDataCoinChart.push(dataSecondCoin);
       setDataCoinChart(newDataCoinChart);

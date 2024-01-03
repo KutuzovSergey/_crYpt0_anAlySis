@@ -16,9 +16,9 @@ export type PropsType = {
 export type DatasetsCoinType = {
   label: string,
   data: number[],
-  backgroundColor: string,
-  borderColor: string,
-  pointBackgroundColor?: string[],
+  backgroundColor: string | undefined,
+  borderColor: string | undefined,
+  pointBackgroundColor?: string,
   pointHoverBackgroundColor?: string,
   pointRadius?: number,
   pointHoverRadius?: number,
@@ -42,17 +42,26 @@ export interface StocksData extends ChartData {
     datasets: DatasetsCoinType[],
 }
 
-  export interface StocksOptions extends ChartOptions {
-    legend: {
-      display: boolean,
-      labels: {
-        fontColor: string,
-        fontSize: number
-      }
-    },
-    scales: {
-      y: {
-        beginAtZero: boolean
-      }
+export interface StocksOptions extends ChartOptions {
+  legend: {
+    display: boolean,
+    labels: {
+      fontColor: string,
+      fontSize: number
+    }
+  },
+  scales: {
+    y: {
+      beginAtZero: boolean
     }
   }
+}
+
+export type RandomParametersType = {
+  borderColor: string | undefined,
+  backgroundColor: string | undefined,
+  pointBackgroundColor: string | undefined,
+  pointHoverBackgroundColor: string | undefined,
+  borderCapStyle: string | undefined,
+  cubicInterpolationMode: string | undefined
+}
