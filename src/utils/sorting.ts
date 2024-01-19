@@ -7,11 +7,11 @@ export const sortingNumbers = (a: number | string, b: number | string): number =
         return 1
     }
 }
-
+// keyof ObjCoinsType
 export const sortArray = (sort: keyof ObjCoinsType, str: string, arr: CurrencesType) => {
-  
-    if (sort === str) {  
-        console.log(arr.sort((a, b) =>  `${a[sort]}`.localeCompare(b[sort])))         
+
+    // console.log(sort);
+    if (sort === str) {        
         arr.sort((a, b) =>  a[sort].localeCompare(b[sort]));
     } else {
         arr.sort((a, b) =>  sortingNumbers(a[sort], b[sort]));

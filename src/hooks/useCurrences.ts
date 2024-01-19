@@ -1,10 +1,11 @@
-import { useState, useLayoutEffect, useEffect } from "react";
+import { useState, useLayoutEffect, useEffect, useCallback } from "react";
 import { useFetching } from '../hooks/useFetching';
 import { sortArray } from '../utils/sorting';
 import { getListOnPage } from '../AP/getCoins';
 import { useSelector } from 'react-redux';
 import { calculateTotal } from '../utils/totalCount';
 import { RootState } from "../store";
+import { ObjCoinsType } from "../type/typeComponents/typesMain";
 
 export const useCurrences = () =>{
     const allCoinList: any = useSelector((state: RootState) => state.allCoinList.coinsList);
@@ -17,7 +18,7 @@ export const useCurrences = () =>{
     const [displayedCoins, setDisplayedCoins] = useState([]);
     const [totalCount, setTotalCount] = useState<number>(0);
 
-    const [fetchCoin, isLoadingCoin] = useFetching(async (params: any): Promise<any> => {
+    const [fetchCoin, isLoadingCoin, fetchCoinsToList, isLoadingList] = useFetching(async (params: string[]): Promise<any> => {
         return await getListOnPage(params)
     });
 
@@ -27,13 +28,13 @@ export const useCurrences = () =>{
         const copyCurrences = currences.slice();
        
         setSelectedSort(sort);
-        sortArray(sort, 'NAME', copyCurrences);
+        sortArray( sort, 'NAME', copyCurrences);
         setCurrences(copyCurrences);
     }
 
-    const getDisplayedCoins = async (coins: any, min: number, max: number) =>{
+    const getDisplayedCoins = async (coins: string[], min: number, max: number) =>{
         const result: string[] = [];
-        coins.forEach( (item: any) => {
+        coins.forEach( (item: string) => {
             if (coins.indexOf(item) >= min && coins.indexOf(item) <= max) {
                 result.push(item);
             }
@@ -42,13 +43,13 @@ export const useCurrences = () =>{
         setDisplayedCoins(result as never[]);
     }
 
-    const getListCoins = (indexMin: number, indexMax: number): void =>{
+    const getListCoins = useCallback( (indexMin: number, indexMax: number): void =>{
         getDisplayedCoins(allCoinList, indexMin, indexMax);
-    }
+    }, []);
 
-    const removeCurrences = (currency: any): void =>{
+    const removeCurrences = (currency: ObjCoinsType): void =>{
         // console.log(currency);
-        setCurrences(currences.filter((item: any) => item.NAME !== currency.NAME));
+        setCurrences(currences.filter((item: ObjCoinsType) => item.NAME !== currency.NAME));
     }
 
     const openModalInfo = (text: string): void =>{
@@ -56,7 +57,8 @@ export const useCurrences = () =>{
         setModalInfo(true);
     }
 
-    const getTotalCount = () => {
+    const getTotalCount = (): void => {
+        // console.log('eys')
         setTotalCount(calculateTotal(allCoinList, 9));
     }
 
@@ -64,7 +66,11 @@ export const useCurrences = () =>{
         setCurrences( await fetchCoin(coinList));
     }
 
-    useEffect(() => {fetchListOnPage(displayedCoins)}, [displayedCoins]);
+    const fetchListNextPage = async (coinList: string[]): Promise<any> =>{
+        setCurrences( await fetchCoinsToList(coinList));
+    }
+
+    useEffect(() => {fetchListNextPage(displayedCoins)}, [displayedCoins]);
     useEffect(() => {getListCoins(1, 10)}, [allCoinList]);
     useEffect(() => {getTotalCount()}, [allCoinList]);
 
@@ -82,5 +88,6 @@ export const useCurrences = () =>{
         modalInfo,
         setModalInfo,
         modalInfoText,
+        isLoadingList,
     ] as const
 }

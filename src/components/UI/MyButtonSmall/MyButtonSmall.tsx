@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import cl from './MyButtonSmall.module.scss';
 
@@ -9,7 +9,7 @@ type Props = {
     onClick: () => void,
 }
 
-const  MyButtonSmall:React.FC<Props> = ({children, activityIndicator, ...props}: Props) =>{
+const  MyButtonSmall:React.FC<Props> = memo( ({children, activityIndicator, ...props}: Props) =>{
 
     const classButtons = [cl.myButtonSmall];
 
@@ -17,11 +17,13 @@ const  MyButtonSmall:React.FC<Props> = ({children, activityIndicator, ...props}:
         classButtons.push(cl.myButtonSmall__active);
     }
 
+    // console.log(activityIndicator, children);
+
     return (
         <div {...props} className={classButtons.join(' ')}>
             <span className={cl.myButtonSmall__text}>{children}</span>
         </div>
     )
-}
+});
 
 export default MyButtonSmall;

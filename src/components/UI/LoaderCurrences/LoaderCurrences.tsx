@@ -3,7 +3,7 @@ import loader from '../../../images/icon/loader.gif';
 
 import cl from './LoaderCurrences.module.scss';
 
-const Loader:React.FC = () => {
+const LoaderCurrences:React.FC = () => {
     return (
         <div className={cl.loaderPage}>
             <div className={cl.loader}>
@@ -45,4 +45,4 @@ const Loader:React.FC = () => {
     )
 }
 
-export default Loader;
+export default LoaderCurrences;

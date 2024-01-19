@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { UsePaginationType, GetListCoinsType, CountType, ButtonsVisibleType } from "../type/typeHooks/typesUsePagination";
 
 export const usePagination = (getListCoins: GetListCoinsType, count: CountType): UsePaginationType =>{
@@ -6,7 +6,7 @@ export const usePagination = (getListCoins: GetListCoinsType, count: CountType):
     const [leftArrow, setLeftArrow] = useState<boolean>(false);
     const [rightArrow, setRightArrow] = useState<boolean>(false);
     const [buttonsVisible, setButtonsVisible] = useState<ButtonsVisibleType>({ min: 1, max: 10 });
-    const [range, setRange] = useState(1);
+    const [rangeNumber, setRangeNumber] = useState<number>(1);
 
     const scrollRight = (): void =>{
 
@@ -35,17 +35,21 @@ export const usePagination = (getListCoins: GetListCoinsType, count: CountType):
         setButtonsVisible(newButtonsLeft);
     }
 
-    const countСoins = (number: number): void =>{
+    const countСoins = (numberPage: number): void =>{
         let result: number = 1;
-        let second_number: number = number * 9;
+        let second_number: number = numberPage * 9;
         let first_number: number = second_number - 8;
 
         getListCoins(first_number, second_number);
 
-        result = number;
+        result = numberPage;
 
-        setRange(result);
+        setRangeNumber(numberPage);
     }
+
+    const range = useMemo(() => {
+        return rangeNumber
+    }, [rangeNumber]);
 
     useEffect(() => {
         let min: number = +buttonsVisible.min;
@@ -69,6 +73,7 @@ export const usePagination = (getListCoins: GetListCoinsType, count: CountType):
 
     }, [count, buttonsVisible]);
 
+    // console.log(range);
     return [
         range,
         leftArrow,

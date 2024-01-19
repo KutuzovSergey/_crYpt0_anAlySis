@@ -17,6 +17,8 @@ const UserAccount:React.FC = () => {
         dispatch(deleteCoin(currency));
     }
 
+    const isLoadingList = false;
+
     return (
         <div className="account">
             <div className="account__wrapper">
@@ -25,9 +27,9 @@ const UserAccount:React.FC = () => {
                     <TitleForPage>Выбранные монеты</TitleForPage>
                     <CurrencesList
                         currences={userCoinList.coinsList}
-                        // listLoading={false}
                         remove={removeCurrences}
                         textInfo={''}
+                        isLoadingList={isLoadingList}
                         />
                 </div>
             </div>

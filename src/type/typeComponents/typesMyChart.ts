@@ -32,7 +32,6 @@ export type DatasetsCoinType = {
 
 export type DatasetsCoinArrType = DatasetsCoinType[]
 
-
 export type CanvasChartType = {
   current: HTMLCanvasElement
 }

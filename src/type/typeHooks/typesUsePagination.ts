@@ -4,6 +4,9 @@ export type CountType = number
 
 export type ButtonsVisibleType ={ min: number, max: number}
 
+export type RangeType = {
+    current: number
+}
 export type UsePaginationType = readonly [
     range: number,
     leftArrow: boolean,

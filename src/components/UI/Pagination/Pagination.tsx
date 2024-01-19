@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo } from "react";
 import MyButtonSmall from "../MyButtonSmall/MyButtonSmall";
 import { usePagination } from "../../../hooks/usePagination";
 
@@ -9,12 +9,21 @@ type Props = {
     count: number
 }
 
-const Pagination:React.FC<Props> = (props: Props) =>{
+const Pagination:React.FC<Props> = memo((props: Props) =>{
 
-    const [range, leftArrow, rightArrow, numberButtons, scrollRight, scrollLeft, countСoins] = usePagination(props.getListCoins, props.count);
+    const [rangeNumber, 
+            leftArrow, 
+            rightArrow, 
+            numberButtons, 
+            scrollRight, 
+            scrollLeft, 
+            countСoins] = usePagination(props.getListCoins, props.count);
 
     const indicatorTrue: boolean = true;
     const indicatorFalse: boolean = false;
+
+    // console.log(props.getListCoins);
+    // console.log(props.count);
 
     return (
         <div className={cl.pagination}>
@@ -31,9 +40,9 @@ const Pagination:React.FC<Props> = (props: Props) =>{
                 numberButtons.map((item) => 
                     <MyButtonSmall 
                         key={item}
-                        activityIndicator={item === range ? indicatorTrue : indicatorFalse}
+                        activityIndicator={item === rangeNumber ? indicatorTrue : indicatorFalse}
                         onClick={() => countСoins(item)}>{item}
-                        </MyButtonSmall>)
+                    </MyButtonSmall>)
                 } 
             </div>
             <div className={cl.pagination__block}>
@@ -46,6 +55,6 @@ const Pagination:React.FC<Props> = (props: Props) =>{
             </div>
         </div>
     )
-}
+});
 
 export default Pagination;

@@ -1,0 +1,47 @@
+@import '../../../styles/Main.scss';
+
+.loaderPage{
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    background-color: $background_loader;
+    
+    &__content{
+        display: flex;
+        flex-wrap: wrap;
+        align-content: space-around;
+        justify-content: space-between;
+        padding: 30px;
+    }
+
+    &__card{
+        width: 320px;
+        height: 190px;
+        margin: 2rem auto 0 auto;
+        border-radius: 5px;
+        background-color: $background_loader_block;
+    }
+}
+
+.loader{
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    &__wrapper{
+        width: 200px;
+        height: 200px;
+        margin: auto;
+    }
+
+    &__image{
+        width: 200px;
+        height: 200px;
+    }
+}

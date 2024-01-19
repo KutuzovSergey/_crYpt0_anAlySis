@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import MySelect from "./UI/MySelect/MySelect";
 import Search from "./Search";
 import { SelectType } from "../type/typeComponents/typesSearchSelect";
@@ -12,7 +12,7 @@ type Props = {
     openModalInfo: (text: string) => void,
 }
 
-const FormSearch:React.FC<Props> = (props: Props) =>{
+const FormSearch:React.FC<Props> = memo( (props: Props) =>{
     const [options, setOptions] = useState<SelectType>([
         {name:'По алфавиту', value:'NAME'},
         {name:'По стоимости', value:'PRICE'},
@@ -35,7 +35,7 @@ const FormSearch:React.FC<Props> = (props: Props) =>{
             </div>
         </form>
     )
-}
+});
 
 export default FormSearch;
 

@@ -7,9 +7,9 @@ import CurrencesList from '../components/CurrencesList';
 import { getAllList } from '../AP/getCoins';
 import { useDispatch } from 'react-redux';
 import { useCurrences } from '../hooks/useCurrences';
+import { getAllCoinsList } from '../action/actionCreators';
 
 import '../styles/Currences.scss';
-import { getAllCoinsList } from '../action/actionCreators';
 
 const Currences:React.FC = () => {
 
@@ -27,7 +27,8 @@ const Currences:React.FC = () => {
         getListCoins,
         modalInfo,
         setModalInfo,
-        modalInfoText] = useCurrences();
+        modalInfoText,
+        isLoadingList] = useCurrences();
 
     const getAllCoins = async () => {
         dispatch(getAllCoinsList(await getAllList()));
@@ -52,14 +53,14 @@ const Currences:React.FC = () => {
             <CurrencesList 
                 currences={currences}
                 textInfo={'Монеты не найдены'}
-                remove={removeCurrences}/>
+                remove={removeCurrences}
+                isLoadingList={isLoadingList}/>
             <Pagination count={totalCount} getListCoins={getListCoins} />
             <MyModal active={modalInfo} setActive={setModalInfo}>
                 <div className='content__modal__info'>
                     <span className='content__modal__info__text'>{modalInfoText}</span>
                 </div>
             </MyModal>
-            
         </div>
     )
 }

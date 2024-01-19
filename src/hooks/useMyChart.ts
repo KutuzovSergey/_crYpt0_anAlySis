@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Chart from 'chart.js/auto';
-import { ChartDataCoin, StocksData, StocksOptions, DatasetsCoinType, DatasetsCoinArrType, RandomParametersType } from "../type/typeComponents/typesMyChart";
+import { ChartDataCoin, StocksData, StocksOptions, DatasetsCoinType, DatasetsCoinArrType, RandomParametersType, CanvasChartType } from "../type/typeComponents/typesMyChart";
 import { getRandomNumber } from "../utils/getRandomNumber";
 import { colorHEXMap, colorRgbaMap } from "../utils/colorsChartsGraphs";
 
@@ -8,8 +8,8 @@ export const useMyChart = (nameCoin: string,
                           newChartData: ChartDataCoin, 
                           nameCoinSecond: string, 
                           secondCoin: ChartDataCoin, 
-                          canvasElement: any): any =>{
-
+                          canvasElement: CanvasChartType): void =>{
+  
   const [dataCoinChart, setDataCoinChart] = useState<DatasetsCoinArrType>([]);
 
   useEffect( () => {
@@ -31,10 +31,12 @@ export const useMyChart = (nameCoin: string,
       fill: true,
     }
 
-    const arrDataCoin: any = [];
+    const arrDataCoin: DatasetsCoinArrType = [];
+
     arrDataCoin.push(dataCoin);
     setDataCoinChart(arrDataCoin);
-    
+    console.log(arrDataCoin);
+
     Chart.overrides.line.spanGaps = true;
 
     const data: StocksData = {
