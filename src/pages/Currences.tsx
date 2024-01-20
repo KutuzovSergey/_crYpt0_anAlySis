@@ -44,10 +44,10 @@ const Currences:React.FC = () => {
         <div className='content'>
             <FormSearch 
                 sortValue={selectedSort}
+                foundCoin={foundCoin} 
                 sort={sort => sortCurrences(sort)}
-                // foundCoin={foundCoin} 
-                openModalInfo={openModalInfo}
                 fetchListOnPage={fetchListOnPage}
+                openModalInfo={openModalInfo}
                 />
             <hr className='content__line' />
             <CurrencesList 

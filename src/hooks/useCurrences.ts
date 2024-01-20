@@ -1,21 +1,22 @@
-import { useState, useLayoutEffect, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useFetching } from '../hooks/useFetching';
 import { sortArray } from '../utils/sorting';
 import { getListOnPage } from '../AP/getCoins';
 import { useSelector } from 'react-redux';
 import { calculateTotal } from '../utils/totalCount';
 import { RootState } from "../store";
-import { ObjCoinsType } from "../type/typeComponents/typesMain";
+import { CurrencesType, ObjCoinsType } from "../type/typeComponents/typesMain";
+import { UseCurrencesType } from "../type/typeHooks/typesUseCurrences";
 
-export const useCurrences = () =>{
-    const allCoinList: any = useSelector((state: RootState) => state.allCoinList.coinsList);
-    const [foundCoin, setFoundCoin] = useState([]);
-
-    const [modalInfo, setModalInfo] = useState(false);
-    const [selectedSort, setSelectedSort] = useState('');
-    const [currences, setCurrences] = useState([]);
-    const [modalInfoText, setModalInfoText] = useState('');
-    const [displayedCoins, setDisplayedCoins] = useState([]);
+export const useCurrences = (): UseCurrencesType =>{
+    const allCoinList: string[] = useSelector((state: RootState) => state.allCoinList.coinsList);
+    const [foundCoin, setFoundCoin] = useState<string[]>([]);
+    
+    const [modalInfo, setModalInfo] = useState<boolean>(false);
+    const [selectedSort, setSelectedSort] = useState<string>('');
+    const [currences, setCurrences] = useState<CurrencesType>([]);
+    const [modalInfoText, setModalInfoText] = useState<string>('');
+    const [displayedCoins, setDisplayedCoins] = useState<string[]>([]);
     const [totalCount, setTotalCount] = useState<number>(0);
 
     const [fetchCoin, isLoadingCoin, fetchCoinsToList, isLoadingList] = useFetching(async (params: string[]): Promise<any> => {
@@ -23,12 +24,12 @@ export const useCurrences = () =>{
     });
 
     // сортировка
-    const sortCurrences = (sort: any) =>{
-        // console.log(sort);
+    const sortCurrences = (sort: string) =>{
         const copyCurrences = currences.slice();
        
         setSelectedSort(sort);
-        sortArray( sort, 'NAME', copyCurrences);
+        let sortKey: any = sort;
+        sortArray( sortKey, 'NAME', copyCurrences);
         setCurrences(copyCurrences);
     }
 
@@ -48,7 +49,6 @@ export const useCurrences = () =>{
     }, []);
 
     const removeCurrences = (currency: ObjCoinsType): void =>{
-        // console.log(currency);
         setCurrences(currences.filter((item: ObjCoinsType) => item.NAME !== currency.NAME));
     }
 
@@ -58,7 +58,6 @@ export const useCurrences = () =>{
     }
 
     const getTotalCount = (): void => {
-        // console.log('eys')
         setTotalCount(calculateTotal(allCoinList, 9));
     }
 
@@ -73,7 +72,7 @@ export const useCurrences = () =>{
     useEffect(() => {fetchListNextPage(displayedCoins)}, [displayedCoins]);
     useEffect(() => {getListCoins(1, 10)}, [allCoinList]);
     useEffect(() => {getTotalCount()}, [allCoinList]);
-
+    
     return [
         isLoadingCoin,
         selectedSort,
@@ -89,5 +88,5 @@ export const useCurrences = () =>{
         setModalInfo,
         modalInfoText,
         isLoadingList,
-    ] as const
+    ]
 }

@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { UseFetchingCallbackType } from "../type/typeHooks/typesUseCurrences";
 import { CallbackType } from "../type/typeHooks/typesUseFetching";
+import { CurrencesType } from "../type/typeComponents/typesMain";
 
 export const useFetching = (callback: CallbackType) =>{
     const isLoading = useRef(false);
@@ -10,6 +11,7 @@ export const useFetching = (callback: CallbackType) =>{
         isLoading.current = true;
         let result = await callback(params);
         isLoading.current = false;
+        console.log(result);
         return result
     }
 
@@ -17,6 +19,7 @@ export const useFetching = (callback: CallbackType) =>{
         isLoadingList.current = true;
         let result = await callback(params);
         isLoadingList.current = false;
+        console.log(result);
         return result
     }
 
