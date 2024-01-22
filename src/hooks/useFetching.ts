@@ -1,25 +1,22 @@
-import { useState, useRef } from "react";
-import { UseFetchingCallbackType } from "../type/typeHooks/typesUseCurrences";
-import { CallbackType } from "../type/typeHooks/typesUseFetching";
+import { useRef } from "react";
+import { CallbackType, UseFetchingType } from "../type/typeHooks/typesUseFetching";
 import { CurrencesType } from "../type/typeComponents/typesMain";
 
-export const useFetching = (callback: CallbackType) =>{
+export const useFetching = (callback: CallbackType): UseFetchingType =>{
     const isLoading = useRef(false);
     const isLoadingList = useRef(false);
     
-    const fetchCoin = async (params: string[]) =>{
+    const fetchCoin = async (params: string[]): Promise<CurrencesType> =>{
         isLoading.current = true;
         let result = await callback(params);
         isLoading.current = false;
-        console.log(result);
         return result
     }
 
-    const fetchCoinsToList = async (params: string[]) =>{
+    const fetchCoinsToList = async (params: string[]): Promise<CurrencesType> =>{
         isLoadingList.current = true;
         let result = await callback(params);
         isLoadingList.current = false;
-        console.log(result);
         return result
     }
 
@@ -28,5 +25,5 @@ export const useFetching = (callback: CallbackType) =>{
         isLoading.current, 
         fetchCoinsToList,
         isLoadingList.current,
-    ] as const
+    ]
 }

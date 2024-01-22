@@ -24,7 +24,7 @@ return (
       ? currences.map( currency =>
         <Card 
           key={currency.NAME} 
-          props={currency}
+          currencyInfo={currency}
           remove={remove}/>)
         : <div className="card-block__none">
           <span>{textInfo}</span>
