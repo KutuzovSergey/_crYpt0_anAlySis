@@ -10,14 +10,14 @@ export const addUser = (userData: UserDataType): AddUserActionType => {
     }
 }
 
-// добавляем и удаляем монеты пользывателя
+// добавляем монеты пользывателя
 export const addCoin = (coin: CoinType): AddCoinActionType => {
     return {
         type: userCoinListConst.ADD_COIN, 
         payload: coin
     }
 }
-
+// удаляем монеты пользывателя
 export const deleteCoin = (coin: CoinType): DeleteCoinActionType => {
     return {
         type: userCoinListConst.DELETE_COIN, 

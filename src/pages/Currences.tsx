@@ -54,7 +54,9 @@ const Currences:React.FC = () => {
                 currences={currences}
                 textInfo={'Монеты не найдены'}
                 remove={removeCurrences}
-                isLoadingList={isLoadingList}/>
+                isLoadingList={isLoadingList}
+                displayingAdd={true} 
+                />
             <Pagination count={totalCount} getListCoins={getListCoins} />
             <MyModal active={modalInfo} setActive={setModalInfo}>
                 <div className='content__modal__info'>

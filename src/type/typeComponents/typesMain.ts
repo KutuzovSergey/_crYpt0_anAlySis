@@ -48,3 +48,7 @@ export type ObjCoinsType = {
 }
 
 export type CurrencesType = ObjCoinsType[]
+
+export type CurrencesStateType = {
+  coinsList: CurrencesType
+}

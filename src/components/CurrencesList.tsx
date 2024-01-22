@@ -9,15 +9,16 @@ type Props ={
   currences: CurrencesType,
   remove: (obj: ObjCoinsType) => void,
   textInfo: string,
-  isLoadingList: boolean
+  isLoadingList: boolean,
+  displayingAdd: boolean
 }
 
-const CurrencesList:React.FC<Props> = ({currences, remove, textInfo, isLoadingList}: Props) => {
+const CurrencesList:React.FC<Props> = ({currences, remove, textInfo, isLoadingList, displayingAdd}: Props) => {
 
-  if (isLoadingList) {
-    return <LoaderCurrencesList/>
-  }
-  
+if (isLoadingList) {
+  return <LoaderCurrencesList/>
+}
+
 return (
   <div className='card-block'>
     {currences.length !== 0
@@ -25,8 +26,10 @@ return (
         <Card 
           key={currency.NAME} 
           currencyInfo={currency}
-          remove={remove}/>)
-        : <div className="card-block__none">
+          remove={remove}
+          displayingAddButton = {displayingAdd}/>)
+        : 
+        <div className="card-block__none">
           <span>{textInfo}</span>
         </div>
       }
