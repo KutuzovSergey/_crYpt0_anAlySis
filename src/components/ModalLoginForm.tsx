@@ -17,7 +17,7 @@ const ModalLoginForm:React.FC = () => {
     const logAccount = (e: React.FormEvent): void => {
         e.preventDefault();
 
-        if(validLogin(e)){
+        if(validLogin(e)()){
             resetLog();
             setIsAuth(true);
             localStorage.isAuth = true;

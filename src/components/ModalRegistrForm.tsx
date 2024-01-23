@@ -45,9 +45,8 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
     
     const registration = (e: React.FormEvent) => {
         e.preventDefault();
-
-        if(validation(e)){
-            // console.log(srcProfilePhoto);
+        
+        if(validation(e)()){
             const fullUserInfo: UserDataType = {...valueUserInfo, userPhoto: srcProfilePhoto};
 
             dispatch(addUser(fullUserInfo));

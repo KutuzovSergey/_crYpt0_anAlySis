@@ -8,6 +8,7 @@ import { getAllList } from '../AP/getCoins';
 import { useDispatch } from 'react-redux';
 import { useCurrences } from '../hooks/useCurrences';
 import { getAllCoinsList } from '../action/actionCreators';
+import MessageToUser from '../components/UI/MessageToUser/MessageToUser';
 
 import '../styles/Currences.scss';
 
@@ -59,9 +60,7 @@ const Currences:React.FC = () => {
                 />
             <Pagination count={totalCount} getListCoins={getListCoins} />
             <MyModal active={modalInfo} setActive={setModalInfo}>
-                <div className='content__modal__info'>
-                    <span className='content__modal__info__text'>{modalInfoText}</span>
-                </div>
+                <MessageToUser>{modalInfoText}</MessageToUser>
             </MyModal>
         </div>
     )

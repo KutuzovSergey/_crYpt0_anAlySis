@@ -15,18 +15,6 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
-
-    &__modal__info{
-        width: 100%;
-        height: auto;
-        display: flex;
-    }
-
-    &__modal__info__text{
-        @include textNormalDark();
-        margin: auto;
-        text-align: center;
-    }
 }
 
 @media (max-width: 580px){

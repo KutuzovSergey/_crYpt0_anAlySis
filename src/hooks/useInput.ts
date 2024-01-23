@@ -165,7 +165,7 @@ export const useInputControl = (): UseInputControlType => {
                 counterError = 0;
                 validResultForm = false;
             }
-
+            
             return validResultForm
         }
 

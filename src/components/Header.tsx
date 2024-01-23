@@ -22,6 +22,9 @@ const Header:React.FC = () =>{
     }
 
     const logOutAccount = (): void =>{
+        if (errorPages) {
+            setErrorPages(false);
+        }
         setIsAuth(false);
         localStorage.isAuth = false;
     }

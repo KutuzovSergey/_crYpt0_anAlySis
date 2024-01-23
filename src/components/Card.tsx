@@ -69,7 +69,7 @@ const Card:React.FC<Props> = ({currencyInfo, remove, displayingAddButton}: Props
         }
       </div>
       <MyModal active={showNotification} setActive={setShowNotification}>
-        <MessageToUser>"Монета уже добавлена, выберите другую"</MessageToUser>
+        <MessageToUser>Монета уже добавлена, выберите другую</MessageToUser>
       </MyModal>
     </div>
   )
