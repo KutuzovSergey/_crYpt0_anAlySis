@@ -49,6 +49,7 @@
     &__input{
         display: grid;
         grid-template-columns: 230px 40px;
+        position: relative;
     }
 
     &__hide_input{

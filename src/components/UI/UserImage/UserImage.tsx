@@ -1,8 +1,9 @@
 import React, { FC } from "react";
+import { ProfilePhotoType } from "../../../type/typesMain";
 
 import cl from './UserImage.module.scss';
 
-type Props = { srcImages: string | undefined }
+type Props = { srcImages: ProfilePhotoType }
 
 const  UserImage: FC<Props> = (props: Props) =>{
 

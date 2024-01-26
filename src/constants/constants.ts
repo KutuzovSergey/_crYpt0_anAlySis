@@ -1,9 +1,9 @@
-import React from "react";
 import { UserDataConstType, UserCoinListConstType, AllCoinListConstType } from "../type/typeStore/typesConstants";
 
 export const userDataConst: UserDataConstType = {
     ADD_USER_DATA: 'ADD_USER_DATA',
     ADD_USER: 'ADD_USER',
+    CHANGE_USER_DATA: 'CHANGE_USER_DATA'
 }
 
 export const userCoinListConst: UserCoinListConstType = {

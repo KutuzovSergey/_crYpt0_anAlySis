@@ -20,12 +20,7 @@ type Props = {
 const Card:React.FC<Props> = ({currencyInfo, remove, displayingAddButton}: Props) => {
   const navigate: (way: string) => void = useNavigate();
   const [showNotification, setShowNotification, addNewCoin] = useAddNawCoin();
-  // const dispatch = useDispatch();
-
-  // const addNewCoinPersonalAccount = (coin: ObjCoinsType) => {
-  //   dispatch(addCoin(coin));
-  // }
-
+  
   return(
     <div id={currencyInfo.FROMSYMBOL} className='card'>
       <div className='card__header'>

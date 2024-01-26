@@ -3,6 +3,7 @@ import data_changes from "../../../images/icon/data_changes.png";
 import MyInput from "../MyInput/MyInput";
 import { useInputEditing } from "../../../hooks/useInputEditing";
 import ButtonClose from "../ButtonClose/ButtonClose";
+import ErrorForm from "../ErrorForm/ErrorForm";
 
 import cl from "./DataString.module.scss";
 
@@ -14,7 +15,9 @@ type Props = {
     inputPlaceholder: string,
     inputAutoComplete: string,
     inputValue: string,
-    inputOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+    inputOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    errorText?: string,
+    errorStatus?: boolean,
 }
 
 const DataString:FC<Props> = (props: Props) =>{
@@ -37,6 +40,9 @@ const DataString:FC<Props> = (props: Props) =>{
                 </div>
             :
                 <div className={cl.dataUser__input}>
+                    {(props.errorText && props.errorStatus) 
+                    &&
+                    <ErrorForm>{props.errorText}</ErrorForm>}
                     <MyInput 
                         name={props.inputName}
                         type={props.inputType}

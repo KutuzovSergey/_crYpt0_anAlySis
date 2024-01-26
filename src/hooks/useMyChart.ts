@@ -35,7 +35,6 @@ export const useMyChart = (nameCoin: string,
 
     arrDataCoin.push(dataCoin);
     setDataCoinChart(arrDataCoin);
-    console.log(arrDataCoin);
 
     Chart.overrides.line.spanGaps = true;
 

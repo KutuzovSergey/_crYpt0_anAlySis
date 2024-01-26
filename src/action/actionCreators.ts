@@ -1,11 +1,19 @@
 import { allCoinListConst, userDataConst } from "../constants/constants";
 import { userCoinListConst } from "../constants/constants";
-import { AddUserActionType, UserDataType, AddCoinActionType, CoinType, DeleteCoinActionType, AllCoinsListType, GetCoinsActionType } from "../type/typeStore/typesStore";
+import { AddUserActionType, UserDataType, AddCoinActionType, CoinType, DeleteCoinActionType, AllCoinsListType, GetCoinsActionType, changeUserDataType } from "../type/typeStore/typesStore";
 
 // работа с данными пользователя
 export const addUser = (userData: UserDataType): AddUserActionType => {
     return {
         type: userDataConst.ADD_USER_DATA,
+        userData: userData
+    }
+}
+
+// изменить данные пользователя
+export const changeUserData = (userData: changeUserDataType) => {
+    return {
+        type: userDataConst.CHANGE_USER_DATA,
         userData: userData
     }
 }

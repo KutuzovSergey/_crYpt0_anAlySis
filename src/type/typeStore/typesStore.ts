@@ -1,16 +1,5 @@
 // работа с данными пользователя
-export type ProfilePhotoType = string | undefined
-
-export type StateUserDataType = {
-    userData: {
-        userName: string,
-        userPassword: string,
-        userRepeatPassword: string,
-        userMail: string,
-        userPhone: string,
-        userPhoto: ProfilePhotoType,
-    }
-}
+import { ProfilePhotoType } from "../typesMain"
 
 export type UserDataType = {
     userName: string,
@@ -21,6 +10,27 @@ export type UserDataType = {
     userPhoto: ProfilePhotoType,
 }
 
+export type NewUserDataType = {
+    userName?: string,
+    userPassword?: string,
+    userRepeatPassword?: string,
+    userMail?: string,
+    userPhone?: string,
+    userPhoto?: ProfilePhotoType,
+}
+
+export type StateUserDataType = {
+    userData: UserDataType
+}
+
+export type changeUserDataType = {
+    userName?: string,
+    userPassword?: string,
+    userRepeatPassword?: string,
+    userMail?: string,
+    userPhone?: string,
+    userPhoto?: ProfilePhotoType,
+}
 
 export type AddUserActionType = {
     type: 'ADD_USER_DATA',

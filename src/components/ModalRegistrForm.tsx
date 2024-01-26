@@ -11,7 +11,8 @@ import user from "../images/user/user.png";
 import camera from "../images/icon/camera.svg";
 import upload from "../images/icon/upload.png";
 import { AppContext } from "../context";
-import { useInputControl, useUploadImage } from "../hooks/useInput";
+import { useInputControl } from "../hooks/useInput";
+import { useUploadImage } from "../hooks/useUploadingImage";
 import { addUser } from "../action/actionCreators";
 import { UserDataType } from "../type/typeStore/typesStore";
 

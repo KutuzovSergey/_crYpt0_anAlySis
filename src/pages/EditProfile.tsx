@@ -1,14 +1,18 @@
 import React, { useRef, ChangeEvent, FormEvent } from "react";
 import { useSelector } from "react-redux";
 import UserImage from "../components/UI/UserImage/UserImage";
-import { StateUserDataType } from "../type/typeStore/typesStore";
+import { StateUserDataType, UserDataType } from "../type/typeStore/typesStore";
 import DataString from "../components/UI/DataString/DataString";
 import MyInput from "../components/UI/MyInput/MyInput";
-import { useInputControl, useUploadImage } from "../hooks/useInput";
+import { useInputControl } from "../hooks/useInputEditProfile";
+import { useUploadImage } from "../hooks/useUploadingImage";
 import MyButton from "../components/UI/MyButton/MyButton";
 import ImitationButton from "../components/UI/ImitationButton/ImitationButton";
 import MyInputFile from "../components/UI/MyInputFile/MyInputFile";
 import uploadImg from "../images/icon/upload.png";
+import ErrorForm from "../components/UI/ErrorForm/ErrorForm";
+import { useDispatch } from "react-redux";
+import { changeUserData } from "../action/actionCreators";
 
 import "../styles/EditProfile.scss";
 
@@ -23,20 +27,28 @@ const EditProfile:React.FC = () => {
         error, 
         resetFormValues
     } = useInputControl();
+
     const [srcProfilePhoto, 
         uploadImage, 
         showUploadedImage, 
         resetInputFile] = useUploadImage(data.userData.userPhoto, inputUpload);
+
+    const dispatch = useDispatch();
     
-    const uploadedImage = (e: ChangeEvent<HTMLInputElement>) => {
+    const uploadedImage = (e: ChangeEvent<HTMLInputElement>): void => {
         showUploadedImage(e);
     }
 
-    const publishChanges = (e: FormEvent) =>{
+    const publishChanges = (e: FormEvent): void =>{
         e.preventDefault();
-        console.log(e);
-    }
 
+        if (validation(e)()) {
+            // console.log('fullUserInfo');
+            const fullUserInfo: UserDataType = {...valueUserInfo, userPhoto: srcProfilePhoto};
+            dispatch(changeUserData(fullUserInfo));
+        }
+    }
+    
     return (
         <form className="profile" onSubmit={publishChanges}>
             <div>
@@ -66,7 +78,9 @@ const EditProfile:React.FC = () => {
                         inputPlaceholder="новое имя"
                         inputAutoComplete="name"
                         inputValue={valueUserInfo.userName}
-                        inputOnChange={onChangeInput} />
+                        inputOnChange={onChangeInput}
+                        errorText={error.errorName}
+                        errorStatus={errorStatus.errorName}/>
                     <DataString 
                         property_text="Телефон:" 
                         description_text={data.userData.userPhone} 
@@ -75,7 +89,9 @@ const EditProfile:React.FC = () => {
                         inputPlaceholder="новый телефон"
                         inputAutoComplete="tel"
                         inputValue={valueUserInfo.userPhone}
-                        inputOnChange={onChangeInput}/>
+                        inputOnChange={onChangeInput}
+                        errorText={error.errorPhone}
+                        errorStatus={errorStatus.errorPhone}/>
                     <DataString 
                         property_text="E-mail:" 
                         description_text={data.userData.userMail}
@@ -84,18 +100,26 @@ const EditProfile:React.FC = () => {
                         inputPlaceholder="новая почта"
                         inputAutoComplete="email"
                         inputValue={valueUserInfo.userMail}
-                        inputOnChange={onChangeInput} />
+                        inputOnChange={onChangeInput}
+                        errorText={error.errorMail}
+                        errorStatus={errorStatus.errorMail}/>
                     <div className="profile__change_password">
+                        {(error.errorPassword && errorStatus.errorPassword) 
+                        && 
+                        <ErrorForm>{error.errorPassword}</ErrorForm>}
                         <MyInput
                             name="password"
                             type="password"
                             placeholder="новый пароль"
                             autoComplete="new-password"
-                            value={valueUserInfo.userName}
+                            value={valueUserInfo.userPassword}
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
                     <div className="profile__change_password">
-                    <MyInput
+                        {(error.errorRepeatPassword && errorStatus.errorRepeatPassword) 
+                        && 
+                        <ErrorForm>{error.errorRepeatPassword}</ErrorForm>}
+                        <MyInput
                             name="repeatPassword"
                             type="password"
                             placeholder="повторите пароль"

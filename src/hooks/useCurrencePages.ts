@@ -109,10 +109,8 @@ export const useCompareCoins = (): UseCompareCoinsType =>{
         let newDescriptionCoin: DescriptionCoin;
         if (arrNameCoin[0] !== '') {
             newDescriptionCoin = await fetchCoin(arrNameCoin);
-            // console.log(newDescriptionCoin)
+            
             if (newDescriptionCoin.Response === 'Success') {
-                // console.log(newDescriptionCoin);
-                // const timeAndValues: ObjectResultsType = processingChartData(newDescriptionCoin.Data.Data);
                 setSecondDescriptionCoin(processingChartData(newDescriptionCoin.Data.Data)); 
             }
         }
@@ -121,9 +119,9 @@ export const useCompareCoins = (): UseCompareCoinsType =>{
     useEffect(() => {
         getDescriptionCoin(arrNameCoin);
         setSecondNameCoin(arrNameCoin[0]);
-        // console.log(arrNameCoin);
+        
     }, [arrNameCoin]);
-    // console.log(secondDescriptionCoin);
+    
     return [
         secondDescriptionCoin,
         secondNameCoin,

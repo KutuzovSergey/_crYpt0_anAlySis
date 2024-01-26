@@ -1,4 +1,4 @@
-export type ProfilePhotoType = HTMLImageElement | ArrayBuffer | null | string | undefined
+import { ProfilePhotoType } from "../typesMain"
 
 export type ValueUserType = {
     userName: string,
@@ -15,7 +15,7 @@ export type ErrorType = {[key: string]: string}
 export type CheckValidErrorsType = () => boolean
 
 export type UseInputControlType = {
-    valueUserInfo: ValueUserType
+    valueUserInfo: ValueUserType,
     errorStatus: ErrorStatusType,
     onChangeInput: (e: React.ChangeEvent) => void,
     validation: (e:  React.FormEvent) => CheckValidErrorsType,
@@ -23,8 +23,19 @@ export type UseInputControlType = {
     resetFormValues: (reasonDataReset: boolean) => void
 }
 
+// export type UseInputEditProfileType = {
+//     valueUserInfo: {
+//         current: ValueUserType
+//     },
+//     errorStatus: ErrorStatusType,
+//     onChangeInput: (e: React.ChangeEvent) => void,
+//     validation: (e:  React.FormEvent) => CheckValidErrorsType,
+//     error: ErrorType,
+//     resetFormValues: (reasonDataReset: boolean) => void
+// }
+
 export type UseUploadImageType = [
-    srcProfilePhoto: HTMLImageElement,
+    srcProfilePhoto: ProfilePhotoType,
     uploadImage: () => void,
     showUploadedImage: (e: React.ChangeEvent<HTMLInputElement>) => void,
     resetInputFile: (user: HTMLImageElement) => void

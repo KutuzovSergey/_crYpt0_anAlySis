@@ -1,6 +1,6 @@
-import { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState, ChangeEvent, useRef } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
-import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, UseInputControlType } from "../type/typeHooks/typesUseInput";
+import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, UseInputControlType, UseUploadImageType, FileType } from "../type/typeHooks/typesUseInput";
 
 export const useInputControl = (): UseInputControlType => {
     const [valueUserInfo, setValueUserInfo] = useState<ValueUserType>({
@@ -10,6 +10,14 @@ export const useInputControl = (): UseInputControlType => {
         userMail: '',
         userPhone: '',
     });
+
+    // const valueUserInfo = useRef({
+    //     userName: '',
+    //     userPassword: '',
+    //     userRepeatPassword: '',
+    //     userMail: '',
+    //     userPhone: '',
+    // });
 
     const [errorStatus, setErrorStatus] = useState<ErrorStatusType>({
         errorName: false,
@@ -66,18 +74,28 @@ export const useInputControl = (): UseInputControlType => {
             default:
                 break;
         }
-
         setValueUserInfo(newValue);
         setErrorStatus(newErrorStatus);
     }
 
+    const checkingDataChanges = () =>{
+        const newValueUserInfo = { ...valueUserInfo }
+        let value: keyof ValueUserType;
+
+        for(value in newValueUserInfo) {
+            
+            if (valueUserInfo[value] === '') {
+                delete valueUserInfo[value]
+            }
+        }
+
+        setValueUserInfo(newValueUserInfo);
+    }
+
     const validation = (e:  React.FormEvent): CheckValidErrorsType =>{
-                    
         const form = e.target as HTMLFormElement;
 
         let newError: ErrorType = { ...error };
-
-        // let errorCount: number = 0;
 
         for (let i = 0; i < form.length; i++) {
             const element = form.elements[i] as HTMLInputElement;
@@ -85,54 +103,37 @@ export const useInputControl = (): UseInputControlType => {
             
             switch(element.name){
                 case 'name':
-                    if (!elementValue) {
-                        // ++errorCount;
-                        newError = { ...newError, errorName: 'Логин не может быть пустым'};
-                    } else if (elementValue.length < 2) {
-                        // ++errorCount;
+                    if (elementValue.length < 2) {
                         newError = { ...newError, errorName: 'Логин меньше 2 символов'};
                     } else {
-                        newError = { ...newError, errorName: ''};
+                        newError = { ...newError, errorName: '' };
                     }
                 break;
                 case 'password':
-                    if (!elementValue) {
-                        // ++errorCount;
-                        newError = { ...newError, errorPassword: 'Пароль не может быть пустым'};
-                    } else if (elementValue.length < 6) {
-                        // ++errorCount;
+                    if (elementValue.length < 6 && elementValue.length > 1) {
                         newError = { ...newError, errorPassword: 'Пароль меньше 6 символов'};
                     } else if (elementValue!== valueUserInfo.userRepeatPassword) {
-                        // ++errorCount;
                         newError = { ...newError, errorPassword: 'Пароли не совпадают'};
                     } else {
                         newError = { ...newError, errorPassword: ''};
                     }
                 break;
                 case 'repeatPassword':
-                    if(!elementValue){
-                        // ++errorCount;
-                        newError = { ...newError, errorRepeatPassword: 'Поле не может быть пустым'};
-                    } else if (elementValue !== valueUserInfo.userPassword) {
-                        // ++errorCount;
+                    if (elementValue !== valueUserInfo.userPassword) {
                         newError = { ...newError, errorRepeatPassword: 'Пароли не совпадают'};
                     } else {
                         newError = { ...newError, errorRepeatPassword: ''};
                     }
                 break;
                 case 'mail':
-                    if (!elementValue) {
-                        newError = { ...newError, errorMail: 'Введите почту'};
-                    } else if (!_email.test(String(elementValue.toLowerCase()))) {
+                    if (!_email.test(String(elementValue.toLowerCase()))) {
                         newError = { ...newError, errorMail: 'Некорректный E-mail'};
                     } else {
                         newError = { ...newError, errorMail: ''};
                     }
                     break;
                 case 'phone':
-                    if (!elementValue) {
-                        newError = { ...newError, errorPhone: 'Введите телефон'};
-                    } else if (elementValue.length > 26) {
+                    if (elementValue.length > 26) {
                         newError = { ...newError, errorPhone: 'Номер слишком длинный'};
                     } else if (elementValue.length < 9) {
                         newError = { ...newError, errorPhone: 'Номер слишком короткий'};
@@ -149,6 +150,8 @@ export const useInputControl = (): UseInputControlType => {
  
         setError(newError);
 
+        checkingDataChanges();
+
         const checkValidErrors = (): boolean =>{
             let counterError: number = 0;
             let validResultForm: boolean = false;
@@ -158,14 +161,25 @@ export const useInputControl = (): UseInputControlType => {
                     counterError = ++counterError;
                 }
             }
+            // console.log(Object.keys(valueUserInfo).length)
 
-            if (counterError === Object.keys(newError).length) {
+            if (counterError === Object.keys(newError).length && 
+            Object.keys(valueUserInfo).length !== 0) {
                 validResultForm = true;
             } else {
                 counterError = 0;
                 validResultForm = false;
             }
-            
+
+            // if (validResultForm) {
+            //     checkingDataChanges();
+            //     console.log(Boolean(Object.keys(valueUserInfo).length));
+            //     if(Boolean(Object.keys(valueUserInfo).length)) {
+            //         console.log(validResultForm);
+            //         // validResultForm = false;
+            //     }
+            // }
+            // console.log(validResultForm);
             return validResultForm
         }
 

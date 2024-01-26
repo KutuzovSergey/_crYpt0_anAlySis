@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import LinkButton from "./UI/LinkButton/LinkButton";
 import { useSelector } from "react-redux";
 // import user from "../images/user/user.png";
-import { ProfilePhotoType, StateType, StateUserDataType, UserDataType } from "../type/typeStore/typesStore";
+import { StateType, UserDataType } from "../type/typeStore/typesStore";
 import UserImage from "./UI/UserImage/UserImage";
 
 import "../styles/componentStyles/UserCard.scss";
