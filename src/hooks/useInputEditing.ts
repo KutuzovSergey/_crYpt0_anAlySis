@@ -8,8 +8,6 @@ export const useInputEditing = (returningTheStateInput: () => void, resetFormVal
     const showInput = (): void =>{
         getAppearance(true);
         returningTheStateInput();
-        // console.log(typeof target.id);
-        // console.log(target.id);
     }
 
     const hideInput = (e: MouseEvent<HTMLDivElement>): void => {

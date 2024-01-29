@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 import cl from './MyInputFile.module.scss';
 
-type Props ={
+type Props = {
     type: string,
     id: string,
     accept: string,

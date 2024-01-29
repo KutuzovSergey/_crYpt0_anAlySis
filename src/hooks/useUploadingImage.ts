@@ -1,13 +1,15 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, RefObject } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
 import { UseUploadImageType } from "../type/typeHooks/typesUseInput";
 import { ProfilePhotoType } from "../type/typesMain";
 
-export const useUploadImage = (user: HTMLImageElement, inputUpload: React.RefObject<HTMLInputElement>): UseUploadImageType => {
+export const useUploadImage = (user: HTMLImageElement, inputUpload: RefObject<HTMLInputElement>): UseUploadImageType => {
 
     const [srcProfilePhoto, setSrcProfilePhoto] = useState<ProfilePhotoType>(user);
+    const [dirtyInput, setDirtyInput] = useState<boolean>(false);
 
     const uploadImage = (): void =>{
+        setDirtyInput(true);
         inputUpload.current?.click();
     }
 
@@ -41,5 +43,6 @@ export const useUploadImage = (user: HTMLImageElement, inputUpload: React.RefObj
         uploadImage,
         showUploadedImage,
         resetInputFile,
+        dirtyInput
     ]
 }

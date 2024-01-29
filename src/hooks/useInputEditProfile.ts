@@ -1,14 +1,17 @@
 import { useEffect, useState, ChangeEvent, useRef } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
 import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, NewUseInputControlType } from "../type/typeHooks/typesUseInput";
+import { ProfilePhotoType } from "../type/typesMain";
+import { UserDataType } from "../type/typeStore/typesStore";
 
-export const useInputControl = (): NewUseInputControlType => {
+export const useInputControl = (srcProfilePhoto: ProfilePhotoType, dirtyInput: boolean | undefined): NewUseInputControlType => {
     const [valueUserInfo, setValueUserInfo] = useState<ValueUserType>({
         userName: '',
         userPassword: '',
         userRepeatPassword: '',
         userMail: '',
         userPhone: '',
+        userPhoto: ''
     });
 
     const [errorStatus, setErrorStatus] = useState<ErrorStatusType>({
@@ -75,6 +78,10 @@ export const useInputControl = (): NewUseInputControlType => {
     const checkingDataChanges = () =>{
         const newValueUserInfo: ValueUserType = { ...valueUserInfo }
         let value: keyof ValueUserType;
+        // console.log(dirtyInput);
+        if (dirtyInput) {
+            newValueUserInfo.userPhoto = srcProfilePhoto;
+        }
 
         for(value in newValueUserInfo) {
             
@@ -84,6 +91,7 @@ export const useInputControl = (): NewUseInputControlType => {
         }
 
         setValueUserInfo(newValueUserInfo);
+        // console.log(valueUserInfo);
     }
 
     const validation = (e:  React.FormEvent): CheckValidErrorsType =>{
@@ -172,31 +180,31 @@ export const useInputControl = (): NewUseInputControlType => {
     useEffect(() => {
         let newErrorStatus = { ...errorStatus };
 
-        if (error.errorName !== '') {
+        if (error.userName !== '') {
             newErrorStatus.errorName = true;
         } else {
             newErrorStatus.errorName = false;
         }
 
-        if (error.errorPassword !== '') {
+        if (error.userPassword !== '') {
             newErrorStatus.errorPassword = true;
         } else {
             newErrorStatus.errorPassword = false;
         }
 
-        if (error.errorRepeatPassword !== '') {
+        if (error.userRepeatPassword !== '') {
             newErrorStatus.errorRepeatPassword = true;
         } else {
             newErrorStatus.errorRepeatPassword = false;
         }
 
-        if (error.errorMail !== '') {
+        if (error.userMail !== '') {
             newErrorStatus.errorMail = true;
         } else {
             newErrorStatus.errorMail = false;
         }
 
-        if (error.errorPhone !== '') {
+        if (error.userPhone !== '') {
             newErrorStatus.errorPhone = true;
         } else {
             newErrorStatus.errorPhone = false;
@@ -245,7 +253,6 @@ export const useInputControl = (): NewUseInputControlType => {
     const returningTheStateInput = (): void => {
         closeInput.current = false;
     }
-
 
     return {
         valueUserInfo,

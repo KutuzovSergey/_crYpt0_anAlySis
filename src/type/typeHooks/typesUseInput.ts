@@ -6,6 +6,7 @@ export type ValueUserType = {
     userRepeatPassword: string,
     userMail: string,
     userPhone: string,
+    userPhoto?: any
 }
 
 export type ErrorStatusType = {[key: string]: boolean}
@@ -38,7 +39,8 @@ export type UseUploadImageType = [
     srcProfilePhoto: ProfilePhotoType,
     uploadImage: () => void,
     showUploadedImage: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    resetInputFile: (user: HTMLImageElement) => void
+    resetInputFile: (user: HTMLImageElement) => void,
+    dirtyInput?: boolean
 ]
 
 export type FileType = {

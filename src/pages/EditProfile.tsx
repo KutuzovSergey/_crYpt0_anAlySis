@@ -21,6 +21,13 @@ const EditProfile:React.FC = () => {
 
     const inputUpload = useRef<HTMLInputElement>(null);
     const data = useSelector((state: RootState) => state.userData);
+    
+    const [srcProfilePhoto, 
+        uploadImage, 
+        showUploadedImage, 
+        resetInputFile,
+        dirtyInput] = useUploadImage(data.userData.userPhoto, inputUpload);
+    
     const {valueUserInfo,
         errorStatus, 
         onChangeInput, 
@@ -31,12 +38,7 @@ const EditProfile:React.FC = () => {
         returningTheStateInput,
         closeInput,
         resetFormValue
-    } = useInputControl();
-
-    const [srcProfilePhoto, 
-        uploadImage, 
-        showUploadedImage, 
-        resetInputFile] = useUploadImage(data.userData.userPhoto, inputUpload);
+    } = useInputControl(srcProfilePhoto, dirtyInput);
 
     const dispatch = useDispatch();
     
@@ -48,10 +50,11 @@ const EditProfile:React.FC = () => {
         e.preventDefault();
 
         if (validation(e)()) {
-            const fullUserInfo: UserDataType = {...valueUserInfo, userPhoto: srcProfilePhoto};
-            dispatch(changeUserData(fullUserInfo));
+            // const fullUserInfo: UserDataType = {...valueUserInfo, userPhoto: srcProfilePhoto};
+            // console.log(fullUserInfo);
             resetFormValues();
             closingTtheInput();
+            dispatch(changeUserData(valueUserInfo));
         }
     }
     
@@ -69,7 +72,8 @@ const EditProfile:React.FC = () => {
                             id="uploadImage"
                             accept="image/jpeg, image/png, image/jpg"
                             onChange={uploadedImage}
-                            ref={inputUpload}/>
+                            ref={inputUpload}
+                            />
                     </div>
                 </div>
             </div>
