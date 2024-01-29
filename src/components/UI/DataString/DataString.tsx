@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import data_changes from "../../../images/icon/data_changes.png";
 import MyInput from "../MyInput/MyInput";
 import { useInputEditing } from "../../../hooks/useInputEditing";
@@ -8,6 +8,7 @@ import ErrorForm from "../ErrorForm/ErrorForm";
 import cl from "./DataString.module.scss";
 
 type Props = {
+    id: string,
     property_text: string,
     description_text: string,
     inputName: string,
@@ -16,13 +17,16 @@ type Props = {
     inputAutoComplete: string,
     inputValue: string,
     inputOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    closeInput?: boolean,
     errorText?: string,
     errorStatus?: boolean,
+    returningTheStateInput: () => void,
+    resetFormValue: (inputId: string) => void,
 }
 
 const DataString:FC<Props> = (props: Props) =>{
 
-    const [appearance, showInput, hideInput] = useInputEditing();
+    const [appearance, showInput, hideInput] = useInputEditing(props.returningTheStateInput, props.resetFormValue, props.closeInput);
 
     return (
         <div className={cl.dataUser}>
@@ -49,9 +53,9 @@ const DataString:FC<Props> = (props: Props) =>{
                         placeholder={props.inputPlaceholder}
                         autoComplete={props.inputAutoComplete}
                         value={props.inputValue}
-                        onChange={ (e) => props.inputOnChange(e) } />
+                        onChange={ (e) => props.inputOnChange(e)} />
                     <div className={cl.dataUser__hide_input}>
-                        <ButtonClose close={hideInput}/>
+                        <ButtonClose close={hideInput} id={props.id}/>
                     </div>
                 </div>
             }

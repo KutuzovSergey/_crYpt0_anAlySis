@@ -15,17 +15,22 @@ import { useDispatch } from "react-redux";
 import { changeUserData } from "../action/actionCreators";
 
 import "../styles/EditProfile.scss";
+import { RootState } from "../store";
 
 const EditProfile:React.FC = () => {
 
     const inputUpload = useRef<HTMLInputElement>(null);
-    const data = useSelector((state: any) => state.userData);
+    const data = useSelector((state: RootState) => state.userData);
     const {valueUserInfo,
         errorStatus, 
         onChangeInput, 
         validation, 
         error, 
-        resetFormValues
+        resetFormValues,
+        closingTtheInput,
+        returningTheStateInput,
+        closeInput,
+        resetFormValue
     } = useInputControl();
 
     const [srcProfilePhoto, 
@@ -43,9 +48,10 @@ const EditProfile:React.FC = () => {
         e.preventDefault();
 
         if (validation(e)()) {
-            // console.log('fullUserInfo');
             const fullUserInfo: UserDataType = {...valueUserInfo, userPhoto: srcProfilePhoto};
             dispatch(changeUserData(fullUserInfo));
+            resetFormValues();
+            closingTtheInput();
         }
     }
     
@@ -71,6 +77,7 @@ const EditProfile:React.FC = () => {
             <div className="profile__data">
                 <div className="profile__data_wrapper">
                     <DataString 
+                        id="userName"
                         property_text="Имя:" 
                         description_text={data.userData.userName}
                         inputName="name"
@@ -79,9 +86,13 @@ const EditProfile:React.FC = () => {
                         inputAutoComplete="name"
                         inputValue={valueUserInfo.userName}
                         inputOnChange={onChangeInput}
-                        errorText={error.errorName}
-                        errorStatus={errorStatus.errorName}/>
+                        closeInput={closeInput.current}
+                        errorText={error.userName}
+                        errorStatus={errorStatus.errorName}
+                        returningTheStateInput={returningTheStateInput}
+                        resetFormValue={resetFormValue}/>
                     <DataString 
+                        id="userPhone"
                         property_text="Телефон:" 
                         description_text={data.userData.userPhone} 
                         inputName="phone"
@@ -90,9 +101,13 @@ const EditProfile:React.FC = () => {
                         inputAutoComplete="tel"
                         inputValue={valueUserInfo.userPhone}
                         inputOnChange={onChangeInput}
-                        errorText={error.errorPhone}
-                        errorStatus={errorStatus.errorPhone}/>
+                        closeInput={closeInput.current}
+                        errorText={error.userPhone}
+                        errorStatus={errorStatus.errorPhone}
+                        returningTheStateInput={returningTheStateInput}
+                        resetFormValue={resetFormValue}/>
                     <DataString 
+                        id="userMail"
                         property_text="E-mail:" 
                         description_text={data.userData.userMail}
                         inputName="mail"
@@ -101,12 +116,15 @@ const EditProfile:React.FC = () => {
                         inputAutoComplete="email"
                         inputValue={valueUserInfo.userMail}
                         inputOnChange={onChangeInput}
-                        errorText={error.errorMail}
-                        errorStatus={errorStatus.errorMail}/>
+                        closeInput={closeInput.current}
+                        errorText={error.userMail}
+                        errorStatus={errorStatus.errorMail}
+                        returningTheStateInput={returningTheStateInput}
+                        resetFormValue={resetFormValue}/>
                     <div className="profile__change_password">
-                        {(error.errorPassword && errorStatus.errorPassword) 
+                        {(error.userPassword && errorStatus.errorPassword) 
                         && 
-                        <ErrorForm>{error.errorPassword}</ErrorForm>}
+                        <ErrorForm>{error.userPassword}</ErrorForm>}
                         <MyInput
                             name="password"
                             type="password"
@@ -116,9 +134,9 @@ const EditProfile:React.FC = () => {
                             onChange={ (e) => onChangeInput(e) }/>
                     </div>
                     <div className="profile__change_password">
-                        {(error.errorRepeatPassword && errorStatus.errorRepeatPassword) 
+                        {(error.userRepeatPassword && errorStatus.errorRepeatPassword) 
                         && 
-                        <ErrorForm>{error.errorRepeatPassword}</ErrorForm>}
+                        <ErrorForm>{error.userRepeatPassword}</ErrorForm>}
                         <MyInput
                             name="repeatPassword"
                             type="password"

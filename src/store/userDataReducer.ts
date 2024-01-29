@@ -17,8 +17,7 @@ const defaultState: StateUserDataType = {
 export const userDataReducer = (state = defaultState, action: UserDataActionType) => {
     switch (action.type){
         case userDataConst.ADD_USER_DATA:
-            // console.log(action.userData);
-            return {...state, userData: action.userData}
+            return { userData: action.userData }
         case userDataConst.CHANGE_USER_DATA:
             const copyState: UserDataType = {...state.userData};
             let valueData: keyof NewUserDataType;
@@ -28,7 +27,6 @@ export const userDataReducer = (state = defaultState, action: UserDataActionType
                     copyState[valueData] = action.userData[valueData]
                 }
             }
-            console.log(action.userData);
             return { userData: copyState }
         default:
             return state

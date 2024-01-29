@@ -50,3 +50,18 @@ export type FileType = {
     webkitRelativePath: string
 }
 // DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> |
+
+export type NewUseInputControlType = {
+    valueUserInfo: ValueUserType,
+    errorStatus: ErrorStatusType,
+    onChangeInput: (e: React.ChangeEvent) => void,
+    validation: (e:  React.FormEvent) => CheckValidErrorsType,
+    error: ErrorType,
+    resetFormValues: () => void,
+    closingTtheInput: () => void,
+    returningTheStateInput: () => void,
+    closeInput: {
+        current: boolean
+    }
+    resetFormValue: (inputId: string) => void
+}

@@ -1,8 +1,8 @@
 import { useEffect, useState, ChangeEvent, useRef } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
-import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, UseInputControlType, UseUploadImageType, FileType } from "../type/typeHooks/typesUseInput";
+import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, NewUseInputControlType } from "../type/typeHooks/typesUseInput";
 
-export const useInputControl = (): UseInputControlType => {
+export const useInputControl = (): NewUseInputControlType => {
     const [valueUserInfo, setValueUserInfo] = useState<ValueUserType>({
         userName: '',
         userPassword: '',
@@ -10,14 +10,6 @@ export const useInputControl = (): UseInputControlType => {
         userMail: '',
         userPhone: '',
     });
-
-    // const valueUserInfo = useRef({
-    //     userName: '',
-    //     userPassword: '',
-    //     userRepeatPassword: '',
-    //     userMail: '',
-    //     userPhone: '',
-    // });
 
     const [errorStatus, setErrorStatus] = useState<ErrorStatusType>({
         errorName: false,
@@ -28,12 +20,14 @@ export const useInputControl = (): UseInputControlType => {
     });
 
     const [error, setError] = useState<ErrorType>({
-        errorName: '',
-        errorPassword: '',
-        errorRepeatPassword: '',
-        errorMail: '',
-        errorPhone: '',
+        userName: '',
+        userPassword: '',
+        userRepeatPassword: '',
+        userMail: '',
+        userPhone: '',
     });
+
+    const closeInput = useRef(false);
 
     const onChangeInput = (e: ChangeEvent): void => {
         let newValue = { ...valueUserInfo };
@@ -79,7 +73,7 @@ export const useInputControl = (): UseInputControlType => {
     }
 
     const checkingDataChanges = () =>{
-        const newValueUserInfo = { ...valueUserInfo }
+        const newValueUserInfo: ValueUserType = { ...valueUserInfo }
         let value: keyof ValueUserType;
 
         for(value in newValueUserInfo) {
@@ -104,43 +98,43 @@ export const useInputControl = (): UseInputControlType => {
             switch(element.name){
                 case 'name':
                     if (elementValue.length < 2) {
-                        newError = { ...newError, errorName: 'Логин меньше 2 символов'};
+                        newError = { ...newError, userName: 'Логин меньше 2 символов'};
                     } else {
-                        newError = { ...newError, errorName: '' };
+                        newError = { ...newError, userName: '' };
                     }
                 break;
                 case 'password':
                     if (elementValue.length < 6 && elementValue.length > 1) {
-                        newError = { ...newError, errorPassword: 'Пароль меньше 6 символов'};
-                    } else if (elementValue!== valueUserInfo.userRepeatPassword) {
-                        newError = { ...newError, errorPassword: 'Пароли не совпадают'};
+                        newError = { ...newError, userPassword: 'Пароль меньше 6 символов'};
+                    } else if (elementValue !== valueUserInfo.userRepeatPassword) {
+                        newError = { ...newError, userPassword: 'Пароли не совпадают'};
                     } else {
-                        newError = { ...newError, errorPassword: ''};
+                        newError = { ...newError, userPassword: ''};
                     }
                 break;
                 case 'repeatPassword':
                     if (elementValue !== valueUserInfo.userPassword) {
-                        newError = { ...newError, errorRepeatPassword: 'Пароли не совпадают'};
+                        newError = { ...newError, userRepeatPassword: 'Пароли не совпадают'};
                     } else {
-                        newError = { ...newError, errorRepeatPassword: ''};
+                        newError = { ...newError, userRepeatPassword: ''};
                     }
                 break;
                 case 'mail':
                     if (!_email.test(String(elementValue.toLowerCase()))) {
-                        newError = { ...newError, errorMail: 'Некорректный E-mail'};
+                        newError = { ...newError, userMail: 'Некорректный E-mail'};
                     } else {
-                        newError = { ...newError, errorMail: ''};
+                        newError = { ...newError, userMail: ''};
                     }
                     break;
                 case 'phone':
                     if (elementValue.length > 26) {
-                        newError = { ...newError, errorPhone: 'Номер слишком длинный'};
+                        newError = { ...newError, userPhone: 'Номер слишком длинный'};
                     } else if (elementValue.length < 9) {
-                        newError = { ...newError, errorPhone: 'Номер слишком короткий'};
+                        newError = { ...newError, userPhone: 'Номер слишком короткий'};
                     } else if (!_phone.test(String(elementValue))) {
-                        newError = { ...newError, errorPhone: 'Некорректный номер телефона'};
+                        newError = { ...newError, userPhone: 'Некорректный номер телефона'};
                     } else {
-                        newError = { ...newError, errorPhone: ''};
+                        newError = { ...newError, userPhone: ''};
                     }
                     break;
                 default:
@@ -161,7 +155,6 @@ export const useInputControl = (): UseInputControlType => {
                     counterError = ++counterError;
                 }
             }
-            // console.log(Object.keys(valueUserInfo).length)
 
             if (counterError === Object.keys(newError).length && 
             Object.keys(valueUserInfo).length !== 0) {
@@ -170,16 +163,6 @@ export const useInputControl = (): UseInputControlType => {
                 counterError = 0;
                 validResultForm = false;
             }
-
-            // if (validResultForm) {
-            //     checkingDataChanges();
-            //     console.log(Boolean(Object.keys(valueUserInfo).length));
-            //     if(Boolean(Object.keys(valueUserInfo).length)) {
-            //         console.log(validResultForm);
-            //         // validResultForm = false;
-            //     }
-            // }
-            // console.log(validResultForm);
             return validResultForm
         }
 
@@ -223,26 +206,46 @@ export const useInputControl = (): UseInputControlType => {
        
     }, [error]);
 
-    const resetFormValues = (reasonDataReset: boolean): void => {
-        if (reasonDataReset) {
-            setValueUserInfo({
-                userName: '',
-                userPassword: '',
-                userRepeatPassword: '',
-                userMail: '',
-                userPhone: '',
-            });
-            setError({
-                errorName: '',
-                errorPassword: '',
-                errorRepeatPassword: '',
-                errorMail: '',
-                errorPhone: '',
-            });
-        } else {
-            return
-        }
+    const resetFormValues = (): void => {
+        setValueUserInfo({
+            userName: '',
+            userPassword: '',
+            userRepeatPassword: '',
+            userMail: '',
+            userPhone: '',
+        });
+        setError({
+            userName: '',
+            userPassword: '',
+            userRepeatPassword: '',
+            userMail: '',
+            userPhone: '',
+        });
     }
+ 
+    const closingTtheInput = (): void => {
+        closeInput.current = true
+    }
+
+    const resetFormValue = (inputId: string) => {
+        const newError = { ...error };
+        const newValueUserInfo: any = { ...valueUserInfo };
+        let id: any = inputId;
+
+        // console.log(newValueUserInfo);
+        if(id in newValueUserInfo ){
+            newValueUserInfo[id] = '';
+            newError[id] = '';
+        }
+
+        setValueUserInfo(newValueUserInfo);
+        setError(newError);
+    }
+
+    const returningTheStateInput = (): void => {
+        closeInput.current = false;
+    }
+
 
     return {
         valueUserInfo,
@@ -251,6 +254,12 @@ export const useInputControl = (): UseInputControlType => {
         validation,
         error,
         resetFormValues,
+        closingTtheInput,
+        returningTheStateInput,
+        closeInput,
+        resetFormValue
     }
 
 }
+
+// keyof ValueUserType

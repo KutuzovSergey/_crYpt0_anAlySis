@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState, ChangeEvent } from "react";
+import React, { useContext, useEffect, useRef, useState, ChangeEvent, FC, FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import { store } from "../store";
 import MyInput from "./UI/MyInput/MyInput";
@@ -23,7 +23,7 @@ type Props = {
     active: boolean
 }
 
-const ModalRegistrForm:React.FC<Props> = (props: Props) => {
+const ModalRegistrForm:FC<Props> = (props: Props) => {
 
     const dispatch = useDispatch();
 
@@ -38,13 +38,15 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
         onChangeInput, 
         validation, 
         error, 
-        resetFormValues} = useInputControl();
+        resetFormValues
+    } = useInputControl();
     const [srcProfilePhoto, 
         uploadImage, 
         showUploadedImage, 
-        resetInputFile] = useUploadImage(user, inputUpload);
+        resetInputFile
+    ] = useUploadImage(user, inputUpload);
     
-    const registration = (e: React.FormEvent) => {
+    const registration = (e: FormEvent) => {
         e.preventDefault();
         
         if(validation(e)()){
@@ -68,7 +70,7 @@ const ModalRegistrForm:React.FC<Props> = (props: Props) => {
     // const closeTakePhoto = () => {
     //     getTakingPhotos(false);
     // }
-
+    
     useEffect( () => {
         resetFormValues(props.active);
         resetInputFile(user);
