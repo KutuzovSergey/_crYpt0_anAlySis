@@ -21,12 +21,9 @@ export const useCurrencePages = (): CurrencePagesType =>{
     const getContent = async () => {
         const result: string[] = [];
         if (typeof params.id !== 'undefined') {
-            // console.log(params);
             result.push(params.id);
         }
         setCurrenceData(await fetchContent(result));
-
-        // console.log(currenceData);
     }
 
     const [fetchCoin, isLoadingCoin] = useFetching(async (params: string[]) => {
@@ -34,14 +31,11 @@ export const useCurrencePages = (): CurrencePagesType =>{
     });
 
     const getDescriptionCoin = async (currenceData: CurrenceDataType ): Promise<void> =>{
-        // console.log(currenceData);
         if (checkingUndefined(currenceData[0]) || +currenceData.length === 0) {
             return
         } else {
             const arrayName: string[] = [];
             arrayName.push(currenceData[0].NAME);
-            // const description = await fetchCoin(arrayName);
-            // console.log(description);
 
             let description; 
             if (arrayName[0] !== '') {
@@ -55,7 +49,6 @@ export const useCurrencePages = (): CurrencePagesType =>{
     }
 
     const processDataChart = (labels: LabelsType): void => {      
-        // console.log(labels);
         if (checkingUndefined(labels) || labels.length === 0) {
             return
         } else {
@@ -68,7 +61,6 @@ export const useCurrencePages = (): CurrencePagesType =>{
             // nawChartData.time = newLabels.map( (item: LabelType) => compileUnix(item.time)).map( (date: string) => date.slice(0, 10));
             nawChartData.averageIndex = timeAndValues.averageIndex;
             nawChartData.time = timeAndValues.time;
-            // console.log(nawChartData.time);
             nawChartData.text = `график средних значений стоимости ${currenceData[0].FROMSYMBOL}, в ${currenceData[0].TOSYMBOL} за 10 дней`;
  
             setChartData(nawChartData);

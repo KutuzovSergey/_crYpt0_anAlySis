@@ -65,5 +65,6 @@ export type NewUseInputControlType = {
     closeInput: {
         current: boolean
     }
-    resetFormValue: (inputId: string) => void
+    resetFormValue: (inputId: string) => void,
+    checkingDataChanges: () => ValueUserType
 }

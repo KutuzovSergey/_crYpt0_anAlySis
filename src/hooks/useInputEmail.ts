@@ -42,8 +42,6 @@ export const useEmailControl = (): EmailControlType => {
     }
 
     // const resetEmail = (reasonDataReset, stateСhange) => {
-    //     console.log(reasonDataReset);
-    //     console.log(stateСhange);
     //     if (reasonDataReset) {
     //         stateСhange('');
     //     } else {

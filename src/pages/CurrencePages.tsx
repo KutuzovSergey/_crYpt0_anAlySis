@@ -11,8 +11,6 @@ import '../styles/CurrentcePages.scss';
 const CurrencePages:FC = () => {
     const [currenceData, chartData] = useCurrencePages();
     const [secondDescriptionCoin, secondNameCoin, getSecondCoin] = useCompareCoins();
-    // console.log(secondDescriptionCoin);
-    // console.log(currenceData);
     return (
         <div className="coin">
             {currenceData.map( data => 

@@ -72,8 +72,7 @@ export const usePagination = (getListCoins: GetListCoinsType, count: CountType):
         setNumberButtons(result);
 
     }, [count, buttonsVisible]);
-
-    // console.log(range);
+    
     return [
         range,
         leftArrow,

@@ -22,9 +22,6 @@ const Pagination:React.FC<Props> = memo((props: Props) =>{
     const indicatorTrue: boolean = true;
     const indicatorFalse: boolean = false;
 
-    // console.log(props.getListCoins);
-    // console.log(props.count);
-
     return (
         <div className={cl.pagination}>
             <div className={cl.pagination__block}>

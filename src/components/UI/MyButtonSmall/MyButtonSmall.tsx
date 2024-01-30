@@ -17,8 +17,6 @@ const  MyButtonSmall:React.FC<Props> = memo( ({children, activityIndicator, ...p
         classButtons.push(cl.myButtonSmall__active);
     }
 
-    // console.log(activityIndicator, children);
-
     return (
         <div {...props} className={classButtons.join(' ')}>
             <span className={cl.myButtonSmall__text}>{children}</span>

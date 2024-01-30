@@ -1,7 +1,6 @@
-import React, { useRef, ChangeEvent, FormEvent } from "react";
+import React, { useRef, ChangeEvent, FormEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import UserImage from "../components/UI/UserImage/UserImage";
-import { StateUserDataType, UserDataType } from "../type/typeStore/typesStore";
 import DataString from "../components/UI/DataString/DataString";
 import MyInput from "../components/UI/MyInput/MyInput";
 import { useInputControl } from "../hooks/useInputEditProfile";
@@ -13,11 +12,14 @@ import uploadImg from "../images/icon/upload.png";
 import ErrorForm from "../components/UI/ErrorForm/ErrorForm";
 import { useDispatch } from "react-redux";
 import { changeUserData } from "../action/actionCreators";
+import { RootState } from "../store";
+import MyModal from "../components/UI/MyModal/MyModal";
+import MessageToUser from "../components/UI/MessageToUser/MessageToUser";
 
 import "../styles/EditProfile.scss";
-import { RootState } from "../store";
 
 const EditProfile:React.FC = () => {
+    const [modal, setModal] = useState(false);
 
     const inputUpload = useRef<HTMLInputElement>(null);
     const data = useSelector((state: RootState) => state.userData);
@@ -37,7 +39,8 @@ const EditProfile:React.FC = () => {
         closingTtheInput,
         returningTheStateInput,
         closeInput,
-        resetFormValue
+        resetFormValue,
+        checkingDataChanges
     } = useInputControl(srcProfilePhoto, dirtyInput);
 
     const dispatch = useDispatch();
@@ -46,15 +49,22 @@ const EditProfile:React.FC = () => {
         showUploadedImage(e);
     }
 
+    const showModalWindow = (): void =>{
+        setModal(true);
+    }
+
+    const closeModalWindow = (): void =>{
+        setModal(false);
+    }
+
     const publishChanges = (e: FormEvent): void =>{
         e.preventDefault();
 
         if (validation(e)()) {
-            // const fullUserInfo: UserDataType = {...valueUserInfo, userPhoto: srcProfilePhoto};
-            // console.log(fullUserInfo);
             resetFormValues();
             closingTtheInput();
-            dispatch(changeUserData(valueUserInfo));
+            showModalWindow();
+            dispatch(changeUserData(checkingDataChanges()));
         }
     }
     
@@ -154,6 +164,9 @@ const EditProfile:React.FC = () => {
             <div className="profile__button">
                 <MyButton>Внести изменения</MyButton>
             </div>
+            <MyModal active={modal} setActive={closeModalWindow}>
+                <MessageToUser>Данные успешно изменины</MessageToUser>
+            </MyModal>
         </form>
     )
 }

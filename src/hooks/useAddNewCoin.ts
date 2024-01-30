@@ -12,7 +12,6 @@ export const useAddNawCoin = () =>{
     const dispatch = useDispatch();
     const userCoinList: CurrencesStateType = useSelector((state: RootState) => state.userCoinList);
     
-    // console.log(userCoinList);
     const addNewCoinPersonalAccount =(coin: ObjCoinsType) => {
         let valueOfCheck = userCoinList.coinsList.findIndex( (item) => item.FROMSYMBOL === coin.FROMSYMBOL);
 

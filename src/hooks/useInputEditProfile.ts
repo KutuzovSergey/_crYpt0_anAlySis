@@ -2,7 +2,6 @@ import { useEffect, useState, ChangeEvent, useRef } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
 import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, NewUseInputControlType } from "../type/typeHooks/typesUseInput";
 import { ProfilePhotoType } from "../type/typesMain";
-import { UserDataType } from "../type/typeStore/typesStore";
 
 export const useInputControl = (srcProfilePhoto: ProfilePhotoType, dirtyInput: boolean | undefined): NewUseInputControlType => {
     const [valueUserInfo, setValueUserInfo] = useState<ValueUserType>({
@@ -75,25 +74,6 @@ export const useInputControl = (srcProfilePhoto: ProfilePhotoType, dirtyInput: b
         setErrorStatus(newErrorStatus);
     }
 
-    const checkingDataChanges = () =>{
-        const newValueUserInfo: ValueUserType = { ...valueUserInfo }
-        let value: keyof ValueUserType;
-        // console.log(dirtyInput);
-        if (dirtyInput) {
-            newValueUserInfo.userPhoto = srcProfilePhoto;
-        }
-
-        for(value in newValueUserInfo) {
-            
-            if (valueUserInfo[value] === '') {
-                delete valueUserInfo[value]
-            }
-        }
-
-        setValueUserInfo(newValueUserInfo);
-        // console.log(valueUserInfo);
-    }
-
     const validation = (e:  React.FormEvent): CheckValidErrorsType =>{
         const form = e.target as HTMLFormElement;
 
@@ -151,8 +131,6 @@ export const useInputControl = (srcProfilePhoto: ProfilePhotoType, dirtyInput: b
         }
  
         setError(newError);
-
-        checkingDataChanges();
 
         const checkValidErrors = (): boolean =>{
             let counterError: number = 0;
@@ -239,8 +217,7 @@ export const useInputControl = (srcProfilePhoto: ProfilePhotoType, dirtyInput: b
         const newError = { ...error };
         const newValueUserInfo: any = { ...valueUserInfo };
         let id: any = inputId;
-
-        // console.log(newValueUserInfo);
+        
         if(id in newValueUserInfo ){
             newValueUserInfo[id] = '';
             newError[id] = '';
@@ -254,6 +231,23 @@ export const useInputControl = (srcProfilePhoto: ProfilePhotoType, dirtyInput: b
         closeInput.current = false;
     }
 
+    const checkingDataChanges = (): ValueUserType =>{
+        const newValueUserInfo: ValueUserType = { ...valueUserInfo }
+        let value: keyof ValueUserType;
+        
+        if (dirtyInput) {
+            newValueUserInfo.userPhoto = srcProfilePhoto;
+        }
+
+        for(value in newValueUserInfo) {
+            if (newValueUserInfo[value] === '') {
+                delete newValueUserInfo[value]
+            }
+        }
+
+        return newValueUserInfo
+    }
+
     return {
         valueUserInfo,
         errorStatus,
@@ -264,9 +258,7 @@ export const useInputControl = (srcProfilePhoto: ProfilePhotoType, dirtyInput: b
         closingTtheInput,
         returningTheStateInput,
         closeInput,
-        resetFormValue
+        resetFormValue,
+        checkingDataChanges
     }
-
 }
-
-// keyof ValueUserType

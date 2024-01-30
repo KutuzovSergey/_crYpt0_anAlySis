@@ -41,7 +41,6 @@ export async function getChart(coin: string[]): Promise<DataProcessingType>{
     const get: string = 'GET';
     let result = await RequestServer.getData(get, url, parameters, api_key);
 
-    // console.log(result);
     return result
 }
 

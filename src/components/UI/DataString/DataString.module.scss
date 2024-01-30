@@ -59,3 +59,25 @@
         justify-content: center;
     }
 }
+
+@media (max-width: 700px){
+    .dataUser {
+        width: 500px;
+        grid-template-columns: 100px 200px 
+
+        &__description{
+            grid-template-columns: 200px 40px;
+        }
+    }
+}
+
+@media (max-width: 600px){
+    .dataUser {
+        width: 400px;
+        grid-template-columns: 100px 100px 
+
+        &__description{
+            grid-template-columns: 100px 40px;
+        }
+    }
+}

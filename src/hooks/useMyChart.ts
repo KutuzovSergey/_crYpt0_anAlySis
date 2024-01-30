@@ -121,9 +121,7 @@ export const useMyChart = (nameCoin: string,
         labels: newChartData.time,
         datasets: newDataCoinChart,
       }
-
-      // console.log(data);
-
+      
       const options: StocksOptions = {
           legend: {
             display: true,
