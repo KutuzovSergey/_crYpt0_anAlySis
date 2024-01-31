@@ -31,7 +31,7 @@ const ModalLoginForm:React.FC = () => {
                 <span className="form__title_text">Войти в аккаунт</span>
             </div>
             <div className="form__input">
-                {(loginErrorStatus.loginStatus && errorMessage.loginError) && <ErrorForm>{errorMessage.loginError}</ErrorForm>}
+                {(loginErrorStatus.loginStatus && errorMessage.loginError) && <ErrorForm bottom="40px" left="0">{errorMessage.loginError}</ErrorForm>}
                 <MyInput
                     type='text'
                     name='login'
@@ -41,7 +41,7 @@ const ModalLoginForm:React.FC = () => {
                     autoComplete='email' />
             </div>
             <div className="form__input">
-                {(loginErrorStatus.passwordStatus && errorMessage.passwordError) && <ErrorForm>{errorMessage.passwordError}</ErrorForm>}
+                {(loginErrorStatus.passwordStatus && errorMessage.passwordError) && <ErrorForm bottom="40px" left="0">{errorMessage.passwordError}</ErrorForm>}
                 <MyInput 
                     type='password'
                     name='password'

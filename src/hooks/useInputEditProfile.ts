@@ -244,7 +244,7 @@ export const useInputControl = (srcProfilePhoto: ProfilePhotoType, dirtyInput: b
                 delete newValueUserInfo[value]
             }
         }
-
+        
         return newValueUserInfo
     }
 

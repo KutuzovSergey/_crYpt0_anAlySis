@@ -46,7 +46,7 @@ const DataString:FC<Props> = (props: Props) =>{
                 <div className={cl.dataUser__input}>
                     {(props.errorText && props.errorStatus) 
                     &&
-                    <ErrorForm>{props.errorText}</ErrorForm>}
+                    <ErrorForm bottom="40px" left="0" >{props.errorText}</ErrorForm>}
                     <MyInput 
                         name={props.inputName}
                         type={props.inputType}

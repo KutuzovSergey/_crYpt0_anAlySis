@@ -112,7 +112,7 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
                 </div>
                 <div className="form__block__input">
                     <div className="form__input">
-                        {(error.errorName && errorStatus.errorName) && <ErrorForm>{error.errorName}</ErrorForm>}
+                        {(error.errorName && errorStatus.errorName) && <ErrorForm bottom="40px" left="0">{error.errorName}</ErrorForm>}
                         <MyInput
                             name="name"
                             type="text"
@@ -123,7 +123,7 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
                     </div>
                     <div className="form__input">
                         {(error.errorPassword && errorStatus.errorPassword) && 
-                            <ErrorForm>{error.errorPassword}</ErrorForm>}
+                            <ErrorForm bottom="40px" left="0">{error.errorPassword}</ErrorForm>}
                         <MyInput 
                             name="password"
                             type="password"
@@ -134,7 +134,7 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
                     </div>
                     <div className="form__input">
                         {(error.errorRepeatPassword && errorStatus.errorRepeatPassword) && 
-                            <ErrorForm>{error.errorRepeatPassword}</ErrorForm>}
+                            <ErrorForm bottom="40px" left="0">{error.errorRepeatPassword}</ErrorForm>}
                         <MyInput
                             name="repeatPassword"
                             type="password"
@@ -147,7 +147,7 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
             </div>
             <div className="form__input">
                 {(error.errorMail && errorStatus.errorMail) && 
-                    <ErrorForm>{error.errorMail}</ErrorForm>}
+                    <ErrorForm bottom="40px" left="0">{error.errorMail}</ErrorForm>}
                 <MyInput 
                     name="mail"
                     type="email"
@@ -158,7 +158,7 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
             </div>
             <div className="form__input">
                 {(error.errorPhone && errorStatus.errorPhone) && 
-                    <ErrorForm>{error.errorPhone}</ErrorForm>}
+                    <ErrorForm bottom="40px" left="0">{error.errorPhone}</ErrorForm>}
                 <MyInput 
                     name="phone"
                     type="tel"

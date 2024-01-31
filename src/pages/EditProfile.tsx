@@ -60,7 +60,7 @@ const EditProfile:React.FC = () => {
     const publishChanges = (e: FormEvent): void =>{
         e.preventDefault();
 
-        if (validation(e)()) {
+        if (validation(e)() && Object.keys(checkingDataChanges()).length) {
             resetFormValues();
             closingTtheInput();
             showModalWindow();
@@ -138,7 +138,7 @@ const EditProfile:React.FC = () => {
                     <div className="profile__change_password">
                         {(error.userPassword && errorStatus.errorPassword) 
                         && 
-                        <ErrorForm>{error.userPassword}</ErrorForm>}
+                        <ErrorForm bottom="60px" left="8px">{error.userPassword}</ErrorForm>}
                         <MyInput
                             name="password"
                             type="password"
@@ -150,7 +150,7 @@ const EditProfile:React.FC = () => {
                     <div className="profile__change_password">
                         {(error.userRepeatPassword && errorStatus.errorRepeatPassword) 
                         && 
-                        <ErrorForm>{error.userRepeatPassword}</ErrorForm>}
+                        <ErrorForm bottom="60px" left="8px">{error.userRepeatPassword}</ErrorForm>}
                         <MyInput
                             name="repeatPassword"
                             type="password"
