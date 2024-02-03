@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 import { getChart, getListOnPage } from "../AP/getCoins";
 import { useFetching } from "../hooks/useFetching";
 import { checkingUndefined } from "../utils/checks";
-import { compileUnix } from "../utils/dateAndTime";
-import { findAverageNumber } from "../utils/findAverageNumber";
-import { CurrencePagesType, ChartDataType, DescriptionCoinType, LabelsType, LabelType, CurrenceDataType, UseCompareCoinsType, DescriptionCoin, ObjectResultsType } from "../type/typeHooks/typesUseCurrencePages";
+import { CurrencePagesType, ChartDataType, LabelsType, CurrenceDataType, UseCompareCoinsType, DescriptionCoin, ObjectResultsType } from "../type/typeHooks/typesUseCurrencePages";
 import { processingChartData } from "../utils/processingChartData";
 
 export const useCurrencePages = (): CurrencePagesType =>{
@@ -52,13 +50,9 @@ export const useCurrencePages = (): CurrencePagesType =>{
         if (checkingUndefined(labels) || labels.length === 0) {
             return
         } else {
-            // const newLabels: LabelsType = labels.slice();
             const nawChartData: ChartDataType = {...chartData};
             const timeAndValues: ObjectResultsType = processingChartData(labels);
 
-            // nawChartData.averageIndex = newLabels.map( (item: LabelType) => findAverageNumber(item.low, item.high));
-            
-            // nawChartData.time = newLabels.map( (item: LabelType) => compileUnix(item.time)).map( (date: string) => date.slice(0, 10));
             nawChartData.averageIndex = timeAndValues.averageIndex;
             nawChartData.time = timeAndValues.time;
             nawChartData.text = `график средних значений стоимости ${currenceData[0].FROMSYMBOL}, в ${currenceData[0].TOSYMBOL} за 10 дней`;

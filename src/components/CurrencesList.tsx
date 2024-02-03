@@ -10,10 +10,11 @@ type Props ={
   remove: (obj: ObjCoinsType) => void,
   textInfo: string,
   isLoadingList: boolean,
-  displayingAdd: boolean
+  displayingAdd: boolean,
+  coinNotFound: boolean
 }
 
-const CurrencesList:React.FC<Props> = ({currences, remove, textInfo, isLoadingList, displayingAdd}: Props) => {
+const CurrencesList:React.FC<Props> = ({currences, remove, textInfo, isLoadingList, displayingAdd, coinNotFound}: Props) => {
 
 if (isLoadingList) {
   return <LoaderCurrencesList/>
@@ -21,7 +22,7 @@ if (isLoadingList) {
 
 return (
   <div className='card-block'>
-    {currences.length !== 0
+    {currences.length !== 0 || coinNotFound
       ? currences.map( currency =>
         <Card 
           key={currency.NAME} 

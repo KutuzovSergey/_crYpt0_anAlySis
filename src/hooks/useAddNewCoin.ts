@@ -1,7 +1,5 @@
 import { useState, useLayoutEffect, useEffect } from "react";
-import { findingValueInArray } from "../utils/filters";
 import { useSelector } from "react-redux";
-import { SearchItemType } from "../type/typeHooks/typesUseSearch";
 import { useDispatch } from "react-redux";
 import { CurrencesStateType, ObjCoinsType } from "../type/typeComponents/typesMain";
 import { RootState } from "../store";

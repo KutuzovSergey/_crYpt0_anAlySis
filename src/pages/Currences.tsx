@@ -20,7 +20,7 @@ const Currences:React.FC = () => {
         selectedSort,
         foundCoin,
         sortCurrences,
-        fetchListOnPage,
+        fetchListNextPage,
         openModalInfo,
         currences,
         removeCurrences,
@@ -29,7 +29,8 @@ const Currences:React.FC = () => {
         modalInfo,
         setModalInfo,
         modalInfoText,
-        isLoadingList] = useCurrences();
+        isLoadingList,
+        coinNotFound] = useCurrences();
 
     const getAllCoins = async () => {
         dispatch(getAllCoinsList(await getAllList()));
@@ -47,7 +48,7 @@ const Currences:React.FC = () => {
                 sortValue={selectedSort}
                 foundCoin={foundCoin} 
                 sort={sort => sortCurrences(sort)}
-                fetchListOnPage={fetchListOnPage}
+                fetchListNextPage={fetchListNextPage}
                 openModalInfo={openModalInfo}
                 />
             <hr className='content__line' />
@@ -57,6 +58,7 @@ const Currences:React.FC = () => {
                 remove={removeCurrences}
                 isLoadingList={isLoadingList}
                 displayingAdd={true} 
+                coinNotFound={coinNotFound}
                 />
             <Pagination count={totalCount} getListCoins={getListCoins} />
             <MyModal active={modalInfo} setActive={setModalInfo}>

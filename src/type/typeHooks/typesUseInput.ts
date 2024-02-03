@@ -24,17 +24,6 @@ export type UseInputControlType = {
     resetFormValues: (reasonDataReset: boolean) => void
 }
 
-// export type UseInputEditProfileType = {
-//     valueUserInfo: {
-//         current: ValueUserType
-//     },
-//     errorStatus: ErrorStatusType,
-//     onChangeInput: (e: React.ChangeEvent) => void,
-//     validation: (e:  React.FormEvent) => CheckValidErrorsType,
-//     error: ErrorType,
-//     resetFormValues: (reasonDataReset: boolean) => void
-// }
-
 export type UseUploadImageType = [
     srcProfilePhoto: ProfilePhotoType,
     uploadImage: () => void,
@@ -51,7 +40,6 @@ export type FileType = {
     type: string,
     webkitRelativePath: string
 }
-// DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> |
 
 export type NewUseInputControlType = {
     valueUserInfo: ValueUserType,

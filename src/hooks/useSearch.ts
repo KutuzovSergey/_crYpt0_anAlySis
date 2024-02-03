@@ -1,16 +1,17 @@
 import { useState, useLayoutEffect, useEffect } from "react";
 import { findingValueInArray } from "../utils/filters";
 import { useSelector } from "react-redux";
-import { SearchItemType } from "../type/typeHooks/typesUseSearch";
+import { InfoListInputType, UseSearchType,  } from "../type/typeHooks/typesUseSearch";
+import { RootState } from "../store";
 
-export const useSearch = (openModalInfo: (text: string) => void, fetchListOnPage: (foundCoin: any) => void) =>{
+export const useSearch = (openModalInfo: (text: string) => void, fetchListNextPage: (foundCoin: string[]) => void): UseSearchType =>{
 
-    const allCoinList = useSelector((state: any) => state.allCoinList.coinsList);
+    const allCoinList = useSelector((state: RootState) => state.allCoinList.coinsList);
 
     const [searchValue, setSearchValue] = useState<string>('');
     const [visible, setVisible] = useState<boolean>(false);
     const [foundCoin, setFoundCoin] = useState([]);
-    const [infoListInput, setInfoListInput] = useState<string[]>([]);
+    const [infoListInput, setInfoListInput] = useState<InfoListInputType>([]);
     const [infoSearchShow, setInfoSearchShow] = useState<boolean>(false);
     const [infoSearch, setInfoSearch] = useState<string>('Введите короткон имя искомой криптовалюты или несколько через запятую');
 
@@ -66,13 +67,13 @@ export const useSearch = (openModalInfo: (text: string) => void, fetchListOnPage
 
         if (searchValue !== '' || foundCoin.length) {
             const dataSearch = checkSearchText(searchValue, allCoinList);
-
+            
             if (!dataSearch.length && !foundCoin.length) {
                 openModalInfo('в страке поиска ошибка, такой монеты несуществует');
             } else {
                 const result = dataSearch.concat(foundCoin);
-        
-                fetchListOnPage(result);
+                
+                fetchListNextPage(result);
                 setInfoSearchShow(false);
                 setFoundCoin([]);
                 setSearchValue('');
@@ -104,6 +105,7 @@ export const useSearch = (openModalInfo: (text: string) => void, fetchListOnPage
             }
         }
     }, [searchValue, allCoinList]);
+
     return [
         searchValue,
         visible,
@@ -117,5 +119,5 @@ export const useSearch = (openModalInfo: (text: string) => void, fetchListOnPage
         transferInput,
         deleteFoundCoin,
         sendSearchQuery,
-    ] as const
+    ]
 }

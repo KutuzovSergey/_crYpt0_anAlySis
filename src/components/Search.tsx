@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import InfoForm from "./UI/InfoForm/InfoForm";
 import InfoInput from "./UI/InfoInput/InfoInput";
 import MyInput from './UI/MyInput/MyInput';
@@ -11,7 +11,7 @@ import '../styles/componentStyles/Search.scss';
 
 type Props = {
     openModalInfo: (text: string) => void,
-    fetchListOnPage: (foundCoin: any) => void,
+    fetchListNextPage: (foundCoin: string[]) => void,
 }
 
 const Search:React.FC<Props> = (props: Props) =>{
@@ -26,9 +26,9 @@ const Search:React.FC<Props> = (props: Props) =>{
             closeInfoSearch,
             transferInput,
             deleteFoundCoin,
-            sendSearchQuery] = useSearch(props.openModalInfo, props.fetchListOnPage);
+            sendSearchQuery] = useSearch(props.openModalInfo, props.fetchListNextPage);
 
-    const clickSendSearchQuery = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined): any =>{
+    const clickSendSearchQuery = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined): void =>{
         if (e !== undefined) {
             sendSearchQuery(e);
         }

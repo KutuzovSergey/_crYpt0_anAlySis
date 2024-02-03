@@ -7,7 +7,7 @@ export type UseCurrencesType = [
     selectedSort: string,
     foundCoin: string[],
     sortCurrences: (sort: string) => void,
-    fetchListOnPage: (coinList: string[]) => void,
+    fetchListNextPage: (coinList: string[]) => void,
     openModalInfo: (text: string) => void,
     currences: CurrencesType,
     removeCurrences: (currency: ObjCoinsType) => void,
@@ -16,5 +16,6 @@ export type UseCurrencesType = [
     modalInfo: boolean,
     setModalInfo: (bool: boolean) => void,
     modalInfoText: string,
-    isLoadingList: boolean
+    isLoadingList: boolean,
+    coinNotFound: boolean
 ]

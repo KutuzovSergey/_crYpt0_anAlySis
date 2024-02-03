@@ -7,4 +7,5 @@ export type UseFetchingType = [
     isLoadingCurrent: boolean, 
     fetchCoinsToList: (params: string[]) => Promise<any>,
     isLoadingListCurrent: boolean,
+    coinNotFound: boolean
 ]

@@ -19,7 +19,7 @@ export const useCurrences = (): UseCurrencesType =>{
     const [displayedCoins, setDisplayedCoins] = useState<string[]>([]);
     const [totalCount, setTotalCount] = useState<number>(0);
 
-    const [fetchCoin, isLoadingCoin, fetchCoinsToList, isLoadingList] = useFetching(async (params: string[]): Promise<any> => {
+    const [fetchCoin, isLoadingCoin, fetchCoinsToList, isLoadingList, coinNotFound] = useFetching(async (params: string[]): Promise<any> => {
         return await getListOnPage(params)
     });
 
@@ -61,10 +61,6 @@ export const useCurrences = (): UseCurrencesType =>{
         setTotalCount(calculateTotal(allCoinList, 9));
     }
 
-    const fetchListOnPage = async (coinList: string[]): Promise<any>  =>{
-        setCurrences( await fetchCoin(coinList));
-    }
-
     const fetchListNextPage = async (coinList: string[]): Promise<any> =>{
         setCurrences( await fetchCoinsToList(coinList));
     }
@@ -72,13 +68,18 @@ export const useCurrences = (): UseCurrencesType =>{
     useEffect(() => {fetchListNextPage(displayedCoins)}, [displayedCoins]);
     useEffect(() => {getListCoins(1, 10)}, [allCoinList]);
     useEffect(() => {getTotalCount()}, [allCoinList]);
+    useEffect(() => {
+        if (coinNotFound) {
+            openModalInfo('Информация о монете отсутствует на хостинге');
+        }
+    }, [coinNotFound]);
     
     return [
         isLoadingCoin,
         selectedSort,
         foundCoin,
         sortCurrences,
-        fetchListOnPage,
+        fetchListNextPage,
         openModalInfo,
         currences,
         removeCurrences,
@@ -88,5 +89,6 @@ export const useCurrences = (): UseCurrencesType =>{
         setModalInfo,
         modalInfoText,
         isLoadingList,
+        coinNotFound,
     ]
 }

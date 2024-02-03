@@ -32,6 +32,7 @@ const UserAccount:React.FC = () => {
                         textInfo={''}
                         isLoadingList={isLoadingList}
                         displayingAdd={false}
+                        coinNotFound={true}
                         />
                 </div>
             </div>

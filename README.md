@@ -33,7 +33,7 @@ After logging in to the Coins page, the user has the opportunity to find the cry
 
 When you enter values in the drop-down list into the search bar, found coins appear under the search bar that can be selected by clicking.
 
-![alt text](https://raw.githubusercontent.com/KutuzovSergey/images/main/2.gif)
+![alt text](https://raw.githubusercontent.com/KutuzovSergey/images/main/gif_3.gif)
 
 The selected coins are displayed above the search bar. /
 The application allows you to select up to ten sonnets. When you try to select more, an information window pops up with a warning.
