@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { UsePaginationType, GetListCoinsType, CountType, ButtonsVisibleType } from "../type/typeHooks/typesUsePagination";
 
 export const usePagination = (getListCoins: GetListCoinsType, count: CountType): UsePaginationType =>{
@@ -81,5 +81,5 @@ export const usePagination = (getListCoins: GetListCoinsType, count: CountType):
         scrollRight,
         scrollLeft,
         countСoins
-    ] as const
+    ]
 }

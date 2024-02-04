@@ -3,15 +3,15 @@ import { _email, _phone } from "../utils/regularExpressions";
 import {  InputEditingType } from "../type/typeHooks/typesInputEditing";
 
 export const useInputEditing = (returningTheStateInput: () => void, resetFormValue: (inputId: string) => void, closeInput?: boolean,): InputEditingType => {
-    const [appearance, getAppearance] = useState(false);
+    const [appearance, setAppearance] = useState(false);
 
     const showInput = (): void =>{
-        getAppearance(true);
+        setAppearance(true);
         returningTheStateInput();
     }
 
     const hideInput = (e: MouseEvent<HTMLDivElement>): void => {
-        getAppearance(false);
+        setAppearance(false);
         const target = e.target as HTMLElement;
         let inputId: string;
 
@@ -27,7 +27,7 @@ export const useInputEditing = (returningTheStateInput: () => void, resetFormVal
 
     useEffect( () => {
         if (closeInput) {
-            getAppearance(false);
+            setAppearance(false);
         }
     }, [closeInput]);
     

@@ -61,11 +61,16 @@ export const useCurrences = (): UseCurrencesType =>{
         setTotalCount(calculateTotal(allCoinList, 9));
     }
 
-    const fetchListNextPage = async (coinList: string[]): Promise<any> =>{
+    const getAListOfCoinsFirstTime = async (coinList: string[]): Promise<any> =>{
+        setCurrences( await fetchCoin(coinList));
+    }
+
+    const getAListOfCoins = async (coinList: string[]): Promise<any> =>{
         setCurrences( await fetchCoinsToList(coinList));
     }
 
-    useEffect(() => {fetchListNextPage(displayedCoins)}, [displayedCoins]);
+    useEffect(() => {getAListOfCoinsFirstTime(displayedCoins)}, []);
+    useEffect(() => {getAListOfCoins(displayedCoins)}, [displayedCoins]);
     useEffect(() => {getListCoins(1, 10)}, [allCoinList]);
     useEffect(() => {getTotalCount()}, [allCoinList]);
     useEffect(() => {
@@ -79,7 +84,7 @@ export const useCurrences = (): UseCurrencesType =>{
         selectedSort,
         foundCoin,
         sortCurrences,
-        fetchListNextPage,
+        getAListOfCoins,
         openModalInfo,
         currences,
         removeCurrences,

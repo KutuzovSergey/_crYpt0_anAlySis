@@ -20,7 +20,7 @@ const Currences:React.FC = () => {
         selectedSort,
         foundCoin,
         sortCurrences,
-        fetchListNextPage,
+        getAListOfCoins,
         openModalInfo,
         currences,
         removeCurrences,
@@ -37,7 +37,7 @@ const Currences:React.FC = () => {
     }
 
     useEffect(() => {getAllCoins()}, []);
-    
+    console.log(isLoadingCoin);
     if (isLoadingCoin){
         return <LoaderCurrences/>
     }
@@ -48,7 +48,7 @@ const Currences:React.FC = () => {
                 sortValue={selectedSort}
                 foundCoin={foundCoin} 
                 sort={sort => sortCurrences(sort)}
-                fetchListNextPage={fetchListNextPage}
+                getAListOfCoins={getAListOfCoins}
                 openModalInfo={openModalInfo}
                 />
             <hr className='content__line' />

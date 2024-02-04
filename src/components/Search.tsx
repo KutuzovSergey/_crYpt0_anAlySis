@@ -11,7 +11,7 @@ import '../styles/componentStyles/Search.scss';
 
 type Props = {
     openModalInfo: (text: string) => void,
-    fetchListNextPage: (foundCoin: string[]) => void,
+    getAListOfCoins: (foundCoin: string[]) => void,
 }
 
 const Search:React.FC<Props> = (props: Props) =>{
@@ -26,7 +26,7 @@ const Search:React.FC<Props> = (props: Props) =>{
             closeInfoSearch,
             transferInput,
             deleteFoundCoin,
-            sendSearchQuery] = useSearch(props.openModalInfo, props.fetchListNextPage);
+            sendSearchQuery] = useSearch(props.openModalInfo, props.getAListOfCoins);
 
     const clickSendSearchQuery = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined): void =>{
         if (e !== undefined) {

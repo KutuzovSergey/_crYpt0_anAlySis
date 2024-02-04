@@ -10,7 +10,7 @@ type Props = {
     sortValue: string,
     foundCoin: string[],
     sort: (e: string) => void,
-    fetchListNextPage: (foundCoin: string[]) => void,
+    getAListOfCoins: (foundCoin: string[]) => void,
     openModalInfo: (text: string) => void,
 }
 
@@ -24,7 +24,7 @@ const FormSearch:React.FC<Props> = memo( (props: Props) =>{
     return(
         <form className="FormSearch">
             <Search 
-                    fetchListNextPage={props.fetchListNextPage}
+                    getAListOfCoins={props.getAListOfCoins}
                     openModalInfo={props.openModalInfo}/>
             <div className="FormSearch__sorting">
                 <MySelect 

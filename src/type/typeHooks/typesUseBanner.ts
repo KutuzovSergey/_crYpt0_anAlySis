@@ -4,7 +4,7 @@ export type ImgBanner = {
     id: number
 }[];
 
-export type BannerOperation = [
+export type BannerOperationType = [
     bannerActive: number,
     dataBanner: {
         src: string,

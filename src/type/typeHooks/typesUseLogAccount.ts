@@ -14,13 +14,13 @@ export type ErrorStatusType = {
     passwordStatus: boolean,
 }
 
+export type CheckResultType = () => boolean
+
 export type LogAccountType = [
     errorMessage: ErrorType,
     formLogValue: ValueType,
     loginErrorStatus: ErrorStatusType,
     loginChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    validLogin: (e: React.FormEvent) => void,
+    validLogin: (e: React.FormEvent) => CheckResultType,
     resetLog: () => void,
 ]
-
-export type CheckResultType = () => boolean

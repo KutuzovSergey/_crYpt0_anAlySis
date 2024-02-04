@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
-import { ErrorType, ValueType, ErrorStatusType, CheckResultType } from "../type/typeHooks/typesUseLogAccount";
+import { ErrorType, ValueType, ErrorStatusType, CheckResultType, LogAccountType } from "../type/typeHooks/typesUseLogAccount";
 
-export const useLogAccount = (modalLogin: boolean) => {
+export const useLogAccount = (modalLogin: boolean): LogAccountType => {
 
     const [errorMessage, setErrorMessage] = useState<ErrorType>({
         loginError: '',
@@ -143,7 +143,7 @@ export const useLogAccount = (modalLogin: boolean) => {
         loginChange,
         validLogin,
         resetLog,
-    ] as const
+    ]
 }
 
    

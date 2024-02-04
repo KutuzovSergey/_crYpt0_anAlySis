@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect, useEffect } from "react";
-import { ImgBanner } from "../type/typeHooks/typesUseBanner";
+import { ImgBanner, BannerOperationType } from "../type/typeHooks/typesUseBanner";
 
-export const useBannerOperation = () =>{
+export const useBannerOperation = (): BannerOperationType =>{
     const [bannerActive, setBannerActive] = useState<number>(0);
     const [dataBanner, setDataBanner] = useState<ImgBanner>([]);
     const [loadedImg, setLoadedImg] = useState<boolean>(false);
@@ -45,5 +45,5 @@ export const useBannerOperation = () =>{
         loadedImg,
         switchSlide,
         getLoadedImg,
-    ] as const
+    ]
 }

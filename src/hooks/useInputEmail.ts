@@ -70,5 +70,5 @@ export const useEmailControl = (): EmailControlType => {
         onChangeEmail,
         resetEmailValues,
         changeShowMessage,
-    ] as const
+    ]
 }

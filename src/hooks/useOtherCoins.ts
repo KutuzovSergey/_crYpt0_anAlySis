@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { ObjectOptionsType, SelectType } from "../type/typeHooks/typesUseOtherCoins";
+import { ObjectOptionsType, SelectType, UseSelectOtherCoinsType } from "../type/typeHooks/typesUseOtherCoins";
 
-export const useSelectOtherCoins = (allCoins: string[]) =>{
+export const useSelectOtherCoins = (allCoins: string[]): UseSelectOtherCoinsType =>{
     const [optionsAllCoins, setOptionsAllCoins] = useState<SelectType>([]);
     const [valueSelect, setValueSelect] = useState<string>('');
 
@@ -22,7 +22,7 @@ export const useSelectOtherCoins = (allCoins: string[]) =>{
         }
     }
 
-    const getSelectedCoin = (coinName: string) =>{
+    const getSelectedCoin = (coinName: string): void =>{
         setValueSelect(coinName);
     }
 
@@ -34,5 +34,5 @@ export const useSelectOtherCoins = (allCoins: string[]) =>{
         optionsAllCoins,
         valueSelect,
         getSelectedCoin,
-    ] as const
+    ]
 }

@@ -4,14 +4,14 @@ import { CurrencesType } from "../type/typeComponents/typesMain";
 import { checkingUndefined } from "../utils/checks";
 
 export const useFetching = (callback: CallbackType): UseFetchingType =>{
-    const isLoading = useRef(false);
+    const [isLoading, setIsLoading]= useState(false);
     const [isLoadingList, setIsLoadingList] = useState<boolean>(false);
     const [coinNotFound, setCoinNotFound] = useState<boolean>(false);
     
     const fetchCoin = async (params: string[]): Promise<CurrencesType> =>{
-        isLoading.current = true;
+        setIsLoading(true);
         let result = await callback(params);
-        isLoading.current = false;
+        setIsLoading(false);
         return result
     }
 
@@ -34,7 +34,7 @@ export const useFetching = (callback: CallbackType): UseFetchingType =>{
 
     return [
         fetchCoin, 
-        isLoading.current, 
+        isLoading, 
         fetchCoinsToList,
         isLoadingList,
         coinNotFound,

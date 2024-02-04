@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { InfoListInputType, UseSearchType,  } from "../type/typeHooks/typesUseSearch";
 import { RootState } from "../store";
 
-export const useSearch = (openModalInfo: (text: string) => void, fetchListNextPage: (foundCoin: string[]) => void): UseSearchType =>{
+export const useSearch = (openModalInfo: (text: string) => void, getAListOfCoins: (foundCoin: string[]) => void): UseSearchType =>{
 
     const allCoinList = useSelector((state: RootState) => state.allCoinList.coinsList);
 
@@ -73,7 +73,7 @@ export const useSearch = (openModalInfo: (text: string) => void, fetchListNextPa
             } else {
                 const result = dataSearch.concat(foundCoin);
                 
-                fetchListNextPage(result);
+                getAListOfCoins(result);
                 setInfoSearchShow(false);
                 setFoundCoin([]);
                 setSearchValue('');

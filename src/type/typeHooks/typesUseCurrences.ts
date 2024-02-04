@@ -7,7 +7,7 @@ export type UseCurrencesType = [
     selectedSort: string,
     foundCoin: string[],
     sortCurrences: (sort: string) => void,
-    fetchListNextPage: (coinList: string[]) => void,
+    getAListOfCoins: (coinList: string[]) => void,
     openModalInfo: (text: string) => void,
     currences: CurrencesType,
     removeCurrences: (currency: ObjCoinsType) => void,
