@@ -1,7 +1,6 @@
 import React from "react";
 import { useEmailControl } from '../hooks/useInputEmail';
 import MyModal from './UI/MyModal/MyModal';
-import MyInput from './UI/MyInput/MyInput';
 import MessageToUser from './UI/MessageToUser/MessageToUser';
 
 import '../styles/componentStyles/SubscribeNews.scss';

@@ -110,10 +110,15 @@
 
 @media (max-width: 580px){
     .card{
-        
         &__footer__buttom{
             width: 48%;
         }
     }
     
+}
+
+@media (max-width: 460px){
+    .card{
+        width: 300px;
+    }
 }

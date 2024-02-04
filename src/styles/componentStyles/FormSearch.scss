@@ -13,11 +13,20 @@
     }
 }
 
-@media (max-width: 580px){
+@media (max-width: 570px){
     .FormSearch{
     
         &__sorting{
             width: 40%;
+        }
+    }
+}
+
+@media (max-width: 460px){
+    .FormSearch{
+    
+        &__sorting{
+            width: 100%;
         }
     }
 }

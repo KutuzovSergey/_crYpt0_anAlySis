@@ -34,3 +34,29 @@
         pointer-events: all;
     }
 }
+
+@media (max-width: 768px){
+    .search{
+        &__input__block{
+            width: 85%;
+        }
+
+        &__button{
+            width: 15%;
+        }
+
+    }
+}
+
+@media (max-width: 570px){
+    .search{
+        &__input__block{
+            width: 80%;
+        }
+
+        &__button{
+            width: 20%;
+        }
+
+    }
+}

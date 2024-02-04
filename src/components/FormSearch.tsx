@@ -2,7 +2,6 @@ import React, { useState, memo } from "react";
 import MySelect from "./UI/MySelect/MySelect";
 import Search from "./Search";
 import { SelectType } from "../type/typeComponents/typesSearchSelect";
-import { ObjCoinsType } from "../type/typeComponents/typesMain";
 
 import '../styles/componentStyles/FormSearch.scss';
 
@@ -24,8 +23,8 @@ const FormSearch:React.FC<Props> = memo( (props: Props) =>{
     return(
         <form className="FormSearch">
             <Search 
-                    getAListOfCoins={props.getAListOfCoins}
-                    openModalInfo={props.openModalInfo}/>
+                getAListOfCoins={props.getAListOfCoins}
+                openModalInfo={props.openModalInfo}/>
             <div className="FormSearch__sorting">
                 <MySelect 
                     value={props.sortValue}

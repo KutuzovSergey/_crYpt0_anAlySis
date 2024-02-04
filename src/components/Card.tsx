@@ -1,15 +1,13 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addCoin } from "../action/actionCreators";
 import MyButton from "./UI/MyButton/MyButton";
 import MyButtonSmall from "./UI/MyButtonSmall/MyButtonSmall";
 import { ObjCoinsType } from "../type/typeComponents/typesMain";
-
-import '../styles/componentStyles/Card.scss';
 import { useAddNawCoin } from "../hooks/useAddNewCoin";
 import MyModal from "./UI/MyModal/MyModal";
 import MessageToUser from "./UI/MessageToUser/MessageToUser";
+
+import '../styles/componentStyles/Card.scss';
 
 type Props = {
   currencyInfo: ObjCoinsType,

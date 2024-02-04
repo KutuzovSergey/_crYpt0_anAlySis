@@ -165,7 +165,7 @@ const EditProfile:React.FC = () => {
                 <MyButton>Внести изменения</MyButton>
             </div>
             <MyModal active={modal} setActive={closeModalWindow}>
-                <MessageToUser>Данные успешно изменины</MessageToUser>
+                <MessageToUser>Данные успешно изменены</MessageToUser>
             </MyModal>
         </form>
     )

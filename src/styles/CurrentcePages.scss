@@ -25,6 +25,21 @@
     }
 }
 
+@media (max-width: 1280px) {
+    .coin{
+        &__chart{
+            grid-template-columns: 1fr;
+            height: auto;
+        }
+
+        &__interface{
+            height: 400px;
+            align-items: center;
+            flex-direction: column-reverse;
+        }
+    }
+}
+
 @media (max-width: 860px) {
     .coin{
 
