@@ -19,7 +19,7 @@ const UserAccount:React.FC = () => {
     }
 
     const isLoadingList = false;
-
+    
     return (
         <div className="account">
             <div className="account__wrapper">

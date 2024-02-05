@@ -30,3 +30,22 @@
        @include textInfo();
     }
 }
+
+@media (max-width: 768px) {
+    .headerCoin{
+        align-items: center;
+        flex-direction: column;
+        height: auto;
+
+        &__name{
+            width: auto;
+            padding: 0;
+        }
+    }
+}
+
+@media (max-width: 440px) {
+    .otherCoins{
+        width: 100%;
+    }
+}

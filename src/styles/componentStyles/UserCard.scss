@@ -26,9 +26,18 @@
     &__name{
         display: flex;
         justify-content: center;
-        align-items: center;
     }
     &__button{
         width: 100%;
+    }
+}
+
+@media (max-width: 1280px) {
+    .user-card{
+        width: auto;
+        margin: auto;
+        padding: 30px;
+        height: auto;
+        grid-template-rows: 200px 40px 50px;
     }
 }

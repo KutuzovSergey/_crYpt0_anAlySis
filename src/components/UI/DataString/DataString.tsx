@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import data_changes from "../../../images/icon/data_changes.png";
 import MyInput from "../MyInput/MyInput";
 import { useInputEditing } from "../../../hooks/useInputEditing";

@@ -21,7 +21,7 @@
 
     &__take_photo_button{
         width: 190px;
-        margin: auto;
+        margin: 20px auto 0 auto;
     }
 
     &__data{
@@ -35,7 +35,7 @@
         padding: 40px 0;
         display: grid;
         gap: 10px;
-        grid-template-rows: 70px 70px 70px 70px 70px;
+        grid-template-rows: repeat(5, 70px);
         background-color: $background_loader;
     }
 
@@ -80,13 +80,53 @@
         &__data{
             width: 500px;
         }
+
+        &__change_password{
+            width: 400px;
+        }
+
+        &__photo{
+            margin: auto;
+            width: 300px;
+        }
+
+        &__button > button{
+            width: 40%;
+        }
     }
 }
 
 @media (max-width: 600px){
     .profile {
         &__data{
-            width: 300px;
+            width: 90%;
+        }
+
+        &__change_password{
+            width: 90%;
+        }
+
+        &__data_wrapper{
+            height: auto;
+            grid-template-rows: 90px 90px 90px 70px 70px;
+        }
+
+        &__button > button{
+            width: 45%;
+        }
+    }
+}
+
+@media (max-width: 420px){
+    .profile {
+
+        width: 100%;
+        &__data{
+            width: 100%;
+        }
+
+        &__button > button{
+            width: 55%;
         }
     }
 }

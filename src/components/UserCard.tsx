@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import LinkButton from "./UI/LinkButton/LinkButton";
 import { useSelector } from "react-redux";
-// import user from "../images/user/user.png";
 import { StateType, UserDataType } from "../type/typeStore/typesStore";
 import UserImage from "./UI/UserImage/UserImage";
 
@@ -17,9 +16,6 @@ const UserCard: FC = () => {
     return (
         <div className="user-card">
             <UserImage srcImages={srcImages}/>
-            {/* <div className="user-card__photo">
-                <img src={srcImages} alt="logo" />
-            </div> */}
             <div className="user-card__name">
                 <span className="footer__name__text">{userData.userName}</span>
             </div>

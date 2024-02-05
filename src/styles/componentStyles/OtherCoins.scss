@@ -17,3 +17,21 @@
         width: 50%;
     }
 }
+
+@media (max-width: 860px) {
+    .otherCoins{
+        width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    .otherCoins{
+        width: 80%;
+    }
+}
+
+@media (max-width: 440px) {
+    .otherCoins{
+        width: 100%;
+    }
+}
