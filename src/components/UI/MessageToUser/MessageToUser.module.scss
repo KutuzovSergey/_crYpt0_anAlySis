@@ -16,3 +16,15 @@
         font-family: $font_style_element;
     }
 }
+
+@media (max-width: 660px) {
+    .message{
+        width: 300px;
+    }
+}
+
+@media (max-width: 430px) {
+    .message{
+        width: 200px;
+    }
+}

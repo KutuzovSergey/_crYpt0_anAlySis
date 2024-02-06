@@ -21,10 +21,27 @@
         border-radius: 12px;
         background-color: $background_color_fourth;
         width: auto;
-        height: auto;
+        max-height: 500px;
+        overflow:scroll;
+        overflow-x:hidden;
         transform: scale(0);
         transition: 0.8s all;
         box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+    }
+
+    &__block::-webkit-scrollbar{
+        width: 8px;
+    }
+    
+    &__block::-webkit-scrollbar-track{
+        background: $background;
+        border-radius: 0 12px 12px 0;
+    }
+
+    &__block::-webkit-scrollbar-thumb{
+        background-color: $background_color;
+        border-radius: 12px;
+        border: $background_color;
     }
 
     &__block.active{
@@ -37,6 +54,17 @@
         position: absolute;
         right: 30px;
         top: 20px;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .myModal{
+
+        &__close{
+            right: 10px;
+            top: 10px;
+        }
     }
 }
 

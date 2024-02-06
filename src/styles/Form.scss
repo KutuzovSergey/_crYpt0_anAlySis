@@ -94,3 +94,56 @@
     position: absolute;
     background-color: #fff;
 }
+
+@media (max-width: 660px) {
+    .form{
+        min-width: 380px;
+
+        &__wrapper{
+            flex-direction: column;
+        }
+
+        &__block__input{
+            width: 100%;
+        }
+    }
+
+    .imgBlock{
+        margin: 0 auto;
+        width: 210px;
+        padding: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .form{
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 400px) {
+    .form{
+        min-width: 250px;
+    }
+
+    .imgBlock{
+        width: 190px;
+
+        &__userImg{
+            width: 190px;
+            height: 190px;
+        }
+    }
+}
+
+@media (max-width: 350px) {
+    .form{
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 300px) {
+    .form{
+        min-width: 160px;
+    }
+}

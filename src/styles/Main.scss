@@ -22,6 +22,24 @@ $font_size_elements: 0.8rem;
 $font_size_big: 1.2rem;
 $font_style_element: 'Rubik Mono One', sans-serif;
 
+body::-webkit-scrollbar{
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track{
+    background: $background;
+}
+
+body::-webkit-scrollbar-thumb{
+    background-color: $background_color;
+    border-radius: 5px;
+    border: $background_color;
+}
+
+// body {
+//     scrollbar-width: thin;
+//     scrollbar-color: $color_button_hover $background;
+// }
 
 @mixin content_block {
     width: 90%;
