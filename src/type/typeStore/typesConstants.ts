@@ -12,3 +12,7 @@ export type UserCoinListConstType = {
 export type AllCoinListConstType = {
     GET_COINS_LIST: 'GET_COINS_LIST'
 }
+
+export type GeneralAppConstType = {
+    CHANGE_DISABLE_MODAL: 'CHANGE_DISABLE_MODAL'
+}

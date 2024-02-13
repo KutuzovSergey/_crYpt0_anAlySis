@@ -1,20 +1,20 @@
 import React, { useContext, useEffect, useRef, useState, ChangeEvent, FC, FormEvent } from "react";
 import { useDispatch } from "react-redux";
-import { store } from "../store";
 import MyInput from "./UI/MyInput/MyInput";
 import MyButton from "./UI/MyButton/MyButton";
 import ImitationButton from "./UI/ImitationButton/ImitationButton";
 import MyInputFile from "./UI/MyInputFile/MyInputFile";
 import ErrorForm from "./UI/ErrorForm/ErrorForm";
-// import CapturingPhotosWebcam from "./CapturingPhotosWebcam";
+import CapturingPhotosWebcam from "./CapturingPhotosWebcam";
 import user from "../images/user/user.png";
-import camera from "../images/icon/camera.svg";
+import camera from "../images/icon/camera.png";
 import upload from "../images/icon/upload.png";
 import { AppContext } from "../context";
 import { useInputControl } from "../hooks/useInput";
 import { useUploadImage } from "../hooks/useUploadingImage";
-import { addUser } from "../action/actionCreators";
+import { addUser, changeDisableModal } from "../action/actionCreators";
 import { UserDataType } from "../type/typeStore/typesStore";
+import { ProfilePhotoType } from "../type/typesMain";
 
 import '../styles/Form.scss';
 
@@ -43,7 +43,9 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
     const [srcProfilePhoto, 
         uploadImage, 
         showUploadedImage, 
-        resetInputFile
+        resetInputFile,
+        dirtyInput,
+        setSrcProfilePhoto
     ] = useUploadImage(user, inputUpload);
     
     const registration = (e: FormEvent) => {
@@ -62,14 +64,20 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
     const uploadedImage = (e: ChangeEvent<HTMLInputElement>) => {
         showUploadedImage(e);
     }
+    
+    const openTakePhoto = () => {
+        dispatch(changeDisableModal(true));
+        getTakingPhotos(true);
+    }
 
-    // const openTakePhoto = () => {
-    //     getTakingPhotos(true);
-    // }
+    const closeTakePhoto = () => {
+        getTakingPhotos(false);
+        dispatch(changeDisableModal(false));
+    }
 
-    // const closeTakePhoto = () => {
-    //     getTakingPhotos(false);
-    // }
+    const installingSnapshot = (snapshot: ProfilePhotoType): void =>{
+        setSrcProfilePhoto!(snapshot);
+    }
     
     useEffect( () => {
         resetFormValues(props.active);
@@ -90,12 +98,12 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
                         </div>
                     </div>
                     <div className="imgBlock__buttons">
-                        {/* <div className="imgBlock__button">
+                        <div className="imgBlock__button">
                             <ImitationButton
                                 onClick = {() => {openTakePhoto()}}>
                                 <img src={camera} alt="camera" className="imgBlock__images" />
                             </ImitationButton>
-                        </div> */}
+                        </div>
                         <div className="imgBlock__button">
                             <ImitationButton
                                 onClick = {() => {uploadImage()}}>
@@ -172,7 +180,7 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
             </div>
             {takingPhotos ? 
             <div className="takingPhotosv">
-                {/* <CapturingPhotosWebcam closeTakePhoto={closeTakePhoto}/> */}
+                <CapturingPhotosWebcam closeWebcam={closeTakePhoto} installingSnapshot={installingSnapshot} />
             </div>
             :
             ''

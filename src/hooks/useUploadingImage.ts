@@ -43,6 +43,7 @@ export const useUploadImage = (user: HTMLImageElement, inputUpload: RefObject<HT
         uploadImage,
         showUploadedImage,
         resetInputFile,
-        dirtyInput
+        dirtyInput,
+        setSrcProfilePhoto
     ]
 }

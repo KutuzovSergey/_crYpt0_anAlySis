@@ -128,3 +128,12 @@ export type StateType = {
     userCoinList: {coinsList: CoinType[]},
     userData: {userData: UserDataType},
 }
+
+export type GeneralAppDataType = {
+    isDisableModal: boolean
+}
+
+export type ChangeGeneralAppType = {
+    type: string,
+    generalApp: boolean
+}

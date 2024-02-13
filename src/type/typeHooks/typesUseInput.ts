@@ -29,7 +29,8 @@ export type UseUploadImageType = [
     uploadImage: () => void,
     showUploadedImage: (e: React.ChangeEvent<HTMLInputElement>) => void,
     resetInputFile: (user: HTMLImageElement) => void,
-    dirtyInput?: boolean
+    dirtyInput?: boolean,
+    setSrcProfilePhoto?: (srcProfilePhoto: ProfilePhotoType) => void
 ]
 
 export type FileType = {

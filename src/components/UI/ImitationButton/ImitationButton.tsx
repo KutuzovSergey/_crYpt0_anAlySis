@@ -6,6 +6,7 @@ type Props = {
     children: string | React.ReactNode,
     activityIndicator?: boolean,
     onClick: () => void,
+    id?: string
 }
 
 const  ImitationButton:FC<Props> = ({children, activityIndicator, ...props}: Props) =>{

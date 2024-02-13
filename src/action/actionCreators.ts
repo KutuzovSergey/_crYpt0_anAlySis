@@ -1,6 +1,6 @@
-import { allCoinListConst, userDataConst } from "../constants/constants";
+import { allCoinListConst, userDataConst, generalAppConst } from "../constants/constants";
 import { userCoinListConst } from "../constants/constants";
-import { AddUserActionType, UserDataType, AddCoinActionType, CoinType, DeleteCoinActionType, AllCoinsListType, GetCoinsActionType, changeUserDataType } from "../type/typeStore/typesStore";
+import { AddUserActionType, UserDataType, AddCoinActionType, CoinType, DeleteCoinActionType, AllCoinsListType, GetCoinsActionType, changeUserDataType, ChangeGeneralAppType } from "../type/typeStore/typesStore";
 
 // работа с данными пользователя
 export const addUser = (userData: UserDataType): AddUserActionType => {
@@ -38,5 +38,13 @@ export const getAllCoinsList = (allCoins: AllCoinsListType): GetCoinsActionType 
     return {
         type: allCoinListConst.GET_COINS_LIST,
         payload: allCoins
+    }
+}
+
+// дизейблим модальное окно
+export const changeDisableModal = (isDisableModal: boolean): ChangeGeneralAppType => {
+    return {
+        type: generalAppConst.CHANGE_DISABLE_MODAL,
+        generalApp: isDisableModal
     }
 }

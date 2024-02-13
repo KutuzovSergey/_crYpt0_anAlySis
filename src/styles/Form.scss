@@ -88,11 +88,11 @@
 }
 
 .takingPhotosv{
-    width: 420px;
+    width: 500px;
     height: auto;
     padding: 10px;
     position: absolute;
-    background-color: #fff;
+    background-color: $color_text;
 }
 
 @media (max-width: 660px) {

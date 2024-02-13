@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { CallbackType, UseFetchingType } from "../type/typeHooks/typesUseFetching";
 import { CurrencesType } from "../type/typeComponents/typesMain";
 import { checkingUndefined } from "../utils/checks";

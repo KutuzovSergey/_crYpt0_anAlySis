@@ -8,6 +8,12 @@ declare module '*.module.scss' {
     export default classes;
 }
 
+declare global {
+    interface Window {
+        localStream?: any;
+    }
+}
+
 declare module '*.svg';
 declare module '*.gif';
 declare module '*.png';

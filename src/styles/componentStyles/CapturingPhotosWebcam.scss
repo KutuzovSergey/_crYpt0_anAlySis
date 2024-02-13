@@ -2,16 +2,77 @@
 @import '../../fonts/RubikMonoOne-Regular.ttf';
 
 .webcam{
+    z-index: 999;
     width: 100%;
-    height: auto;
+    height: 420px;
     position: relative;
+    background-color: $background;
     display: grid;
-    grid-template-columns: 50% 50%;
+    padding: 10px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 345px 40px;
 
     &__close{
         position: absolute;
-        right: 0;
-        top: 0;
+        right: -10px;
+        top: -10px;
+    }
+
+    &__photo{
+        width: 220px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__camera{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__video{
+        display: none;
+    }
+
+    &__video_show{
+        display: block;
+        width: 350px;
+        height: auto;
+    }
+
+    &__canvas{
+        display: none;
+    }
+
+    &__image{
+        display: none;
+    }
+
+    &__image_show{
+        display: block;
+        width: 350px;
+        height: auto;
+    }
+
+    &__image>img{
+        width: 100%;
+        height: auto;
+    }
+
+    &__button__block{
+        width: 100%;
+    }
+
+    &__button{
+        width: 40%;
+        margin: auto;
+    }
+
+    &__webcam__images{
+        width: 100%;
+        display: flex;
     }
 }
 

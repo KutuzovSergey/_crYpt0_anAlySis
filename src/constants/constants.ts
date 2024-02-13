@@ -1,4 +1,4 @@
-import { UserDataConstType, UserCoinListConstType, AllCoinListConstType } from "../type/typeStore/typesConstants";
+import { UserDataConstType, UserCoinListConstType, AllCoinListConstType, GeneralAppConstType } from "../type/typeStore/typesConstants";
 
 export const userDataConst: UserDataConstType = {
     ADD_USER_DATA: 'ADD_USER_DATA',
@@ -13,4 +13,8 @@ export const userCoinListConst: UserCoinListConstType = {
 
 export const allCoinListConst: AllCoinListConstType = {
     GET_COINS_LIST: 'GET_COINS_LIST'
+}
+
+export const generalAppConst: GeneralAppConstType = {
+    CHANGE_DISABLE_MODAL: 'CHANGE_DISABLE_MODAL'
 }

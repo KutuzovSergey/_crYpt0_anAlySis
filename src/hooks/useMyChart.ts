@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Chart from 'chart.js/auto';
 import { ChartDataCoin, StocksData, StocksOptions, DatasetsCoinType, DatasetsCoinArrType, RandomParametersType, CanvasChartType } from "../type/typeComponents/typesMyChart";
 import { getRandomNumber } from "../utils/getRandomNumber";
