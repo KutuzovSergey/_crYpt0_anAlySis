@@ -14,46 +14,35 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
     const [srcImg, setSrcImg] = useState<ProfilePhotoType>(null);
     const streamVideo = useRef<any>(null);
 
-    const playCamera = async () =>{
-        // console.log('Мы сдесь');
-        //     await navigator.mediaDevices.getUserMedia({ video: true, audio: false})
-        // .then(function (stream){
-        //     // if (video !== null) {
-        //     console.log('Мы сдесь');
-        //     video!.srcObject = stream;
-        //     video!.play();
-        //     setDisplayControl(true);
-        //     streamVideo.current = stream;
-        //     // }
-        // })
-        // .catch(function(error){
-        //     console.log(error);
-        // })
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false});
-
-        if (video !== null) {
-            video!.srcObject = stream;
-            video!.play();
-            console.log('Мы сдесь');
-        }
-
-        setDisplayControl(true);
-    }
-
-    useEffect(() =>{
-        
-        const getDeviceMedia = async () =>{
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false});
-            console.log('Мы сдесь');
-            if (video) {
+    const playCamera = () =>{
+        navigator.mediaDevices.getUserMedia({ video: true, audio: false})
+        .then(function (stream){
+            if (video !== null) {
                 video!.srcObject = stream;
                 video!.play();
-                console.log('Мы сдесь');
                 setDisplayControl(true);
+                streamVideo.current = stream;
             }
-        }
-        getDeviceMedia()
-    }, []);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    }
+
+    // const getDeviceMedia = async () =>{
+    //     const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false});
+            
+    //     if (video) {
+    //         video!.srcObject = stream;
+    //         video!.play();
+    //         setDisplayControl(true);
+    //     } 
+    // }
+
+    useEffect(() =>{
+        // getDeviceMedia();
+        playCamera();
+    }, []); 
 
     const stopVideoStream = (streamVideo: StreamVideoType): void =>{
         if (streamVideo.current !== null) {
