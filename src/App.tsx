@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import Header from './components/Header';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import {AppContext} from './context';
+import { changeIsAuth } from './action/actionCreators';
+import Header from './components/Header';
 import AppRouter from './components/AppRouter';
 import Footer from './components/Footer';
 import AdaptiveMenu from './components/menus/AdaptiveMenu/AdaptiveMenu';
@@ -9,16 +10,11 @@ import AdaptiveMenu from './components/menus/AdaptiveMenu/AdaptiveMenu';
 import './styles/App.scss';
 
 function App() {
-  const [modalLogin, setModalLogin] = useState<boolean>(false);
-  const [modalRegistr, setModalRegistr] = useState(false);
-  const [errorPages, setErrorPages] = useState(false);
-  const [menuAdaptive, setMenuAdaptive] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
-
+  const dispatch = useDispatch()
   const setUserStatus = () =>{
     if (localStorage.getItem('isAuth') !== null) {
       const valueIsAuth: string = localStorage.getItem('isAuth')!;
-      setIsAuth(JSON.parse(valueIsAuth));
+      dispatch(changeIsAuth(JSON.parse(valueIsAuth)));
     } else {
       localStorage.setItem('isAuth', 'false');
     }
@@ -28,25 +24,12 @@ function App() {
 
   return (
     <div className="App">
-      <AppContext.Provider value={{
-        isAuth,
-        setIsAuth,
-        modalLogin,
-        setModalLogin,
-        errorPages,
-        setErrorPages,
-        modalRegistr,
-        setModalRegistr,
-        menuAdaptive,
-        setMenuAdaptive,
-      }}>
         <BrowserRouter>
           <Header/>
           <AppRouter/>
           <Footer/>
           <AdaptiveMenu/>
         </BrowserRouter>
-      </AppContext.Provider>
     </div>
   );
 }

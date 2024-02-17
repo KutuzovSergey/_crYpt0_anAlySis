@@ -1,13 +1,18 @@
-import React, { useContext } from "react";
-import { AppContext } from "../../../context";
+import React, { FC } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
+import { changeMenuAdaptive } from "../../../action/actionCreators";
 
 import cl from "./BurgerMenu.module.scss";
 
-const BurgerMenu:React.FC = () =>{
-    const {setMenuAdaptive, menuAdaptive} = useContext<any>(AppContext);
+
+const BurgerMenu:FC = () =>{
+    const dispatch = useDispatch();
+    const menuAdaptive: boolean = useSelector((state: RootState) => state.generalApp.menuAdaptive);
 
     const chengeAdapiveMenu = (index: boolean) => {
-        setMenuAdaptive(index);
+        dispatch(changeMenuAdaptive(index));
     }
 
     return (

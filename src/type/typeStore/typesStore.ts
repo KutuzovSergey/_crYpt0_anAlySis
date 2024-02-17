@@ -23,7 +23,7 @@ export type StateUserDataType = {
     userData: UserDataType
 }
 
-export type changeUserDataType = {
+export type ChangeUserDataType = {
     userName?: string,
     userPassword?: string,
     userRepeatPassword?: string,
@@ -130,7 +130,12 @@ export type StateType = {
 }
 
 export type GeneralAppDataType = {
-    isDisableModal: boolean
+    isDisableModal: boolean,
+    menuAdaptive: boolean,
+    modalLogin: boolean,
+    modalRegistr: boolean,
+    errorPages: boolean,
+    isAuth: boolean
 }
 
 export type ChangeGeneralAppType = {

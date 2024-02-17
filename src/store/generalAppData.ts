@@ -3,13 +3,28 @@ import { GeneralAppDataType, ChangeGeneralAppType } from '../type/typeStore/type
 
 const defaultState: GeneralAppDataType = {
         isDisableModal: false,
+        menuAdaptive: false,
+        modalLogin: false,
+        modalRegistr: false,
+        errorPages: false,
+        isAuth: false
     }
 
 
 export const generalAppData = (state = defaultState, action: ChangeGeneralAppType) => {
     switch (action.type){
-        case generalAppConst.CHANGE_DISABLE_MODAL:
+        case generalAppConst.CHANGE_IS_DISABLE_MODAL:
             return { ...state, isDisableModal: action.generalApp }
+        case generalAppConst.CHANGE_MENU_ADAPTIVE:
+            return { ...state, menuAdaptive: action.generalApp }
+        case generalAppConst.CHANGE_MODAL_LOGIN:
+            return { ...state, modalLogin: action.generalApp }
+        case generalAppConst.CHANGE_MODAL_REGISTR:
+            return { ...state, modalRegistr: action.generalApp }
+        case generalAppConst.CHANGE_ERROR_PAGES:
+            return { ...state, errorPages: action.generalApp }
+        case generalAppConst.CHANGE_IS_AUTH:
+            return { ...state, isAuth: action.generalApp }
         default:
             return state
     }

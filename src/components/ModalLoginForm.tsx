@@ -1,12 +1,17 @@
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
+import { useLogAccount } from "../hooks/useLogInAccount";
+import { useDispatch } from "react-redux";
+import { changeIsAuth, changeModalLogin } from "../action/actionCreators";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 import MyInput from "./UI/MyInput/MyInput";
 import MyButton from "./UI/MyButton/MyButton";
-import { AppContext } from "../context";
 import ErrorForm from "./UI/ErrorForm/ErrorForm";
-import { useLogAccount } from "../hooks/useLogInAccount";
 
 const ModalLoginForm:React.FC = () => {
-    const { setIsAuth, modalLogin, setModalLogin } = useContext<any>(AppContext);
+    const modalLogin: boolean = useSelector((state: RootState) => state.generalApp.modalLogin);
+    const dispatch = useDispatch();
+    
     const [errorMessage,
         formLogValue,
         loginErrorStatus,
@@ -19,9 +24,9 @@ const ModalLoginForm:React.FC = () => {
 
         if(validLogin(e)()){
             resetLog();
-            setIsAuth(true);
+            dispatch(changeIsAuth(true));
             localStorage.isAuth = true;
-            setModalLogin(false);
+            dispatch(changeModalLogin(false));
         }
     }
 

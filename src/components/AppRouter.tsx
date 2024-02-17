@@ -1,11 +1,11 @@
-import React, { useContext, FC } from "react";
+import React, { FC } from "react";
 import { Route, Routes, } from "react-router-dom";
 import {privateRouters, publicRouters, } from "../router";
-import {AppContext} from '../context/index';
-import { RouterProviderProps } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 const AppRouter: FC = () => {
-    const {isAuth} = useContext<any>(AppContext);
+    const isAuth: boolean = useSelector((state: RootState) => state.generalApp.isAuth);
    
     return (
         isAuth

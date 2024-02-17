@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState, ChangeEvent, FC, FormEvent } from "react";
+import React, { useEffect, useRef, useState, ChangeEvent, FC, FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import MyInput from "./UI/MyInput/MyInput";
 import MyButton from "./UI/MyButton/MyButton";
@@ -9,10 +9,9 @@ import CapturingPhotosWebcam from "./CapturingPhotosWebcam";
 import user from "../images/user/user.png";
 import camera from "../images/icon/camera.png";
 import upload from "../images/icon/upload.png";
-import { AppContext } from "../context";
 import { useInputControl } from "../hooks/useInput";
 import { useUploadImage } from "../hooks/useUploadingImage";
-import { addUser, changeDisableModal } from "../action/actionCreators";
+import { addUser, changeDisableModal, changeIsAuth } from "../action/actionCreators";
 import { UserDataType } from "../type/typeStore/typesStore";
 import { ProfilePhotoType } from "../type/typesMain";
 
@@ -27,7 +26,6 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
 
     const dispatch = useDispatch();
 
-    const {setIsAuth} = useContext<any>(AppContext);
     const [takingPhotos, getTakingPhotos] = useState<boolean>(false);
 
     const inputUpload = useRef<HTMLInputElement>(null);
@@ -55,7 +53,7 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
             const fullUserInfo: UserDataType = {...valueUserInfo, userPhoto: srcProfilePhoto};
 
             dispatch(addUser(fullUserInfo));
-            setIsAuth(true);
+            dispatch(changeIsAuth(true));
             localStorage.isAuth = true;
             props.setActive(false);
         }

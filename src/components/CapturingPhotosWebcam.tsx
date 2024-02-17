@@ -29,6 +29,7 @@ const CapturingPhotosWebcam:React.FC<Props> = (props: Props) => {
                 <video 
                     id="video" 
                     className={!displayControl ? "webcam__video" : "webcam__video_show"} 
+                    autoPlay={true}
                     ref={video}>Video stream not available.</video>
                 <canvas id="canvas" className="webcam__canvas" ref={canvas}>
                 </canvas>

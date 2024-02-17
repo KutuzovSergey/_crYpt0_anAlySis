@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
-import { AppContext } from "../context";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+import { changeModalLogin, changeModalRegistr } from "../action/actionCreators";
 import Banner from "../components/Banner";
 import MyModal from "../components/UI/MyModal/MyModal";
 import InfoApplication from "../components/InfoApplication";
@@ -10,7 +13,17 @@ import SubscribeNews from '../components/SubscribeNews';
 import '../styles/Home.scss';
 
 const Home:React.FC = () => {
-    const {modalLogin, setModalLogin, setModalRegistr, modalRegistr} = useContext<any>(AppContext);
+    const modalLogin: boolean = useSelector((state: RootState) => state.generalApp.modalLogin);
+    const modalRegistr: boolean = useSelector((state: RootState) => state.generalApp.modalRegistr);
+    const dispatch = useDispatch();
+
+    const setModalLogin = (booleanLogin: boolean): void =>{
+        dispatch(changeModalLogin(booleanLogin));
+    };
+
+    const setModalRegistr = (booleanRegistr: boolean): void =>{
+        dispatch(changeModalRegistr(booleanRegistr));
+    }
 
     return (
         <div className="home">
@@ -19,14 +32,12 @@ const Home:React.FC = () => {
             <InfoApplication/>
             <MyModal 
                 className="modal" 
-                // activityIndicator={true} 
                 active={modalLogin} 
                 setActive={setModalLogin}>
                     <ModalLoginForm />
             </MyModal>
             <MyModal 
                 className="modal" 
-                // activityIndicator={true} 
                 active={modalRegistr} 
                 setActive={setModalRegistr}>
                     <ModalRegistrForm active={modalRegistr} setActive={setModalRegistr} />

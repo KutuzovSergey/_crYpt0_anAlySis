@@ -1,15 +1,17 @@
-import React, { useContext, useEffect } from "react";
-import { AppContext } from "../context";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import TitleForPage from "../components/UI/TitleForPage/TitleForPage";
 
 import "../styles/Error.scss";
+import { changeErrorPages } from "../action/actionCreators";
 
 const Error:React.FC = () => {
-    const {setErrorPages,} = useContext<any>(AppContext);
+    const dispatch = useDispatch()
 
     useEffect(() =>{
-        setErrorPages(true);
+        dispatch(changeErrorPages(true));
     }, []);
+
     return (
         <div className="error">
             <TitleForPage>Этой страницы не существует</TitleForPage>

@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../context';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { changeErrorPages, changeIsAuth, changeMenuAdaptive, changeModalLogin, changeModalRegistr } from "../action/actionCreators";
+import { RootState } from '../store';
 import Login from './Login';
 import MainMenu from './menus/MainMenu/MainMenu';
 import MenuExit from './menus/MenuExit/MenuExit';
@@ -9,33 +12,35 @@ import BurgerMenu from './menus/BurgerMenu/BurgerMenu';
 import '../styles/componentStyles/Header.scss';
 
 const Header:React.FC = () =>{
-    const {setModalLogin, setModalRegistr, isAuth, setIsAuth, errorPages, setErrorPages, setMenuAdaptive} = useContext<any>(AppContext);
+    const isAuth: boolean = useSelector((state: RootState) => state.generalApp.isAuth);
+    const errorPages: boolean = useSelector((state: RootState) => state.generalApp.errorPages);
+    const dispatch = useDispatch();
 
     const openModalLogin = (): void =>{
-        setModalRegistr(false);
-        setModalLogin(true);
+        dispatch(changeModalRegistr(false));
+        dispatch(changeModalLogin(true));
     }
 
     const openModalRegistration = (): void =>{
-        setModalLogin(false);
-        setModalRegistr(true);
+        dispatch(changeModalLogin(false));
+        dispatch(changeModalRegistr(true));
     }
 
     const logOutAccount = (): void =>{
         if (errorPages) {
-            setErrorPages(false);
+            dispatch(changeErrorPages(false));
         }
-        setIsAuth(false);
+        dispatch(changeIsAuth(false));
         localStorage.isAuth = false;
     }
 
     const showMainPageMenu = (): void =>{
-        setErrorPages(false);
+        dispatch(changeErrorPages(false));
     }
     
     return (
         <div className='header__wrapper'>
-            <header className="header" onClick={() => {setMenuAdaptive(false)}}>
+            <header className="header" onClick={() => {dispatch(changeMenuAdaptive(false))}}>
                 <Login />
                 <div className="header__menu">
                     {

@@ -17,12 +17,12 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
     const playCamera = () =>{
         navigator.mediaDevices.getUserMedia({ video: true, audio: false})
         .then(function (stream){
-            if (video !== null) {
+            // if (video !== null) {
                 video!.srcObject = stream;
                 video!.play();
                 setDisplayControl(true);
                 streamVideo.current = stream;
-            }
+            // }
         })
         .catch(function(error){
             console.log(error);
@@ -95,6 +95,23 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
     useEffect(() => {
         return stopVideoStream(streamVideo)
     });
+
+    useEffect(() => {
+        const result = [];
+
+        for (var i = 0; i < 5; i++) {
+            (function(j){
+                result.push(
+                    function(){
+                    console.log(j);
+                })
+            })(i);
+        }
+
+        result[2]();
+        result[4]();
+    }, []);
+    
 
     return [
         takingPhoto,
