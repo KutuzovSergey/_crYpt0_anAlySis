@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { FC } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
@@ -12,7 +12,7 @@ import SubscribeNews from '../components/SubscribeNews';
 
 import '../styles/Home.scss';
 
-const Home:React.FC = () => {
+const Home:FC = () => {
     const modalLogin: boolean = useSelector((state: RootState) => state.generalApp.modalLogin);
     const modalRegistr: boolean = useSelector((state: RootState) => state.generalApp.modalRegistr);
     const dispatch = useDispatch();

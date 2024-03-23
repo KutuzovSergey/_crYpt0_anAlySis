@@ -1,8 +1,8 @@
-import React, { useState, useEffect, RefObject, LegacyRef, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { StreamVideoType, UseTakinPhotoType } from "../type/typeHooks/typesUseTakinPhoto";
 import { ProfilePhotoType } from "../type/typesMain";
-import { useDispatch } from "react-redux";
-import { changeDisableModal } from "../action/actionCreators";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 export const useTakingPhoto = (canvas: HTMLCanvasElement | null, 
     photo: HTMLImageElement | null, 
@@ -13,36 +13,54 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
     const [displayControl, setDisplayControl] = useState<boolean>(true);
     const [srcImg, setSrcImg] = useState<ProfilePhotoType>(null);
     const streamVideo = useRef<any>(null);
+    const takingPhotos: boolean = useSelector((state: RootState) => state.generalApp.isDisableModal); 
+
+    let isPlaying: boolean = true;
+
+    const playingVideo = () => {
+        isPlaying = true;
+    }
+
+    const videoPause = () => {
+        isPlaying = false;
+    }
 
     const playCamera = () =>{
         navigator.mediaDevices.getUserMedia({ video: true, audio: false})
         .then(function (stream){
-            // if (video !== null) {
-                video!.srcObject = stream;
-                video!.play();
-                setDisplayControl(true);
-                streamVideo.current = stream;
-            // }
+            setDisplayControl(true);
+            streamVideo.current = stream;
+            if (video) {
+                video!.srcObject = streamVideo.current;
+                if (video.paused && !isPlaying) {
+                    video.play();
+                }
+            }
         })
         .catch(function(error){
             console.log(error);
         })
     }
 
-    // const getDeviceMedia = async () =>{
-    //     const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false});
-            
-    //     if (video) {
-    //         video!.srcObject = stream;
-    //         video!.play();
-    //         setDisplayControl(true);
-    //     } 
-    // }
-
     useEffect(() =>{
-        // getDeviceMedia();
-        playCamera();
-    }, []); 
+        // const getDeviceMedia = async () =>{
+        //     const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false});
+                
+        //     if (video) {
+        //         streamVideo.current = stream;
+        //         video!.srcObject = stream;
+        //         setDisplayControl(true);
+        //         if (!video.paused && isPlaying) {
+        //             return video!.play();
+        //         }
+        //     }
+        // }
+
+        if (takingPhotos) {
+            playCamera();
+            // getDeviceMedia()
+        }
+    }, [takingPhotos]);
 
     const stopVideoStream = (streamVideo: StreamVideoType): void =>{
         if (streamVideo.current !== null) {
@@ -50,6 +68,7 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
                 track.stop();
             });
         }
+        video?.pause();
     }
 
     const takingPhoto = () => {
@@ -64,9 +83,7 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
             const data = canvas.toDataURL('image/png');
             setSrcImg(data);
 
-            streamVideo.current.getTracks().forEach(function(track: any) {
-                track.stop();
-            });
+            stopVideoStream(streamVideo);
 
             setDisplayControl(false);
         }
@@ -95,28 +112,14 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
     useEffect(() => {
         return stopVideoStream(streamVideo)
     });
-
-    useEffect(() => {
-        const result = [];
-
-        for (var i = 0; i < 5; i++) {
-            (function(j){
-                result.push(
-                    function(){
-                    console.log(j);
-                })
-            })(i);
-        }
-
-        result[2]();
-        result[4]();
-    }, []);
     
-
     return [
         takingPhoto,
         clearPhoto,
         applyingPhoto,
+        playCamera,
+        playingVideo,
+        videoPause,
         srcImg,
         displayControl
     ]

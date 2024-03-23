@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import MyButtonSmall from "./UI/MyButtonSmall/MyButtonSmall";
 import ImitationButton from "./UI/ImitationButton/ImitationButton";
 import { useTakingPhoto } from "../hooks/useTakingPhoto";
@@ -17,7 +17,7 @@ const CapturingPhotosWebcam:React.FC<Props> = (props: Props) => {
     const photo = useRef(null);
     const video = useRef(null);
 
-    const [takingPhoto, clearPhoto, applyingPhoto, srcImg, displayControl] = useTakingPhoto(canvas.current, photo.current, video.current, props.closeWebcam, props.installingSnapshot);
+    const [takingPhoto, clearPhoto, applyingPhoto, playCamera, playingVideo, videoPause, srcImg, displayControl] = useTakingPhoto(canvas.current, photo.current, video.current, props.closeWebcam, props.installingSnapshot);
 
     return (
         <div className="webcam">
@@ -30,7 +30,10 @@ const CapturingPhotosWebcam:React.FC<Props> = (props: Props) => {
                     id="video" 
                     className={!displayControl ? "webcam__video" : "webcam__video_show"} 
                     autoPlay={true}
-                    ref={video}>Video stream not available.</video>
+                    muted
+                    ref={video}
+                    onPlaying={playingVideo}
+                    onPause={videoPause}>Video stream not available.</video>
                 <canvas id="canvas" className="webcam__canvas" ref={canvas}>
                 </canvas>
                 <div className={displayControl ? "webcam__image" : "webcam__image_show"}>

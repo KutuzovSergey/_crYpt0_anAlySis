@@ -5,6 +5,9 @@ export type UseTakinPhotoType = [
     takingPhoto: () => void,
     clearPhoto: () => void,
     applyingPhoto: () => void,
+    playCamera: () => void,
+    playingVideo: () => void,
+    videoPause:  () => void,
     srcImg: ProfilePhotoType,
     displayControl: boolean
 ]

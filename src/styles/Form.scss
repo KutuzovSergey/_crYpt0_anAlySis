@@ -87,12 +87,17 @@
     }
 }
 
-.takingPhotosv{
+.takingPhotos{
+    visibility: hidden;
     width: 500px;
     height: auto;
     padding: 10px;
     position: absolute;
     background-color: $color_text;
+}
+
+.takingPhotos_active{
+    visibility: visible;
 }
 
 @media (max-width: 660px) {

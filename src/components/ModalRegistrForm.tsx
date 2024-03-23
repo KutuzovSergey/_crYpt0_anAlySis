@@ -14,6 +14,8 @@ import { useUploadImage } from "../hooks/useUploadingImage";
 import { addUser, changeDisableModal, changeIsAuth } from "../action/actionCreators";
 import { UserDataType } from "../type/typeStore/typesStore";
 import { ProfilePhotoType } from "../type/typesMain";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 import '../styles/Form.scss';
 
@@ -26,10 +28,14 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
 
     const dispatch = useDispatch();
 
-    const [takingPhotos, getTakingPhotos] = useState<boolean>(false);
+    // const [takingPhotos, getTakingPhotos] = useState<boolean>(false);
+    const takingPhotos: boolean = useSelector((state: RootState) => state.generalApp.isDisableModal);
 
     const inputUpload = useRef<HTMLInputElement>(null);
     const profilePhoto = useRef<HTMLImageElement | null>(null);
+    
+    const styleTakingPhotosHide: string[] = ['takingPhotos'];
+    const styleTakingPhotosShow: string[] = ['takingPhotos', 'takingPhotos_active'];
 
     const {valueUserInfo, 
         errorStatus, 
@@ -65,11 +71,11 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
     
     const openTakePhoto = () => {
         dispatch(changeDisableModal(true));
-        getTakingPhotos(true);
+        // getTakingPhotos(true);
     }
 
     const closeTakePhoto = () => {
-        getTakingPhotos(false);
+        // getTakingPhotos(false);
         dispatch(changeDisableModal(false));
     }
 
@@ -176,13 +182,16 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
             <div className="form__button">
                 <MyButton>войти</MyButton>
             </div>
-            {takingPhotos ? 
-            <div className="takingPhotosv">
+            <div className={ !takingPhotos ? styleTakingPhotosHide.join(' ') : styleTakingPhotosShow.join(' ')} >
+                <CapturingPhotosWebcam closeWebcam={closeTakePhoto} installingSnapshot={installingSnapshot} />
+            </div>
+            {/* {takingPhotos ? 
+            <div className="takingPhotos">
                 <CapturingPhotosWebcam closeWebcam={closeTakePhoto} installingSnapshot={installingSnapshot} />
             </div>
             :
             ''
-            }
+            } */}
             
         </form>
     )
