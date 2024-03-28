@@ -1,8 +1,13 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
 import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, UseInputControlType } from "../type/typeHooks/typesUseInput";
+import { useDispatch } from "react-redux";
+import { changeDisableModal } from "../action/actionCreators";
 
 export const useInputControl = (): UseInputControlType => {
+
+    const dispatch = useDispatch();
+
     const [valueUserInfo, setValueUserInfo] = useState<ValueUserType>({
         userName: '',
         userPassword: '',
@@ -225,6 +230,7 @@ export const useInputControl = (): UseInputControlType => {
                 errorMail: '',
                 errorPhone: '',
             });
+            dispatch(changeDisableModal(false));
         } else {
             return
         }

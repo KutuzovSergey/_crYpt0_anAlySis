@@ -25,8 +25,26 @@
         align-items: center;
     }
 
+    &__camera_wrapper{
+        width: 98%;
+        height: 260px;
+        margin: auto;
+        z-index: 9;
+        display: flex;
+        // background-color: azure;
+        justify-content: center;
+        align-items: center;
+        // -webkit-backdrop-filter: blur(5px);
+        // backdrop-filter: blur(5px);
+    }
+
     &__camera{
-        width: 100%;
+        width: 240px;
+        height: 240px;
+        margin: auto;
+        z-index: 99;
+        overflow: hidden;
+        border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -51,8 +69,9 @@
     }
 
     &__image_show{
-        display: block;
-        width: 350px;
+        display: flex;
+        justify-content: center;
+        width: 240px;
         height: auto;
     }
 

@@ -28,7 +28,6 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
 
     const dispatch = useDispatch();
 
-    // const [takingPhotos, getTakingPhotos] = useState<boolean>(false);
     const takingPhotos: boolean = useSelector((state: RootState) => state.generalApp.isDisableModal);
 
     const inputUpload = useRef<HTMLInputElement>(null);
@@ -71,11 +70,9 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
     
     const openTakePhoto = () => {
         dispatch(changeDisableModal(true));
-        // getTakingPhotos(true);
     }
 
     const closeTakePhoto = () => {
-        // getTakingPhotos(false);
         dispatch(changeDisableModal(false));
     }
 
@@ -86,7 +83,6 @@ const ModalRegistrForm:FC<Props> = (props: Props) => {
     useEffect( () => {
         resetFormValues(props.active);
         resetInputFile(user);
-        
     }, [props.active]);
 
     return (

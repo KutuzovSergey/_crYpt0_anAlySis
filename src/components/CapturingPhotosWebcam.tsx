@@ -17,27 +17,40 @@ const CapturingPhotosWebcam:React.FC<Props> = (props: Props) => {
     const photo = useRef(null);
     const video = useRef(null);
 
-    const [takingPhoto, clearPhoto, applyingPhoto, playCamera, playingVideo, videoPause, srcImg, displayControl] = useTakingPhoto(canvas.current, photo.current, video.current, props.closeWebcam, props.installingSnapshot);
+    const [takingPhoto, 
+            clearPhoto, 
+            applyingPhoto, 
+            playCamera, 
+            playingVideo, 
+            videoPause, 
+            srcImg, 
+            displayControl] = useTakingPhoto(canvas.current, 
+                photo.current, 
+                video.current, 
+                props.closeWebcam, 
+                props.installingSnapshot);
 
     return (
         <div className="webcam">
             <div className="webcam__close">
                 <MyButtonSmall onClick={() => {props.closeWebcam()}} >&#10006;</MyButtonSmall>
             </div>
-                
-            <div className="webcam__camera">
-                <video 
-                    id="video" 
-                    className={!displayControl ? "webcam__video" : "webcam__video_show"} 
-                    autoPlay={true}
-                    muted
-                    ref={video}
-                    onPlaying={playingVideo}
-                    onPause={videoPause}>Video stream not available.</video>
-                <canvas id="canvas" className="webcam__canvas" ref={canvas}>
-                </canvas>
-                <div className={displayControl ? "webcam__image" : "webcam__image_show"}>
-                    <img src={srcImg} id="photo" alt="screenshot" ref={photo}/>
+
+            <div className="webcam__camera_wrapper">
+                <div className="webcam__camera">
+                    <video 
+                        id="video" 
+                        className={!displayControl ? "webcam__video" : "webcam__video_show"} 
+                        autoPlay={true}
+                        muted
+                        ref={video}
+                        onPlaying={playingVideo}
+                        onPause={videoPause}>Video stream not available.</video>
+                    <canvas id="canvas" className="webcam__canvas" ref={canvas}>
+                    </canvas>
+                    <div className={displayControl ? "webcam__image" : "webcam__image_show"}>
+                        <img src={srcImg} id="photo" alt="screenshot" ref={photo}/>
+                    </div>
                 </div>
             </div>
 

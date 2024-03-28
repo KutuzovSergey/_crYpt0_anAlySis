@@ -34,6 +34,14 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
                 video!.srcObject = streamVideo.current;
                 if (video.paused && !isPlaying) {
                     video.play();
+                } else {
+                    setTimeout(() => {
+                        console.log('hire');
+                        // if (video.paused && !isPlaying) {
+                            // console.log('hire');
+                            video.play();
+                        // }
+                    }, 250);
                 }
             }
         })
@@ -43,22 +51,8 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
     }
 
     useEffect(() =>{
-        // const getDeviceMedia = async () =>{
-        //     const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false});
-                
-        //     if (video) {
-        //         streamVideo.current = stream;
-        //         video!.srcObject = stream;
-        //         setDisplayControl(true);
-        //         if (!video.paused && isPlaying) {
-        //             return video!.play();
-        //         }
-        //     }
-        // }
-
         if (takingPhotos) {
             playCamera();
-            // getDeviceMedia()
         }
     }, [takingPhotos]);
 
@@ -76,9 +70,11 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
             const videoWidth = video.offsetWidth;
             const videoHeight = video.offsetHeight;
             const context = canvas.getContext('2d');
-            canvas.width = videoWidth;
-            canvas.height = videoHeight;
-            context!.drawImage(video, 0, 0, videoWidth, videoHeight);
+            canvas.width = 240;
+            canvas.height = 240;
+            const yPhoto = Math.round(videoWidth / 6.2);
+
+            context!.drawImage(video, -yPhoto, -10, videoWidth, videoHeight);
 
             const data = canvas.toDataURL('image/png');
             setSrcImg(data);
