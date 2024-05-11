@@ -7,7 +7,8 @@ const defaultState: GeneralAppDataType = {
         modalLogin: false,
         modalRegistr: false,
         errorPages: false,
-        isAuth: false
+        isAuth: false,
+        videoPlayback: true,
     }
 
 
@@ -25,6 +26,8 @@ export const generalAppData = (state = defaultState, action: ChangeGeneralAppTyp
             return { ...state, errorPages: action.generalApp }
         case generalAppConst.CHANGE_IS_AUTH:
             return { ...state, isAuth: action.generalApp }
+        case generalAppConst.CHANGE_VIDEO_PLAYBACK:
+            return { ...state, videoPlayback: action.generalApp}
         default:
             return state
     }

@@ -3,6 +3,8 @@ import { StreamVideoType, UseTakinPhotoType } from "../type/typeHooks/typesUseTa
 import { ProfilePhotoType } from "../type/typesMain";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import { useDispatch } from "react-redux";
+import { changeVideoPlayback } from "../action/actionCreators";
 
 export const useTakingPhoto = (canvas: HTMLCanvasElement | null, 
     photo: HTMLImageElement | null, 
@@ -10,6 +12,8 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
     closeWebcam: () => void,
     installingSnapshot: (snapshot: ProfilePhotoType) => void): UseTakinPhotoType =>{
 
+    const dispatch = useDispatch();
+    
     const [displayControl, setDisplayControl] = useState<boolean>(true);
     const [srcImg, setSrcImg] = useState<ProfilePhotoType>(null);
     const streamVideo = useRef<any>(null);
@@ -19,11 +23,22 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
 
     const playingVideo = () => {
         isPlaying = true;
+        dispatch(changeVideoPlayback(true));
     }
-
+    // const changeVideoPlayback = (playingVideo: boolean): void =>{
+    //     console.log(playingVideo);
+    //     dispatch(changingVideoPlayback(playingVideo))
+    // }
     const videoPause = () => {
         isPlaying = false;
+        dispatch(changeVideoPlayback(false));
     }
+
+    // const isPlaying: boolean = useSelector((state: RootState) => state.generalApp.videoPlayback);
+
+    useEffect(() => {
+        console.log(isPlaying);
+    }, [isPlaying]);
 
     const playCamera = () =>{
         navigator.mediaDevices.getUserMedia({ video: true, audio: false})
@@ -32,16 +47,9 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
             streamVideo.current = stream;
             if (video) {
                 video!.srcObject = streamVideo.current;
-                if (video.paused && !isPlaying) {
+                console.log(video.paused);
+                if (video.paused) {
                     video.play();
-                } else {
-                    setTimeout(() => {
-                        console.log('hire');
-                        // if (video.paused && !isPlaying) {
-                            // console.log('hire');
-                            video.play();
-                        // }
-                    }, 250);
                 }
             }
         })
@@ -52,6 +60,7 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
 
     useEffect(() =>{
         if (takingPhotos) {
+            console.log('We are here');
             playCamera();
         }
     }, [takingPhotos]);
@@ -100,7 +109,6 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
     }
 
     const applyingPhoto = () =>{
-        stopVideoStream(streamVideo);
         closeWebcam();
         installingSnapshot(srcImg);
     }
@@ -113,7 +121,6 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
         takingPhoto,
         clearPhoto,
         applyingPhoto,
-        playCamera,
         playingVideo,
         videoPause,
         srcImg,

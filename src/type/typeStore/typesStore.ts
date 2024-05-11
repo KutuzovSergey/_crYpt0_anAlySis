@@ -135,7 +135,8 @@ export type GeneralAppDataType = {
     modalLogin: boolean,
     modalRegistr: boolean,
     errorPages: boolean,
-    isAuth: boolean
+    isAuth: boolean,
+    videoPlayback: boolean,
 }
 
 export type ChangeGeneralAppType = {

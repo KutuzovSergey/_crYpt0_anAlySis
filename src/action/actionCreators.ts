@@ -87,3 +87,11 @@ export const changeIsAuth = (isAuth: boolean): ChangeGeneralAppType => {
         generalApp: isAuth
     }
 }
+
+// режим работы видео play/pause
+export const changeVideoPlayback = (playbackMode: boolean): ChangeGeneralAppType => {
+    return {
+        type: generalAppConst.CHANGE_VIDEO_PLAYBACK,
+        generalApp: playbackMode
+    }
+}
