@@ -19,26 +19,13 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
     const streamVideo = useRef<any>(null);
     const takingPhotos: boolean = useSelector((state: RootState) => state.generalApp.isDisableModal); 
 
-    let isPlaying: boolean = true;
-
     const playingVideo = () => {
-        isPlaying = true;
         dispatch(changeVideoPlayback(true));
     }
-    // const changeVideoPlayback = (playingVideo: boolean): void =>{
-    //     console.log(playingVideo);
-    //     dispatch(changingVideoPlayback(playingVideo))
-    // }
+
     const videoPause = () => {
-        isPlaying = false;
         dispatch(changeVideoPlayback(false));
     }
-
-    // const isPlaying: boolean = useSelector((state: RootState) => state.generalApp.videoPlayback);
-
-    useEffect(() => {
-        console.log(isPlaying);
-    }, [isPlaying]);
 
     const playCamera = () =>{
         navigator.mediaDevices.getUserMedia({ video: true, audio: false})
@@ -47,9 +34,8 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
             streamVideo.current = stream;
             if (video) {
                 video!.srcObject = streamVideo.current;
-                console.log(video.paused);
                 if (video.paused) {
-                    video.play();
+                    video.load();
                 }
             }
         })
@@ -60,8 +46,8 @@ export const useTakingPhoto = (canvas: HTMLCanvasElement | null,
 
     useEffect(() =>{
         if (takingPhotos) {
-            console.log('We are here');
             playCamera();
+            setDisplayControl(true);
         }
     }, [takingPhotos]);
 
