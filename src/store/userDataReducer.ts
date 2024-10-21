@@ -13,7 +13,6 @@ const defaultState: StateUserDataType = {
         }
     }
 
-
 export const userDataReducer = (state = defaultState, action: UserDataActionType) => {
     switch (action.type){
         case userDataConst.ADD_USER_DATA:

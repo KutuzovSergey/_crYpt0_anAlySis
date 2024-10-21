@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React from "react";
 import baner from "../images/home/baner_1.png";
 import { useBannerOperation } from "../hooks/useBanner";
 

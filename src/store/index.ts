@@ -5,6 +5,8 @@ import { userDataReducer } from "./userDataReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { generalAppData } from "./generalAppData";
+
+
 export type RootState = ReturnType<typeof store.getState>;
 
 const rootReducer = combineReducers({

@@ -145,5 +145,3 @@ export const useLogAccount = (modalLogin: boolean): LogAccountType => {
         resetLog,
     ]
 }
-
-   

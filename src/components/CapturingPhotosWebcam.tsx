@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import MyButtonSmall from "./UI/MyButtonSmall/MyButtonSmall";
 import ImitationButton from "./UI/ImitationButton/ImitationButton";
 import { useTakingPhoto } from "../hooks/useTakingPhoto";

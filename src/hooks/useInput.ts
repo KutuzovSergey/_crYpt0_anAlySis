@@ -1,248 +1,265 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import { _email, _phone } from "../utils/regularExpressions";
-import { ValueUserType, ErrorStatusType, ErrorType, CheckValidErrorsType, UseInputControlType } from "../type/typeHooks/typesUseInput";
+import {
+  ValueUserType,
+  ErrorStatusType,
+  ErrorType,
+  CheckValidErrorsType,
+  UseInputControlType,
+} from "../type/typeHooks/typesUseInput";
 import { useDispatch } from "react-redux";
 import { changeDisableModal } from "../action/actionCreators";
 
 export const useInputControl = (): UseInputControlType => {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  const [valueUserInfo, setValueUserInfo] = useState<ValueUserType>({
+    userName: "",
+    userPassword: "",
+    userRepeatPassword: "",
+    userMail: "",
+    userPhone: "",
+  });
 
-    const [valueUserInfo, setValueUserInfo] = useState<ValueUserType>({
-        userName: '',
-        userPassword: '',
-        userRepeatPassword: '',
-        userMail: '',
-        userPhone: '',
-    });
+  const [errorStatus, setErrorStatus] = useState<ErrorStatusType>({
+    errorName: false,
+    errorPassword: false,
+    errorRepeatPassword: false,
+    errorMail: false,
+    errorPhone: false,
+  });
 
-    const [errorStatus, setErrorStatus] = useState<ErrorStatusType>({
-        errorName: false,
-        errorPassword: false,
-        errorRepeatPassword: false,
-        errorMail: false,
-        errorPhone: false,
-    });
+  const [error, setError] = useState<ErrorType>({
+    errorName: "",
+    errorPassword: "",
+    errorRepeatPassword: "",
+    errorMail: "",
+    errorPhone: "",
+  });
 
-    const [error, setError] = useState<ErrorType>({
-        errorName: '',
-        errorPassword: '',
-        errorRepeatPassword: '',
-        errorMail: '',
-        errorPhone: '',
-    });
+  const onChangeInput = (e: ChangeEvent): void => {
+    let newValue = { ...valueUserInfo };
+    let newErrorStatus = { ...errorStatus };
+    const formElem = e.target as HTMLInputElement;
 
-    const onChangeInput = (e: ChangeEvent): void => {
-        let newValue = { ...valueUserInfo };
-        let newErrorStatus = { ...errorStatus };
-        const formElem = e.target as HTMLInputElement;
-
-        switch (formElem.name){
-            case 'name': 
-                newValue = {...newValue, userName: formElem.value};
-                if (newErrorStatus.errorName) {
-                    newErrorStatus = {...newErrorStatus, errorName: false};
-                }
-                break;
-            case 'password':
-                newValue = {...newValue, userPassword: formElem.value};
-                if (newErrorStatus.errorPassword) {
-                    newErrorStatus = {...newErrorStatus, errorPassword: false};
-                }
-                break;
-            case 'repeatPassword':
-                newValue = {...newValue, userRepeatPassword: formElem.value};
-                if (newErrorStatus.errorRepeatPassword) {
-                    newErrorStatus = {...newErrorStatus, errorRepeatPassword: false};
-                }
-                break;
-            case 'mail':
-                newValue = {...newValue, userMail: formElem.value};
-                if (newErrorStatus.errorMail) {
-                    newErrorStatus = {...newErrorStatus, errorMail: false};
-                }
-                break;
-            case 'phone':
-                newValue = {...newValue, userPhone: formElem.value};
-                if (newErrorStatus.errorPhone) {
-                    newErrorStatus = {...newErrorStatus, errorPhone: false};
-                }
-                break;
-            default:
-                break;
+    switch (formElem.name) {
+      case "name":
+        newValue = { ...newValue, userName: formElem.value };
+        if (newErrorStatus.errorName) {
+          newErrorStatus = { ...newErrorStatus, errorName: false };
         }
-
-        setValueUserInfo(newValue);
-        setErrorStatus(newErrorStatus);
+        break;
+      case "password":
+        newValue = { ...newValue, userPassword: formElem.value };
+        if (newErrorStatus.errorPassword) {
+          newErrorStatus = { ...newErrorStatus, errorPassword: false };
+        }
+        break;
+      case "repeatPassword":
+        newValue = { ...newValue, userRepeatPassword: formElem.value };
+        if (newErrorStatus.errorRepeatPassword) {
+          newErrorStatus = { ...newErrorStatus, errorRepeatPassword: false };
+        }
+        break;
+      case "mail":
+        newValue = { ...newValue, userMail: formElem.value };
+        if (newErrorStatus.errorMail) {
+          newErrorStatus = { ...newErrorStatus, errorMail: false };
+        }
+        break;
+      case "phone":
+        newValue = { ...newValue, userPhone: formElem.value };
+        if (newErrorStatus.errorPhone) {
+          newErrorStatus = { ...newErrorStatus, errorPhone: false };
+        }
+        break;
+      default:
+        break;
     }
 
-    const validation = (e:  React.FormEvent): CheckValidErrorsType =>{
-                    
-        const form = e.target as HTMLFormElement;
+    setValueUserInfo(newValue);
+    setErrorStatus(newErrorStatus);
+  }
 
-        let newError: ErrorType = { ...error };
+  const validation = (e: React.FormEvent): CheckValidErrorsType => {
+    const form = e.target as HTMLFormElement;
 
-        // let errorCount: number = 0;
+    let newError: ErrorType = { ...error };
 
-        for (let i = 0; i < form.length; i++) {
-            const element = form.elements[i] as HTMLInputElement;
-            const elementValue: string = element.value.trim();
-            
-            switch(element.name){
-                case 'name':
-                    if (!elementValue) {
-                        // ++errorCount;
-                        newError = { ...newError, errorName: 'Логин не может быть пустым'};
-                    } else if (elementValue.length < 2) {
-                        // ++errorCount;
-                        newError = { ...newError, errorName: 'Логин меньше 2 символов'};
-                    } else {
-                        newError = { ...newError, errorName: ''};
-                    }
-                break;
-                case 'password':
-                    if (!elementValue) {
-                        // ++errorCount;
-                        newError = { ...newError, errorPassword: 'Пароль не может быть пустым'};
-                    } else if (elementValue.length < 6) {
-                        // ++errorCount;
-                        newError = { ...newError, errorPassword: 'Пароль меньше 6 символов'};
-                    } else if (elementValue!== valueUserInfo.userRepeatPassword) {
-                        // ++errorCount;
-                        newError = { ...newError, errorPassword: 'Пароли не совпадают'};
-                    } else {
-                        newError = { ...newError, errorPassword: ''};
-                    }
-                break;
-                case 'repeatPassword':
-                    if(!elementValue){
-                        // ++errorCount;
-                        newError = { ...newError, errorRepeatPassword: 'Поле не может быть пустым'};
-                    } else if (elementValue !== valueUserInfo.userPassword) {
-                        // ++errorCount;
-                        newError = { ...newError, errorRepeatPassword: 'Пароли не совпадают'};
-                    } else {
-                        newError = { ...newError, errorRepeatPassword: ''};
-                    }
-                break;
-                case 'mail':
-                    if (!elementValue) {
-                        newError = { ...newError, errorMail: 'Введите почту'};
-                    } else if (!_email.test(String(elementValue.toLowerCase()))) {
-                        newError = { ...newError, errorMail: 'Некорректный E-mail'};
-                    } else {
-                        newError = { ...newError, errorMail: ''};
-                    }
-                    break;
-                case 'phone':
-                    if (!elementValue) {
-                        newError = { ...newError, errorPhone: 'Введите телефон'};
-                    } else if (elementValue.length > 26) {
-                        newError = { ...newError, errorPhone: 'Номер слишком длинный'};
-                    } else if (elementValue.length < 9) {
-                        newError = { ...newError, errorPhone: 'Номер слишком короткий'};
-                    } else if (!_phone.test(String(elementValue))) {
-                        newError = { ...newError, errorPhone: 'Некорректный номер телефона'};
-                    } else {
-                        newError = { ...newError, errorPhone: ''};
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
- 
-        setError(newError);
+    // let errorCount: number = 0;
 
-        const checkValidErrors = (): boolean =>{
-            let counterError: number = 0;
-            let validResultForm: boolean = false;
+    for (let i = 0; i < form.length; i++) {
+      const element = form.elements[i] as HTMLInputElement;
+      const elementValue: string = element.value.trim();
 
-            for(let indexError in newError){
-                if (newError[indexError] === '') {
-                    counterError = ++counterError;
-                }
-            }
-
-            if (counterError === Object.keys(newError).length) {
-                validResultForm = true;
-            } else {
-                counterError = 0;
-                validResultForm = false;
-            }
-            
-            return validResultForm
-        }
-
-        return checkValidErrors
+      switch (element.name) {
+        case "name":
+          if (!elementValue) {
+            // ++errorCount;
+            newError = { ...newError, errorName: "Логин не может быть пустым" };
+          } else if (elementValue.length < 2) {
+            // ++errorCount;
+            newError = { ...newError, errorName: "Логин меньше 2 символов" };
+          } else {
+            newError = { ...newError, errorName: "" };
+          }
+          break;
+        case "password":
+          if (!elementValue) {
+            // ++errorCount;
+            newError = {
+              ...newError,
+              errorPassword: "Пароль не может быть пустым",
+            };
+          } else if (elementValue.length < 6) {
+            // ++errorCount;
+            newError = {
+              ...newError,
+              errorPassword: "Пароль меньше 6 символов",
+            };
+          } else if (elementValue !== valueUserInfo.userRepeatPassword) {
+            // ++errorCount;
+            newError = { ...newError, errorPassword: "Пароли не совпадают" };
+          } else {
+            newError = { ...newError, errorPassword: "" };
+          }
+          break;
+        case "repeatPassword":
+          if (!elementValue) {
+            // ++errorCount;
+            newError = {
+              ...newError,
+              errorRepeatPassword: "Поле не может быть пустым",
+            };
+          } else if (elementValue !== valueUserInfo.userPassword) {
+            // ++errorCount;
+            newError = {
+              ...newError,
+              errorRepeatPassword: "Пароли не совпадают",
+            };
+          } else {
+            newError = { ...newError, errorRepeatPassword: "" };
+          }
+          break;
+        case "mail":
+          if (!elementValue) {
+            newError = { ...newError, errorMail: "Введите почту" };
+          } else if (!_email.test(String(elementValue.toLowerCase()))) {
+            newError = { ...newError, errorMail: "Некорректный E-mail" };
+          } else {
+            newError = { ...newError, errorMail: "" };
+          }
+          break;
+        case "phone":
+          if (!elementValue) {
+            newError = { ...newError, errorPhone: "Введите телефон" };
+          } else if (elementValue.length > 26) {
+            newError = { ...newError, errorPhone: "Номер слишком длинный" };
+          } else if (elementValue.length < 9) {
+            newError = { ...newError, errorPhone: "Номер слишком короткий" };
+          } else if (!_phone.test(String(elementValue))) {
+            newError = {
+              ...newError,
+              errorPhone: "Некорректный номер телефона",
+            };
+          } else {
+            newError = { ...newError, errorPhone: "" };
+          }
+          break;
+        default:
+          break;
+      }
     }
 
-    useEffect(() => {
-        let newErrorStatus = { ...errorStatus };
+    setError(newError);
 
-        if (error.errorName !== '') {
-            newErrorStatus.errorName = true;
-        } else {
-            newErrorStatus.errorName = false;
+    const checkValidErrors = (): boolean => {
+      let counterError: number = 0;
+      let validResultForm: boolean = false;
+
+      for (let indexError in newError) {
+        if (newError[indexError] === "") {
+          counterError = ++counterError;
         }
+      }
 
-        if (error.errorPassword !== '') {
-            newErrorStatus.errorPassword = true;
-        } else {
-            newErrorStatus.errorPassword = false;
-        }
+      if (counterError === Object.keys(newError).length) {
+        validResultForm = true;
+      } else {
+        counterError = 0;
+        validResultForm = false;
+      }
 
-        if (error.errorRepeatPassword !== '') {
-            newErrorStatus.errorRepeatPassword = true;
-        } else {
-            newErrorStatus.errorRepeatPassword = false;
-        }
-
-        if (error.errorMail !== '') {
-            newErrorStatus.errorMail = true;
-        } else {
-            newErrorStatus.errorMail = false;
-        }
-
-        if (error.errorPhone !== '') {
-            newErrorStatus.errorPhone = true;
-        } else {
-            newErrorStatus.errorPhone = false;
-        }
-
-        setErrorStatus(newErrorStatus);
-       
-    }, [error]);
-
-    const resetFormValues = (reasonDataReset: boolean): void => {
-        if (reasonDataReset) {
-            setValueUserInfo({
-                userName: '',
-                userPassword: '',
-                userRepeatPassword: '',
-                userMail: '',
-                userPhone: '',
-            });
-            setError({
-                errorName: '',
-                errorPassword: '',
-                errorRepeatPassword: '',
-                errorMail: '',
-                errorPhone: '',
-            });
-            dispatch(changeDisableModal(false));
-        } else {
-            return
-        }
+      return validResultForm
     }
 
-    return {
-        valueUserInfo,
-        errorStatus,
-        onChangeInput,
-        validation,
-        error,
-        resetFormValues,
+    return checkValidErrors
+  }
+
+  useEffect(() => {
+    let newErrorStatus = { ...errorStatus };
+
+    if (error.errorName !== "") {
+      newErrorStatus.errorName = true;
+    } else {
+      newErrorStatus.errorName = false;
     }
 
+    if (error.errorPassword !== "") {
+      newErrorStatus.errorPassword = true;
+    } else {
+      newErrorStatus.errorPassword = false;
+    }
+
+    if (error.errorRepeatPassword !== "") {
+      newErrorStatus.errorRepeatPassword = true;
+    } else {
+      newErrorStatus.errorRepeatPassword = false;
+    }
+
+    if (error.errorMail !== "") {
+      newErrorStatus.errorMail = true;
+    } else {
+      newErrorStatus.errorMail = false;
+    }
+
+    if (error.errorPhone !== "") {
+      newErrorStatus.errorPhone = true;
+    } else {
+      newErrorStatus.errorPhone = false;
+    }
+
+    setErrorStatus(newErrorStatus);
+  }, [error]);
+
+  const resetFormValues = (reasonDataReset: boolean): void => {
+    if (reasonDataReset) {
+      setValueUserInfo({
+        userName: "",
+        userPassword: "",
+        userRepeatPassword: "",
+        userMail: "",
+        userPhone: "",
+      });
+      setError({
+        errorName: "",
+        errorPassword: "",
+        errorRepeatPassword: "",
+        errorMail: "",
+        errorPhone: "",
+      });
+      dispatch(changeDisableModal(false));
+    } else {
+      return
+    }
+  }
+
+  return {
+    valueUserInfo,
+    errorStatus,
+    onChangeInput,
+    validation,
+    error,
+    resetFormValues,
+  }
 }
