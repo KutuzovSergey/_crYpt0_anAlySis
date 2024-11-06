@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/_crYpt0_anAlySis/static/css/main.f4f3a77d.css",
+    "main.js": "/_crYpt0_anAlySis/static/js/main.e2be65fa.js",
+    "static/media/user.png": "/_crYpt0_anAlySis/static/media/user.6c4fd752c5ea43cfa457.png",
+    "static/media/logo.png": "/_crYpt0_anAlySis/static/media/logo.69a9176611a388ccc0ae.png",
+    "static/media/imgFon.jpg": "/_crYpt0_anAlySis/static/media/imgFon.a96834785fbfaeaf0aa3.jpg",
+    "static/media/imgFon_second.jpg": "/_crYpt0_anAlySis/static/media/imgFon_second.9d40b267bcec9eebd237.jpg",
+    "static/media/loader.gif": "/_crYpt0_anAlySis/static/media/loader.6f3354b2ef495d5ec860.gif",
+    "static/media/coin_icon.png": "/_crYpt0_anAlySis/static/media/coin_icon.d63c251273eb1bb70fc5.png",
+    "index.html": "/_crYpt0_anAlySis/index.html",
+    "main.f4f3a77d.css.map": "/_crYpt0_anAlySis/static/css/main.f4f3a77d.css.map",
+    "main.e2be65fa.js.map": "/_crYpt0_anAlySis/static/js/main.e2be65fa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f4f3a77d.css",
+    "static/js/main.e2be65fa.js"
+  ]
+}
