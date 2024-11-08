@@ -7,12 +7,12 @@ import EditProfile from "../pages/EditProfile";
 import { PublicRoutersType } from "../type/typesRouter";
 
 export const publicRouters: PublicRoutersType = [
-    {name: 'Home', path: '/', component: <Home/>},
+    { name: 'Home', path: '/_crYpt0_anAlySis', component: <Home/>},
     {name: 'Error', path: '*', component: <Error/>},
 ]
 
 export const privateRouters: PublicRoutersType = [
-    {name: 'Home', path: '/', component: <Home/>},
+    { name: 'Home', path: '/_crYpt0_anAlySis', component: <Home/>},
     {name: 'Error', path: '*', component: <Error/>},
     {name: 'Currences', path: '/currences', component: <Currences/>},
     {name: 'EditProfile', path: '/editProfile', component: <EditProfile/>},
